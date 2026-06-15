@@ -1,0 +1,117 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "useCases": "Cas d'Usage",
+    "blog": "Deep Dives"
+  },
+  "hero": {
+    "title": "Product Owner IA",
+    "subtitle": "Rendre l'IA opérationnelle, mesurable et adoptée.",
+    "cta": "Voir les cas d'usage"
+  },
+  "useCases": {
+    "title": "Cas d'Usage",
+    "subtitle": "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production.",
+    "backLabel": "Retour à l'accueil",
+    "discoverLabel": "Découvrir le projet →",
+    "sectionLabels": {
+      "challenge": "Le Défi Métier",
+      "solution": "La Solution IA",
+      "features": "Fonctionnalités Clés",
+      "stack": "Stack Technique",
+      "metrics": "Résultats & Impact"
+    },
+    "projects": {
+      "sirene": {
+        "title": "Sirene",
+        "description": "Requêtes d'entreprises en langage naturel.",
+        "tag": "API & NLP",
+        "challenge": "Les équipes commerciales et opérationnelles perdent un temps précieux à identifier et qualifier des entreprises via l'interface Sirene standard de l'INSEE. La syntaxe rigide des filtres et l'absence de compréhension sémantique freinent l'adoption.",
+        "solution": "Un assistant IA comprenant les requêtes en langage naturel et interrogeant l'API Sirene de l'INSEE pour retourner des résultats structurés, filtrés et enrichis — sans aucune connaissance technique requise de l'utilisateur.",
+        "features": [
+          {
+            "icon": "🔍",
+            "title": "Requêtes en Langage Naturel",
+            "description": "Traduction automatique de requêtes NL en paramètres API Sirene via un modèle de langage finement calibré."
+          },
+          {
+            "icon": "🎯",
+            "title": "Filtres Sémantiques",
+            "description": "Segmentation intelligente par secteur NAF, région, taille d'entreprise et statut juridique à partir d'expressions libres."
+          },
+          {
+            "icon": "📊",
+            "title": "Export Enrichi",
+            "description": "Génération de tableaux de bord et exports CSV/JSON avec les données SIRET enrichies et normalisées."
+          }
+        ],
+        "stack": ["API Sirene (INSEE)", "LLM (Claude / GPT)", "RAG", "Next.js 16", "TypeScript"],
+        "metrics": [
+          { "value": "94%", "label": "Précision des requêtes" },
+          { "value": "-72%", "label": "Temps de recherche réduit" },
+          { "value": "12M+", "label": "Entreprises indexées" }
+        ]
+      },
+      "comex": {
+        "title": "Comex",
+        "description": "Cadrage et alignement stratégique par l'IA.",
+        "tag": "Stratégie & IA Générative",
+        "challenge": "Les comités de direction font face à un volume croissant d'initiatives IA sans outillage structuré pour les prioriser, les cadrer et les aligner sur les objectifs stratégiques de l'entreprise en un temps contraint.",
+        "solution": "Un générateur de livrables stratégiques propulsé par l'IA, structurant les discussions Comex autour de frameworks de management éprouvés (OKR, McKinsey 7S, Porter) pour accélérer la prise de décision.",
+        "features": [
+          {
+            "icon": "🗺️",
+            "title": "Génération de Roadmaps IA",
+            "description": "Création automatique de feuilles de route IA sur 12-18 mois, hiérarchisées par valeur métier et niveau d'effort."
+          },
+          {
+            "icon": "🎯",
+            "title": "Alignement OKR Automatique",
+            "description": "Mapping des initiatives IA sur les OKR existants de l'entreprise avec scoring d'alignement et détection des conflits."
+          },
+          {
+            "icon": "📈",
+            "title": "Benchmarks Sectoriels",
+            "description": "Positionnement instantané par rapport aux pratiques IA du secteur via une base de données de cas d'usages analysés."
+          }
+        ],
+        "stack": ["Claude Opus / GPT-4", "Prompt Engineering", "Chain-of-Thought", "Next.js 16", "Vercel AI SDK"],
+        "metrics": [
+          { "value": "-60%", "label": "Durée de cadrage réduite" },
+          { "value": "8", "label": "Frameworks stratégiques" },
+          { "value": "50+", "label": "Livrables générés" }
+        ]
+      },
+      "dvf": {
+        "title": "DVF",
+        "description": "Recherche et analyse de transactions immobilières.",
+        "tag": "Data & Cartographie",
+        "challenge": "L'analyse des données DVF (Demandes de Valeurs Foncières) publiées par la DGFiP est fastidieuse : format CSV brut de plusieurs Go, absence de visualisation native, et difficulté de croisement avec les données géographiques.",
+        "solution": "Une plateforme de recherche et d'analyse des transactions immobilières intégrant cartographie interactive, analyse statistique par zone et génération d'insights IA à partir des données ouvertes de la DGFiP.",
+        "features": [
+          {
+            "icon": "🗺️",
+            "title": "Cartographie des Transactions",
+            "description": "Visualisation géographique interactive de toutes les mutations immobilières, avec clustering intelligent par densité."
+          },
+          {
+            "icon": "📉",
+            "title": "Analyse Prix/m² par Zone",
+            "description": "Calcul automatique des médianes de prix par quartier, commune et département avec évolution temporelle."
+          },
+          {
+            "icon": "🤖",
+            "title": "Détection de Tendances IA",
+            "description": "Identification des zones à forte évolution de prix et des anomalies de marché via des modèles d'analyse prédictive."
+          }
+        ],
+        "stack": ["DGFiP Open Data (DVF)", "Python / Pandas", "PostGIS", "Leaflet.js", "LLM Insights"],
+        "metrics": [
+          { "value": "6M+", "label": "Transactions analysées" },
+          { "value": "100%", "label": "Couverture nationale" },
+          { "value": "98%", "label": "Précision géocodage" }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "navigation": {
+    "home": "Home",
+    "useCases": "Case Studies",
+    "blog": "Deep Dives"
+  },
+  "hero": {
+    "title": "AI Product Owner",
+    "subtitle": "Making AI operational, measurable, and adopted.",
+    "cta": "View case studies"
+  },
+  "useCases": {
+    "title": "Case Studies",
+    "subtitle": "Concrete, measurable, and adopted AI solutions — from framing to production.",
+    "backLabel": "Back to home",
+    "discoverLabel": "Explore project →",
+    "sectionLabels": {
+      "challenge": "Business Challenge",
+      "solution": "AI Solution",
+      "features": "Key Features",
+      "stack": "Tech Stack",
+      "metrics": "Results & Impact"
+    },
+    "projects": {
+      "sirene": {
+        "title": "Sirene",
+        "description": "Natural language company search.",
+        "tag": "API & NLP",
+        "challenge": "Sales and operations teams waste valuable time identifying and qualifying companies through the standard INSEE Sirene interface. Rigid filter syntax and lack of semantic understanding hinder adoption.",
+        "solution": "An AI assistant that understands natural language queries and interrogates the INSEE Sirene API to return structured, filtered, and enriched results — with no technical knowledge required from the user.",
+        "features": [
+          {
+            "icon": "🔍",
+            "title": "Natural Language Queries",
+            "description": "Automatic translation of NL queries into Sirene API parameters via a finely calibrated language model."
+          },
+          {
+            "icon": "🎯",
+            "title": "Semantic Filters",
+            "description": "Intelligent segmentation by NAF sector, region, company size and legal status from free-form expressions."
+          },
+          {
+            "icon": "📊",
+            "title": "Enriched Export",
+            "description": "Dashboard generation and CSV/JSON exports with enriched and normalized SIRET data."
+          }
+        ],
+        "stack": ["Sirene API (INSEE)", "LLM (Claude / GPT)", "RAG", "Next.js 16", "TypeScript"],
+        "metrics": [
+          { "value": "94%", "label": "Query accuracy" },
+          { "value": "-72%", "label": "Search time reduced" },
+          { "value": "12M+", "label": "Companies indexed" }
+        ]
+      },
+      "comex": {
+        "title": "Comex",
+        "description": "Strategic framing and alignment through AI.",
+        "tag": "Strategy & Generative AI",
+        "challenge": "Executive committees face a growing volume of AI initiatives without structured tooling to prioritize, frame, and align them with company strategic objectives in a controlled timeframe.",
+        "solution": "An AI-powered strategic deliverable generator, structuring Comex discussions around proven management frameworks (OKR, McKinsey 7S, Porter) to accelerate decision-making.",
+        "features": [
+          {
+            "icon": "🗺️",
+            "title": "AI Roadmap Generation",
+            "description": "Automatic creation of 12-18 month AI roadmaps, prioritized by business value and effort level."
+          },
+          {
+            "icon": "🎯",
+            "title": "Automatic OKR Alignment",
+            "description": "Mapping of AI initiatives onto existing company OKRs with alignment scoring and conflict detection."
+          },
+          {
+            "icon": "📈",
+            "title": "Sector Benchmarks",
+            "description": "Instant positioning against industry AI practices via a database of analyzed case studies."
+          }
+        ],
+        "stack": ["Claude Opus / GPT-4", "Prompt Engineering", "Chain-of-Thought", "Next.js 16", "Vercel AI SDK"],
+        "metrics": [
+          { "value": "-60%", "label": "Framing time reduced" },
+          { "value": "8", "label": "Strategic frameworks" },
+          { "value": "50+", "label": "Deliverables generated" }
+        ]
+      },
+      "dvf": {
+        "title": "DVF",
+        "description": "Real estate transaction search and analysis.",
+        "tag": "Data & Mapping",
+        "challenge": "Analyzing DVF (Property Value Requests) data published by the DGFiP is tedious: multi-GB raw CSV format, no native visualization, and difficulty cross-referencing with geographic data.",
+        "solution": "A real estate transaction search and analysis platform integrating interactive mapping, statistical zone analysis and AI insight generation from DGFiP open data.",
+        "features": [
+          {
+            "icon": "🗺️",
+            "title": "Transaction Mapping",
+            "description": "Interactive geographic visualization of all real estate transfers, with intelligent density clustering."
+          },
+          {
+            "icon": "📉",
+            "title": "Price/m² Analysis by Zone",
+            "description": "Automatic calculation of price medians by district, municipality and department with time-series trends."
+          },
+          {
+            "icon": "🤖",
+            "title": "AI Trend Detection",
+            "description": "Identification of high price-movement zones and market anomalies via predictive analytics models."
+          }
+        ],
+        "stack": ["DGFiP Open Data (DVF)", "Python / Pandas", "PostGIS", "Leaflet.js", "LLM Insights"],
+        "metrics": [
+          { "value": "6M+", "label": "Transactions analyzed" },
+          { "value": "100%", "label": "National coverage" },
+          { "value": "98%", "label": "Geocoding accuracy" }
+        ]
+      }
+    }
+  }
+}
