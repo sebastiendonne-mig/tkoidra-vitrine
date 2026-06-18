@@ -30,6 +30,7 @@ const appUrls: Record<string, string> = {
   sirene: "https://sirene.tkoidra.com",
   comex: "https://comex.tkoidra.com",
   dvf: "https://dvf.tkoidra.com",
+  fraud: "https://fraud.tkoidra.com",
 };
 
 const appLinkLabels = {

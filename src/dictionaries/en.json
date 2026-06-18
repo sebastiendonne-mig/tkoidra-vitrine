@@ -111,6 +111,40 @@
           { "value": "100%", "label": "National coverage" },
           { "value": "98%", "label": "Geocoding accuracy" }
         ]
+      },
+      "fraud": {
+        "title": "Fraud Agent",
+        "description": "Agentic fraud detection and recovery pipeline for property & casualty insurance.",
+        "tag": "Agentic AI & Azure",
+        "challenge": "Fraud teams at P&C insurers are overwhelmed by false positives from fixed rule-based alerts, while subrogation recovery claims against liable third parties are identified too late, or missed entirely, due to lack of time to cross-reference cases.",
+        "solution": "A 5-stage agentic pipeline that scores each incoming claim, detects fraud networks through graph analysis, reads police reports using generative AI, and automatically triggers relevant recovery cases — a demo built on a fictional dataset, illustrating a multi-service agentic architecture on Azure.",
+        "features": [
+          {
+            "icon": "🎯",
+            "title": "Explainable Scoring",
+            "description": "0-100 fraud score per claim with Reason Codes, combining a Machine Learning model with business rules."
+          },
+          {
+            "icon": "🕸️",
+            "title": "Network Detection",
+            "description": "Graph-based analysis of cross-case links (repair shops, IP addresses, grouped filings) invisible in single-case review."
+          },
+          {
+            "icon": "📨",
+            "title": "Automated Recovery",
+            "description": "Police report reading via generative AI and automatic generation of the subrogation case file."
+          }
+        ],
+        "stack": [
+          "Copilot Studio",
+          "Azure Machine Learning",
+          "Azure Synapse Analytics",
+          "Azure OpenAI GPT-4o",
+          "Power Automate",
+          "Microsoft Dataverse",
+          "Power BI"
+        ],
+        "metrics": []
       }
     }
   }

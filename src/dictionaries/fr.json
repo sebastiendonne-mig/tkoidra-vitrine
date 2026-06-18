@@ -111,6 +111,40 @@
           { "value": "100%", "label": "Couverture nationale" },
           { "value": "98%", "label": "Précision géocodage" }
         ]
+      },
+      "fraud": {
+        "title": "Fraud Agent",
+        "description": "Pipeline agentique de détection de fraude et de recours pour l'assurance IARD.",
+        "tag": "IA Agentique & Azure",
+        "challenge": "Les équipes fraude des assureurs IARD croulent sous les faux positifs générés par des règles fixes, tandis que les recours en subrogation contre les tiers responsables sont identifiés trop tard, voire jamais, faute de temps pour croiser les dossiers.",
+        "solution": "Un pipeline agentique à 5 étages qui score chaque sinistre entrant, détecte les réseaux de fraude par analyse de graphe, lit les rapports de police par IA générative, et déclenche automatiquement les dossiers de recours pertinents — démonstration construite sur un jeu de données fictif, illustrant une architecture agentique multi-services sur Azure.",
+        "features": [
+          {
+            "icon": "🎯",
+            "title": "Scoring Explicable",
+            "description": "Score de fraude 0-100 par sinistre avec Reason Codes en français, combinant modèle de Machine Learning et règles métier."
+          },
+          {
+            "icon": "🕸️",
+            "title": "Détection de Réseaux",
+            "description": "Analyse par graphe des liens inter-dossiers (réparateurs, IP, déclarations groupées) invisibles en analyse unitaire."
+          },
+          {
+            "icon": "📨",
+            "title": "Recours Automatisé",
+            "description": "Lecture des rapports de police par IA générative et génération automatique du dossier de subrogation."
+          }
+        ],
+        "stack": [
+          "Copilot Studio",
+          "Azure Machine Learning",
+          "Azure Synapse Analytics",
+          "Azure OpenAI GPT-4o",
+          "Power Automate",
+          "Microsoft Dataverse",
+          "Power BI"
+        ],
+        "metrics": []
       }
     }
   }
