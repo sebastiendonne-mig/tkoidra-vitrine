@@ -16,11 +16,29 @@ const legalLabels = {
   en: "Legal Notice",
 } as const;
 
+const profilLabels = {
+  fr: "Profil",
+  en: "Profile",
+} as const;
+
+const methodeLabels = {
+  fr: "Méthode",
+  en: "Method",
+} as const;
+
 export function Footer({ lang, nav }: FooterProps) {
   const legalLabel =
     lang in legalLabels
       ? legalLabels[lang as keyof typeof legalLabels]
       : legalLabels.fr;
+  const profilLabel =
+    lang in profilLabels
+      ? profilLabels[lang as keyof typeof profilLabels]
+      : profilLabels.fr;
+  const methodeLabel =
+    lang in methodeLabels
+      ? methodeLabels[lang as keyof typeof methodeLabels]
+      : methodeLabels.fr;
 
   return (
     <footer className="border-t border-slate-900 bg-slate-950">
@@ -43,6 +61,18 @@ export function Footer({ lang, nav }: FooterProps) {
               className="text-xs text-slate-500 transition-colors hover:text-slate-300"
             >
               {nav.useCases}
+            </Link>
+            <Link
+              href={`/${lang}/profil`}
+              className="text-xs text-slate-500 transition-colors hover:text-slate-300"
+            >
+              {profilLabel}
+            </Link>
+            <Link
+              href={`/${lang}/methodologie-diag`}
+              className="text-xs text-slate-500 transition-colors hover:text-slate-300"
+            >
+              {methodeLabel}
             </Link>
             <Link
               href={`/${lang}/blog`}

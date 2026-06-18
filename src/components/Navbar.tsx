@@ -25,6 +25,8 @@ export function Navbar({ lang, nav }: NavbarProps) {
 
   const links = [
     { href: `/${lang}/use-cases`, label: nav.home },
+    { href: `/${lang}/profil`, label: lang === "fr" ? "Profil" : "Profile" },
+    { href: `/${lang}/methodologie-diag`, label: lang === "fr" ? "Méthode" : "Method" },
     { href: `/${lang}/blog`, label: nav.blog },
   ];
 
