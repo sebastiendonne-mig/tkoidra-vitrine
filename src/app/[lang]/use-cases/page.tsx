@@ -1,18 +1,10 @@
 import { getDictionary } from "../../../get-dictionary";
 import { i18n } from "../../../../i18n-config";
-import { SireneWidget } from "../../../components/widgets/SireneWidget";
-import { ComexWidget } from "../../../components/widgets/ComexWidget";
-import { DvfWidget } from "../../../components/widgets/DvfWidget";
 
 interface Feature {
   icon: string;
   title: string;
   description: string;
-}
-
-interface Metric {
-  value: string;
-  label: string;
 }
 
 interface Project {
@@ -23,7 +15,7 @@ interface Project {
   solution: string;
   features: Feature[];
   stack: string[];
-  metrics: Metric[];
+  metrics?: unknown[];
 }
 
 interface SectionLabels {
@@ -31,7 +23,7 @@ interface SectionLabels {
   solution: string;
   features: string;
   stack: string;
-  metrics: string;
+  metrics?: string;
 }
 
 const appUrls: Record<string, string> = {
@@ -165,11 +157,6 @@ export default async function UseCasesPage({
                 </div>
               </div>
 
-              {/* Live demo widget */}
-              {slug === "sirene" && <SireneWidget lang={lang} />}
-              {slug === "comex" && <ComexWidget lang={lang} />}
-              {slug === "dvf" && <DvfWidget lang={lang} />}
-
               {/* Stack */}
               <div className="space-y-5">
                 <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
@@ -187,25 +174,6 @@ export default async function UseCasesPage({
                 </div>
               </div>
 
-              {/* Metrics */}
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-                  {labels.metrics}
-                </h3>
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-                  {project.metrics.map((metric) => (
-                    <div
-                      key={metric.label}
-                      className="rounded-2xl border border-teal-500/20 bg-teal-500/5 p-6 text-center space-y-1"
-                    >
-                      <p className="text-4xl font-extrabold tracking-tight text-teal-400">
-                        {metric.value}
-                      </p>
-                      <p className="text-xs font-medium text-slate-400">{metric.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </section>
           );
         })}
