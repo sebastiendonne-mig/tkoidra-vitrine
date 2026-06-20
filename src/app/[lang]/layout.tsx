@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { i18n } from "../../../i18n-config";
 import { getDictionary } from "../../get-dictionary";
 import { Navbar } from "../../components/Navbar";
@@ -39,6 +40,7 @@ export default async function RootLayout(props: Props) {
           {props.children}
         </div>
         <Footer lang={lang} nav={nav} />
+        <Analytics />
       </body>
     </html>
   );
