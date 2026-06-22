@@ -31,6 +31,7 @@ const appUrls: Record<string, string> = {
   comex: "https://comex.tkoidra.com",
   dvf: "https://dvf.tkoidra.com",
   fraud: "https://fraud.tkoidra.com",
+  assurconseil: "https://rag-assurance-aresia-production.up.railway.app/",
 };
 
 const appLinkLabels = {

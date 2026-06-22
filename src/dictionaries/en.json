@@ -145,6 +145,39 @@
           "Power BI"
         ],
         "metrics": []
+      },
+      "assurconseil": {
+        "title": "AssurConseil RAG",
+        "description": "Multi-pattern RAG agent for insurance advisors.",
+        "tag": "Agentic RAG & Governance",
+        "challenge": "Insurance advisors and claims managers must respond quickly and reliably to precise contract questions (coverage, deductibles, deadlines, exclusions) without ever hallucinating an amount or condition — a critical regulatory and commercial risk in the sector. A classic single-pass RAG fails on complex questions requiring multiple sources or reformulation.",
+        "solution": "A RAG agent built on LangGraph combining multiple agentic patterns — complex question decomposition, a ReAct self-evaluation loop, and HyDE retrieval to limit hallucinations — with full traceability of each reasoning step, demonstrated on a fictional insurance document base (general conditions, coverage schedules, regulatory circular).",
+        "features": [
+          {
+            "icon": "🔁",
+            "title": "ReAct Self-Evaluation Loop",
+            "description": "The agent searches, evaluates result relevance, reformulates its query if needed, until obtaining a reliable answer or honestly declaring the information unfindable."
+          },
+          {
+            "icon": "🛡️",
+            "title": "Anti-Hallucination via HyDE",
+            "description": "Generation of a hypothetical passage before vector retrieval to improve result relevance on ambiguous or poorly formulated questions, reducing the risk of invented answers."
+          },
+          {
+            "icon": "📋",
+            "title": "Traceability and Governance",
+            "description": "Each reasoning step (search, decision, cited source) is structured and visible in the interface — a key requirement for regulatory auditability in insurance."
+          }
+        ],
+        "stack": [
+          "LangGraph",
+          "Claude (Anthropic API)",
+          "ChromaDB",
+          "sentence-transformers",
+          "Streamlit",
+          "Railway"
+        ],
+        "metrics": []
       }
     }
   }

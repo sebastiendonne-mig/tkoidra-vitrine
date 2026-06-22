@@ -145,6 +145,39 @@
           "Power BI"
         ],
         "metrics": []
+      },
+      "assurconseil": {
+        "title": "AssurConseil RAG",
+        "description": "Agent RAG multi-patterns pour conseillers en assurance.",
+        "tag": "RAG Agentique & Gouvernance",
+        "challenge": "Les conseillers et gestionnaires en assurance doivent répondre rapidement et de façon fiable à des questions précises sur des contrats (garanties, franchises, délais, exclusions) sans jamais halluciner un montant ou une condition — un risque réglementaire et commercial critique dans le secteur. Un RAG classique à une passe échoue sur les questions complexes nécessitant plusieurs sources ou une reformulation.",
+        "solution": "Un agent RAG construit sur LangGraph combinant plusieurs patterns agentiques — décomposition de questions complexes, boucle ReAct d'auto-évaluation, et récupération HyDE pour limiter les hallucinations — avec traçabilité complète de chaque étape de raisonnement, démontrée sur une base documentaire d'assurance fictive (conditions générales, barèmes de garanties, circulaire réglementaire).",
+        "features": [
+          {
+            "icon": "🔁",
+            "title": "Boucle ReAct Auto-évaluative",
+            "description": "L'agent cherche, évalue la pertinence du résultat, reformule sa requête si nécessaire, jusqu'à obtenir une réponse fiable ou déclarer honnêtement l'information introuvable."
+          },
+          {
+            "icon": "🛡️",
+            "title": "Anti-hallucination par HyDE",
+            "description": "Génération d'un passage hypothétique avant récupération vectorielle pour améliorer la pertinence des résultats sur les questions ambiguës ou mal formulées, réduisant le risque de réponse inventée."
+          },
+          {
+            "icon": "📋",
+            "title": "Traçabilité et Gouvernance",
+            "description": "Chaque étape de raisonnement (recherche, décision, source citée) est journalisée de façon structurée et visible dans l'interface — exigence clé pour l'auditabilité réglementaire en assurance."
+          }
+        ],
+        "stack": [
+          "LangGraph",
+          "Claude (API Anthropic)",
+          "ChromaDB",
+          "sentence-transformers",
+          "Streamlit",
+          "Railway"
+        ],
+        "metrics": []
       }
     }
   }
