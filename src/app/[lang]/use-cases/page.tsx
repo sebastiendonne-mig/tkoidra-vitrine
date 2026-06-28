@@ -32,6 +32,7 @@ const appUrls: Record<string, string> = {
   dvf: "https://dvf.tkoidra.com",
   fraud: "https://fraud.tkoidra.com",
   assurconseil: "https://rag-assurance-aresia-production.up.railway.app/",
+  verifid: "https://verif-piece-justificative.vercel.app/",
 };
 
 const appLinkLabels = {

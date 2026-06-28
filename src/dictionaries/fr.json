@@ -178,6 +178,37 @@
           "Railway"
         ],
         "metrics": []
+      },
+      "verifid": {
+        "title": "Vérificateur de pièce d'identité",
+        "description": "Contrôle qualité documentaire et cohérence MRZ par l'IA.",
+        "tag": "CONFORMITÉ & VISION IA",
+        "challenge": "Un dossier de souscription avec une pièce illisible ou incomplète reste bloqué jusqu'à ce qu'un gestionnaire le découvre, puis relance le client — un cycle de va-et-vient qui dégrade le taux de finalisation et alourdit le back-office.",
+        "solution": "Une démonstration qui contrôle la qualité d'une pièce d'identité au moment du dépôt (lisibilité, complétude, cadrage) et vérifie la cohérence mathématique de sa zone MRZ selon la norme ICAO 9303 — sans jamais juger de son authenticité.",
+        "features": [
+          {
+            "icon": "🔍",
+            "title": "Contrôle qualité instantané",
+            "description": "Détection en quelques secondes des photos floues, des reflets ou des pièces partiellement hors cadre, avant qu'un dossier n'atteigne un gestionnaire."
+          },
+          {
+            "icon": "🔐",
+            "title": "Cohérence MRZ vérifiable",
+            "description": "Calcul déterministe des clés de contrôle ICAO 9303 pour carte d'identité et passeport, avec le détail du calcul affiché — pas une boîte noire."
+          },
+          {
+            "icon": "🪪",
+            "title": "Vérification croisée recto/verso",
+            "description": "Comparaison du numéro de document entre les deux faces de la carte, comme signal de cohérence supplémentaire."
+          }
+        ],
+        "stack": [
+          "Claude Sonnet (vision)",
+          "Algorithme ICAO 9303",
+          "Node.js",
+          "Vercel Functions"
+        ],
+        "metrics": []
       }
     }
   }

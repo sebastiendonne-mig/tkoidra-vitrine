@@ -178,6 +178,37 @@
           "Railway"
         ],
         "metrics": []
+      },
+      "verifid": {
+        "title": "ID Document Verifier",
+        "description": "AI-powered document quality control and MRZ consistency check.",
+        "tag": "COMPLIANCE & VISION AI",
+        "challenge": "A subscription file with an illegible or incomplete ID gets stuck until a handler notices it and contacts the client — a back-and-forth cycle that degrades completion rates and burdens the back office.",
+        "solution": "A demonstration that checks the quality of an identity document at upload time (legibility, completeness, framing) and verifies the mathematical consistency of its MRZ zone against ICAO 9303 — without ever judging its authenticity.",
+        "features": [
+          {
+            "icon": "🔍",
+            "title": "Instant quality control",
+            "description": "Detection in seconds of blurry photos, glare, or partially out-of-frame documents, before a file ever reaches a handler."
+          },
+          {
+            "icon": "🔐",
+            "title": "Verifiable MRZ consistency",
+            "description": "Deterministic calculation of ICAO 9303 check digits for ID cards and passports, with the calculation detail displayed — not a black box."
+          },
+          {
+            "icon": "🪪",
+            "title": "Front/back cross-check",
+            "description": "Comparison of the document number between both sides of the card, as an additional consistency signal."
+          }
+        ],
+        "stack": [
+          "Claude Sonnet (vision)",
+          "ICAO 9303 Algorithm",
+          "Node.js",
+          "Vercel Functions"
+        ],
+        "metrics": []
       }
     }
   }
