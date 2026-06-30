@@ -11,6 +11,7 @@ export interface BlogPost {
   readTime: string;
   date: string;
   sections: BlogSection[];
+  mdFile?: string;
 }
 
 const postsFr: BlogPost[] = [
@@ -103,36 +104,8 @@ const postsFr: BlogPost[] = [
     tag: "Assurance & IA",
     readTime: "12 min",
     date: "2026-06-29",
-    sections: [
-      {
-        heading: "Le problème métier — loi Lemoine et équivalence CCSF",
-        body: "Depuis la loi Lemoine (2022), un emprunteur peut changer d’assurance de prêt à tout moment, sans frais. Pour accepter la substitution, la banque doit constater l’équivalence des garanties selon une grille définie par le CCSF — typiquement 11 à 18 critères selon le profil de risque (quotité, garanties ITT/IPT/PTIA, délais de franchise, exclusions), avec un principe strict : un seul critère manqué suffit à un refus. La banque dispose de 10 jours ouvrés pour répondre. Ce contrôle demande aujourd’hui à un courtier de lire manuellement les conditions générales de deux contrats — des documents de plusieurs dizaines de pages chacun — sous un délai contraint. Outre le temps de lecture (plusieurs heures par dossier complexe), le risque d’erreur humaine sur un critère technique reste élevé, particulièrement sur les contrats peu fréquents ou anciens, hors des catalogues des outils existants.",
-      },
-      {
-        heading: "Ce que le marché a déjà construit — et l’espace de différenciation",
-        body: "Plusieurs acteurs adressent déjà ce besoin. Minalea, Lya Protect et Yakoota proposent des outils de comparaison pour courtiers, en s’appuyant sur des bases de contrats pré-cataloguées et validées par des humains — pas sur une lecture directe et automatisée de n’importe quel PDF par un LLM. Ce positionnement n’est pas un manque de capacité technique : c’est un choix délibéré de prudence face aux risques réglementaires. Des legaltechs comme Tomorro ou LegalFly démontrent la maturité de la technologie LLM sur l’extraction de clauses contractuelles, mais sans verticalisation sur l’assurance emprunteur française. La combinaison précise \"lecture LLM zero-shot de n’importe quel PDF, sans base de données préexistante, avec génération automatique d’une grille CCSF\" n’a pas été identifiée comme un produit public sur le marché français à la date de cette recherche (juin 2026 — à recouper avant toute utilisation commerciale de cette affirmation). C’est là l’espace de différenciation réel, mais aussi la zone de risque la plus élevée.",
-      },
-      {
-        heading: "RGPD — la fausse sécurité du document générique",
-        body: "L’hypothèse intuitive — \"les conditions générales sont génériques, donc pas de données personnelles, donc pas de RGPD\" — ne résiste pas à l’examen. Plusieurs mécanismes de contamination rendent cette présomption intenable : les liasses fusionnées (conditions générales envoyées avec conditions particulières et fiche standardisée en un seul PDF) contiennent des données d’identification directes et financières. Les paraphes ou signatures manuscrites constituent des données biométriques. Les métadonnées des fichiers PDF (auteur, chemin de sauvegarde incluant des noms de dossiers clients) permettent une identification indirecte. Dans les cas d’annexes médicales AERAS, des données de santé au sens de l’article 9 du RGPD (catégorie sensible) peuvent transiter. Un outil destiné à des utilisateurs réels doit donc présumer que des données personnelles vont transiter et concevoir l’architecture en conséquence : filtre de rejet des liasses suspectes, nettoyage systématique des métadonnées avant tout traitement, anonymisation par reconnaissance d’entités nommées (NER) en local avant tout envoi à une API externe.",
-      },
-      {
-        heading: "DDA, AI Act et risques contractuels",
-        body: "Au-delà du RGPD, trois dimensions méritent attention. La Directive sur la Distribution d’Assurances (DDA) est explicite : le courtier reste seul responsable de la vérification de l’équivalence CCSF, même s’il s’appuie sur un outil IA — l’ACPR n’atténue pas la responsabilité du distributeur humain. Le risque principal est celui de l’hallucination : une extraction erronée d’un critère discriminant peut conduire à un refus de la banque ou, pire, à une absence de couverture non détectée jusqu’à un sinistre. La traçabilité systématique (chaque garantie extraite reliée à la clause source exacte) et la validation humaine documentée avant toute décision opérationnelle sont des exigences non négociables. Sur le terrain contractuel, le risque de parasitisme économique autour de l’ingestion de conditions générales d’assureurs par une API LLM tierce, ainsi que les violations potentielles des CGU des portails assureurs, sont à évaluer avec un juriste. DORA impose par ailleurs une cartographie des prestataires tiers, y compris en phase de test. Enfin, la classification AI Act d’un tel outil n’est pas tranchée publiquement à la date de rédaction, et le calendrier lui-même est mouvant (accord \"Digital Omnibus\" de mai 2026, vote du Parlement européen le 16 juin 2026, adoption formelle du Conseil encore en attente) — à revérifier systématiquement avant toute communication publique.",
-      },
-      {
-        heading: "Trois architectures, une matrice de décision",
-        body: "Trois options sont envisageables. L’option A (\"tout LLM\") repose sur une extraction directe par LLM sur n’importe quel PDF, sans base de données préexistante, avec garde-fous renforcés : traçabilité systématique, validation humaine obligatoire, pipeline de confidentialité complet. Avantage : fonctionne dès le premier contrat, sans coût de maintenance de catalogue. Inconvénient : fiabilité dépendante du modèle et du prompt, charge d’ingénierie de confidentialité non négligeable, risque réglementaire résiduel élevé. L’option B (\"hybride LLM + référentiel\") s’aligne sur ce que font les acteurs en place : catalogue de contrats fréquents pré-validés humainement, le LLM n’intervenant que pour les contrats hors catalogue. Meilleure fiabilité sur le cœur du portefeuille, mais coût de maintenance récurrent et valeur d’usage plus lente à délivrer. L’option C (\"LLM en première passe, validation systématique\") est la posture réglementaire la plus défendable : le LLM accélère uniquement le travail humain, toute extraction reste non opposable jusqu’à validation explicite par un expert qualifié, dossier par dossier. Gain de productivité plus limité mais risque DDA/RGPD le mieux maîtrisé.",
-      },
-      {
-        heading: "Checklist go / no-go avant tout lancement",
-        body: "Sept points doivent être validés sans exception avant tout financement ou démarrage opérationnel. Le périmètre de données traité doit être défini et validé par le DPO. Un engagement contractuel de type \"Zero Data Retention\" doit être obtenu auprès du fournisseur LLM — les conditions exactes varient selon les prestataires et doivent être vérifiées contractuellement. L’architecture doit prévoir une traçabilité systématique avec la clause source visible pour chaque extraction. Une étape de validation humaine documentée doit être obligatoire avant toute production de document destiné à un tiers. Les conditions d’utilisation encadrant le rôle d’\"assistant de lecture\" et la responsabilité du courtier doivent être rédigées et validées juridiquement. La conformité DORA sur la chaîne de sous-traitance doit être cartographiée. Le calendrier et la classification AI Act applicables doivent être vérifiés à la date de lancement — pas à la date de lecture de ce document. Ces sept points ne sont pas des recommandations : l’absence de l’un d’entre eux doit constituer un bloquant.",
-      },
-      {
-        heading: "Ce que ce document est — et n’est pas",
-        body: "Ce cahier des charges (version V0.1, brouillon de travail) est un outil de structuration de la réflexion préalable à une décision de lancement de projet — construire, acheter, ou ne pas faire. Il a été élaboré avec l’assistance d’outils d’IA générative pour accélérer la recherche et la mise en forme. Les affirmations sur les positionnements des acteurs du marché et l’état des réglementations n’ont pas toutes été vérifiées de façon indépendante auprès de sources primaires. Avant toute décision d’investissement ou de mise en production, les éléments réglementaires cités (RGPD, AI Act, DDA, DORA) doivent être validés par un juriste qualifié et, le cas échéant, un DPO. Ce document ne constitue pas un avis juridique. Il est publié ici comme point de départ d’une conversation, pas comme une prescription.",
-      },
-    ],
+    sections: [],
+    mdFile: "content/blog/cahier-des-charges-ia-assurance-emprunteur.md",
   },
 ];
 
