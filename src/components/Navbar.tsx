@@ -40,15 +40,21 @@ export function Navbar({ lang, nav }: NavbarProps) {
         className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6"
         aria-label={lang === "fr" ? "Navigation principale" : "Main navigation"}
       >
-        {/* Contact — external LinkedIn */}
-        <a
-          href="https://www.linkedin.com/in/sebastiendonne/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm font-bold tracking-wide text-slate-100 transition-colors hover:text-teal-300"
+        {/* Logo + wordmark — links to home */}
+        <Link
+          href={`/${lang}/use-cases`}
+          className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
+          aria-label="TKoidra — accueil"
         >
-          Contact
-        </a>
+          <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 flex-shrink-0">
+            <rect x="10" y="10" width="100" height="100" rx="12" fill="white"/>
+            <rect x="150" y="10" width="100" height="100" rx="12" fill="white"/>
+            <rect x="10" y="150" width="100" height="100" rx="12" fill="white"/>
+            <rect x="150" y="150" width="100" height="100" rx="12" fill="none" stroke="white" strokeOpacity="0.25" strokeWidth="6" strokeDasharray="12 12"/>
+            <rect x="170" y="170" width="100" height="100" rx="12" fill="#00B4D8"/>
+          </svg>
+          <span className="text-sm font-bold tracking-wide text-slate-100">TKoidra</span>
+        </Link>
 
         {/* Nav links — hidden on very small screens, visible from sm */}
         <div className="hidden items-center gap-1 sm:flex">
@@ -68,13 +74,23 @@ export function Navbar({ lang, nav }: NavbarProps) {
           ))}
         </div>
 
-        {/* Language switcher */}
-        <Link
-          href={altPath}
-          className="rounded-md border border-slate-700 bg-slate-800/60 px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-400 transition-all hover:border-teal-500/50 hover:text-teal-300"
-        >
-          {altLang}
-        </Link>
+        {/* Contact + Language switcher */}
+        <div className="flex items-center gap-3">
+          <a
+            href="https://www.linkedin.com/in/sebastiendonne/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden text-sm font-medium text-slate-400 transition-colors hover:text-slate-100 sm:block"
+          >
+            Contact
+          </a>
+          <Link
+            href={altPath}
+            className="rounded-md border border-slate-700 bg-slate-800/60 px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-400 transition-all hover:border-teal-500/50 hover:text-teal-300"
+          >
+            {altLang}
+          </Link>
+        </div>
       </nav>
 
       {/* Mobile nav strip — only visible below sm */}
