@@ -36,7 +36,10 @@ const content = {
     badge: "Profil",
     name: "Sébastien Donné",
     tagline: "RTE SAFe · Coach Agile · Scrum Master · Product Owner · Pilotage de projets IA",
-    intro: "Quinze ans à synchroniser des équipes, lever des blocages inter-squads et faire franchir un palier de maturité à des programmes complexes. J'applique aujourd'hui cette même rigueur méthodologique au pilotage de projets IA de bout en bout : cadrage, choix d'architecture, prototypage, industrialisation et conduite du changement.",
+    intro: [
+      "Quinze ans à synchroniser des équipes, lever des blocages inter-squads et faire franchir un palier de maturité à des programmes complexes. J'applique aujourd'hui cette même rigueur au pilotage de projets IA de bout en bout : cadrage, choix d'architecture, prototypage, industrialisation et conduite du changement.",
+      "C'est ce que porte le nom TKoidra, homophone de ¿Te cuadra ? en espagnol — littéralement : « Est-ce que ça te convient ? ». Parce qu'une architecture IA brillante qui ne cadre pas avec vos contraintes opérationnelles reste une belle démonstration. Ce que j'apporte, c'est la rigueur d'un RTE et l'écoute d'un coach agile pour que la solution s'ajuste — techniquement, humainement, stratégiquement.",
+    ],
     backLabel: "Retour",
     portfolio: {
       heading: "Portfolio en production",
@@ -122,7 +125,10 @@ const content = {
     badge: "Profile",
     name: "Sébastien Donné",
     tagline: "SAFe RTE · Agile Coach · Scrum Master · Product Owner · AI Project Lead",
-    intro: "Fifteen years synchronizing teams, unblocking inter-squad dependencies, and helping complex programmes reach the next level of maturity. I now apply that same methodological discipline to end-to-end AI project leadership: scoping, architecture decisions, prototyping, industrialisation and change management.",
+    intro: [
+      "Fifteen years synchronizing teams, removing cross-squad blockers, and helping complex programs reach the next level of maturity. I now apply that same rigor to end-to-end AI project leadership: scoping, architecture decisions, prototyping, industrialization, and change management.",
+      "This is what the name TKoidra embodies — a homophone of ¿Te cuadra? in Spanish, literally: 'Does it work for you?' Because a brilliant AI architecture that doesn't fit your operational constraints remains just an impressive demo. What I bring is the rigor of a Release Train Engineer and the listening skills of an agile coach, so the solution actually fits — technically, humanly, strategically.",
+    ],
     backLabel: "Back",
     portfolio: {
       heading: "Live Portfolio",
@@ -235,7 +241,11 @@ export default async function ProfilPage({ params }: Props) {
           <p className="text-sm font-semibold text-teal-400 tracking-wide leading-6">
             {t.tagline}
           </p>
-          <p className="text-base leading-8 text-slate-400">{t.intro}</p>
+          <div className="space-y-4">
+            {t.intro.map((paragraph, i) => (
+              <p key={i} className="text-base leading-8 text-slate-400">{paragraph}</p>
+            ))}
+          </div>
         </header>
 
         {/* Portfolio */}
