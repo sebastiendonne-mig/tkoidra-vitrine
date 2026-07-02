@@ -45,11 +45,26 @@
             "description": "Dashboard generation and CSV/JSON exports with enriched and normalized SIRET data."
           }
         ],
-        "stack": ["Sirene API (INSEE)", "LLM (Claude / GPT)", "RAG", "Next.js 16", "TypeScript"],
+        "stack": [
+          "Sirene API (INSEE)",
+          "LLM (Claude / GPT)",
+          "RAG",
+          "Next.js 16",
+          "TypeScript"
+        ],
         "metrics": [
-          { "value": "94%", "label": "Query accuracy" },
-          { "value": "-72%", "label": "Search time reduced" },
-          { "value": "12M+", "label": "Companies indexed" }
+          {
+            "value": "94%",
+            "label": "Query accuracy"
+          },
+          {
+            "value": "-72%",
+            "label": "Search time reduced"
+          },
+          {
+            "value": "12M+",
+            "label": "Companies indexed"
+          }
         ]
       },
       "comex": {
@@ -75,11 +90,26 @@
             "description": "Instant positioning against industry AI practices via a database of analyzed case studies."
           }
         ],
-        "stack": ["Claude Opus / GPT-4", "Prompt Engineering", "Chain-of-Thought", "Next.js 16", "Vercel AI SDK"],
+        "stack": [
+          "Claude Opus / GPT-4",
+          "Prompt Engineering",
+          "Chain-of-Thought",
+          "Next.js 16",
+          "Vercel AI SDK"
+        ],
         "metrics": [
-          { "value": "-60%", "label": "Framing time reduced" },
-          { "value": "8", "label": "Strategic frameworks" },
-          { "value": "50+", "label": "Deliverables generated" }
+          {
+            "value": "-60%",
+            "label": "Framing time reduced"
+          },
+          {
+            "value": "8",
+            "label": "Strategic frameworks"
+          },
+          {
+            "value": "50+",
+            "label": "Deliverables generated"
+          }
         ]
       },
       "dvf": {
@@ -105,11 +135,26 @@
             "description": "Identification of high price-movement zones and market anomalies via predictive analytics models."
           }
         ],
-        "stack": ["DGFiP Open Data (DVF)", "Python / Pandas", "PostGIS", "Leaflet.js", "LLM Insights"],
+        "stack": [
+          "DGFiP Open Data (DVF)",
+          "Python / Pandas",
+          "PostGIS",
+          "Leaflet.js",
+          "LLM Insights"
+        ],
         "metrics": [
-          { "value": "6M+", "label": "Transactions analyzed" },
-          { "value": "100%", "label": "National coverage" },
-          { "value": "98%", "label": "Geocoding accuracy" }
+          {
+            "value": "6M+",
+            "label": "Transactions analyzed"
+          },
+          {
+            "value": "100%",
+            "label": "National coverage"
+          },
+          {
+            "value": "98%",
+            "label": "Geocoding accuracy"
+          }
         ]
       },
       "fraud": {
@@ -143,39 +188,6 @@
           "Power Automate",
           "Microsoft Dataverse",
           "Power BI"
-        ],
-        "metrics": []
-      },
-      "assurconseil": {
-        "title": "AssurConseil RAG",
-        "description": "Multi-pattern RAG agent for insurance advisors.",
-        "tag": "Agentic RAG & Governance",
-        "challenge": "Insurance advisors and claims managers must respond quickly and reliably to precise contract questions (coverage, deductibles, deadlines, exclusions) without ever hallucinating an amount or condition — a critical regulatory and commercial risk in the sector. A classic single-pass RAG fails on complex questions requiring multiple sources or reformulation.",
-        "solution": "A RAG agent built on LangGraph combining multiple agentic patterns — complex question decomposition, a ReAct self-evaluation loop, and HyDE retrieval to limit hallucinations — with full traceability of each reasoning step, demonstrated on a fictional insurance document base (general conditions, coverage schedules, regulatory circular).",
-        "features": [
-          {
-            "icon": "🔁",
-            "title": "ReAct Self-Evaluation Loop",
-            "description": "The agent searches, evaluates result relevance, reformulates its query if needed, until obtaining a reliable answer or honestly declaring the information unfindable."
-          },
-          {
-            "icon": "🛡️",
-            "title": "Anti-Hallucination via HyDE",
-            "description": "Generation of a hypothetical passage before vector retrieval to improve result relevance on ambiguous or poorly formulated questions, reducing the risk of invented answers."
-          },
-          {
-            "icon": "📋",
-            "title": "Traceability and Governance",
-            "description": "Each reasoning step (search, decision, cited source) is structured and visible in the interface — a key requirement for regulatory auditability in insurance."
-          }
-        ],
-        "stack": [
-          "LangGraph",
-          "Claude (Anthropic API)",
-          "ChromaDB",
-          "sentence-transformers",
-          "Streamlit",
-          "Railway"
         ],
         "metrics": []
       },

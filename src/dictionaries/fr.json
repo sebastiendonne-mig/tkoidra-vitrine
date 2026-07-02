@@ -45,11 +45,26 @@
             "description": "Génération de tableaux de bord et exports CSV/JSON avec les données SIRET enrichies et normalisées."
           }
         ],
-        "stack": ["API Sirene (INSEE)", "LLM (Claude / GPT)", "RAG", "Next.js 16", "TypeScript"],
+        "stack": [
+          "API Sirene (INSEE)",
+          "LLM (Claude / GPT)",
+          "RAG",
+          "Next.js 16",
+          "TypeScript"
+        ],
         "metrics": [
-          { "value": "94%", "label": "Précision des requêtes" },
-          { "value": "-72%", "label": "Temps de recherche réduit" },
-          { "value": "12M+", "label": "Entreprises indexées" }
+          {
+            "value": "94%",
+            "label": "Précision des requêtes"
+          },
+          {
+            "value": "-72%",
+            "label": "Temps de recherche réduit"
+          },
+          {
+            "value": "12M+",
+            "label": "Entreprises indexées"
+          }
         ]
       },
       "comex": {
@@ -75,11 +90,26 @@
             "description": "Positionnement instantané par rapport aux pratiques IA du secteur via une base de données de cas d'usages analysés."
           }
         ],
-        "stack": ["Claude Opus / GPT-4", "Prompt Engineering", "Chain-of-Thought", "Next.js 16", "Vercel AI SDK"],
+        "stack": [
+          "Claude Opus / GPT-4",
+          "Prompt Engineering",
+          "Chain-of-Thought",
+          "Next.js 16",
+          "Vercel AI SDK"
+        ],
         "metrics": [
-          { "value": "-60%", "label": "Durée de cadrage réduite" },
-          { "value": "8", "label": "Frameworks stratégiques" },
-          { "value": "50+", "label": "Livrables générés" }
+          {
+            "value": "-60%",
+            "label": "Durée de cadrage réduite"
+          },
+          {
+            "value": "8",
+            "label": "Frameworks stratégiques"
+          },
+          {
+            "value": "50+",
+            "label": "Livrables générés"
+          }
         ]
       },
       "dvf": {
@@ -105,11 +135,26 @@
             "description": "Identification des zones à forte évolution de prix et des anomalies de marché via des modèles d'analyse prédictive."
           }
         ],
-        "stack": ["DGFiP Open Data (DVF)", "Python / Pandas", "PostGIS", "Leaflet.js", "LLM Insights"],
+        "stack": [
+          "DGFiP Open Data (DVF)",
+          "Python / Pandas",
+          "PostGIS",
+          "Leaflet.js",
+          "LLM Insights"
+        ],
         "metrics": [
-          { "value": "6M+", "label": "Transactions analysées" },
-          { "value": "100%", "label": "Couverture nationale" },
-          { "value": "98%", "label": "Précision géocodage" }
+          {
+            "value": "6M+",
+            "label": "Transactions analysées"
+          },
+          {
+            "value": "100%",
+            "label": "Couverture nationale"
+          },
+          {
+            "value": "98%",
+            "label": "Précision géocodage"
+          }
         ]
       },
       "fraud": {
@@ -143,39 +188,6 @@
           "Power Automate",
           "Microsoft Dataverse",
           "Power BI"
-        ],
-        "metrics": []
-      },
-      "assurconseil": {
-        "title": "AssurConseil RAG",
-        "description": "Agent RAG multi-patterns pour conseillers en assurance.",
-        "tag": "RAG Agentique & Gouvernance",
-        "challenge": "Les conseillers et gestionnaires en assurance doivent répondre rapidement et de façon fiable à des questions précises sur des contrats (garanties, franchises, délais, exclusions) sans jamais halluciner un montant ou une condition — un risque réglementaire et commercial critique dans le secteur. Un RAG classique à une passe échoue sur les questions complexes nécessitant plusieurs sources ou une reformulation.",
-        "solution": "Un agent RAG construit sur LangGraph combinant plusieurs patterns agentiques — décomposition de questions complexes, boucle ReAct d'auto-évaluation, et récupération HyDE pour limiter les hallucinations — avec traçabilité complète de chaque étape de raisonnement, démontrée sur une base documentaire d'assurance fictive (conditions générales, barèmes de garanties, circulaire réglementaire).",
-        "features": [
-          {
-            "icon": "🔁",
-            "title": "Boucle ReAct Auto-évaluative",
-            "description": "L'agent cherche, évalue la pertinence du résultat, reformule sa requête si nécessaire, jusqu'à obtenir une réponse fiable ou déclarer honnêtement l'information introuvable."
-          },
-          {
-            "icon": "🛡️",
-            "title": "Anti-hallucination par HyDE",
-            "description": "Génération d'un passage hypothétique avant récupération vectorielle pour améliorer la pertinence des résultats sur les questions ambiguës ou mal formulées, réduisant le risque de réponse inventée."
-          },
-          {
-            "icon": "📋",
-            "title": "Traçabilité et Gouvernance",
-            "description": "Chaque étape de raisonnement (recherche, décision, source citée) est journalisée de façon structurée et visible dans l'interface — exigence clé pour l'auditabilité réglementaire en assurance."
-          }
-        ],
-        "stack": [
-          "LangGraph",
-          "Claude (API Anthropic)",
-          "ChromaDB",
-          "sentence-transformers",
-          "Streamlit",
-          "Railway"
         ],
         "metrics": []
       },
