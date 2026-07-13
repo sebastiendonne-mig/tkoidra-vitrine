@@ -221,6 +221,36 @@
           "Vercel Functions"
         ],
         "metrics": []
+      },
+      "lexguard": {
+        "title": "LexGuard",
+        "description": "Detects red-flag signals in contracts before signature.",
+        "tag": "COMPLIANCE & GENERATIVE AI",
+        "challenge": "The mayor of a rural town, with no legal department, signs a telecom equipment contract under sales pressure — one that conceals a second leasing agreement with a long commitment term and near-impossible termination. Some towns have been sued for tens of thousands of euros after the fact.",
+        "solution": "A demonstration that analyzes a contract submitted as a PDF and flags, before signature, the warning signs of a risky arrangement (concealed contract, abnormal duration, tacit renewal) — in plain language, without ever ruling on the contract's legality or a company's reliability.",
+        "features": [
+          {
+            "icon": "🚩",
+            "title": "Red-flag signal detection",
+            "description": "Identifies patterns of risky contractual arrangements."
+          },
+          {
+            "icon": "⚖️",
+            "title": "Plain-language verdict",
+            "description": "3-level assessment, no legal jargon."
+          },
+          {
+            "icon": "🔒",
+            "title": "Zero data retained",
+            "description": "Ephemeral processing, no document or result is stored."
+          }
+        ],
+        "stack": [
+          "Claude Sonnet 5",
+          "Next.js",
+          "Vercel Functions"
+        ],
+        "metrics": []
       }
     }
   }

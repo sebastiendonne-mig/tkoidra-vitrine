@@ -221,6 +221,36 @@
           "Vercel Functions"
         ],
         "metrics": []
+      },
+      "lexguard": {
+        "title": "LexGuard",
+        "description": "Détection des signaux de vigilance dans les contrats avant signature.",
+        "tag": "CONFORMITÉ & IA GÉNÉRATIVE",
+        "challenge": "Un maire de commune rurale, sans service juridique, signe sous pression commerciale un contrat de matériel télécom qui dissimule un second contrat de leasing — durée d'engagement longue, résiliation quasi impossible. Des communes ont été poursuivies pour des dizaines de milliers d'euros après coup.",
+        "solution": "Une démonstration qui analyse un contrat déposé en PDF et repère, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite) — en langage clair, sans jamais juger de la légalité du contrat ni de la fiabilité d'une entreprise.",
+        "features": [
+          {
+            "icon": "🚩",
+            "title": "Détection de signaux de vigilance",
+            "description": "Repère les patterns de montages contractuels à risque."
+          },
+          {
+            "icon": "⚖️",
+            "title": "Verdict en langage clair",
+            "description": "Restitution à 3 niveaux, sans jargon juridique."
+          },
+          {
+            "icon": "🔒",
+            "title": "Zéro donnée conservée",
+            "description": "Traitement éphémère, aucun document ni résultat stocké."
+          }
+        ],
+        "stack": [
+          "Claude Sonnet 5",
+          "Next.js",
+          "Vercel Functions"
+        ],
+        "metrics": []
       }
     }
   }
