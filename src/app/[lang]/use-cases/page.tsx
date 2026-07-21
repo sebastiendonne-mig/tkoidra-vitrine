@@ -31,7 +31,7 @@ const appUrls: Record<string, string> = {
   comex: "https://comex.tkoidra.com",
   dvf: "https://dvf.tkoidra.com",
   fraud: "https://fraud.tkoidra.com",
-  assurconseil: "https://rag-assurance-aresia-production.up.railway.app/",
+  assurconseil: "https://assurconseil-rag-728769438477.us-central1.run.app",
   verifid: "https://verif-piece-justificative.vercel.app/",
   lexguard: "https://lexguard.tkoidra.com",
 };

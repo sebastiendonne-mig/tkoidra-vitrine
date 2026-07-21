@@ -191,6 +191,39 @@
         ],
         "metrics": []
       },
+      "assurconseil": {
+        "title": "AssurConseil 365",
+        "description": "Assistant RAG agentique pour l'interprétation de contrats d'assurance.",
+        "tag": "RAG & Agents IA",
+        "challenge": "Les conseillers assurance doivent naviguer des dizaines de pages de conditions générales pour répondre avec précision aux questions clients, sous la contrainte du devoir de conseil réglementaire — une erreur d'interprétation ou une garantie mal citée engage la responsabilité de l'assureur.",
+        "solution": "Un agent RAG agentique qui route chaque question vers le pattern le plus adapté (ReAct pour les recherches simples, Plan-and-Execute pour les questions à sous-parties), avec citation obligatoire des articles sources et refus explicite de répondre en l'absence de preuve documentaire — démonstration construite sur des contrats et une société fictifs (ARESIA Assurances), illustrant une architecture agentique de conseil réglementé.",
+        "features": [
+          {
+            "icon": "🔀",
+            "title": "Routage Adaptatif ReAct / Plan-and-Execute",
+            "description": "Un routeur détecte la complexité de la question et bascule entre recherche directe (ReAct) et décomposition en sous-questions (Plan-and-Execute)."
+          },
+          {
+            "icon": "🛡️",
+            "title": "Garde-fou Anti-Hallucination",
+            "description": "Citation obligatoire des articles sources ; réponse « non trouvé » explicite plutôt qu'une réponse inventée quand l'information est absente des documents."
+          },
+          {
+            "icon": "🔍",
+            "title": "Traçabilité Complète du Raisonnement",
+            "description": "Chaque étape du graphe (router, retrieve, evaluate, synthesize) est journalisée dans un trace_log consultable, de la question à la réponse finale."
+          }
+        ],
+        "stack": [
+          "Python",
+          "LangGraph",
+          "Claude (API Anthropic)",
+          "Chroma",
+          "Streamlit",
+          "Google Cloud Run"
+        ],
+        "metrics": []
+      },
       "verifid": {
         "title": "Vérificateur de pièce d'identité",
         "description": "Contrôle qualité documentaire et cohérence MRZ par l'IA.",

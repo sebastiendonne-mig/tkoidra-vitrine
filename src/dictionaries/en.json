@@ -191,6 +191,39 @@
         ],
         "metrics": []
       },
+      "assurconseil": {
+        "title": "AssurConseil 365",
+        "description": "Agentic RAG assistant for insurance contract interpretation.",
+        "tag": "RAG & AI Agents",
+        "challenge": "Insurance advisors must navigate dozens of pages of general terms to answer client questions accurately, under regulatory duty-to-advise obligations — a misread clause or wrongly cited guarantee exposes the insurer to liability.",
+        "solution": "An agentic RAG assistant that routes each question to the most suitable pattern (ReAct for direct lookups, Plan-and-Execute for multi-part questions), with mandatory source citation and explicit refusal to answer when no supporting document exists — a demo built on fictional contracts and a fictional company (ARESIA Assurances), illustrating an agentic architecture for regulated advisory use cases.",
+        "features": [
+          {
+            "icon": "🔀",
+            "title": "Adaptive ReAct / Plan-and-Execute Routing",
+            "description": "A router detects question complexity and switches between direct retrieval (ReAct) and sub-question decomposition (Plan-and-Execute)."
+          },
+          {
+            "icon": "🛡️",
+            "title": "Anti-Hallucination Guardrail",
+            "description": "Mandatory citation of source articles; an explicit \"not found\" response rather than a fabricated answer when information is absent from the documents."
+          },
+          {
+            "icon": "🔍",
+            "title": "Full Reasoning Traceability",
+            "description": "Every graph step (router, retrieve, evaluate, synthesize) is logged in an inspectable trace_log, from question to final answer."
+          }
+        ],
+        "stack": [
+          "Python",
+          "LangGraph",
+          "Claude (Anthropic API)",
+          "Chroma",
+          "Streamlit",
+          "Google Cloud Run"
+        ],
+        "metrics": []
+      },
       "verifid": {
         "title": "ID Document Verifier",
         "description": "AI-powered document quality control and MRZ consistency check.",
