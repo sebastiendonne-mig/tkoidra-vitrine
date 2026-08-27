@@ -43,7 +43,7 @@ const content = {
     backLabel: "Retour",
     portfolio: {
       heading: "Portfolio en production",
-      subtitle: "Trois applications développées, déployées et maintenues en production, illustrant une capacité réelle à transformer un besoin métier en outil fonctionnel.",
+      subtitle: "Six applications développées, déployées et maintenues en production, illustrant une capacité réelle à transformer un besoin métier en outil fonctionnel.",
       apps: [
         {
           name: "Comex",
@@ -63,9 +63,26 @@ const content = {
           tag: "dvf.tkoidra.com",
           description: "Outil d'analyse de données de marché immobilier (Demandes de Valeurs Foncières), pensé pour rendre exploitable une donnée publique dense et peu structurée.",
         },
+        {
+          name: "Fraud Agent",
+          url: "https://fraud.tkoidra.com",
+          tag: "fraud.tkoidra.com",
+          description: "Pipeline agentique de détection de fraude et de recours pour l'assurance IARD : scoring des sinistres et détection de réseaux de fraude par analyse de graphe. Démonstration construite sur un jeu de données fictif et une architecture agentique multi-services sur Azure.",
+        },
+        {
+          name: "Vérificateur de pièce d'identité",
+          url: "https://verif-piece-justificative.vercel.app/",
+          tag: "verif-piece-justificative.vercel.app",
+          description: "Contrôle qualité d'une pièce d'identité au dépôt (lisibilité, cadrage) et vérification de la cohérence mathématique de sa zone MRZ selon la norme ICAO 9303, sans juger de son authenticité.",
+        },
+        {
+          name: "LexGuard",
+          url: "https://lexguard.tkoidra.com",
+          tag: "lexguard.tkoidra.com",
+          description: "Analyse d'un contrat déposé en PDF pour repérer, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite), en langage clair.",
+        },
       ],
-      wip: "Un quatrième outil, dédié à la détection de fraude, est actuellement en développement.",
-      stackNote: "Chaque application est construite sur une stack moderne (React, Vite, TypeScript, API Claude) et déployée en continu sur Vercel — la même rigueur d'industrialisation que j'applique aux projets que j'accompagne.",
+      stackNote: "Chaque application est déployée en continu sur Vercel et s'appuie sur l'IA générative comme fil conducteur — la même rigueur d'industrialisation que j'applique aux projets que j'accompagne.",
     },
     stack: {
       heading: "Stack & compétences",
@@ -132,7 +149,7 @@ const content = {
     backLabel: "Back",
     portfolio: {
       heading: "Live Portfolio",
-      subtitle: "Three applications developed, deployed and maintained in production, demonstrating a real ability to turn a business need into a working tool.",
+      subtitle: "Six applications developed, deployed and maintained in production, demonstrating a real ability to turn a business need into a working tool.",
       apps: [
         {
           name: "Comex",
@@ -152,9 +169,26 @@ const content = {
           tag: "dvf.tkoidra.com",
           description: "Real estate market data analysis tool (Demandes de Valeurs Foncières — Property Value Requests), designed to make a dense, poorly structured public dataset exploitable.",
         },
+        {
+          name: "Fraud Agent",
+          url: "https://fraud.tkoidra.com",
+          tag: "fraud.tkoidra.com",
+          description: "Agentic pipeline for fraud detection and recourse in P&C insurance: claims scoring and fraud-ring detection through graph analysis. A demo built on a fictional dataset and a multi-service agentic architecture on Azure.",
+        },
+        {
+          name: "ID Document Verifier",
+          url: "https://verif-piece-justificative.vercel.app/",
+          tag: "verif-piece-justificative.vercel.app",
+          description: "Quality control of an ID document at submission (readability, framing) and verification of the mathematical consistency of its MRZ zone under the ICAO 9303 standard, without judging its authenticity.",
+        },
+        {
+          name: "LexGuard",
+          url: "https://lexguard.tkoidra.com",
+          tag: "lexguard.tkoidra.com",
+          description: "Analyzes a contract submitted as a PDF to flag, before signature, warning signs of a risky arrangement (hidden agreement, abnormal duration, silent renewal), in plain language.",
+        },
       ],
-      wip: "A fourth tool, dedicated to fraud detection, is currently in development.",
-      stackNote: "Each application is built on a modern stack (React, Vite, TypeScript, Claude API) and continuously deployed on Vercel — the same industrialisation rigour I apply to the projects I support.",
+      stackNote: "Each application is continuously deployed on Vercel and built around generative AI as a common thread — the same industrialisation rigour I apply to the projects I support.",
     },
     stack: {
       heading: "Stack & Skills",
@@ -275,7 +309,6 @@ export default async function ProfilPage({ params }: Props) {
               </a>
             ))}
           </div>
-          <p className="text-xs leading-6 text-slate-500 italic">{t.portfolio.wip}</p>
           <p className="text-sm leading-7 text-slate-400">{t.portfolio.stackNote}</p>
         </section>
 
