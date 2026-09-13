@@ -24,6 +24,14 @@ function getLocale(request: NextRequest): string | undefined {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  // Blog EN supprimé (contenu retiré, pas déplacé) : 410, jamais de redirection vers /fr/blog.
+  if (pathname === '/en/blog' || pathname.startsWith('/en/blog/')) {
+    return new NextResponse('Gone: this content has been removed.', {
+      status: 410,
+      headers: { 'content-type': 'text/plain; charset=utf-8' },
+    });
+  }
+
   if (
     ['/manifest.json', '/favicon.ico'].includes(pathname) ||
     pathname.startsWith('/_next') ||

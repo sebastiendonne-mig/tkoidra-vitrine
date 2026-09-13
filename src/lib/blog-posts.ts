@@ -9,7 +9,6 @@ export interface BlogPost {
   summary: string;
   tag: string;
   readTime: string;
-  date: string;
   sections: BlogSection[];
   mdFile?: string;
 }
@@ -22,7 +21,6 @@ const postsFr: BlogPost[] = [
       "Exploration des patterns multi-agents, cycles d’état et branchements conditionnels dans LangGraph pour des workflows IA production-ready.",
     tag: "Architecture IA",
     readTime: "8 min",
-    date: "2025-12-10",
     sections: [
       {
         heading: "Pourquoi LangGraph change la donne",
@@ -49,7 +47,6 @@ const postsFr: BlogPost[] = [
       "Stratégies concrètes pour réduire la facture API de 60 à 80% sans sacrifier la qualité des réponses — caching, routage et compression.",
     tag: "LLMOps",
     readTime: "6 min",
-    date: "2025-11-22",
     sections: [
       {
         heading: "La réalité des coûts à l’échelle",
@@ -76,7 +73,6 @@ const postsFr: BlogPost[] = [
       "Pourquoi le RAG vectoriel simple atteint ses limites et comment l’approche hybride (dense + sparse + reranking) transforme la précision de retrieval.",
     tag: "RAG & Retrieval",
     readTime: "10 min",
-    date: "2025-10-15",
     sections: [
       {
         heading: "Les limites du RAG naïf",
@@ -103,99 +99,13 @@ const postsFr: BlogPost[] = [
       "Cadre méthodologique pour un projet d’automatisation par LLM de la comparaison de garanties loi Lemoine : état du marché, cartographie des risques RGPD/DDA/AI Act, trois architectures possibles et checklist go/no-go Comex. Version V0.1 — brouillon de travail.",
     tag: "Assurance & IA",
     readTime: "12 min",
-    date: "2026-06-29",
     sections: [],
     mdFile: "content/blog/cahier-des-charges-ia-assurance-emprunteur.md",
   },
 ];
 
-const postsEn: BlogPost[] = [
-  {
-    slug: "architectures-agents-langgraph",
-    title: "Building Autonomous Agent Architectures with LangGraph",
-    summary:
-      "Exploring multi-agent patterns, state cycles, and conditional branching in LangGraph for production-ready AI workflows.",
-    tag: "AI Architecture",
-    readTime: "8 min",
-    date: "2025-12-10",
-    sections: [
-      {
-        heading: "Why LangGraph changes everything",
-        body: "Sequential LLM pipelines quickly hit their limits when dealing with complex business workflows: persistent state management, conditional branching, validation loops, parallel tool calls. LangGraph introduces a directed graph paradigm where each node is a processing step and each edge is a state transition — potentially conditional. Unlike LCEL, the graph can contain cycles, which enables reflective architectures (reflect → act → observe → reflect).",
-      },
-      {
-        heading: "Core primitives",
-        body: "A StateGraph rests on three elements. Nodes: pure (or async) functions that receive the current state and return a state patch. Edges: simple transitions or conditional functions that return the next node name. Shared state: a typed TypedDict or dataclass that persists throughout the workflow and acts as the contract between nodes. State typing discipline is the first guarantee of production robustness.",
-      },
-      {
-        heading: "Three multi-agent patterns",
-        body: "The Supervisor pattern: an orchestrator node receives the task, selects the appropriate specialist agent via an LLM router, and consolidates results before responding. The Hierarchical pattern: supervisors can themselves delegate to sub-agents, enabling tree-structured organizations for highly complex tasks. The Parallel pattern: multiple agents execute via the Send() primitive, with their results converging into an aggregation node — particularly effective for multi-source document retrieval.",
-      },
-      {
-        heading: "Production advice",
-        body: "Instrument every node with LangSmith from day one — debugging a complex graph without traceability is a nightmare. Define per-node timeouts and an escape_hatch node that breaks cycles when an iteration counter exceeds a threshold. Persist state with a checkpointer (SQLite in dev, PostgreSQL in prod) to enable resumption after human interruptions or network errors. Version your graphs: a node change can silently break untested downstream paths.",
-      },
-    ],
-  },
-  {
-    slug: "optimiser-cout-tokens-production",
-    title: "Optimizing Token Costs in Production",
-    summary:
-      "Concrete strategies to cut your API bill by 60–80% without sacrificing response quality — caching, routing, and compression.",
-    tag: "LLMOps",
-    readTime: "6 min",
-    date: "2025-11-22",
-    sections: [
-      {
-        heading: "The reality of costs at scale",
-        body: "An AI assistant deployed to 10,000 active users, averaging 20 messages/day at 500 input tokens and 200 output tokens, generates around 70 million tokens daily. At $15/M tokens for a frontier model, that is $1,050/day — $32,000/month. Token cost optimization is not a late-stage luxury; it is an economic viability condition that must be baked into the architecture from day one.",
-      },
-      {
-        heading: "Prompt caching and compression",
-        body: "The first line of savings: native prompt caching. Claude and GPT-4 let you cache identical prefix tokens — cached tokens are billed at 10% of normal price (Claude) or nothing on subsequent calls. The key architectural principle: place all static content (system instructions, few-shot examples, reference documents) at the top of the prompt, variable content at the end. Prompt compression tools like LLMLingua can reduce a prompt by 40–60% while preserving 95% of performance.",
-      },
-      {
-        heading: "Intelligent model routing",
-        body: "Not every call needs a frontier model. A lightweight classifier (fine-tuned GPT-4o-mini or an SVM trained on annotated logs) can route 60–70% of requests to cheaper models — Haiku, GPT-4o-mini — without perceptible quality degradation. On routed requests, cost reduction reaches 85–95%. The classifier cost itself is negligible against the savings realized past 50,000 calls/day.",
-      },
-      {
-        heading: "Semantic cache and batch API",
-        body: "A semantic cache (Redis + embeddings) intercepts similar requests before they reach the API: 15–25% hit rate typical for use cases with recurring questions (FAQ, support, document search). For non-urgent async processing, the Anthropic Batch API and OpenAI Batch offer 50% unit cost reduction. Finally, enforce strict JSON responses (Structured Outputs): this eliminates verbosity, reduces output tokens by 20–30%, and simplifies downstream parsing.",
-      },
-    ],
-  },
-  {
-    slug: "rag-naif-vs-hybride",
-    title: "From Naive RAG to Hybrid RAG: Lessons Learned",
-    summary:
-      "Why simple vector RAG hits a ceiling and how the hybrid approach (dense + sparse + reranking) transforms retrieval precision.",
-    tag: "RAG & Retrieval",
-    readTime: "10 min",
-    date: "2025-10-15",
-    sections: [
-      {
-        heading: "The limits of naive RAG",
-        body: "Vanilla RAG (embedding → cosine similarity → top-k chunks → LLM) works well for straightforward questions and moderately sized knowledge bases. It fails on complex queries: negative questions (\"which companies are NOT eligible?\"), multi-faceted requests, or questions requiring comparison across distant documents. In practice, recall drops below 60% once the base exceeds 10,000 documents — the vector signal gets drowned in surface-level similarity noise.",
-      },
-      {
-        heading: "Hybrid architecture: dense + sparse",
-        body: "Hybrid RAG combines two complementary retrieval strategies. Dense Retrieval (vector embeddings) excels at semantic similarity: it finds thematically related passages even with radically different vocabulary. BM25 (Sparse Retrieval) excels at exact lexical matching: essential for proper nouns, product codes, regulatory terms, and technical acronyms. Scores from both pipelines are merged via Reciprocal Rank Fusion (RRF), a simple formula — 1/(k + rank) — that is remarkably robust across heterogeneous score distributions.",
-      },
-      {
-        heading: "Reranking: the differentiating layer",
-        body: "After merging 20–50 candidates, a cross-encoder (ms-marco-MiniLM-L6 or Cohere Rerank) re-ranks results by true relevance. Unlike bi-encoders that compute embeddings independently, the cross-encoder analyzes the (question, passage) pair jointly in a single forward pass — substantially higher precision. Added latency is 100–200ms, acceptable for most interactive use cases. The precision@3 gain is typically 15–25 percentage points.",
-      },
-      {
-        heading: "Chunking and rigorous evaluation",
-        body: "Chunking is the most underrated aspect: chunks too small lose local context, chunks too large dilute retrieval precision. The \"parent-child chunking\" technique indexes small chunks (150 tokens) but feeds the LLM their parent chunk (600 tokens) to preserve context. For objective evaluation, build a golden set of 100–200 question/answer pairs and measure with RAGAS (Faithfulness, Answer Relevancy, Context Precision). Never rely on subjective impressions when comparing two retrieval architectures.",
-      },
-    ],
-  },
-];
-
 const allPosts: Record<string, BlogPost[]> = {
   fr: postsFr,
-  en: postsEn,
 };
 
 export function getPostsByLang(lang: string): BlogPost[] {

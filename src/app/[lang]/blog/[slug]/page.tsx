@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
-import { i18n } from '../../../../../i18n-config';
 import { getPostBySlug, getAllSlugs } from '../../../../lib/blog-posts';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -14,9 +13,7 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  return i18n.locales.flatMap((lang) =>
-    getAllSlugs().map((slug) => ({ lang, slug }))
-  );
+  return getAllSlugs().map((slug) => ({ lang: "fr", slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -35,7 +32,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: url,
       languages: {
         fr: `https://tkoidra.com/fr/blog/${slug}`,
-        en: `https://tkoidra.com/en/blog/${slug}`,
       },
     },
     openGraph: {
@@ -43,9 +39,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.summary,
       url,
       siteName: "TKoidra",
-      locale: lang === "fr" ? "fr_FR" : "en_US",
+      locale: "fr_FR",
       type: "article",
-      publishedTime: post.date,
       authors: ["Sebastien Donne"],
       tags: [post.tag],
     },
@@ -158,13 +153,6 @@ export default async function BlogPostPage({ params }: Props) {
             <span className="rounded-md border border-teal-500/40 bg-teal-500/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
               {post.tag}
             </span>
-            <span className="text-xs text-slate-500">
-              {new Date(post.date).toLocaleDateString(
-                lang === 'fr' ? 'fr-FR' : 'en-GB',
-                { year: 'numeric', month: 'long', day: 'numeric' }
-              )}
-            </span>
-            <span className="text-xs text-slate-600">·</span>
             <span className="text-xs text-slate-500">
               {post.readTime} {t.readTime}
             </span>

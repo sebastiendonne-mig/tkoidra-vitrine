@@ -18,16 +18,21 @@ export function Navbar({ lang, nav }: NavbarProps) {
   const pathname = usePathname();
   const altLang = lang === "fr" ? "en" : "fr";
   // Swap only the leading /lang segment, leave the rest of the path intact
-  const altPath = pathname.replace(
+  const rawAltPath = pathname.replace(
     new RegExp(`^/${lang}(?=/|$)`),
     `/${altLang}`
   );
+  // Le blog EN a été retiré (410) : ne jamais y renvoyer via le switcher de langue.
+  const altPath =
+    altLang === "en" && /^\/en\/blog(\/|$)/.test(rawAltPath)
+      ? "/en/use-cases"
+      : rawAltPath;
 
   const links = [
     { href: `/${lang}/use-cases`, label: nav.home },
     { href: `/${lang}/profil`, label: lang === "fr" ? "Profil" : "Profile" },
     { href: `/${lang}/methodologie-diag`, label: lang === "fr" ? "Méthode" : "Method" },
-    { href: `/${lang}/blog`, label: nav.blog },
+    ...(lang === "en" ? [] : [{ href: `/${lang}/blog`, label: nav.blog }]),
   ];
 
   function isActive(href: string): boolean {

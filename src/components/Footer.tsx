@@ -74,12 +74,14 @@ export function Footer({ lang, nav }: FooterProps) {
             >
               {methodeLabel}
             </Link>
-            <Link
-              href={`/${lang}/blog`}
-              className="text-xs text-slate-500 transition-colors hover:text-slate-300"
-            >
-              {nav.blog}
-            </Link>
+            {lang !== "en" && (
+              <Link
+                href={`/${lang}/blog`}
+                className="text-xs text-slate-500 transition-colors hover:text-slate-300"
+              >
+                {nav.blog}
+              </Link>
+            )}
             <Link
               href={`/${lang}/legal`}
               className="text-xs text-slate-500 transition-colors hover:text-slate-300"

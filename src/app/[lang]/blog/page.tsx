@@ -1,9 +1,8 @@
-import { i18n } from "../../../../i18n-config";
 import { getPostsByLang } from "../../../lib/blog-posts";
 import Link from "next/link";
 
 export async function generateStaticParams() {
-  return i18n.locales.map((lang) => ({ lang }));
+  return [{ lang: "fr" }];
 }
 
 const ui = {
@@ -60,13 +59,6 @@ export default async function BlogIndexPage({
                 <span className="rounded-md border border-slate-700 bg-slate-800/60 px-2.5 py-1 text-xs font-semibold text-slate-300">
                   {post.tag}
                 </span>
-                <span className="text-xs text-slate-500">
-                  {new Date(post.date).toLocaleDateString(
-                    lang === "fr" ? "fr-FR" : "en-GB",
-                    { year: "numeric", month: "long", day: "numeric" }
-                  )}
-                </span>
-                <span className="text-xs text-slate-600" aria-hidden>·</span>
                 <span className="text-xs text-slate-500">
                   {post.readTime} {t.readTimeSuffix}
                 </span>
