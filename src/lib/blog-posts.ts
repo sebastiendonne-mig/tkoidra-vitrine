@@ -15,6 +15,26 @@ export interface BlogPost {
 
 const postsFr: BlogPost[] = [
   {
+    slug: "po-ia-vs-po-classique",
+    title: "Product Owner IA : ce qui change vraiment dans le rôle",
+    summary:
+      "Ce que le socle Scrum garde intact, et ce qui bascule vraiment : des critères d'acceptation probabilistes plutôt que déterministes, un rythme de roadmap dicté par l'expérimentation continue, et une proximité technique accrue avec l'ingénierie.",
+    tag: "Product Ownership IA",
+    readTime: "5 min",
+    sections: [],
+    mdFile: "content/blog/po-ia-vs-po-classique.md",
+  },
+  {
+    slug: "cadrer-un-projet-ia",
+    title: "Cadrer un projet IA : ce que révèle une étude sur 65 échecs",
+    summary:
+      "Une étude RAND Corporation menée auprès de 65 data scientists et ingénieurs ML identifie cinq causes racines d'échec des projets IA — la plupart n'ont rien de technique — et les questions de cadrage qui permettent de les éviter en amont.",
+    tag: "Cadrage IA",
+    readTime: "5 min",
+    sections: [],
+    mdFile: "content/blog/cadrer-un-projet-ia.md",
+  },
+  {
     slug: "architectures-agents-langgraph",
     title: "Bâtir des architectures d’agents autonomes avec LangGraph",
     summary:

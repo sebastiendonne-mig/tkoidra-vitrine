@@ -109,6 +109,10 @@ const mdxComponents = {
   hr: (props: ComponentPropsWithoutRef<'hr'>) => (
     <hr className="border-slate-800 my-10" {...props} />
   ),
+  img: (props: ComponentPropsWithoutRef<'img'>) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className="w-full rounded-xl border border-slate-800 my-8" {...props} />
+  ),
   code: (props: ComponentPropsWithoutRef<'code'>) => (
     <code
       className="font-mono text-xs bg-slate-800 text-teal-300 px-1.5 py-0.5 rounded"
