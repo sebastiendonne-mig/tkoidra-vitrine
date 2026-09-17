@@ -31,13 +31,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-type PortfolioApp = {
-  name: string;
-  url: string;
-  tag?: string;
-  description: string;
-};
-
 const content = {
   fr: {
     badge: "Profil",
@@ -55,7 +48,8 @@ const content = {
         {
           name: "AGAP",
           url: "https://agap.tkoidra.com/",
-          description: "Priorisation de portefeuille de projets arbitrée par l'IA, sans biais Métier/DSI",
+          tag: "agap.tkoidra.com",
+          description: "Outil de gouvernance de portefeuille pour Directeurs de Portefeuille : un agent Claude challenge séparément les déclarations Métier (valeur perçue) et DSI (effort estimé) de chaque projet, calcule un indice de confiance et détecte les conflits de perception sur une Conflict Map, avant un arbitrage assisté par scénarios de scoring (MVP / Complet) et ligne de coupure ajustable. Démonstration construite sur un portefeuille fictif de 6 projets.",
         },
         {
           name: "Comex",
@@ -93,7 +87,7 @@ const content = {
           tag: "lexguard.tkoidra.com",
           description: "Analyse d'un contrat déposé en PDF pour repérer, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite), en langage clair.",
         },
-      ] as PortfolioApp[],
+      ],
       stackNote: "Chaque application est déployée en continu sur Vercel et s'appuie sur l'IA générative comme fil conducteur — la même rigueur d'industrialisation que j'applique aux projets que j'accompagne.",
     },
     stack: {
@@ -166,7 +160,8 @@ const content = {
         {
           name: "AGAP",
           url: "https://agap.tkoidra.com/",
-          description: "AI-arbitrated project portfolio prioritization, free of Business/IT bias",
+          tag: "agap.tkoidra.com",
+          description: "Portfolio governance tool for Portfolio Directors: a Claude agent separately challenges each project's Business (perceived value) and IT (estimated effort) declarations, computes a confidence index and flags perception conflicts on a Conflict Map, before supporting final arbitration through MVP / Full scoring scenarios and an adjustable cut-line. A demo built on a fictional 6-project portfolio.",
         },
         {
           name: "Comex",
@@ -204,7 +199,7 @@ const content = {
           tag: "lexguard.tkoidra.com",
           description: "Analyzes a contract submitted as a PDF to flag, before signature, warning signs of a risky arrangement (hidden agreement, abnormal duration, silent renewal), in plain language.",
         },
-      ] as PortfolioApp[],
+      ],
       stackNote: "Each application is continuously deployed on Vercel and built around generative AI as a common thread — the same industrialisation rigour I apply to the projects I support.",
     },
     stack: {
