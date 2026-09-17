@@ -22,50 +22,38 @@
       "metrics": "Résultats & Impact"
     },
     "projects": {
-      "sirene": {
-        "title": "Sirene",
-        "description": "Requêtes d'entreprises en langage naturel.",
-        "tag": "API & NLP",
-        "challenge": "Les équipes commerciales et opérationnelles perdent un temps précieux à identifier et qualifier des entreprises via l'interface Sirene standard de l'INSEE. La syntaxe rigide des filtres et l'absence de compréhension sémantique freinent l'adoption.",
-        "solution": "Un assistant IA comprenant les requêtes en langage naturel et interrogeant l'API Sirene de l'INSEE pour retourner des résultats structurés, filtrés et enrichis — sans aucune connaissance technique requise de l'utilisateur.",
+      "agap": {
+        "title": "AGAP",
+        "description": "Priorisation de portefeuille projets arbitrée par l'IA, sans biais Métier/DSI.",
+        "tag": "Gouvernance de Portefeuille & IA",
+        "challenge": "Un Directeur de Portefeuille arbitre chaque année des dizaines de projets sur la base de déclarations Métier et DSI structurellement biaisées : le Métier survalorise l'impact business, la DSI surestime l'effort et le risque technique pour se protéger. Sans mécanisme de médiation, l'arbitrage final devient un rapport de force politique plutôt qu'une décision objectivée.",
+        "solution": "Une application de gouvernance qui fait challenger séparément chaque déclaration Métier et DSI par un agent Claude, calcule un indice de confiance et un score d'attractivité ajusté, puis visualise les conflits de perception avant l'arbitrage final — démonstration construite sur un portefeuille fictif de 6 projets, illustrant une médiation IA neutre entre deux acteurs aux intérêts divergents.",
         "features": [
           {
-            "icon": "🔍",
-            "title": "Requêtes en Langage Naturel",
-            "description": "Traduction automatique de requêtes NL en paramètres API Sirene via un modèle de langage finement calibré."
+            "icon": "🤖",
+            "title": "Challenger IA Multi-Rôles",
+            "description": "Un agent Claude interroge séparément le Métier (valeur perçue) et la DSI (effort estimé), génère des questions de clarification et calcule un indice de confiance par déclaration."
+          },
+          {
+            "icon": "🗺️",
+            "title": "Conflict Map",
+            "description": "Cartographie visuelle du delta de perception Métier/DSI, avec seuil de conflit configurable pour repérer les projets nécessitant une médiation avant arbitrage."
           },
           {
             "icon": "🎯",
-            "title": "Filtres Sémantiques",
-            "description": "Segmentation intelligente par secteur NAF, région, taille d'entreprise et statut juridique à partir d'expressions libres."
-          },
-          {
-            "icon": "📊",
-            "title": "Export Enrichi",
-            "description": "Génération de tableaux de bord et exports CSV/JSON avec les données SIRET enrichies et normalisées."
+            "title": "Scénarios & Cut-Line d'Arbitrage",
+            "description": "Classement comparé des projets selon deux scénarios de scoring (MVP / Complet) et ligne de coupure ajustable, avec inclusion forcée toujours justifiée et tracée."
           }
         ],
         "stack": [
-          "API Sirene (INSEE)",
-          "LLM (Claude / GPT)",
-          "RAG",
           "Next.js 16",
-          "TypeScript"
+          "Prisma / Turso (libSQL)",
+          "NextAuth.js",
+          "Claude (API Anthropic)",
+          "Recharts",
+          "Resend"
         ],
-        "metrics": [
-          {
-            "value": "94%",
-            "label": "Précision des requêtes"
-          },
-          {
-            "value": "-72%",
-            "label": "Temps de recherche réduit"
-          },
-          {
-            "value": "12M+",
-            "label": "Entreprises indexées"
-          }
-        ]
+        "metrics": []
       },
       "comex": {
         "title": "Comex",
@@ -112,6 +100,51 @@
           }
         ]
       },
+      "sirene": {
+        "title": "Sirene",
+        "description": "Requêtes d'entreprises en langage naturel.",
+        "tag": "API & NLP",
+        "challenge": "Les équipes commerciales et opérationnelles perdent un temps précieux à identifier et qualifier des entreprises via l'interface Sirene standard de l'INSEE. La syntaxe rigide des filtres et l'absence de compréhension sémantique freinent l'adoption.",
+        "solution": "Un assistant IA comprenant les requêtes en langage naturel et interrogeant l'API Sirene de l'INSEE pour retourner des résultats structurés, filtrés et enrichis — sans aucune connaissance technique requise de l'utilisateur.",
+        "features": [
+          {
+            "icon": "🔍",
+            "title": "Requêtes en Langage Naturel",
+            "description": "Traduction automatique de requêtes NL en paramètres API Sirene via un modèle de langage finement calibré."
+          },
+          {
+            "icon": "🎯",
+            "title": "Filtres Sémantiques",
+            "description": "Segmentation intelligente par secteur NAF, région, taille d'entreprise et statut juridique à partir d'expressions libres."
+          },
+          {
+            "icon": "📊",
+            "title": "Export Enrichi",
+            "description": "Génération de tableaux de bord et exports CSV/JSON avec les données SIRET enrichies et normalisées."
+          }
+        ],
+        "stack": [
+          "API Sirene (INSEE)",
+          "LLM (Claude / GPT)",
+          "RAG",
+          "Next.js 16",
+          "TypeScript"
+        ],
+        "metrics": [
+          {
+            "value": "94%",
+            "label": "Précision des requêtes"
+          },
+          {
+            "value": "-72%",
+            "label": "Temps de recherche réduit"
+          },
+          {
+            "value": "12M+",
+            "label": "Entreprises indexées"
+          }
+        ]
+      },
       "dvf": {
         "title": "DVF",
         "description": "Recherche et analyse de transactions immobilières.",
@@ -122,17 +155,7 @@
           {
             "icon": "🗺️",
             "title": "Cartographie des Transactions",
-            "description": "Visualisation géographique interactive de toutes les mutations immobilières, avec clustering intelligent par densité."
-          },
-          {
-            "icon": "📉",
-            "title": "Analyse Prix/m² par Zone",
-            "description": "Calcul automatique des médianes de prix par quartier, commune et département avec évolution temporelle."
-          },
-          {
-            "icon": "🤖",
-            "title": "Détection de Tendances IA",
-            "description": "Identification des zones à forte évolution de prix et des anomalies de marché via des modèles d'analyse prédictive."
+            "description": "Visualisation géographique interactive de toutes les mutations immobilières et des terrains"
           }
         ],
         "stack": [
@@ -156,6 +179,39 @@
             "label": "Précision géocodage"
           }
         ]
+      },
+      "assurconseil": {
+        "title": "AssurConseil 365",
+        "description": "Assistant RAG agentique pour l'interprétation de contrats d'assurance.",
+        "tag": "RAG & Agents IA",
+        "challenge": "Les conseillers assurance doivent naviguer des dizaines de pages de conditions générales pour répondre avec précision aux questions clients, sous la contrainte du devoir de conseil réglementaire — une erreur d'interprétation ou une garantie mal citée engage la responsabilité de l'assureur.",
+        "solution": "Un agent RAG agentique qui route chaque question vers le pattern le plus adapté (ReAct pour les recherches simples, Plan-and-Execute pour les questions à sous-parties), avec citation obligatoire des articles sources et refus explicite de répondre en l'absence de preuve documentaire — démonstration construite sur des contrats et une société fictifs (ARESIA Assurances), illustrant une architecture agentique de conseil réglementé.",
+        "features": [
+          {
+            "icon": "🔀",
+            "title": "Routage Adaptatif ReAct / Plan-and-Execute",
+            "description": "Un routeur détecte la complexité de la question et bascule entre recherche directe (ReAct) et décomposition en sous-questions (Plan-and-Execute)."
+          },
+          {
+            "icon": "🛡️",
+            "title": "Garde-fou Anti-Hallucination",
+            "description": "Citation obligatoire des articles sources ; réponse « non trouvé » explicite plutôt qu'une réponse inventée quand l'information est absente des documents."
+          },
+          {
+            "icon": "🔍",
+            "title": "Traçabilité Complète du Raisonnement",
+            "description": "Chaque étape du graphe (router, retrieve, evaluate, synthesize) est journalisée dans un trace_log consultable, de la question à la réponse finale."
+          }
+        ],
+        "stack": [
+          "Python",
+          "LangGraph",
+          "Claude (API Anthropic)",
+          "Chroma",
+          "Streamlit",
+          "Google Cloud Run"
+        ],
+        "metrics": []
       },
       "fraud": {
         "title": "Fraud Agent",
@@ -191,36 +247,33 @@
         ],
         "metrics": []
       },
-      "assurconseil": {
-        "title": "AssurConseil 365",
-        "description": "Assistant RAG agentique pour l'interprétation de contrats d'assurance.",
-        "tag": "RAG & Agents IA",
-        "challenge": "Les conseillers assurance doivent naviguer des dizaines de pages de conditions générales pour répondre avec précision aux questions clients, sous la contrainte du devoir de conseil réglementaire — une erreur d'interprétation ou une garantie mal citée engage la responsabilité de l'assureur.",
-        "solution": "Un agent RAG agentique qui route chaque question vers le pattern le plus adapté (ReAct pour les recherches simples, Plan-and-Execute pour les questions à sous-parties), avec citation obligatoire des articles sources et refus explicite de répondre en l'absence de preuve documentaire — démonstration construite sur des contrats et une société fictifs (ARESIA Assurances), illustrant une architecture agentique de conseil réglementé.",
+      "lexguard": {
+        "title": "LexGuard",
+        "description": "Détection des signaux de vigilance dans les contrats avant signature.",
+        "tag": "CONFORMITÉ & IA GÉNÉRATIVE",
+        "challenge": "Un maire de commune rurale, sans service juridique, signe sous pression commerciale un contrat de matériel télécom qui dissimule un second contrat de leasing — durée d'engagement longue, résiliation quasi impossible. Des communes ont été poursuivies pour des dizaines de milliers d'euros après coup.",
+        "solution": "Une démonstration qui analyse un contrat déposé en PDF et repère, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite) — en langage clair, sans jamais juger de la légalité du contrat ni de la fiabilité d'une entreprise.",
         "features": [
           {
-            "icon": "🔀",
-            "title": "Routage Adaptatif ReAct / Plan-and-Execute",
-            "description": "Un routeur détecte la complexité de la question et bascule entre recherche directe (ReAct) et décomposition en sous-questions (Plan-and-Execute)."
+            "icon": "🚩",
+            "title": "Détection de signaux de vigilance",
+            "description": "Repère les patterns de montages contractuels à risque."
           },
           {
-            "icon": "🛡️",
-            "title": "Garde-fou Anti-Hallucination",
-            "description": "Citation obligatoire des articles sources ; réponse « non trouvé » explicite plutôt qu'une réponse inventée quand l'information est absente des documents."
+            "icon": "⚖️",
+            "title": "Verdict en langage clair",
+            "description": "Restitution à 3 niveaux, sans jargon juridique."
           },
           {
-            "icon": "🔍",
-            "title": "Traçabilité Complète du Raisonnement",
-            "description": "Chaque étape du graphe (router, retrieve, evaluate, synthesize) est journalisée dans un trace_log consultable, de la question à la réponse finale."
+            "icon": "🔒",
+            "title": "Zéro donnée conservée",
+            "description": "Traitement éphémère, aucun document ni résultat stocké."
           }
         ],
         "stack": [
-          "Python",
-          "LangGraph",
-          "Claude (API Anthropic)",
-          "Chroma",
-          "Streamlit",
-          "Google Cloud Run"
+          "Claude Sonnet 5",
+          "Next.js",
+          "Vercel Functions"
         ],
         "metrics": []
       },
@@ -251,36 +304,6 @@
           "Claude Sonnet (vision)",
           "Algorithme ICAO 9303",
           "Node.js",
-          "Vercel Functions"
-        ],
-        "metrics": []
-      },
-      "lexguard": {
-        "title": "LexGuard",
-        "description": "Détection des signaux de vigilance dans les contrats avant signature.",
-        "tag": "CONFORMITÉ & IA GÉNÉRATIVE",
-        "challenge": "Un maire de commune rurale, sans service juridique, signe sous pression commerciale un contrat de matériel télécom qui dissimule un second contrat de leasing — durée d'engagement longue, résiliation quasi impossible. Des communes ont été poursuivies pour des dizaines de milliers d'euros après coup.",
-        "solution": "Une démonstration qui analyse un contrat déposé en PDF et repère, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite) — en langage clair, sans jamais juger de la légalité du contrat ni de la fiabilité d'une entreprise.",
-        "features": [
-          {
-            "icon": "🚩",
-            "title": "Détection de signaux de vigilance",
-            "description": "Repère les patterns de montages contractuels à risque."
-          },
-          {
-            "icon": "⚖️",
-            "title": "Verdict en langage clair",
-            "description": "Restitution à 3 niveaux, sans jargon juridique."
-          },
-          {
-            "icon": "🔒",
-            "title": "Zéro donnée conservée",
-            "description": "Traitement éphémère, aucun document ni résultat stocké."
-          }
-        ],
-        "stack": [
-          "Claude Sonnet 5",
-          "Next.js",
           "Vercel Functions"
         ],
         "metrics": []

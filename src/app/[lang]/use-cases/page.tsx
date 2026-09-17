@@ -27,13 +27,14 @@ interface SectionLabels {
 }
 
 const appUrls: Record<string, string> = {
-  sirene: "https://sirene.tkoidra.com",
+  agap: "https://agap.tkoidra.com",
   comex: "https://comex.tkoidra.com",
+  sirene: "https://sirene.tkoidra.com",
   dvf: "https://dvf.tkoidra.com",
-  fraud: "https://fraud.tkoidra.com",
   assurconseil: "https://rag.tkoidra.com",
-  verifid: "https://verif-piece-justificative.vercel.app/",
+  fraud: "https://fraud.tkoidra.com",
   lexguard: "https://lexguard.tkoidra.com",
+  verifid: "https://verif-piece-justificative.vercel.app/",
 };
 
 const appLinkLabels = {
@@ -145,7 +146,15 @@ export default async function UseCasesPage({
                 <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
                   {labels.features}
                 </h3>
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+                <div
+                  className={
+                    project.features.length === 1
+                      ? "grid grid-cols-1 gap-5 sm:max-w-sm"
+                      : project.features.length === 2
+                      ? "grid grid-cols-1 gap-5 sm:grid-cols-2"
+                      : "grid grid-cols-1 gap-5 sm:grid-cols-3"
+                  }
+                >
                   {project.features.map((feature) => (
                     <div
                       key={feature.title}

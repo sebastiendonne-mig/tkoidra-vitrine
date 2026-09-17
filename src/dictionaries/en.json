@@ -22,50 +22,38 @@
       "metrics": "Results & Impact"
     },
     "projects": {
-      "sirene": {
-        "title": "Sirene",
-        "description": "Natural language company search.",
-        "tag": "API & NLP",
-        "challenge": "Sales and operations teams waste valuable time identifying and qualifying companies through the standard INSEE Sirene interface. Rigid filter syntax and lack of semantic understanding hinder adoption.",
-        "solution": "An AI assistant that understands natural language queries and interrogates the INSEE Sirene API to return structured, filtered, and enriched results — with no technical knowledge required from the user.",
+      "agap": {
+        "title": "AGAP",
+        "description": "AI-arbitrated project portfolio prioritization, free of Business/IT bias.",
+        "tag": "Portfolio Governance & AI",
+        "challenge": "A Portfolio Director arbitrates dozens of projects every year based on structurally biased Business and IT declarations: Business overstates business impact, IT overstates effort and technical risk to protect itself. Without a mediation mechanism, final arbitration becomes a political power struggle rather than an objective decision.",
+        "solution": "A governance application that has a Claude agent separately challenge each Business and IT declaration, computes a confidence index and an adjusted attractiveness score, then visualizes perception conflicts before final arbitration — a demo built on a fictional 6-project portfolio, illustrating neutral AI mediation between two parties with diverging interests.",
         "features": [
           {
-            "icon": "🔍",
-            "title": "Natural Language Queries",
-            "description": "Automatic translation of NL queries into Sirene API parameters via a finely calibrated language model."
+            "icon": "🤖",
+            "title": "Multi-Role AI Challenger",
+            "description": "A Claude agent separately interrogates Business (perceived value) and IT (estimated effort), generates clarifying questions, and computes a confidence index per declaration."
+          },
+          {
+            "icon": "🗺️",
+            "title": "Conflict Map",
+            "description": "Visual mapping of the Business/IT perception delta, with a configurable conflict threshold to flag projects needing mediation before arbitration."
           },
           {
             "icon": "🎯",
-            "title": "Semantic Filters",
-            "description": "Intelligent segmentation by NAF sector, region, company size and legal status from free-form expressions."
-          },
-          {
-            "icon": "📊",
-            "title": "Enriched Export",
-            "description": "Dashboard generation and CSV/JSON exports with enriched and normalized SIRET data."
+            "title": "Scenarios & Arbitration Cut-Line",
+            "description": "Side-by-side project ranking under two scoring scenarios (MVP / Full) with an adjustable cut-line, plus forced inclusion always justified and logged."
           }
         ],
         "stack": [
-          "Sirene API (INSEE)",
-          "LLM (Claude / GPT)",
-          "RAG",
           "Next.js 16",
-          "TypeScript"
+          "Prisma / Turso (libSQL)",
+          "NextAuth.js",
+          "Claude (Anthropic API)",
+          "Recharts",
+          "Resend"
         ],
-        "metrics": [
-          {
-            "value": "94%",
-            "label": "Query accuracy"
-          },
-          {
-            "value": "-72%",
-            "label": "Search time reduced"
-          },
-          {
-            "value": "12M+",
-            "label": "Companies indexed"
-          }
-        ]
+        "metrics": []
       },
       "comex": {
         "title": "Comex",
@@ -112,6 +100,51 @@
           }
         ]
       },
+      "sirene": {
+        "title": "Sirene",
+        "description": "Natural language company search.",
+        "tag": "API & NLP",
+        "challenge": "Sales and operations teams waste valuable time identifying and qualifying companies through the standard INSEE Sirene interface. Rigid filter syntax and lack of semantic understanding hinder adoption.",
+        "solution": "An AI assistant that understands natural language queries and interrogates the INSEE Sirene API to return structured, filtered, and enriched results — with no technical knowledge required from the user.",
+        "features": [
+          {
+            "icon": "🔍",
+            "title": "Natural Language Queries",
+            "description": "Automatic translation of NL queries into Sirene API parameters via a finely calibrated language model."
+          },
+          {
+            "icon": "🎯",
+            "title": "Semantic Filters",
+            "description": "Intelligent segmentation by NAF sector, region, company size and legal status from free-form expressions."
+          },
+          {
+            "icon": "📊",
+            "title": "Enriched Export",
+            "description": "Dashboard generation and CSV/JSON exports with enriched and normalized SIRET data."
+          }
+        ],
+        "stack": [
+          "Sirene API (INSEE)",
+          "LLM (Claude / GPT)",
+          "RAG",
+          "Next.js 16",
+          "TypeScript"
+        ],
+        "metrics": [
+          {
+            "value": "94%",
+            "label": "Query accuracy"
+          },
+          {
+            "value": "-72%",
+            "label": "Search time reduced"
+          },
+          {
+            "value": "12M+",
+            "label": "Companies indexed"
+          }
+        ]
+      },
       "dvf": {
         "title": "DVF",
         "description": "Real estate transaction search and analysis.",
@@ -122,17 +155,7 @@
           {
             "icon": "🗺️",
             "title": "Transaction Mapping",
-            "description": "Interactive geographic visualization of all real estate transfers, with intelligent density clustering."
-          },
-          {
-            "icon": "📉",
-            "title": "Price/m² Analysis by Zone",
-            "description": "Automatic calculation of price medians by district, municipality and department with time-series trends."
-          },
-          {
-            "icon": "🤖",
-            "title": "AI Trend Detection",
-            "description": "Identification of high price-movement zones and market anomalies via predictive analytics models."
+            "description": "Interactive geographic visualization of all real estate transfers and land plots."
           }
         ],
         "stack": [
@@ -156,6 +179,39 @@
             "label": "Geocoding accuracy"
           }
         ]
+      },
+      "assurconseil": {
+        "title": "AssurConseil 365",
+        "description": "Agentic RAG assistant for insurance contract interpretation.",
+        "tag": "RAG & AI Agents",
+        "challenge": "Insurance advisors must navigate dozens of pages of general terms to answer client questions accurately, under regulatory duty-to-advise obligations — a misread clause or wrongly cited guarantee exposes the insurer to liability.",
+        "solution": "An agentic RAG assistant that routes each question to the most suitable pattern (ReAct for direct lookups, Plan-and-Execute for multi-part questions), with mandatory source citation and explicit refusal to answer when no supporting document exists — a demo built on fictional contracts and a fictional company (ARESIA Assurances), illustrating an agentic architecture for regulated advisory use cases.",
+        "features": [
+          {
+            "icon": "🔀",
+            "title": "Adaptive ReAct / Plan-and-Execute Routing",
+            "description": "A router detects question complexity and switches between direct retrieval (ReAct) and sub-question decomposition (Plan-and-Execute)."
+          },
+          {
+            "icon": "🛡️",
+            "title": "Anti-Hallucination Guardrail",
+            "description": "Mandatory citation of source articles; an explicit \"not found\" response rather than a fabricated answer when information is absent from the documents."
+          },
+          {
+            "icon": "🔍",
+            "title": "Full Reasoning Traceability",
+            "description": "Every graph step (router, retrieve, evaluate, synthesize) is logged in an inspectable trace_log, from question to final answer."
+          }
+        ],
+        "stack": [
+          "Python",
+          "LangGraph",
+          "Claude (Anthropic API)",
+          "Chroma",
+          "Streamlit",
+          "Google Cloud Run"
+        ],
+        "metrics": []
       },
       "fraud": {
         "title": "Fraud Agent",
@@ -191,36 +247,33 @@
         ],
         "metrics": []
       },
-      "assurconseil": {
-        "title": "AssurConseil 365",
-        "description": "Agentic RAG assistant for insurance contract interpretation.",
-        "tag": "RAG & AI Agents",
-        "challenge": "Insurance advisors must navigate dozens of pages of general terms to answer client questions accurately, under regulatory duty-to-advise obligations — a misread clause or wrongly cited guarantee exposes the insurer to liability.",
-        "solution": "An agentic RAG assistant that routes each question to the most suitable pattern (ReAct for direct lookups, Plan-and-Execute for multi-part questions), with mandatory source citation and explicit refusal to answer when no supporting document exists — a demo built on fictional contracts and a fictional company (ARESIA Assurances), illustrating an agentic architecture for regulated advisory use cases.",
+      "lexguard": {
+        "title": "LexGuard",
+        "description": "Detects red-flag signals in contracts before signature.",
+        "tag": "COMPLIANCE & GENERATIVE AI",
+        "challenge": "The mayor of a rural town, with no legal department, signs a telecom equipment contract under sales pressure — one that conceals a second leasing agreement with a long commitment term and near-impossible termination. Some towns have been sued for tens of thousands of euros after the fact.",
+        "solution": "A demonstration that analyzes a contract submitted as a PDF and flags, before signature, the warning signs of a risky arrangement (concealed contract, abnormal duration, tacit renewal) — in plain language, without ever ruling on the contract's legality or a company's reliability.",
         "features": [
           {
-            "icon": "🔀",
-            "title": "Adaptive ReAct / Plan-and-Execute Routing",
-            "description": "A router detects question complexity and switches between direct retrieval (ReAct) and sub-question decomposition (Plan-and-Execute)."
+            "icon": "🚩",
+            "title": "Red-flag signal detection",
+            "description": "Identifies patterns of risky contractual arrangements."
           },
           {
-            "icon": "🛡️",
-            "title": "Anti-Hallucination Guardrail",
-            "description": "Mandatory citation of source articles; an explicit \"not found\" response rather than a fabricated answer when information is absent from the documents."
+            "icon": "⚖️",
+            "title": "Plain-language verdict",
+            "description": "3-level assessment, no legal jargon."
           },
           {
-            "icon": "🔍",
-            "title": "Full Reasoning Traceability",
-            "description": "Every graph step (router, retrieve, evaluate, synthesize) is logged in an inspectable trace_log, from question to final answer."
+            "icon": "🔒",
+            "title": "Zero data retained",
+            "description": "Ephemeral processing, no document or result is stored."
           }
         ],
         "stack": [
-          "Python",
-          "LangGraph",
-          "Claude (Anthropic API)",
-          "Chroma",
-          "Streamlit",
-          "Google Cloud Run"
+          "Claude Sonnet 5",
+          "Next.js",
+          "Vercel Functions"
         ],
         "metrics": []
       },
@@ -251,36 +304,6 @@
           "Claude Sonnet (vision)",
           "ICAO 9303 Algorithm",
           "Node.js",
-          "Vercel Functions"
-        ],
-        "metrics": []
-      },
-      "lexguard": {
-        "title": "LexGuard",
-        "description": "Detects red-flag signals in contracts before signature.",
-        "tag": "COMPLIANCE & GENERATIVE AI",
-        "challenge": "The mayor of a rural town, with no legal department, signs a telecom equipment contract under sales pressure — one that conceals a second leasing agreement with a long commitment term and near-impossible termination. Some towns have been sued for tens of thousands of euros after the fact.",
-        "solution": "A demonstration that analyzes a contract submitted as a PDF and flags, before signature, the warning signs of a risky arrangement (concealed contract, abnormal duration, tacit renewal) — in plain language, without ever ruling on the contract's legality or a company's reliability.",
-        "features": [
-          {
-            "icon": "🚩",
-            "title": "Red-flag signal detection",
-            "description": "Identifies patterns of risky contractual arrangements."
-          },
-          {
-            "icon": "⚖️",
-            "title": "Plain-language verdict",
-            "description": "3-level assessment, no legal jargon."
-          },
-          {
-            "icon": "🔒",
-            "title": "Zero data retained",
-            "description": "Ephemeral processing, no document or result is stored."
-          }
-        ],
-        "stack": [
-          "Claude Sonnet 5",
-          "Next.js",
           "Vercel Functions"
         ],
         "metrics": []
