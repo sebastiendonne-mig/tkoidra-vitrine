@@ -3,7 +3,7 @@ import { i18n } from "../../../i18n-config";
 import { getDictionary } from "../../get-dictionary";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
-import { Analytics } from "@vercel/analytics/next";
+import { AnalyticsOptOut } from "../../components/AnalyticsOptOut";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -40,7 +40,7 @@ export default async function RootLayout(props: Props) {
           {props.children}
         </div>
         <Footer lang={lang} nav={nav} />
-        <Analytics />
+        <AnalyticsOptOut />
       </body>
     </html>
   );
