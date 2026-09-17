@@ -15,6 +15,16 @@ export interface BlogPost {
 
 const postsFr: BlogPost[] = [
   {
+    slug: "questionnaires-assurance-cyber",
+    title: "Ce que dix questionnaires d'assurance cyber révèlent des attentes réelles des assureurs",
+    summary:
+      "Analyse de dix questionnaires de souscription d'assurance cyber réels, de 2016 à 2023 : le durcissement des exigences (délais de correctifs, MFA, EDR), l'écart entre ce qu'une entreprise déclare et ce qu'elle peut prouver, et les endroits où certains assureurs contredisent les recommandations de l'ANSSI.",
+    tag: "Cyberassurance & Conformité",
+    readTime: "8 min",
+    sections: [],
+    mdFile: "content/blog/questionnaires-assurance-cyber.md",
+  },
+  {
     slug: "po-ia-vs-po-classique",
     title: "Product Owner IA : ce qui change vraiment dans le rôle",
     summary:
