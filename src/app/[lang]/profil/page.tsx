@@ -31,6 +31,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+type PortfolioApp = {
+  name: string;
+  url: string;
+  tag?: string;
+  description: string;
+};
+
 const content = {
   fr: {
     badge: "Profil",
@@ -43,8 +50,13 @@ const content = {
     backLabel: "Retour",
     portfolio: {
       heading: "Portfolio en production",
-      subtitle: "Six applications développées, déployées et maintenues en production, illustrant une capacité réelle à transformer un besoin métier en outil fonctionnel.",
+      subtitle: "Sept applications développées, déployées et maintenues en production, illustrant une capacité réelle à transformer un besoin métier en outil fonctionnel.",
       apps: [
+        {
+          name: "AGAP",
+          url: "https://agap.tkoidra.com/",
+          description: "Priorisation de portefeuille de projets arbitrée par l'IA, sans biais Métier/DSI",
+        },
         {
           name: "Comex",
           url: "https://comex.tkoidra.com",
@@ -81,7 +93,7 @@ const content = {
           tag: "lexguard.tkoidra.com",
           description: "Analyse d'un contrat déposé en PDF pour repérer, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite), en langage clair.",
         },
-      ],
+      ] as PortfolioApp[],
       stackNote: "Chaque application est déployée en continu sur Vercel et s'appuie sur l'IA générative comme fil conducteur — la même rigueur d'industrialisation que j'applique aux projets que j'accompagne.",
     },
     stack: {
@@ -149,8 +161,13 @@ const content = {
     backLabel: "Back",
     portfolio: {
       heading: "Live Portfolio",
-      subtitle: "Six applications developed, deployed and maintained in production, demonstrating a real ability to turn a business need into a working tool.",
+      subtitle: "Seven applications developed, deployed and maintained in production, demonstrating a real ability to turn a business need into a working tool.",
       apps: [
+        {
+          name: "AGAP",
+          url: "https://agap.tkoidra.com/",
+          description: "AI-arbitrated project portfolio prioritization, free of Business/IT bias",
+        },
         {
           name: "Comex",
           url: "https://comex.tkoidra.com",
@@ -187,7 +204,7 @@ const content = {
           tag: "lexguard.tkoidra.com",
           description: "Analyzes a contract submitted as a PDF to flag, before signature, warning signs of a risky arrangement (hidden agreement, abnormal duration, silent renewal), in plain language.",
         },
-      ],
+      ] as PortfolioApp[],
       stackNote: "Each application is continuously deployed on Vercel and built around generative AI as a common thread — the same industrialisation rigour I apply to the projects I support.",
     },
     stack: {
