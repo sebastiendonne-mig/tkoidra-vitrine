@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
+import { SITE_URL } from "../../../lib/site";
 import Link from "next/link";
 
 type Props = {
@@ -13,7 +14,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const isFr = lang === "fr";
-  const url = `https://tkoidra.com/${lang}/profil`;
+  const url = `${SITE_URL}/${lang}/profil`;
   return {
     title: isFr
       ? "Profil | Sébastien Donné | TKoidra"
@@ -24,9 +25,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
       languages: {
-        fr: "https://tkoidra.com/fr/profil",
-        en: "https://tkoidra.com/en/profil",
+        fr: `${SITE_URL}/fr/profil`,
+        en: `${SITE_URL}/en/profil`,
       },
+    },
+    openGraph: {
+      title: isFr
+        ? "Profil | Sébastien Donné | TKoidra"
+        : "Profile | Sébastien Donné | TKoidra",
+      description: isFr
+        ? "RTE SAFe, Coach Agile senior et Product Owner IA. 15 ans de pilotage de programmes complexes, appliqué au pilotage de projets IA de bout en bout."
+        : "SAFe RTE, senior Agile Coach and AI Product Owner. 15 years leading complex programmes, now applied to end-to-end AI project leadership.",
+      url,
+      siteName: "TKoidra",
+      locale: isFr ? "fr_FR" : "en_US",
+      type: "profile",
+    },
+    twitter: {
+      card: "summary_large_image",
     },
   };
 }

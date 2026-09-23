@@ -1,8 +1,34 @@
+import type { Metadata } from "next";
 import { getPostsByLang } from "../../../lib/blog-posts";
+import { getDictionary } from "../../../get-dictionary";
+import { SITE_URL } from "../../../lib/site";
 import Link from "next/link";
 
 export async function generateStaticParams() {
   return [{ lang: "fr" }];
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const dict = await getDictionary("fr");
+  const meta = dict?.blog?.metadata as
+    | { title: string; description: string }
+    | undefined;
+  const title = meta?.title ?? "Deep Dives | Sébastien Donné | TKoidra";
+  const description =
+    meta?.description ??
+    "Des articles approfondis sur l'architecture IA, le LLMOps et les pratiques de Product Owner dans des contextes d'IA réelle.";
+  const url = `${SITE_URL}/fr/blog`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: {
+        fr: url,
+      },
+    },
+  };
 }
 
 const ui = {

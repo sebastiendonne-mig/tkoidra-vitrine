@@ -12,6 +12,10 @@
   "useCases": {
     "title": "Case Studies",
     "subtitle": "Concrete, measurable, and adopted AI solutions — from framing to production.",
+    "metadata": {
+      "title": "AI Case Studies | Sébastien Donné | TKoidra",
+      "description": "Concrete, measurable, and adopted AI solutions — from framing to production."
+    },
     "backLabel": "Back to home",
     "discoverLabel": "Explore project →",
     "sectionLabels": {
@@ -308,6 +312,12 @@
         ],
         "metrics": []
       }
+    }
+  },
+  "blog": {
+    "metadata": {
+      "title": "Deep Dives | Sébastien Donné | TKoidra",
+      "description": "In-depth articles on AI architecture, LLMOps, and AI Product Owner practices in real-world contexts."
     }
   }
 }

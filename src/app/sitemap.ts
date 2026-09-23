@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllSlugs } from "../lib/blog-posts";
+import { SITE_URL as BASE } from "../lib/site";
 
-const BASE = "https://tkoidra.com";
 const locales = ["fr", "en"] as const;
 const blogSlugs = getAllSlugs();
 const now = new Date();
