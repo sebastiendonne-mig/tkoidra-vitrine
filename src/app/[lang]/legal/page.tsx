@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
+import { SITE_URL } from "../../../lib/site";
 import Link from "next/link";
 
 type Props = {
@@ -13,7 +14,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const isFr = lang === "fr";
-  const url = `https://tkoidra.com/${lang}/legal`;
+  const url = `${SITE_URL}/${lang}/legal`;
   return {
     title: isFr ? "Mentions légales | TKoidra" : "Legal Notice | TKoidra",
     description: isFr
@@ -22,8 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
       languages: {
-        fr: "https://tkoidra.com/fr/legal",
-        en: "https://tkoidra.com/en/legal",
+        fr: `${SITE_URL}/fr/legal`,
+        en: `${SITE_URL}/en/legal`,
       },
     },
   };
@@ -43,7 +44,7 @@ const content = {
           "Responsable de publication : Sébastien Donné, Product Owner IA indépendant.",
           "SIREN : 105948640",
           "Contact : sebastiendonne@gmail.com",
-          "Site web : https://tkoidra.com",
+          `Site web : ${SITE_URL}`,
         ],
       },
       {
@@ -100,7 +101,7 @@ const content = {
           "Site editor: Sébastien Donné, independent AI Product Owner.",
           "Registration number (SIREN): 105948640",
           "Contact: sebastiendonne@gmail.com",
-          "Website: https://tkoidra.com",
+          `Website: ${SITE_URL}`,
         ],
       },
       {

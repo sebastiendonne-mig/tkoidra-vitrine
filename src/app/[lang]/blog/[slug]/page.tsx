@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import { getPostBySlug, getAllSlugs } from '../../../../lib/blog-posts';
+import { SITE_URL } from '../../../../lib/site';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: "TKoidra" };
 
   const title = `${post.title} | TKoidra`;
-  const url = `https://tkoidra.com/${lang}/blog/${slug}`;
+  const url = `${SITE_URL}/${lang}/blog/${slug}`;
 
   return {
     title,
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
       languages: {
-        fr: `https://tkoidra.com/fr/blog/${slug}`,
+        fr: `${SITE_URL}/fr/blog/${slug}`,
       },
     },
     openGraph: {

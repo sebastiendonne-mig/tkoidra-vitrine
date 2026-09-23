@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
+import { SITE_URL } from "../../../lib/site";
 import Link from "next/link";
 
 type Props = {
@@ -13,7 +14,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const isFr = lang === "fr";
-  const url = `https://tkoidra.com/${lang}/methodologie-diag`;
+  const url = `${SITE_URL}/${lang}/methodologie-diag`;
   return {
     title: isFr
       ? "Méthodologie de diagnostic IA | TKoidra"
@@ -24,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
       languages: {
-        fr: "https://tkoidra.com/fr/methodologie-diag",
-        en: "https://tkoidra.com/en/methodologie-diag",
+        fr: `${SITE_URL}/fr/methodologie-diag`,
+        en: `${SITE_URL}/en/methodologie-diag`,
       },
     },
   };
