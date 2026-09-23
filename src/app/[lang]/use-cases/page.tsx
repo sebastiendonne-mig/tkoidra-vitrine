@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { getDictionary } from "../../../get-dictionary";
 import { i18n } from "../../../../i18n-config";
+import { SITE_URL } from "../../../lib/site";
 
 interface Feature {
   icon: string;
@@ -34,7 +36,7 @@ const appUrls: Record<string, string> = {
   assurconseil: "https://rag.tkoidra.com",
   fraud: "https://fraud.tkoidra.com",
   lexguard: "https://lexguard.tkoidra.com",
-  verifid: "https://verif-piece-justificative.vercel.app/",
+  verifid: "https://verif.tkoidra.com/",
 };
 
 const appLinkLabels = {
@@ -44,6 +46,53 @@ const appLinkLabels = {
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const isFr = lang === "fr";
+  const meta = dict?.useCases?.metadata as
+    | { title: string; description: string }
+    | undefined;
+  const title =
+    meta?.title ??
+    (isFr
+      ? "Cas d'usage IA | Sébastien Donné | TKoidra"
+      : "AI Case Studies | Sébastien Donné | TKoidra");
+  const description =
+    meta?.description ??
+    (isFr
+      ? "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production."
+      : "Concrete, measurable, and adopted AI solutions — from framing to production.");
+  const url = `${SITE_URL}/${lang}/use-cases`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: {
+        fr: `${SITE_URL}/fr/use-cases`,
+        en: `${SITE_URL}/en/use-cases`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "TKoidra",
+      locale: isFr ? "fr_FR" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
 }
 
 export default async function UseCasesPage({
