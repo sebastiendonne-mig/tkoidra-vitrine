@@ -14,7 +14,7 @@
     "subtitle": "Concrete, measurable, and adopted AI solutions — from framing to production.",
     "metadata": {
       "title": "AI Case Studies | Sébastien Donné | TKoidra",
-      "description": "Concrete, measurable, and adopted AI solutions — from framing to production."
+      "description": "Concrete, measurable, and adopted AI solutions — from framing to production, illustrated by real-world cases in insurance, real estate, and compliance."
     },
     "backLabel": "Back to home",
     "discoverLabel": "Explore project →",
@@ -185,7 +185,7 @@
         ]
       },
       "assurconseil": {
-        "title": "AssurConseil 365",
+        "title": "AssurConseil RAG",
         "description": "Agentic RAG assistant for insurance contract interpretation.",
         "tag": "RAG & AI Agents",
         "challenge": "Insurance advisors must navigate dozens of pages of general terms to answer client questions accurately, under regulatory duty-to-advise obligations — a misread clause or wrongly cited guarantee exposes the insurer to liability.",
@@ -205,6 +205,11 @@
             "icon": "🔍",
             "title": "Full Reasoning Traceability",
             "description": "Every graph step (router, retrieve, evaluate, synthesize) is logged in an inspectable trace_log, from question to final answer."
+          },
+          {
+            "icon": "🔒",
+            "title": "Custom Contract Upload",
+            "description": "Ephemeral upload of your own contract: isolated session, deleted at session end, to query the AI on its specific content — outside the demo corpus."
           }
         ],
         "stack": [

@@ -14,7 +14,7 @@
     "subtitle": "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production.",
     "metadata": {
       "title": "Cas d'usage IA | Sébastien Donné | TKoidra",
-      "description": "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production."
+      "description": "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production, illustrées par des cas réels en assurance, immobilier et conformité."
     },
     "backLabel": "Retour à l'accueil",
     "discoverLabel": "Découvrir le projet →",
@@ -185,7 +185,7 @@
         ]
       },
       "assurconseil": {
-        "title": "AssurConseil 365",
+        "title": "AssurConseil RAG",
         "description": "Assistant RAG agentique pour l'interprétation de contrats d'assurance.",
         "tag": "RAG & Agents IA",
         "challenge": "Les conseillers assurance doivent naviguer des dizaines de pages de conditions générales pour répondre avec précision aux questions clients, sous la contrainte du devoir de conseil réglementaire — une erreur d'interprétation ou une garantie mal citée engage la responsabilité de l'assureur.",
@@ -205,6 +205,11 @@
             "icon": "🔍",
             "title": "Traçabilité Complète du Raisonnement",
             "description": "Chaque étape du graphe (router, retrieve, evaluate, synthesize) est journalisée dans un trace_log consultable, de la question à la réponse finale."
+          },
+          {
+            "icon": "🔒",
+            "title": "Contrat RAG",
+            "description": "Upload éphémère de votre contrat : session isolée, supprimée en fin de session, pour interroger l'IA sur son contenu spécifique — hors du corpus de démonstration."
           }
         ],
         "stack": [
