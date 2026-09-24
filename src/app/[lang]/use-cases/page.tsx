@@ -201,6 +201,8 @@ export default async function UseCasesPage({
                       ? "grid grid-cols-1 gap-5 sm:max-w-sm"
                       : project.features.length === 2
                       ? "grid grid-cols-1 gap-5 sm:grid-cols-2"
+                      : project.features.length === 4
+                      ? "grid grid-cols-2 gap-5 sm:grid-cols-4"
                       : "grid grid-cols-1 gap-5 sm:grid-cols-3"
                   }
                 >
