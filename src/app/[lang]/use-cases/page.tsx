@@ -67,8 +67,8 @@ export async function generateMetadata({
   const description =
     meta?.description ??
     (isFr
-      ? "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production."
-      : "Concrete, measurable, and adopted AI solutions — from framing to production.");
+      ? "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production, illustrées par des cas réels en assurance, immobilier et conformité."
+      : "Concrete, measurable, and adopted AI solutions — from framing to production, illustrated by real-world cases in insurance, real estate, and compliance.");
   const url = `${SITE_URL}/${lang}/use-cases`;
 
   return {
