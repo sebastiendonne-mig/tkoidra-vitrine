@@ -1,11 +1,70 @@
 import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
+import { getDictionary } from "../../../get-dictionary";
 import { SITE_URL } from "../../../lib/site";
-import Link from "next/link";
+import { PhaseStepper } from "./PhaseStepper";
 
 type Props = {
   params: Promise<{ lang: string }>;
 };
+
+interface Proof {
+  app: string;
+  text: string;
+  cta: string;
+}
+
+interface Tool {
+  key: string;
+  name: string;
+  detail: string;
+}
+
+interface Phase {
+  number: string;
+  name: string;
+  goal: string;
+  actions: string[];
+  deliverables: string[];
+  proof: Proof;
+  tools: Tool[];
+  practices: string[];
+}
+
+interface TitledText {
+  title: string;
+  text: string;
+}
+
+interface MethodeDict {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  badges: string[];
+  stepperLabel: string;
+  labels: {
+    goal: string;
+    actions: string;
+    deliverables: string;
+    proof: string;
+    tools: string;
+    practices: string;
+  };
+  phases: Phase[];
+  threads: { title: string; items: (TitledText & { icon: string })[] };
+  operatingMode: { title: string; steps: TitledText[]; quote: string };
+  notThis: { title: string; items: TitledText[] };
+  cta: { text: string; button: string };
+}
+
+// Même source que appUrls de use-cases/page.tsx (un fichier de page ne peut pas l'exporter).
+const APP_URLS: Record<string, string> = {
+  assurconseil: "https://rag.tkoidra.com",
+  comex: "https://comex.tkoidra.com",
+  agap: "https://agap.tkoidra.com",
+};
+
+const LINKEDIN_URL = "https://www.linkedin.com/in/sebastiendonne/";
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
@@ -32,268 +91,376 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-interface Subsection {
+// Rend les segments **…** du dictionnaire en chiffres clés mis en valeur.
+function Emphasis({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+        i % 2 === 1 ? (
+          <strong key={i} className="whitespace-nowrap font-semibold text-teal-200">
+            {part}
+          </strong>
+        ) : (
+          part
+        )
+      )}
+    </>
+  );
+}
+
+function ExternalLink({
+  href,
+  className,
+  children,
+}: {
+  href: string;
+  className: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {children}
+      <span aria-hidden> &#8599;</span>
+    </a>
+  );
+}
+
+function ProofCard({
+  id,
+  label,
+  toolsLabel,
+  proof,
+  tools,
+}: {
+  id: string;
   label: string;
-  body: string;
+  toolsLabel: string;
+  proof: Proof;
+  tools: Tool[];
+}) {
+  return (
+    <div
+      className="rounded-2xl border border-teal-500/30 bg-gradient-to-br from-teal-500/10 via-slate-900/60 to-slate-900/30 p-6 shadow-[0_0_40px_-16px_rgba(45,212,191,0.45)]"
+    >
+      <div className="flex items-center gap-2.5">
+        <svg
+          aria-hidden
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-5 w-5 shrink-0 text-teal-300"
+        >
+          <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" />
+          <path d="M9 12l2 2 4-4" />
+        </svg>
+        <h3
+          id={`${id}-proof`}
+          className="text-xs font-bold uppercase tracking-widest text-teal-300"
+        >
+          {label} — {proof.app}
+        </h3>
+      </div>
+      <p className="mt-4 text-sm leading-7 text-slate-300">
+        <Emphasis text={proof.text} />
+      </p>
+
+      {tools.length > 0 && (
+        <div className="mt-5 space-y-3 border-t border-teal-500/15 pt-4">
+          <p className="text-xs font-semibold text-slate-400">{toolsLabel}</p>
+          <ul className="space-y-3">
+            {tools.map((tool) => (
+              <li key={tool.key} className="text-sm leading-6 text-slate-400">
+                <ExternalLink
+                  href={APP_URLS[tool.key]}
+                  className="font-semibold text-teal-300 underline-offset-4 hover:text-teal-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded"
+                >
+                  {tool.name}
+                </ExternalLink>
+                <span className="block">
+                  <Emphasis text={tool.detail} />
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <ExternalLink
+        href={APP_URLS.assurconseil}
+        className="mt-5 inline-flex items-center gap-1 rounded-lg border border-teal-500/40 bg-teal-500/10 px-3 py-1.5 text-xs font-semibold text-teal-200 hover:border-teal-400 hover:bg-teal-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 motion-safe:transition-colors"
+      >
+        {proof.cta}
+      </ExternalLink>
+    </div>
+  );
 }
 
-interface Phase {
-  number: string;
-  title: string;
-  intro?: string;
-  subsections: Subsection[];
-  note?: string;
-}
+function PhaseSection({
+  id,
+  phase,
+  labels,
+}: {
+  id: string;
+  phase: Phase;
+  labels: MethodeDict["labels"];
+}) {
+  return (
+    <section
+      id={id}
+      aria-labelledby={`${id}-title`}
+      className="scroll-mt-28 space-y-10 sm:scroll-mt-44"
+    >
+      <h2
+        id={`${id}-title`}
+        className="flex items-baseline gap-4 text-2xl font-extrabold tracking-tight text-slate-100 sm:text-3xl"
+      >
+        <span className="bg-gradient-to-b from-teal-300 to-teal-600 bg-clip-text text-4xl text-transparent sm:text-5xl">
+          {phase.number}
+        </span>
+        <span>{phase.name}</span>
+      </h2>
 
-interface LocaleContent {
-  badge: string;
-  title: string;
-  subtitle: string;
-  backLabel: string;
-  phases: Phase[];
-  conclusion: {
-    heading: string;
-    body: string;
-  };
-}
+      <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
+        <div className="space-y-8 lg:col-span-3">
+          <div className="space-y-2">
+            <p className="text-xs font-bold uppercase tracking-widest text-teal-400">
+              {labels.goal}
+            </p>
+            <p className="text-lg leading-8 text-slate-200">{phase.goal}</p>
+          </div>
 
-const content: Record<string, LocaleContent> = {
-  fr: {
-    badge: "Méthodologie",
-    title: "Diagnostic IA en 4 phases",
-    subtitle: "Avant de déployer un outil ou de choisir un modèle, la vraie question est : où l'IA crée-t-elle réellement de la valeur dans cette organisation ? Cette méthodologie est conçue pour répondre à cette question avec rigueur — et éviter les projets pilotes qui ne passent jamais en production.",
-    backLabel: "Retour",
-    phases: [
-      {
-        number: "01",
-        title: "État des lieux",
-        intro: "Avant toute recommandation, un diagnostic approfondi permet de poser les bonnes bases. Cette phase vise à comprendre le contexte stratégique et la réalité des données disponibles — deux dimensions indissociables pour éviter des cas d'usage techniquement irréalisables ou stratégiquement déconnectés des priorités de l'organisation.",
-        subsections: [
-          {
-            label: "Cadrage stratégique.",
-            body: "Identification des domaines à forte valeur pour l'organisation : quels processus génèrent le plus de coûts, de frictions ou de risques ? Quels objectifs business sont prioritaires ? Cette étape permet de définir des critères de sélection ancrés dans la réalité de l'entreprise plutôt que dans l'enthousiasme technologique.",
-          },
-          {
-            label: "Cadrage Data.",
-            body: "Exploration des données réellement disponibles : leur volumétrie, leur qualité, leur accessibilité et leur degré de structuration. Un cas d'usage IA brillant sur le papier peut s'effondrer en quelques semaines si les données nécessaires sont absentes, fragmentées ou trop dégradées pour être exploitables.",
-          },
-        ],
-        note: "L'outil Comex illustre cette phase : il génère en quelques minutes un cadrage stratégique et technique structuré à partir d'une description de besoin, simulant les échanges d'un premier comité de pilotage.",
-      },
-      {
-        number: "02",
-        title: "Identification de cas d'usage",
-        intro: "C'est l'étape la plus critique — et la plus souvent bâclée. Identifier de \"bons\" cas d'usage IA ne se fait pas en réunion de comité de direction avec un brainstorming de post-its. Cela demande une plongée dans les réalités opérationnelles, trois angles complémentaires permettant d'aller au-delà des idées de surface.",
-        subsections: [
-          {
-            label: "Analyse de la performance réelle des processus.",
-            body: "Cartographie des processus existants (As-Is), identification des goulots d'étranglement, des tâches répétitives à faible valeur ajoutée et des points de friction récurrents. L'objectif n'est pas de recenser toutes les opportunités IA imaginables, mais de localiser les 3 à 5 zones où l'impact serait le plus significatif.",
-          },
-          {
-            label: "Confrontation de la vision du management aux réalités du terrain.",
-            body: "Les équipes opérationnelles vivent des problèmes que le management ne perçoit pas toujours. Cette confrontation structurée — entretiens terrain, observation directe, ateliers croisés — est souvent la source des cas d'usage les plus pertinents et les mieux adoptés, car portés par ceux qui en bénéficieront directement.",
-          },
-          {
-            label: "Exploitation des feedbacks digitaux.",
-            body: "Analyse des données existantes souvent sous-exploitées : tickets de support, emails entrants, verbatims d'enquêtes de satisfaction, logs d'erreurs. Ces sources recèlent un signal fort sur les irritants réels des utilisateurs — une matière première directement exploitable pour identifier des cas d'usage IA.",
-          },
-        ],
-        note: "L'outil Sirene illustre cette capacité : il permet d'interroger la base SIRENE/INSEE en langage naturel, démontrant comment rendre exploitable une source de données publique complexe sans compétences techniques préalables.",
-      },
-      {
-        number: "03",
-        title: "Priorisation par valeur ajoutée",
-        intro: "Tous les cas d'usage identifiés ne méritent pas d'être développés. La prioritisation s'appuie sur une grille d'évaluation croisant deux axes : la valeur ajoutée attendue (gain de temps, réduction des erreurs, amélioration de l'expérience utilisateur, ROI quantifié) et la complexité de mise en oeuvre (disponibilité des données, maturité technique des équipes, contraintes réglementaires, effort d'intégration).",
-        subsections: [
-          {
-            label: "Prototypage rapide pour valider avant d'investir.",
-            body: "Avant d'engager un développement complet, un prototype léger permet de tester les hypothèses de valeur sur des données réelles. Cette approche réduit drastiquement le risque de livrer un outil fonctionnellement correct mais qui ne répond pas aux attentes réelles des utilisateurs finaux.",
-          },
-        ],
-        note: "L'outil DVF illustre cette logique : développé pour rendre exploitable une donnée publique dense (les transactions immobilières), il démontre comment transformer une source brute en outil d'aide à la décision sans sur-engineering.",
-      },
-      {
-        number: "04",
-        title: "Livrable et trajectoire de mise en oeuvre",
-        intro: "Le livrable final n'est pas une liste de recommandations génériques mais un document de cadrage opérationnel : cas d'usage priorisés avec justification chiffrée, architecture cible recommandée, stack technique adaptée au contexte, plan de déploiement phasé et indicateurs de suivi. Ce livrable est conçu pour servir de base de décision immédiatement exploitable par un comité de direction.",
-        subsections: [
-          {
-            label: "La conduite du changement.",
-            body: "Un projet IA ne réussit pas seulement par la qualité technique de sa solution — il réussit parce que les équipes qui doivent l'utiliser ont été embarquées dès le début. Formation ciblée, communication interne adaptée, identification des relais métier : la conduite du changement est planifiée dès la phase de priorisation, pas ajoutée en fin de projet.",
-          },
-          {
-            label: "Le suivi dans la durée.",
-            body: "La mise en production n'est pas la fin du projet. Des indicateurs de suivi sont définis en amont : taux d'adoption, gain de temps mesuré, réduction des erreurs, retour utilisateurs. Ces métriques permettent d'ajuster le déploiement, de justifier les investissements auprès des parties prenantes et d'alimenter les prochains cycles d'amélioration.",
-          },
-        ],
-      },
-    ],
-    conclusion: {
-      heading: "Une méthodologie éprouvée sur mes propres outils",
-      body: "Cette méthodologie n'a pas été conçue en chambre. Elle a d'abord été appliquée à mes propres projets : Comex, Sirene et DVF ont tous traversé ces quatre phases — état des lieux de la donnée disponible, identification du cas d'usage pertinent, priorisation par la valeur, livrable en production. Avant d'accompagner une organisation dans cette démarche, je l'ai moi-même parcourue sur des projets réels, avec les contraintes réelles d'un développeur solo : données imparfaites, ressources limitées, nécessité de livrer quelque chose de fonctionnel et utilisable. C'est cette expérience de praticien qui donne à la méthode sa crédibilité.",
-    },
-  },
-  en: {
-    badge: "Methodology",
-    title: "AI Diagnostic in 4 Phases",
-    subtitle: "Before deploying a tool or choosing a model, the real question is: where does AI genuinely create value in this organisation? This methodology is designed to answer that question with rigour — and avoid pilot projects that never make it to production.",
-    backLabel: "Back",
-    phases: [
-      {
-        number: "01",
-        title: "Current State Assessment",
-        intro: "Before any recommendation, a thorough diagnostic lays the right foundations. This phase aims to understand the strategic context and the reality of available data — two inseparable dimensions that prevent technically unfeasible or strategically disconnected use cases from being pursued.",
-        subsections: [
-          {
-            label: "Strategic framing.",
-            body: "Identifying the organisation's highest-value domains: which processes generate the most cost, friction or risk? Which business objectives are priority? This step establishes selection criteria grounded in the company's reality rather than in technological enthusiasm.",
-          },
-          {
-            label: "Data framing.",
-            body: "Exploring what data is actually available: its volume, quality, accessibility and degree of structuring. A brilliant AI use case on paper can collapse within weeks if the necessary data is absent, fragmented or too degraded to be exploitable.",
-          },
-        ],
-        note: "The Comex tool illustrates this phase: it generates in minutes a structured strategic and technical framing from a business need description, simulating the exchanges of an initial steering committee.",
-      },
-      {
-        number: "02",
-        title: "Use Case Identification",
-        intro: "This is the most critical step — and the most often rushed. Identifying genuinely good AI use cases does not happen in a boardroom with a post-it brainstorm. It requires diving into operational realities. Three complementary angles help move beyond surface-level ideas.",
-        subsections: [
-          {
-            label: "Analysis of actual process performance.",
-            body: "Mapping existing processes (As-Is), identifying bottlenecks, low-value repetitive tasks, and recurring friction points. The goal is not to list every conceivable AI opportunity, but to locate the 3 to 5 areas where impact would be most significant.",
-          },
-          {
-            label: "Confronting management's view with field realities.",
-            body: "Operational teams experience problems that management does not always perceive. This structured confrontation — field interviews, direct observation, cross-functional workshops — is often the source of the most relevant and best-adopted use cases, because they are owned by those who will benefit directly.",
-          },
-          {
-            label: "Mining digital feedback.",
-            body: "Analysing often under-exploited existing data: support tickets, inbound emails, satisfaction survey verbatims, error logs. These sources carry a strong signal about real user pain points — raw material directly exploitable to identify AI use cases.",
-          },
-        ],
-        note: "The Sirene tool illustrates this capability: it enables natural-language querying of the SIRENE/INSEE database, demonstrating how to make a complex public dataset exploitable without prior technical skills.",
-      },
-      {
-        number: "03",
-        title: "Prioritisation by Value Added",
-        intro: "Not every identified use case deserves to be built. Prioritisation relies on an evaluation grid crossing two axes: expected value added (time savings, error reduction, improved user experience, quantified ROI) and implementation complexity (data availability, team technical maturity, regulatory constraints, integration effort).",
-        subsections: [
-          {
-            label: "Rapid prototyping to validate before investing.",
-            body: "Before committing to full development, a lightweight prototype tests value hypotheses against real data. This approach drastically reduces the risk of delivering a technically correct tool that does not meet the actual expectations of end users.",
-          },
-        ],
-        note: "The DVF tool illustrates this logic: built to make a dense public dataset (property transactions) exploitable, it demonstrates how to turn raw data into a decision-support tool without over-engineering.",
-      },
-      {
-        number: "04",
-        title: "Deliverable and Implementation Roadmap",
-        intro: "The final deliverable is not a list of generic recommendations but an operational framing document: prioritised use cases with quantified rationale, recommended target architecture, a tech stack adapted to the context, a phased deployment plan and tracking indicators. This deliverable is designed to serve as an immediately actionable decision basis for an executive committee.",
-        subsections: [
-          {
-            label: "Change management.",
-            body: "An AI project succeeds not only through the technical quality of its solution — it succeeds because the teams who need to use it have been on board from the start. Targeted training, adapted internal communication, identification of business champions: change management is planned from the prioritisation phase, not added at the end of the project.",
-          },
-          {
-            label: "Long-term monitoring.",
-            body: "Going live is not the end of the project. Tracking indicators are defined upfront: adoption rate, measured time savings, error reduction, user feedback. These metrics enable deployment adjustments, justify investments to stakeholders and feed the next improvement cycles.",
-          },
-        ],
-      },
-    ],
-    conclusion: {
-      heading: "A methodology tested on my own tools",
-      body: "This methodology was not designed in theory. It was first applied to my own projects: Comex, Sirene and DVF all went through these four phases — current state data assessment, relevant use case identification, value-based prioritisation, production deliverable. Before guiding an organisation through this process, I ran through it myself on real projects, with the real constraints of a solo developer: imperfect data, limited resources, the need to ship something functional and usable. That practitioner experience is what gives the method its credibility.",
-    },
-  },
-};
+          <div className="space-y-4">
+            <h3 className="text-sm font-bold text-slate-100">{labels.actions}</h3>
+            <ul className="space-y-3">
+              {phase.actions.map((action) => (
+                <li key={action} className="flex gap-3 text-sm leading-7 text-slate-300">
+                  <span
+                    aria-hidden
+                    className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-teal-400"
+                  />
+                  <span>{action}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="space-y-6 lg:col-span-2">
+          <ProofCard
+            id={id}
+            label={labels.proof}
+            toolsLabel={labels.tools}
+            proof={phase.proof}
+            tools={phase.tools}
+          />
+          <div className="space-y-3">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">
+              {labels.deliverables}
+            </h3>
+            <ul className="flex flex-wrap gap-2">
+              {phase.deliverables.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-300"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <details className="group rounded-2xl border border-slate-800 bg-slate-900/30 open:bg-slate-900/50">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-4 text-sm font-semibold text-slate-200 hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 motion-safe:transition-colors [&::-webkit-details-marker]:hidden">
+          <span>{labels.practices}</span>
+          <svg
+            aria-hidden
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="h-4 w-4 shrink-0 text-teal-400 group-open:rotate-180 motion-safe:transition-transform"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </summary>
+        <ul className="grid gap-x-8 gap-y-3 px-6 pb-6 md:grid-cols-2">
+          {phase.practices.map((practice) => (
+            <li key={practice} className="flex gap-3 text-sm leading-7 text-slate-400">
+              <span
+                aria-hidden
+                className="mt-[0.7rem] h-1 w-3 shrink-0 rounded-full bg-slate-600"
+              />
+              <span>{practice}</span>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </section>
+  );
+}
 
 export default async function MethodologieDiagPage({ params }: Props) {
   const { lang } = await params;
-  const locale = (lang in content ? lang : "fr") as keyof typeof content;
-  const t = content[locale];
+  const dict = await getDictionary(lang);
+  const t = dict.methode as MethodeDict;
+
+  const steps = t.phases.map((phase, i) => ({
+    id: `phase-${i + 1}`,
+    number: phase.number,
+    name: phase.name,
+  }));
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-slate-950 text-white font-sans px-6 py-24">
-      <div className="w-full max-w-3xl space-y-16">
-
-        {/* Back link */}
-        <Link
-          href={`/${lang}/use-cases`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors"
-        >
-          <span aria-hidden>&#8592;</span>
-          {t.backLabel}
-        </Link>
-
-        {/* Header */}
-        <header className="flex flex-col items-start gap-5 border-b border-slate-800 pb-10">
+    <main className="flex min-h-screen flex-col items-center bg-slate-950 px-6 py-24 font-sans text-white">
+      <div className="w-full max-w-5xl space-y-24">
+        {/* En-tête */}
+        <header className="flex max-w-3xl flex-col items-start gap-6">
           <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
-            {t.badge}
+            {t.eyebrow}
           </span>
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400">
+          <h1 className="bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
             {t.title}
           </h1>
-          <p className="text-base leading-8 text-slate-400">{t.subtitle}</p>
+          <p className="text-lg leading-8 text-slate-300">{t.lead}</p>
+          <ul className="flex flex-wrap gap-2">
+            {t.badges.map((badge) => (
+              <li
+                key={badge}
+                className="rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-300"
+              >
+                {badge}
+              </li>
+            ))}
+          </ul>
         </header>
 
-        {/* Phases */}
+        {/* Frise + phases : la frise reste collante uniquement pendant les 3 phases */}
         <div className="space-y-16">
-          {t.phases.map((phase) => (
-            <section key={phase.number} className="space-y-8">
-              {/* Phase header */}
-              <div className="flex items-start gap-5">
-                <span className="shrink-0 text-4xl font-extrabold tracking-tight text-slate-800 leading-none">
-                  {phase.number}
-                </span>
-                <h2 className="text-2xl font-extrabold tracking-tight text-slate-100 leading-tight pt-1">
-                  {phase.title}
-                </h2>
-              </div>
-
-              {/* Intro */}
-              {phase.intro && (
-                <p className="text-sm leading-8 text-slate-400">{phase.intro}</p>
-              )}
-
-              {/* Subsections */}
-              {phase.subsections.length > 0 && (
-                <div className="space-y-6 pl-0">
-                  {phase.subsections.map((sub) => (
-                    <div
-                      key={sub.label}
-                      className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 space-y-3"
-                    >
-                      <h3 className="text-sm font-bold text-slate-100">
-                        {sub.label}
-                      </h3>
-                      <p className="text-sm leading-7 text-slate-400">{sub.body}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Tool note */}
-              {phase.note && (
-                <div className="flex gap-3 rounded-xl border border-teal-500/20 bg-teal-500/5 px-5 py-4">
-                  <span className="shrink-0 text-teal-500 text-sm font-bold">&#8594;</span>
-                  <p className="text-xs leading-6 text-slate-400 italic">{phase.note}</p>
-                </div>
-              )}
-            </section>
-          ))}
+          <PhaseStepper label={t.stepperLabel} steps={steps} />
+          <div className="space-y-24">
+            {t.phases.map((phase, i) => (
+              <PhaseSection
+                key={steps[i].id}
+                id={steps[i].id}
+                phase={phase}
+                labels={t.labels}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Conclusion */}
-        <section className="space-y-6 border-t border-slate-800 pt-16">
-          <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-            {t.conclusion.heading}
+        {/* Six fils rouges */}
+        <section aria-labelledby="threads-title" className="space-y-8">
+          <h2
+            id="threads-title"
+            className="text-2xl font-extrabold tracking-tight text-slate-100 sm:text-3xl"
+          >
+            {t.threads.title}
           </h2>
-          <p className="text-sm leading-8 text-slate-400">{t.conclusion.body}</p>
+          <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {t.threads.items.map((item, i) => (
+              <li
+                key={item.title}
+                className="space-y-3 rounded-2xl border border-slate-800 bg-slate-900/30 p-6 hover:border-teal-500/30 hover:bg-slate-900/60 motion-safe:transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <span aria-hidden className="text-2xl">
+                    {item.icon}
+                  </span>
+                  <span aria-hidden className="font-mono text-xs text-slate-400">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-slate-100">{item.title}</h3>
+                <p className="text-sm leading-6 text-slate-400">{item.text}</p>
+              </li>
+            ))}
+          </ol>
         </section>
 
+        {/* Mode opératoire */}
+        <section
+          aria-labelledby="mode-title"
+          className="relative overflow-hidden rounded-3xl border border-teal-500/20 bg-slate-900 p-8 sm:p-10"
+        >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(148,163,184,0.14)_1px,transparent_0)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,black,transparent)]"
+          />
+          <div className="relative space-y-10">
+            <h2
+              id="mode-title"
+              className="text-2xl font-extrabold tracking-tight text-slate-100 sm:text-3xl"
+            >
+              {t.operatingMode.title}
+            </h2>
+            <div className="relative">
+              <div
+                aria-hidden
+                className="absolute left-5 right-5 top-5 hidden h-px bg-gradient-to-r from-teal-400/70 via-teal-400/30 to-teal-400/10 lg:block"
+              />
+              <ol className="relative grid gap-8 lg:grid-cols-4 lg:gap-6">
+                {t.operatingMode.steps.map((step, i) => (
+                  <li key={step.title} className="flex gap-4 lg:flex-col lg:gap-4">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-teal-400/50 bg-slate-950 text-sm font-bold text-teal-300">
+                      {i + 1}
+                    </span>
+                    <div className="space-y-1.5">
+                      <h3 className="text-sm font-bold text-slate-100">{step.title}</h3>
+                      <p className="text-sm leading-6 text-slate-400">{step.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <blockquote className="border-l-2 border-teal-400 pl-5 text-base italic leading-8 text-slate-200">
+              {t.operatingMode.quote}
+            </blockquote>
+          </div>
+        </section>
+
+        {/* Ce que cette méthode n'est pas */}
+        <section
+          aria-labelledby="not-title"
+          className="space-y-5 rounded-2xl border border-slate-800 p-6 sm:p-8"
+        >
+          <h2 id="not-title" className="text-lg font-bold text-slate-200">
+            {t.notThis.title}
+          </h2>
+          <ul className="space-y-4">
+            {t.notThis.items.map((item) => (
+              <li key={item.title} className="flex gap-3 text-sm leading-7 text-slate-400">
+                <span aria-hidden className="text-slate-500">
+                  &#10005;
+                </span>
+                <p>
+                  <strong className="font-semibold text-slate-200">{item.title}</strong>{" "}
+                  {item.text}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Appel à l'action */}
+        <section className="rounded-3xl border border-teal-500/25 bg-gradient-to-br from-teal-500/15 via-slate-900 to-slate-900 p-8 text-center sm:p-12">
+          <h2 className="mx-auto max-w-2xl text-xl font-bold leading-snug text-slate-100 sm:text-2xl">
+            {t.cta.text}
+          </h2>
+          <ExternalLink
+            href={LINKEDIN_URL}
+            className="mt-8 inline-flex items-center gap-1.5 rounded-xl bg-teal-500 px-6 py-3 text-sm font-bold text-slate-950 hover:bg-teal-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 motion-safe:transition-colors"
+          >
+            {t.cta.button}
+          </ExternalLink>
+        </section>
       </div>
     </main>
   );
