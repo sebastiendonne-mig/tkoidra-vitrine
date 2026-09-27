@@ -209,7 +209,7 @@
           {
             "icon": "🔒",
             "title": "Contrat RAG",
-            "description": "Upload éphémère de votre contrat : session isolée, supprimée en fin de session, pour interroger l'IA sur son contenu spécifique — hors du corpus de démonstration."
+            "description": "Upload éphémère de votre contrat : index temporaire, gardé en mémoire uniquement et séparé du corpus de démonstration, pour interroger l'IA sur son contenu spécifique."
           }
         ],
         "stack": [

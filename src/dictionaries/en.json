@@ -209,7 +209,7 @@
           {
             "icon": "🔒",
             "title": "Custom Contract Upload",
-            "description": "Ephemeral upload of your own contract: isolated session, deleted at session end, to query the AI on its specific content — outside the demo corpus."
+            "description": "Ephemeral upload of your own contract: temporary index, kept in memory only and separate from the demo corpus, to query the AI on its specific content."
           }
         ],
         "stack": [
