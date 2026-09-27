@@ -89,12 +89,12 @@ const content = {
           name: "Fraud Agent",
           url: "https://fraud.tkoidra.com",
           tag: "fraud.tkoidra.com",
-          description: "Pipeline agentique de détection de fraude et de recours pour l'assurance IARD : scoring des sinistres et détection de réseaux de fraude par analyse de graphe. Démonstration construite sur un jeu de données fictif et une architecture agentique multi-services sur Azure.",
+          description: "Démonstration narrative d'un pipeline agentique de détection de fraude IARD : les réponses sont produites par Claude, les étapes de calcul sont simulées à l'écran.",
         },
         {
           name: "Vérificateur de pièce d'identité",
-          url: "https://verif-piece-justificative.vercel.app/",
-          tag: "verif-piece-justificative.vercel.app",
+          url: "https://verif.tkoidra.com/",
+          tag: "verif.tkoidra.com",
           description: "Contrôle qualité d'une pièce d'identité au dépôt (lisibilité, cadrage) et vérification de la cohérence mathématique de sa zone MRZ selon la norme ICAO 9303, sans juger de son authenticité.",
         },
         {
@@ -201,12 +201,12 @@ const content = {
           name: "Fraud Agent",
           url: "https://fraud.tkoidra.com",
           tag: "fraud.tkoidra.com",
-          description: "Agentic pipeline for fraud detection and recourse in P&C insurance: claims scoring and fraud-ring detection through graph analysis. A demo built on a fictional dataset and a multi-service agentic architecture on Azure.",
+          description: "Narrative demonstration of an agentic P&C fraud detection pipeline: responses are produced by Claude, computation steps are simulated on screen.",
         },
         {
           name: "ID Document Verifier",
-          url: "https://verif-piece-justificative.vercel.app/",
-          tag: "verif-piece-justificative.vercel.app",
+          url: "https://verif.tkoidra.com/",
+          tag: "verif.tkoidra.com",
           description: "Quality control of an ID document at submission (readability, framing) and verification of the mathematical consistency of its MRZ zone under the ICAO 9303 standard, without judging its authenticity.",
         },
         {
