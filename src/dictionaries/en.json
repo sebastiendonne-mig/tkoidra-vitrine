@@ -88,20 +88,7 @@
           "React",
           "TypeScript"
         ],
-        "metrics": [
-          {
-            "value": "-60%",
-            "label": "Framing time reduced"
-          },
-          {
-            "value": "8",
-            "label": "Strategic frameworks"
-          },
-          {
-            "value": "50+",
-            "label": "Deliverables generated"
-          }
-        ]
+        "metrics": []
       },
       "sirene": {
         "title": "Sirene",
@@ -133,20 +120,7 @@
           "Vite",
           "Supabase"
         ],
-        "metrics": [
-          {
-            "value": "94%",
-            "label": "Query accuracy"
-          },
-          {
-            "value": "-72%",
-            "label": "Search time reduced"
-          },
-          {
-            "value": "12M+",
-            "label": "Companies indexed"
-          }
-        ]
+        "metrics": []
       },
       "dvf": {
         "title": "DVF",
@@ -173,20 +147,7 @@
           "Claude (Anthropic API)",
           "DVF data (DGFiP)"
         ],
-        "metrics": [
-          {
-            "value": "6M+",
-            "label": "Transactions analyzed"
-          },
-          {
-            "value": "100%",
-            "label": "National coverage"
-          },
-          {
-            "value": "98%",
-            "label": "Geocoding accuracy"
-          }
-        ]
+        "metrics": []
       },
       "assurconseil": {
         "title": "AssurConseil RAG",

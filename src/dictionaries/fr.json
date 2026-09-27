@@ -88,20 +88,7 @@
           "React",
           "TypeScript"
         ],
-        "metrics": [
-          {
-            "value": "-60%",
-            "label": "Durée de cadrage réduite"
-          },
-          {
-            "value": "8",
-            "label": "Frameworks stratégiques"
-          },
-          {
-            "value": "50+",
-            "label": "Livrables générés"
-          }
-        ]
+        "metrics": []
       },
       "sirene": {
         "title": "Sirene",
@@ -133,20 +120,7 @@
           "Vite",
           "Supabase"
         ],
-        "metrics": [
-          {
-            "value": "94%",
-            "label": "Précision des requêtes"
-          },
-          {
-            "value": "-72%",
-            "label": "Temps de recherche réduit"
-          },
-          {
-            "value": "12M+",
-            "label": "Entreprises indexées"
-          }
-        ]
+        "metrics": []
       },
       "dvf": {
         "title": "DVF",
@@ -173,20 +147,7 @@
           "Claude (API Anthropic)",
           "données DVF (DGFiP)"
         ],
-        "metrics": [
-          {
-            "value": "6M+",
-            "label": "Transactions analysées"
-          },
-          {
-            "value": "100%",
-            "label": "Couverture nationale"
-          },
-          {
-            "value": "98%",
-            "label": "Précision géocodage"
-          }
-        ]
+        "metrics": []
       },
       "assurconseil": {
         "title": "AssurConseil RAG",
