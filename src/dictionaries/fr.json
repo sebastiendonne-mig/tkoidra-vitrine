@@ -26,6 +26,45 @@
       "metrics": "Résultats & Impact"
     },
     "projects": {
+      "assurconseil": {
+        "title": "AssurConseil RAG",
+        "description": "Assistant RAG agentique pour l'interprétation de contrats d'assurance, avec comparaison Claude / Mistral en mode document.",
+        "tag": "RAG & Agents IA",
+        "challenge": "Les conseillers assurance doivent naviguer des dizaines de pages de conditions générales pour répondre avec précision aux questions clients, sous la contrainte du devoir de conseil réglementaire — une erreur d'interprétation ou une garantie mal citée engage la responsabilité de l'assureur.",
+        "solution": "Un agent RAG agentique qui route chaque question vers le pattern le plus adapté (ReAct pour les recherches simples, Plan-and-Execute pour les questions à sous-parties), avec citation obligatoire des articles sources et refus explicite de répondre en l'absence de preuve documentaire — démonstration construite sur des contrats et une société fictifs (ARESIA Assurances), illustrant une architecture agentique de conseil réglementé. En mode document, la même question est envoyée en parallèle à Claude et à Mistral Large 3 (inférence Mistral exécutée dans l'UE) : réponses côte à côte, avec latence, tokens et coût.",
+        "features": [
+          {
+            "icon": "🔀",
+            "title": "Routage Adaptatif ReAct / Plan-and-Execute",
+            "description": "Un routeur détecte la complexité de la question et bascule entre recherche directe (ReAct) et décomposition en sous-questions (Plan-and-Execute)."
+          },
+          {
+            "icon": "🛡️",
+            "title": "Garde-fou Anti-Hallucination",
+            "description": "Citation obligatoire des articles sources ; réponse « non trouvé » explicite plutôt qu'une réponse inventée quand l'information est absente des documents."
+          },
+          {
+            "icon": "🔍",
+            "title": "Traçabilité Complète du Raisonnement",
+            "description": "Chaque étape du graphe (router, retrieve, evaluate, synthesize) est journalisée dans un trace_log consultable, de la question à la réponse finale."
+          },
+          {
+            "icon": "🔒",
+            "title": "Votre contrat, deux moteurs",
+            "description": "Déposez un contrat : index temporaire en mémoire, séparé du corpus. La même question part en parallèle à Claude et à Mistral Large 3 (inférence dans l'UE) ; réponses côte à côte avec latence, tokens et coût estimé."
+          }
+        ],
+        "stack": [
+          "Python",
+          "LangGraph",
+          "Claude (API Anthropic)",
+          "Mistral Large 3 (API, endpoint UE)",
+          "Chroma",
+          "Streamlit",
+          "Google Cloud Run"
+        ],
+        "metrics": []
+      },
       "agap": {
         "title": "AGAP",
         "description": "Priorisation de portefeuille projets arbitrée par l'IA, sans biais Métier/DSI.",
@@ -146,44 +185,6 @@
           "Vercel AI SDK",
           "Claude (API Anthropic)",
           "données DVF (DGFiP)"
-        ],
-        "metrics": []
-      },
-      "assurconseil": {
-        "title": "AssurConseil RAG",
-        "description": "Assistant RAG agentique pour l'interprétation de contrats d'assurance.",
-        "tag": "RAG & Agents IA",
-        "challenge": "Les conseillers assurance doivent naviguer des dizaines de pages de conditions générales pour répondre avec précision aux questions clients, sous la contrainte du devoir de conseil réglementaire — une erreur d'interprétation ou une garantie mal citée engage la responsabilité de l'assureur.",
-        "solution": "Un agent RAG agentique qui route chaque question vers le pattern le plus adapté (ReAct pour les recherches simples, Plan-and-Execute pour les questions à sous-parties), avec citation obligatoire des articles sources et refus explicite de répondre en l'absence de preuve documentaire — démonstration construite sur des contrats et une société fictifs (ARESIA Assurances), illustrant une architecture agentique de conseil réglementé.",
-        "features": [
-          {
-            "icon": "🔀",
-            "title": "Routage Adaptatif ReAct / Plan-and-Execute",
-            "description": "Un routeur détecte la complexité de la question et bascule entre recherche directe (ReAct) et décomposition en sous-questions (Plan-and-Execute)."
-          },
-          {
-            "icon": "🛡️",
-            "title": "Garde-fou Anti-Hallucination",
-            "description": "Citation obligatoire des articles sources ; réponse « non trouvé » explicite plutôt qu'une réponse inventée quand l'information est absente des documents."
-          },
-          {
-            "icon": "🔍",
-            "title": "Traçabilité Complète du Raisonnement",
-            "description": "Chaque étape du graphe (router, retrieve, evaluate, synthesize) est journalisée dans un trace_log consultable, de la question à la réponse finale."
-          },
-          {
-            "icon": "🔒",
-            "title": "Contrat RAG",
-            "description": "Upload éphémère de votre contrat : index temporaire, gardé en mémoire uniquement et séparé du corpus de démonstration, pour interroger l'IA sur son contenu spécifique."
-          }
-        ],
-        "stack": [
-          "Python",
-          "LangGraph",
-          "Claude (API Anthropic)",
-          "Chroma",
-          "Streamlit",
-          "Google Cloud Run"
         ],
         "metrics": []
       },

@@ -26,6 +26,45 @@
       "metrics": "Results & Impact"
     },
     "projects": {
+      "assurconseil": {
+        "title": "AssurConseil RAG",
+        "description": "Agentic RAG assistant for insurance contract interpretation, with a Claude / Mistral comparison in document mode.",
+        "tag": "RAG & AI Agents",
+        "challenge": "Insurance advisors must navigate dozens of pages of general terms to answer client questions accurately, under regulatory duty-to-advise obligations — a misread clause or wrongly cited guarantee exposes the insurer to liability.",
+        "solution": "An agentic RAG assistant that routes each question to the most suitable pattern (ReAct for direct lookups, Plan-and-Execute for multi-part questions), with mandatory source citation and explicit refusal to answer when no supporting document exists — a demo built on fictional contracts and a fictional company (ARESIA Assurances), illustrating an agentic architecture for regulated advisory use cases. In document mode, the same question is sent in parallel to Claude and Mistral Large 3 (Mistral inference run in the EU): answers side by side, with latency, tokens and cost.",
+        "features": [
+          {
+            "icon": "🔀",
+            "title": "Adaptive ReAct / Plan-and-Execute Routing",
+            "description": "A router detects question complexity and switches between direct retrieval (ReAct) and sub-question decomposition (Plan-and-Execute)."
+          },
+          {
+            "icon": "🛡️",
+            "title": "Anti-Hallucination Guardrail",
+            "description": "Mandatory citation of source articles; an explicit \"not found\" response rather than a fabricated answer when information is absent from the documents."
+          },
+          {
+            "icon": "🔍",
+            "title": "Full Reasoning Traceability",
+            "description": "Every graph step (router, retrieve, evaluate, synthesize) is logged in an inspectable trace_log, from question to final answer."
+          },
+          {
+            "icon": "🔒",
+            "title": "Your Contract, Two Engines",
+            "description": "Upload a contract: temporary in-memory index, separate from the corpus. The same question goes in parallel to Claude and Mistral Large 3 (EU inference); answers side by side with latency, tokens and estimated cost."
+          }
+        ],
+        "stack": [
+          "Python",
+          "LangGraph",
+          "Claude (Anthropic API)",
+          "Mistral Large 3 (API, EU endpoint)",
+          "Chroma",
+          "Streamlit",
+          "Google Cloud Run"
+        ],
+        "metrics": []
+      },
       "agap": {
         "title": "AGAP",
         "description": "AI-arbitrated project portfolio prioritization, free of Business/IT bias.",
@@ -146,44 +185,6 @@
           "Vercel AI SDK",
           "Claude (Anthropic API)",
           "DVF data (DGFiP)"
-        ],
-        "metrics": []
-      },
-      "assurconseil": {
-        "title": "AssurConseil RAG",
-        "description": "Agentic RAG assistant for insurance contract interpretation.",
-        "tag": "RAG & AI Agents",
-        "challenge": "Insurance advisors must navigate dozens of pages of general terms to answer client questions accurately, under regulatory duty-to-advise obligations — a misread clause or wrongly cited guarantee exposes the insurer to liability.",
-        "solution": "An agentic RAG assistant that routes each question to the most suitable pattern (ReAct for direct lookups, Plan-and-Execute for multi-part questions), with mandatory source citation and explicit refusal to answer when no supporting document exists — a demo built on fictional contracts and a fictional company (ARESIA Assurances), illustrating an agentic architecture for regulated advisory use cases.",
-        "features": [
-          {
-            "icon": "🔀",
-            "title": "Adaptive ReAct / Plan-and-Execute Routing",
-            "description": "A router detects question complexity and switches between direct retrieval (ReAct) and sub-question decomposition (Plan-and-Execute)."
-          },
-          {
-            "icon": "🛡️",
-            "title": "Anti-Hallucination Guardrail",
-            "description": "Mandatory citation of source articles; an explicit \"not found\" response rather than a fabricated answer when information is absent from the documents."
-          },
-          {
-            "icon": "🔍",
-            "title": "Full Reasoning Traceability",
-            "description": "Every graph step (router, retrieve, evaluate, synthesize) is logged in an inspectable trace_log, from question to final answer."
-          },
-          {
-            "icon": "🔒",
-            "title": "Custom Contract Upload",
-            "description": "Ephemeral upload of your own contract: temporary index, kept in memory only and separate from the demo corpus, to query the AI on its specific content."
-          }
-        ],
-        "stack": [
-          "Python",
-          "LangGraph",
-          "Claude (Anthropic API)",
-          "Chroma",
-          "Streamlit",
-          "Google Cloud Run"
         ],
         "metrics": []
       },
