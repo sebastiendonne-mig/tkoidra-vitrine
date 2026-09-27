@@ -109,30 +109,30 @@
         "description": "Requêtes d'entreprises en langage naturel.",
         "tag": "API & NLP",
         "challenge": "Les équipes commerciales et opérationnelles perdent un temps précieux à identifier et qualifier des entreprises via l'interface Sirene standard de l'INSEE. La syntaxe rigide des filtres et l'absence de compréhension sémantique freinent l'adoption.",
-        "solution": "Un assistant IA comprenant les requêtes en langage naturel et interrogeant l'API Sirene de l'INSEE pour retourner des résultats structurés, filtrés et enrichis — sans aucune connaissance technique requise de l'utilisateur.",
+        "solution": "Un assistant IA comprenant les requêtes en langage naturel et interrogeant l'API Sirene de l'INSEE pour retourner des résultats structurés et filtrés — sans aucune connaissance technique requise de l'utilisateur.",
         "features": [
           {
             "icon": "🔍",
             "title": "Requêtes en Langage Naturel",
-            "description": "Traduction automatique de requêtes NL en paramètres API Sirene via un modèle de langage finement calibré."
+            "description": "Traduction de la requête en paramètres de l'API Sirene par un LLM (Claude Haiku)."
           },
           {
             "icon": "🎯",
-            "title": "Filtres Sémantiques",
-            "description": "Segmentation intelligente par secteur NAF, région, taille d'entreprise et statut juridique à partir d'expressions libres."
+            "title": "Filtres par secteur et région",
+            "description": "Déduction du secteur NAF et de la région à partir d'expressions libres, avec filtre sur le statut administratif (entreprises actives ou cessées)."
           },
           {
             "icon": "📊",
-            "title": "Export Enrichi",
-            "description": "Génération de tableaux de bord et exports CSV/JSON avec les données SIRET enrichies et normalisées."
+            "title": "Export des résultats",
+            "description": "Export CSV et Excel des résultats."
           }
         ],
         "stack": [
           "API Sirene (INSEE)",
-          "LLM (Claude / GPT)",
-          "RAG",
-          "Next.js 16",
-          "TypeScript"
+          "Claude Haiku",
+          "React",
+          "Vite",
+          "Supabase"
         ],
         "metrics": [
           {

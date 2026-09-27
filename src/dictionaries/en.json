@@ -109,30 +109,30 @@
         "description": "Natural language company search.",
         "tag": "API & NLP",
         "challenge": "Sales and operations teams waste valuable time identifying and qualifying companies through the standard INSEE Sirene interface. Rigid filter syntax and lack of semantic understanding hinder adoption.",
-        "solution": "An AI assistant that understands natural language queries and interrogates the INSEE Sirene API to return structured, filtered, and enriched results — with no technical knowledge required from the user.",
+        "solution": "An AI assistant that understands natural language queries and interrogates the INSEE Sirene API to return structured and filtered results — with no technical knowledge required from the user.",
         "features": [
           {
             "icon": "🔍",
             "title": "Natural Language Queries",
-            "description": "Automatic translation of NL queries into Sirene API parameters via a finely calibrated language model."
+            "description": "Translation of the query into Sirene API parameters by an LLM (Claude Haiku)."
           },
           {
             "icon": "🎯",
-            "title": "Semantic Filters",
-            "description": "Intelligent segmentation by NAF sector, region, company size and legal status from free-form expressions."
+            "title": "Sector and Region Filters",
+            "description": "NAF sector and region inferred from free-form expressions, with a filter on administrative status (active or discontinued companies)."
           },
           {
             "icon": "📊",
-            "title": "Enriched Export",
-            "description": "Dashboard generation and CSV/JSON exports with enriched and normalized SIRET data."
+            "title": "Results Export",
+            "description": "CSV and Excel export of results."
           }
         ],
         "stack": [
           "Sirene API (INSEE)",
-          "LLM (Claude / GPT)",
-          "RAG",
-          "Next.js 16",
-          "TypeScript"
+          "Claude Haiku",
+          "React",
+          "Vite",
+          "Supabase"
         ],
         "metrics": [
           {
