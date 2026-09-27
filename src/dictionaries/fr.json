@@ -151,22 +151,27 @@
       "dvf": {
         "title": "DVF",
         "description": "Recherche et analyse de transactions immobilières.",
-        "tag": "Data & Cartographie",
+        "tag": "Data & Open data",
         "challenge": "L'analyse des données DVF (Demandes de Valeurs Foncières) publiées par la DGFiP est fastidieuse : format CSV brut de plusieurs Go, absence de visualisation native, et difficulté de croisement avec les données géographiques.",
-        "solution": "Une plateforme de recherche et d'analyse des transactions immobilières intégrant cartographie interactive, analyse statistique par zone et génération d'insights IA à partir des données ouvertes de la DGFiP.",
+        "solution": "Une plateforme de recherche de transactions immobilières et de terrains, avec statistiques de prix des terrains par commune à partir des données ouvertes de la DGFiP.",
         "features": [
           {
-            "icon": "🗺️",
-            "title": "Cartographie des Transactions",
-            "description": "Visualisation géographique interactive de toutes les mutations immobilières et des terrains"
+            "icon": "📊",
+            "title": "Prix médian du foncier par commune",
+            "description": "Médiane du prix au m² et de la surface des terrains, avec évolution par année, calculée pour chaque commune à partir des transactions DVF."
+          },
+          {
+            "icon": "📍",
+            "title": "Recherche de Transactions par Adresse",
+            "description": "Recherche géolocalisée des mutations immobilières et des ventes de terrains autour d'une adresse, avec repli automatique sur un rayon élargi."
           }
         ],
         "stack": [
-          "DGFiP Open Data (DVF)",
-          "Python / Pandas",
-          "PostGIS",
-          "Leaflet.js",
-          "LLM Insights"
+          "Next.js",
+          "TypeScript",
+          "Vercel AI SDK",
+          "Claude (API Anthropic)",
+          "données DVF (DGFiP)"
         ],
         "metrics": [
           {

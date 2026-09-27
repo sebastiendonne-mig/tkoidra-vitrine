@@ -151,22 +151,27 @@
       "dvf": {
         "title": "DVF",
         "description": "Real estate transaction search and analysis.",
-        "tag": "Data & Mapping",
+        "tag": "Data & Open Data",
         "challenge": "Analyzing DVF (Property Value Requests) data published by the DGFiP is tedious: multi-GB raw CSV format, no native visualization, and difficulty cross-referencing with geographic data.",
-        "solution": "A real estate transaction search and analysis platform integrating interactive mapping, statistical zone analysis and AI insight generation from DGFiP open data.",
+        "solution": "A search platform for real estate and land transactions, with land price statistics by municipality from DGFiP open data.",
         "features": [
           {
-            "icon": "🗺️",
-            "title": "Transaction Mapping",
-            "description": "Interactive geographic visualization of all real estate transfers and land plots."
+            "icon": "📊",
+            "title": "Median Land Price by Municipality",
+            "description": "Median price per m² and land area, with year-by-year evolution, calculated for each municipality from DVF transaction data."
+          },
+          {
+            "icon": "📍",
+            "title": "Address-Based Transaction Search",
+            "description": "Geolocated search for real estate and land sale transactions around an address, with automatic fallback to a wider radius."
           }
         ],
         "stack": [
-          "DGFiP Open Data (DVF)",
-          "Python / Pandas",
-          "PostGIS",
-          "Leaflet.js",
-          "LLM Insights"
+          "Next.js",
+          "TypeScript",
+          "Vercel AI SDK",
+          "Claude (Anthropic API)",
+          "DVF data (DGFiP)"
         ],
         "metrics": [
           {
