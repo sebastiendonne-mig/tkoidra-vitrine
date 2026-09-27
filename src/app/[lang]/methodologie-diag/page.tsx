@@ -37,6 +37,7 @@ interface TitledText {
 }
 
 interface MethodeDict {
+  metadata: { title: string; description: string; ogTitle: string };
   eyebrow: string;
   title: string;
   lead: string;
@@ -73,14 +74,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const isFr = lang === "fr";
+  const dict = await getDictionary(lang);
+  const { title, description } = (dict.methode as MethodeDict).metadata;
   const url = `${SITE_URL}/${lang}/methodologie-diag`;
   return {
-    title: isFr
-      ? "Méthodologie de diagnostic IA | TKoidra"
-      : "AI Diagnostic Methodology | TKoidra",
-    description: isFr
-      ? "Une méthodologie en 4 phases pour identifier, prioriser et déployer des cas d'usage IA à forte valeur ajoutée dans les organisations."
-      : "A 4-phase methodology to identify, prioritise and deploy high-value AI use cases in organisations.",
+    title,
+    description,
     alternates: {
       canonical: url,
       languages: {
@@ -88,6 +87,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         en: `${SITE_URL}/en/methodologie-diag`,
       },
     },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "TKoidra",
+      locale: isFr ? "fr_FR" : "en_US",
+      type: "website",
+    },
+    twitter: { card: "summary_large_image" },
   };
 }
 

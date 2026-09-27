@@ -288,6 +288,11 @@
     }
   },
   "methode": {
+    "metadata": {
+      "title": "Méthode IA : du diagnostic à la production | TKoidra",
+      "description": "Méthode IA en trois temps — diagnostiquer, construire, exploiter — avec garde-fous, évaluation et conformité dès le départ, prouvée en ligne.",
+      "ogTitle": "Méthode IA : du diagnostic à la production"
+    },
     "eyebrow": "Méthode",
     "title": "Du diagnostic à la production maîtrisée",
     "lead": "La plupart des projets d'IA générative n'échouent pas faute de modèle. Ils échouent entre le prototype et la production : données, sécurité, coûts, conformité, adoption. Ma méthode traite ces sujets dès le premier jour, en trois temps. Chaque étape est illustrée par ce que j'ai réellement fait sur mes démonstrateurs en ligne, sur données fictives.",

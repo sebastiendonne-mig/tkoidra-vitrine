@@ -288,6 +288,11 @@
     }
   },
   "methode": {
+    "metadata": {
+      "title": "AI Method: From Diagnosis to Production | TKoidra",
+      "description": "A three-stage AI method — diagnose, build, operate — with guardrails, evaluation and compliance from the start, proven online.",
+      "ogTitle": "AI Method: From Diagnosis to Production"
+    },
     "eyebrow": "Method",
     "title": "From Diagnosis to Controlled Production",
     "lead": "Most generative AI projects don't fail for lack of a model. They fail between prototype and production: data, security, costs, compliance, adoption. My method addresses these issues from day one, in three stages. Each stage is illustrated by what I actually did on my online demonstrators, using fictional data.",
