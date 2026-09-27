@@ -40,7 +40,7 @@ const appUrls: Record<string, string> = {
 };
 
 const appLinkLabels = {
-  fr: "Ouvrir l'application complete",
+  fr: "Ouvrir l'application complète",
   en: "Open full application",
 } as const;
 
