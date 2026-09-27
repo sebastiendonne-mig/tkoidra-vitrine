@@ -63,7 +63,7 @@ export default async function RootLayout(props: Props) {
   };
 
   return (
-    <html lang={lang} className="scroll-smooth">
+    <html lang={lang} className="motion-safe:scroll-smooth">
       <body className="flex min-h-screen flex-col bg-slate-950 text-slate-100 antialiased">
         <script
           type="application/ld+json"

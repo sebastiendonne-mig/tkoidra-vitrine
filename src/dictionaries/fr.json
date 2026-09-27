@@ -286,5 +286,219 @@
       "title": "Deep Dives | Sébastien Donné | TKoidra",
       "description": "Des articles approfondis sur l'architecture IA, le LLMOps et les pratiques de Product Owner dans des contextes d'IA réelle."
     }
+  },
+  "methode": {
+    "metadata": {
+      "title": "Méthode IA : du diagnostic à la production | TKoidra",
+      "description": "Méthode IA en trois temps — diagnostiquer, construire, exploiter — avec garde-fous, évaluation et conformité dès le départ, prouvée en ligne.",
+      "ogTitle": "Méthode IA : du diagnostic à la production"
+    },
+    "eyebrow": "Méthode",
+    "title": "Du diagnostic à la production maîtrisée",
+    "lead": "La plupart des projets d'IA générative n'échouent pas faute de modèle. Ils échouent entre le prototype et la production : données, sécurité, coûts, conformité, adoption. Ma méthode traite ces sujets dès le premier jour, en trois temps. Chaque étape est illustrée par ce que j'ai réellement fait sur mes démonstrateurs en ligne, sur données fictives.",
+    "badges": [
+      "SAFe RTE",
+      "CSPO",
+      "Google Cloud · Cloud Digital Leader",
+      "Google Cloud · Generative AI Leader"
+    ],
+    "stepperLabel": "Les trois phases de la méthode",
+    "labels": {
+      "goal": "Objectif",
+      "actions": "Ce que je fais",
+      "deliverables": "Livrables",
+      "proof": "Preuve",
+      "tools": "Outils qui illustrent cette phase",
+      "practices": "Bonnes pratiques en entreprise"
+    },
+    "phases": [
+      {
+        "number": "01",
+        "name": "Diagnostiquer",
+        "goal": "Décider vite et bien. Où l'IA crée-t-elle de la valeur, et le projet mérite-t-il d'être construit ?",
+        "actions": [
+          "Partir de la mission, pas de l'outil : quel problème métier, pour qui, et comment le mesurera-t-on ?",
+          "Un état des lieux réel : ce qui tourne vraiment, pas ce que dit la documentation — données, système d'information, sécurité, contraintes réglementaires.",
+          "Des cas d'usage ancrés dans le terrain : confronter la vision du management à la réalité des équipes.",
+          "Une priorisation par la valeur, la faisabilité et le risque, coût d'exploitation compris.",
+          "Une décision go/no-go, avec des critères de succès et un plancher d'acceptation fixés avant d'écrire la première ligne."
+        ],
+        "deliverables": [
+          "note de cadrage",
+          "cas d'usage priorisés",
+          "KPI de référence",
+          "plancher go/no-go",
+          "estimation du coût d'exploitation",
+          "découpage en lots"
+        ],
+        "proof": {
+          "app": "AssurConseil RAG",
+          "text": "Avant d'ajouter la moindre fonctionnalité, j'ai audité la démo en production. La version en ligne ne correspondait pas à la documentation, aucun plafond de dépense n'était confirmé, et une instance secondaire restait publique. Ces constats ont défini le premier lot : les garde-fous avant les fonctionnalités.",
+          "cta": "Tester AssurConseil RAG"
+        },
+        "tools": [
+          {
+            "key": "comex",
+            "name": "Comex",
+            "detail": "cadrage en **19 questions**, deux propositions de mise en œuvre"
+          },
+          {
+            "key": "agap",
+            "name": "AGAP",
+            "detail": "arbitrage d'un portefeuille de projets : écart de perception Métier/DSI, scénarios, ligne de coupe"
+          }
+        ],
+        "practices": [
+          "Un sponsor identifié à la direction, et des KPI de référence mesurés avant le projet, pour pouvoir comparer avant et après.",
+          "Des besoins qualifiés précisément : volume d'usage, tolérance à l'erreur, latence acceptable, confidentialité, besoin d'explicabilité.",
+          "La qualité des données évaluée sur ses six dimensions : complétude, unicité, actualité, validité, exactitude, cohérence.",
+          "La solution la plus simple d'abord : un outil existant, puis un prompt bien conçu, puis un ancrage documentaire (RAG). Le fine-tuning seulement si c'est nécessaire.",
+          "Le risque réglementaire qualifié tôt : dès qu'un système influence une décision sur une personne (emploi, crédit, accès à un droit), avis juridique avant de développer.",
+          "Commencer par un périmètre à fort impact et faisable, puis étendre."
+        ]
+      },
+      {
+        "number": "02",
+        "name": "Construire",
+        "goal": "Livrer un prototype qui tourne en ligne, mesuré, sûr et conforme. Pas une démo jetable.",
+        "actions": [
+          "Des lots courts, chacun testable et déployable, avec une analyse en lecture seule et un plan validé avant toute modification.",
+          "Les garde-fous d'abord : plafonds de dépense, quotas, limites de saisie, messages d'erreur neutres, secrets hors du code, comptes aux droits minimaux.",
+          "Un modèle choisi sur des critères explicites : qualité sur le cas d'usage, coût, latence, format de sortie, conformité du fournisseur.",
+          "Des réponses ancrées dans les sources : citations obligatoires, refus explicite quand l'information manque.",
+          "Une évaluation avant tout déploiement : jeu de questions de référence, cas limites, plancher go/no-go, coût mesuré.",
+          "La conformité dès la conception : conservation des données vérifiée dans les politiques officielles des fournisseurs, consentement exact, limites affichées."
+        ],
+        "deliverables": [
+          "prototype en ligne",
+          "jeu d'évaluation et résultats",
+          "garde-fous documentés",
+          "consentement et mentions",
+          "page « choix et limites »",
+          "tests automatisés"
+        ],
+        "proof": {
+          "app": "AssurConseil RAG",
+          "text": "J'ai ajouté la comparaison Claude / Mistral Large 3 en plusieurs sous-lots. Mistral Large 3 a été préféré à un modèle plus cher, pour son coût et un format de réponse comparable. Avant le déploiement, la comparaison a été évaluée sur **20 questions** : **40 appels sur 40** réussis, plancher respecté par les deux moteurs, coût réel de **0,39 $**. La conservation des données a été vérifiée dans les politiques des deux fournisseurs, et l'inférence Mistral passe par l'endpoint européen, preuve à l'appui dans le journal d'audit.",
+          "cta": "Tester AssurConseil RAG"
+        },
+        "tools": [],
+        "practices": [
+          "La responsabilité partagée clarifiée : quel que soit le fournisseur, l'entreprise reste responsable de ses données et de ses accès.",
+          "La sécurité sur tout le cycle : moindre privilège, accès audités, secrets en coffre, minimisation et anonymisation des données personnelles.",
+          "L'humain dans la boucle là où l'erreur coûte cher : revue avant diffusion, décision finale humaine.",
+          "Les limites des modèles traitées par conception : hallucinations, biais, cas limites, connaissances datées.",
+          "Une chaîne d'intégration et de déploiement continus, avec des tests automatisés à chaque modification.",
+          "Des choix et des limites documentés, pour les utilisateurs comme pour les auditeurs."
+        ]
+      },
+      {
+        "number": "03",
+        "name": "Exploiter",
+        "goal": "Que la solution tienne dans la durée, coûte ce qui était prévu, et soit réellement utilisée.",
+        "actions": [
+          "Un déploiement progressif : la nouvelle version est déployée sans trafic, testée en conditions réelles, puis basculée. Le retour arrière est prêt en une commande.",
+          "L'observabilité : journaux sans contenu utilisateur, lignes d'audit, coût suivi pour chaque requête.",
+          "La gestion des incidents : cause racine établie par les journaux avant tout correctif.",
+          "Une maintenance planifiée : vérification récurrente, dépendances, régressions, journal daté.",
+          "Le suivi de la valeur et de l'adoption : KPI comparés à la référence, retours utilisateurs, ajustements."
+        ],
+        "deliverables": [
+          "procédures de déploiement et de retour arrière",
+          "checklist de maintenance",
+          "journal des incidents",
+          "indicateurs de qualité, de coût et d'usage",
+          "backlog d'amélioration"
+        ],
+        "proof": {
+          "app": "AssurConseil RAG",
+          "text": "Des sessions d'upload étaient coupées au bout de 5 minutes. Les journaux ont montré des fermetures de connexion à **301 secondes**, alignées sur le délai maximal du service. Le correctif a été validé par une session test de **11 minutes**. Même rigueur sur la performance : après diagnostic (précision de calcul, nombre de processeurs), l'indexation d'un document est passée **de 480 à 142 secondes**.",
+          "cta": "Tester AssurConseil RAG"
+        },
+        "tools": [],
+        "practices": [
+          "Des objectifs de service (SLO) sur les signaux qui comptent : latence, trafic, saturation, erreurs.",
+          "Des alertes budgétaires et des quotas, pour qu'un dérapage de coût soit détecté avant la facture.",
+          "Une qualité surveillée dans le temps : réévaluation après chaque changement de modèle, de prompt ou de données.",
+          "Une revue humaine a posteriori des réponses, pour alimenter l'amélioration continue.",
+          "Des sauvegardes testées et un plan de reprise, pas seulement écrits.",
+          "Une veille réglementaire et de sécurité : correctifs et évolutions du RGPD comme de l'AI Act."
+        ]
+      }
+    ],
+    "threads": {
+      "title": "Six fils rouges, du premier au dernier jour",
+      "items": [
+        {
+          "icon": "🎯",
+          "title": "Valeur prouvée",
+          "text": "Des KPI définis avant, mesurés après. Si le gain n'est pas là, on ajuste ou on arrête."
+        },
+        {
+          "icon": "📏",
+          "title": "Qualité mesurée",
+          "text": "On décide sur des résultats d'évaluation, pas sur une impression."
+        },
+        {
+          "icon": "🛡️",
+          "title": "IA responsable et conformité",
+          "text": "Transparence, confidentialité, équité, RGPD, obligations de transparence de l'AI Act, et une réponse claire à la question « qui est responsable ? »."
+        },
+        {
+          "icon": "💶",
+          "title": "Coûts maîtrisés",
+          "text": "Plafonds, quotas, coût par requête visible, coûts cachés anticipés."
+        },
+        {
+          "icon": "🌍",
+          "title": "Souveraineté et réversibilité",
+          "text": "Des fournisseurs interchangeables, un endpoint européen quand c'est pertinent, aucune dépendance subie."
+        },
+        {
+          "icon": "🤝",
+          "title": "Adoption et compétences",
+          "text": "Un sponsor, la mission rappelée avant l'outil, des équipes formées. C'est mon socle depuis 15 ans, en conduite du changement, en facilitation agile et en Product Ownership."
+        }
+      ]
+    },
+    "operatingMode": {
+      "title": "Mon mode opératoire : l'IA accélère, l'humain décide",
+      "steps": [
+        {
+          "title": "Explorer en lecture seule",
+          "text": "Comprendre avant de toucher."
+        },
+        {
+          "title": "Planifier et faire valider",
+          "text": "Aucun changement sans plan approuvé."
+        },
+        {
+          "title": "Livrer par petits lots",
+          "text": "Un commit par sujet, des tests automatisés, un aperçu relu."
+        },
+        {
+          "title": "Garder la main sur la production",
+          "text": "Toute commande qui la touche est lancée par un humain, après vérification."
+        }
+      ],
+      "quote": "Je développe avec des agents de code IA sous ce protocole. C'est ce qui permet d'aller vite sans perdre la maîtrise, et c'est la même discipline que j'apporte à vos équipes."
+    },
+    "notThis": {
+      "title": "Ce que cette méthode n'est pas",
+      "items": [
+        {
+          "title": "Une promesse de ROI avant mesure.",
+          "text": "Les gains se constatent en exploitation."
+        },
+        {
+          "title": "Un déploiement client déguisé.",
+          "text": "Mes démonstrateurs utilisent des données fictives : ils prouvent la méthode, pas un résultat chez un client."
+        }
+      ]
+    },
+    "cta": {
+      "text": "Vous cadrez un projet IA, ou vous cherchez quelqu'un pour le mener jusqu'à la production ? Échangeons.",
+      "button": "Me contacter sur LinkedIn"
+    }
   }
 }

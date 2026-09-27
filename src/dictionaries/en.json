@@ -286,5 +286,219 @@
       "title": "Deep Dives | Sébastien Donné | TKoidra",
       "description": "In-depth articles on AI architecture, LLMOps, and AI Product Owner practices in real-world contexts."
     }
+  },
+  "methode": {
+    "metadata": {
+      "title": "AI Method: From Diagnosis to Production | TKoidra",
+      "description": "A three-stage AI method — diagnose, build, operate — with guardrails, evaluation and compliance from the start, proven online.",
+      "ogTitle": "AI Method: From Diagnosis to Production"
+    },
+    "eyebrow": "Method",
+    "title": "From Diagnosis to Controlled Production",
+    "lead": "Most generative AI projects don't fail for lack of a model. They fail between prototype and production: data, security, costs, compliance, adoption. My method addresses these issues from day one, in three stages. Each stage is illustrated by what I actually did on my online demonstrators, using fictional data.",
+    "badges": [
+      "SAFe RTE",
+      "CSPO",
+      "Google Cloud · Cloud Digital Leader",
+      "Google Cloud · Generative AI Leader"
+    ],
+    "stepperLabel": "The three phases of the method",
+    "labels": {
+      "goal": "Goal",
+      "actions": "What I do",
+      "deliverables": "Deliverables",
+      "proof": "Evidence",
+      "tools": "Tools that illustrate this phase",
+      "practices": "Enterprise best practices"
+    },
+    "phases": [
+      {
+        "number": "01",
+        "name": "Diagnose",
+        "goal": "Decide quickly and well. Where does AI create value, and is the project worth building?",
+        "actions": [
+          "Start from the mission, not the tool: what business problem, for whom, and how will it be measured?",
+          "A real inventory: what actually runs, not what the documentation says — data, information system, security, regulatory constraints.",
+          "Use cases grounded in the field: confronting management's vision with the reality of the teams.",
+          "Prioritisation by value, feasibility and risk, operating cost included.",
+          "A go/no-go decision, with success criteria and an acceptance floor set before writing the first line."
+        ],
+        "deliverables": [
+          "framing note",
+          "prioritised use cases",
+          "baseline KPIs",
+          "go/no-go floor",
+          "operating cost estimate",
+          "breakdown into batches"
+        ],
+        "proof": {
+          "app": "AssurConseil RAG",
+          "text": "Before adding a single feature, I audited the demo in production. The live version did not match the documentation, no spending cap was confirmed, and a secondary instance remained public. These findings defined the first batch: guardrails before features.",
+          "cta": "Try AssurConseil RAG"
+        },
+        "tools": [
+          {
+            "key": "comex",
+            "name": "Comex",
+            "detail": "framing in **19 questions**, two implementation proposals"
+          },
+          {
+            "key": "agap",
+            "name": "AGAP",
+            "detail": "arbitration of a project portfolio: Business/IT perception gap, scenarios, cut-off line"
+          }
+        ],
+        "practices": [
+          "An identified executive sponsor, and baseline KPIs measured before the project, to compare before and after.",
+          "Precisely qualified needs: usage volume, error tolerance, acceptable latency, confidentiality, need for explainability.",
+          "Data quality assessed on its six dimensions: completeness, uniqueness, timeliness, validity, accuracy, consistency.",
+          "The simplest solution first: an existing tool, then a well-designed prompt, then document grounding (RAG). Fine-tuning only if necessary.",
+          "Regulatory risk qualified early: as soon as a system influences a decision about a person (employment, credit, access to a right), legal advice before developing.",
+          "Start with a high-impact, feasible scope, then expand."
+        ]
+      },
+      {
+        "number": "02",
+        "name": "Build",
+        "goal": "Deliver a prototype that runs online, measured, safe and compliant. Not a throwaway demo.",
+        "actions": [
+          "Short batches, each testable and deployable, with a read-only analysis and a validated plan before any change.",
+          "Guardrails first: spending caps, quotas, input limits, neutral error messages, secrets kept out of the code, least-privilege accounts.",
+          "A model chosen on explicit criteria: quality on the use case, cost, latency, output format, provider compliance.",
+          "Answers grounded in sources: mandatory citations, explicit refusal when information is missing.",
+          "Evaluation before any deployment: reference question set, edge cases, go/no-go floor, measured cost.",
+          "Compliance by design: data retention checked in the providers' official policies, accurate consent, limits displayed."
+        ],
+        "deliverables": [
+          "online prototype",
+          "evaluation set and results",
+          "documented guardrails",
+          "consent and notices",
+          "\"choices and limits\" page",
+          "automated tests"
+        ],
+        "proof": {
+          "app": "AssurConseil RAG",
+          "text": "I added the Claude / Mistral Large 3 comparison in several sub-batches. Mistral Large 3 was preferred to a more expensive model, for its cost and a comparable response format. Before deployment, the comparison was evaluated on **20 questions**: **40 out of 40 calls** succeeded, the floor was met by both engines, actual cost **$0.39**. Data retention was checked in both providers' policies, and Mistral inference goes through the European endpoint, with evidence in the audit log.",
+          "cta": "Try AssurConseil RAG"
+        },
+        "tools": [],
+        "practices": [
+          "Shared responsibility clarified: whatever the provider, the company remains responsible for its data and its access.",
+          "Security across the whole lifecycle: least privilege, audited access, secrets in a vault, minimisation and anonymisation of personal data.",
+          "Human in the loop where errors are costly: review before release, final decision by a human.",
+          "Model limitations handled by design: hallucinations, bias, edge cases, outdated knowledge.",
+          "A continuous integration and deployment pipeline, with automated tests on every change.",
+          "Documented choices and limits, for users as well as auditors."
+        ]
+      },
+      {
+        "number": "03",
+        "name": "Operate",
+        "goal": "That the solution holds over time, costs what was planned, and is actually used.",
+        "actions": [
+          "Progressive deployment: the new version is deployed without traffic, tested under real conditions, then switched over. Rollback is ready in one command.",
+          "Observability: logs without user content, audit lines, cost tracked for every request.",
+          "Incident management: root cause established from the logs before any fix.",
+          "Planned maintenance: recurring checks, dependencies, regressions, dated log.",
+          "Tracking value and adoption: KPIs compared with the baseline, user feedback, adjustments."
+        ],
+        "deliverables": [
+          "deployment and rollback procedures",
+          "maintenance checklist",
+          "incident log",
+          "quality, cost and usage indicators",
+          "improvement backlog"
+        ],
+        "proof": {
+          "app": "AssurConseil RAG",
+          "text": "Upload sessions were cut off after 5 minutes. The logs showed connection closures at **301 seconds**, aligned with the service's maximum timeout. The fix was validated by an **11-minute** test session. Same rigour on performance: after diagnosis (computation precision, number of processors), indexing a document went **from 480 to 142 seconds**.",
+          "cta": "Try AssurConseil RAG"
+        },
+        "tools": [],
+        "practices": [
+          "Service level objectives (SLOs) on the signals that matter: latency, traffic, saturation, errors.",
+          "Budget alerts and quotas, so that a cost overrun is detected before the invoice.",
+          "Quality monitored over time: re-evaluation after every change of model, prompt or data.",
+          "Human review of answers after the fact, to feed continuous improvement.",
+          "Tested backups and a recovery plan, not just written ones.",
+          "Regulatory and security watch: patches, and changes to the GDPR as well as the AI Act."
+        ]
+      }
+    ],
+    "threads": {
+      "title": "Six common threads, from the first day to the last",
+      "items": [
+        {
+          "icon": "🎯",
+          "title": "Proven value",
+          "text": "KPIs defined before, measured after. If the gain isn't there, we adjust or stop."
+        },
+        {
+          "icon": "📏",
+          "title": "Measured quality",
+          "text": "We decide on evaluation results, not on an impression."
+        },
+        {
+          "icon": "🛡️",
+          "title": "Responsible AI and compliance",
+          "text": "Transparency, confidentiality, fairness, GDPR, AI Act transparency obligations, and a clear answer to the question \"who is responsible?\"."
+        },
+        {
+          "icon": "💶",
+          "title": "Controlled costs",
+          "text": "Caps, quotas, visible cost per request, hidden costs anticipated."
+        },
+        {
+          "icon": "🌍",
+          "title": "Sovereignty and reversibility",
+          "text": "Interchangeable providers, a European endpoint when relevant, no forced lock-in."
+        },
+        {
+          "icon": "🤝",
+          "title": "Adoption and skills",
+          "text": "A sponsor, the mission restated before the tool, trained teams. It has been my foundation for 15 years, in change management, agile facilitation and Product Ownership."
+        }
+      ]
+    },
+    "operatingMode": {
+      "title": "My operating mode: AI accelerates, humans decide",
+      "steps": [
+        {
+          "title": "Explore read-only",
+          "text": "Understand before touching."
+        },
+        {
+          "title": "Plan and get it approved",
+          "text": "No change without an approved plan."
+        },
+        {
+          "title": "Deliver in small batches",
+          "text": "One commit per topic, automated tests, a reviewed preview."
+        },
+        {
+          "title": "Keep control of production",
+          "text": "Any command that touches it is run by a human, after verification."
+        }
+      ],
+      "quote": "I develop with AI coding agents under this protocol. It is what makes it possible to move fast without losing control, and it is the same discipline I bring to your teams."
+    },
+    "notThis": {
+      "title": "What this method is not",
+      "items": [
+        {
+          "title": "A promise of ROI before measurement.",
+          "text": "Gains are observed in operation."
+        },
+        {
+          "title": "A disguised client deployment.",
+          "text": "My demonstrators use fictional data: they prove the method, not a result at a client."
+        }
+      ]
+    },
+    "cta": {
+      "text": "Framing an AI project, or looking for someone to take it all the way to production? Let's talk.",
+      "button": "Contact me on LinkedIn"
+    }
   }
 }
