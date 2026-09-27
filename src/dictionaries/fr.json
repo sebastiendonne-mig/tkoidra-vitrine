@@ -228,35 +228,31 @@
       },
       "fraud": {
         "title": "Fraud Agent",
-        "description": "Pipeline agentique de détection de fraude et de recours pour l'assurance IARD.",
-        "tag": "IA Agentique & Azure",
+        "description": "Démonstration narrative d'un pipeline agentique de détection de fraude et de recours pour l'assurance IARD.",
+        "tag": "IA agentique · démo narrative",
         "challenge": "Les équipes fraude des assureurs IARD croulent sous les faux positifs générés par des règles fixes, tandis que les recours en subrogation contre les tiers responsables sont identifiés trop tard, voire jamais, faute de temps pour croiser les dossiers.",
-        "solution": "Un pipeline agentique à 5 étages qui score chaque sinistre entrant, détecte les réseaux de fraude par analyse de graphe, lit les rapports de police par IA générative, et déclenche automatiquement les dossiers de recours pertinents — démonstration construite sur un jeu de données fictif, illustrant une architecture agentique multi-services sur Azure.",
+        "solution": "Sur un jeu de sinistres fictifs, cette démonstration met en scène le parcours cible d'un pipeline de détection de fraude : scoring, analyse de réseau, lecture des rapports de police, préparation du dossier de recours. Dans cette version, les réponses sont produites par un seul modèle (Claude) ; les étapes de calcul (machine learning, analyse de graphe) sont simulées à l'écran, pas exécutées.",
         "features": [
           {
             "icon": "🎯",
-            "title": "Scoring Explicable",
-            "description": "Score de fraude 0-100 par sinistre avec Reason Codes en français, combinant modèle de Machine Learning et règles métier."
+            "title": "Score expliqué",
+            "description": "Un score de 0 à 100 par sinistre, accompagné de motifs rédigés en français, produits par le LLM et non par un modèle de machine learning entraîné."
           },
           {
             "icon": "🕸️",
-            "title": "Détection de Réseaux",
-            "description": "Analyse par graphe des liens inter-dossiers (réparateurs, IP, déclarations groupées) invisibles en analyse unitaire."
+            "title": "Parcours agentique mis en scène",
+            "description": "Les étapes du pipeline s'affichent l'une après l'autre ; l'analyse de réseau est simulée, sans calcul de graphe réel."
           },
           {
             "icon": "📨",
-            "title": "Recours Automatisé",
-            "description": "Lecture des rapports de police par IA générative et génération automatique du dossier de subrogation."
+            "title": "Recours préparé par IA générative",
+            "description": "Lecture du rapport de police par le LLM, qui en extrait une analyse structurée : tiers responsable, part de responsabilité estimée, niveau de certitude, viabilité du recours et plan d'actions à J+5/J+15/J+30."
           }
         ],
         "stack": [
-          "Copilot Studio",
-          "Azure Machine Learning",
-          "Azure Synapse Analytics",
-          "Azure OpenAI GPT-4o",
-          "Power Automate",
-          "Microsoft Dataverse",
-          "Power BI"
+          "Claude Opus (API Anthropic)",
+          "HTML/JavaScript",
+          "Vercel Functions"
         ],
         "metrics": []
       },
