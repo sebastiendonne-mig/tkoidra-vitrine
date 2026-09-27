@@ -11,10 +11,10 @@
   },
   "useCases": {
     "title": "Cas d'Usage",
-    "subtitle": "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production.",
+    "subtitle": "Des démonstrateurs IA fonctionnels, en ligne et testables — du cadrage à la mise en production.",
     "metadata": {
       "title": "Cas d'usage IA | Sébastien Donné | TKoidra",
-      "description": "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production, illustrées par des cas réels en assurance, immobilier et conformité."
+      "description": "Des démonstrateurs IA fonctionnels, en ligne et testables — du cadrage à la mise en production, sur des cas d'usage en assurance, immobilier et conformité."
     },
     "backLabel": "Retour à l'accueil",
     "discoverLabel": "Découvrir le projet →",
@@ -41,7 +41,7 @@
           {
             "icon": "🗺️",
             "title": "Conflict Map",
-            "description": "Cartographie visuelle du delta de perception Métier/DSI, avec seuil de conflit configurable pour repérer les projets nécessitant une médiation avant arbitrage."
+            "description": "Cartographie visuelle du delta de perception Métier/DSI, avec seuil de conflit paramétrable en configuration (actuellement 20 points) pour repérer les projets nécessitant une médiation avant arbitrage."
           },
           {
             "icon": "🎯",
@@ -64,125 +64,90 @@
         "description": "Cadrage et alignement stratégique par l'IA.",
         "tag": "Stratégie & IA Générative",
         "challenge": "Les comités de direction font face à un volume croissant d'initiatives IA sans outillage structuré pour les prioriser, les cadrer et les aligner sur les objectifs stratégiques de l'entreprise en un temps contraint.",
-        "solution": "Un générateur de livrables stratégiques propulsé par l'IA, structurant les discussions Comex autour de frameworks de management éprouvés (OKR, McKinsey 7S, Porter) pour accélérer la prise de décision.",
+        "solution": "Un générateur de propositions IA propulsé par Claude : un questionnaire de cadrage structuré (19 questions), suivi d'un échange de clarification avec l'IA (jusqu'à 4 questions ciblées), débouchant sur deux propositions de mise en œuvre — une « rapide » (moins de 3 mois, stack existante) et une « équilibrée » (MVP 3-6 mois) — avec budget, délai et risques estimés par l'IA.",
         "features": [
           {
-            "icon": "🗺️",
-            "title": "Génération de Roadmaps IA",
-            "description": "Création automatique de feuilles de route IA sur 12-18 mois, hiérarchisées par valeur métier et niveau d'effort."
+            "icon": "📋",
+            "title": "Cadrage + Clarification IA",
+            "description": "19 questions structurées, suivies d'un échange de clarification avec l'IA (jusqu'à 4 questions ciblées) pour affiner le diagnostic."
           },
           {
             "icon": "🎯",
-            "title": "Alignement OKR Automatique",
-            "description": "Mapping des initiatives IA sur les OKR existants de l'entreprise avec scoring d'alignement et détection des conflits."
+            "title": "Deux Propositions Chiffrées",
+            "description": "Une proposition « rapide » (moins de 3 mois, stack existante) et une proposition « équilibrée » (MVP 3-6 mois), avec budget, délai et risques estimés par l'IA."
           },
           {
-            "icon": "📈",
-            "title": "Benchmarks Sectoriels",
-            "description": "Positionnement instantané par rapport aux pratiques IA du secteur via une base de données de cas d'usages analysés."
+            "icon": "🧩",
+            "title": "Adaptée à votre environnement",
+            "description": "Les propositions tiennent compte de la stack IT déclarée (fournisseur cloud et IA déjà en place)."
           }
         ],
         "stack": [
-          "Claude Opus / GPT-4",
-          "Prompt Engineering",
-          "Chain-of-Thought",
-          "Next.js 16",
-          "Vercel AI SDK"
+          "Claude (API Anthropic)",
+          "Vite",
+          "React",
+          "TypeScript"
         ],
-        "metrics": [
-          {
-            "value": "-60%",
-            "label": "Durée de cadrage réduite"
-          },
-          {
-            "value": "8",
-            "label": "Frameworks stratégiques"
-          },
-          {
-            "value": "50+",
-            "label": "Livrables générés"
-          }
-        ]
+        "metrics": []
       },
       "sirene": {
         "title": "Sirene",
         "description": "Requêtes d'entreprises en langage naturel.",
         "tag": "API & NLP",
         "challenge": "Les équipes commerciales et opérationnelles perdent un temps précieux à identifier et qualifier des entreprises via l'interface Sirene standard de l'INSEE. La syntaxe rigide des filtres et l'absence de compréhension sémantique freinent l'adoption.",
-        "solution": "Un assistant IA comprenant les requêtes en langage naturel et interrogeant l'API Sirene de l'INSEE pour retourner des résultats structurés, filtrés et enrichis — sans aucune connaissance technique requise de l'utilisateur.",
+        "solution": "Un assistant IA comprenant les requêtes en langage naturel et interrogeant l'API Sirene de l'INSEE pour retourner des résultats structurés et filtrés — sans aucune connaissance technique requise de l'utilisateur.",
         "features": [
           {
             "icon": "🔍",
             "title": "Requêtes en Langage Naturel",
-            "description": "Traduction automatique de requêtes NL en paramètres API Sirene via un modèle de langage finement calibré."
+            "description": "Traduction de la requête en paramètres de l'API Sirene par un LLM (Claude Haiku)."
           },
           {
             "icon": "🎯",
-            "title": "Filtres Sémantiques",
-            "description": "Segmentation intelligente par secteur NAF, région, taille d'entreprise et statut juridique à partir d'expressions libres."
+            "title": "Filtres par secteur et région",
+            "description": "Déduction du secteur NAF et de la région à partir d'expressions libres, avec filtre sur le statut administratif (entreprises actives ou cessées)."
           },
           {
             "icon": "📊",
-            "title": "Export Enrichi",
-            "description": "Génération de tableaux de bord et exports CSV/JSON avec les données SIRET enrichies et normalisées."
+            "title": "Export des résultats",
+            "description": "Export CSV et Excel des résultats."
           }
         ],
         "stack": [
           "API Sirene (INSEE)",
-          "LLM (Claude / GPT)",
-          "RAG",
-          "Next.js 16",
-          "TypeScript"
+          "Claude Haiku",
+          "React",
+          "Vite",
+          "Supabase"
         ],
-        "metrics": [
-          {
-            "value": "94%",
-            "label": "Précision des requêtes"
-          },
-          {
-            "value": "-72%",
-            "label": "Temps de recherche réduit"
-          },
-          {
-            "value": "12M+",
-            "label": "Entreprises indexées"
-          }
-        ]
+        "metrics": []
       },
       "dvf": {
         "title": "DVF",
         "description": "Recherche et analyse de transactions immobilières.",
-        "tag": "Data & Cartographie",
+        "tag": "Data & Open data",
         "challenge": "L'analyse des données DVF (Demandes de Valeurs Foncières) publiées par la DGFiP est fastidieuse : format CSV brut de plusieurs Go, absence de visualisation native, et difficulté de croisement avec les données géographiques.",
-        "solution": "Une plateforme de recherche et d'analyse des transactions immobilières intégrant cartographie interactive, analyse statistique par zone et génération d'insights IA à partir des données ouvertes de la DGFiP.",
+        "solution": "Une plateforme de recherche de transactions immobilières et de terrains, avec statistiques de prix des terrains par commune à partir des données ouvertes de la DGFiP.",
         "features": [
           {
-            "icon": "🗺️",
-            "title": "Cartographie des Transactions",
-            "description": "Visualisation géographique interactive de toutes les mutations immobilières et des terrains"
+            "icon": "📊",
+            "title": "Prix médian du foncier par commune",
+            "description": "Médiane du prix au m² et de la surface des terrains, avec évolution par année, calculée pour chaque commune à partir des transactions DVF."
+          },
+          {
+            "icon": "📍",
+            "title": "Recherche de Transactions par Adresse",
+            "description": "Recherche géolocalisée des mutations immobilières et des ventes de terrains autour d'une adresse, avec repli automatique sur un rayon élargi."
           }
         ],
         "stack": [
-          "DGFiP Open Data (DVF)",
-          "Python / Pandas",
-          "PostGIS",
-          "Leaflet.js",
-          "LLM Insights"
+          "Next.js",
+          "TypeScript",
+          "Vercel AI SDK",
+          "Claude (API Anthropic)",
+          "données DVF (DGFiP)"
         ],
-        "metrics": [
-          {
-            "value": "6M+",
-            "label": "Transactions analysées"
-          },
-          {
-            "value": "100%",
-            "label": "Couverture nationale"
-          },
-          {
-            "value": "98%",
-            "label": "Précision géocodage"
-          }
-        ]
+        "metrics": []
       },
       "assurconseil": {
         "title": "AssurConseil RAG",
@@ -209,7 +174,7 @@
           {
             "icon": "🔒",
             "title": "Contrat RAG",
-            "description": "Upload éphémère de votre contrat : session isolée, supprimée en fin de session, pour interroger l'IA sur son contenu spécifique — hors du corpus de démonstration."
+            "description": "Upload éphémère de votre contrat : index temporaire, gardé en mémoire uniquement et séparé du corpus de démonstration, pour interroger l'IA sur son contenu spécifique."
           }
         ],
         "stack": [
@@ -224,35 +189,31 @@
       },
       "fraud": {
         "title": "Fraud Agent",
-        "description": "Pipeline agentique de détection de fraude et de recours pour l'assurance IARD.",
-        "tag": "IA Agentique & Azure",
+        "description": "Démonstration narrative d'un pipeline agentique de détection de fraude et de recours pour l'assurance IARD.",
+        "tag": "IA agentique · démo narrative",
         "challenge": "Les équipes fraude des assureurs IARD croulent sous les faux positifs générés par des règles fixes, tandis que les recours en subrogation contre les tiers responsables sont identifiés trop tard, voire jamais, faute de temps pour croiser les dossiers.",
-        "solution": "Un pipeline agentique à 5 étages qui score chaque sinistre entrant, détecte les réseaux de fraude par analyse de graphe, lit les rapports de police par IA générative, et déclenche automatiquement les dossiers de recours pertinents — démonstration construite sur un jeu de données fictif, illustrant une architecture agentique multi-services sur Azure.",
+        "solution": "Sur un jeu de sinistres fictifs, cette démonstration met en scène le parcours cible d'un pipeline de détection de fraude : scoring, analyse de réseau, lecture des rapports de police, préparation du dossier de recours. Dans cette version, les réponses sont produites par un seul modèle (Claude) ; les étapes de calcul (machine learning, analyse de graphe) sont simulées à l'écran, pas exécutées.",
         "features": [
           {
             "icon": "🎯",
-            "title": "Scoring Explicable",
-            "description": "Score de fraude 0-100 par sinistre avec Reason Codes en français, combinant modèle de Machine Learning et règles métier."
+            "title": "Score expliqué",
+            "description": "Un score de 0 à 100 par sinistre, accompagné de motifs rédigés en français, produits par le LLM et non par un modèle de machine learning entraîné."
           },
           {
             "icon": "🕸️",
-            "title": "Détection de Réseaux",
-            "description": "Analyse par graphe des liens inter-dossiers (réparateurs, IP, déclarations groupées) invisibles en analyse unitaire."
+            "title": "Parcours agentique mis en scène",
+            "description": "Les étapes du pipeline s'affichent l'une après l'autre ; l'analyse de réseau est simulée, sans calcul de graphe réel."
           },
           {
             "icon": "📨",
-            "title": "Recours Automatisé",
-            "description": "Lecture des rapports de police par IA générative et génération automatique du dossier de subrogation."
+            "title": "Recours préparé par IA générative",
+            "description": "Lecture du rapport de police par le LLM, qui en extrait une analyse structurée : tiers responsable, part de responsabilité estimée, niveau de certitude, viabilité du recours et plan d'actions à J+5/J+15/J+30."
           }
         ],
         "stack": [
-          "Copilot Studio",
-          "Azure Machine Learning",
-          "Azure Synapse Analytics",
-          "Azure OpenAI GPT-4o",
-          "Power Automate",
-          "Microsoft Dataverse",
-          "Power BI"
+          "Claude Opus (API Anthropic)",
+          "HTML/JavaScript",
+          "Vercel Functions"
         ],
         "metrics": []
       },
@@ -275,8 +236,8 @@
           },
           {
             "icon": "🔒",
-            "title": "Zéro donnée conservée",
-            "description": "Traitement éphémère, aucun document ni résultat stocké."
+            "title": "Aucun stockage côté application",
+            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic) conserve les données transmises 30 jours, selon sa politique par défaut."
           }
         ],
         "stack": [

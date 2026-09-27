@@ -11,10 +11,10 @@
   },
   "useCases": {
     "title": "Case Studies",
-    "subtitle": "Concrete, measurable, and adopted AI solutions — from framing to production.",
+    "subtitle": "Functional AI demonstrators, live and testable — from framing to production.",
     "metadata": {
       "title": "AI Case Studies | Sébastien Donné | TKoidra",
-      "description": "Concrete, measurable, and adopted AI solutions — from framing to production, illustrated by real-world cases in insurance, real estate, and compliance."
+      "description": "Functional AI demonstrators, live and testable — from framing to production, illustrated by use cases in insurance, real estate, and compliance."
     },
     "backLabel": "Back to home",
     "discoverLabel": "Explore project →",
@@ -41,7 +41,7 @@
           {
             "icon": "🗺️",
             "title": "Conflict Map",
-            "description": "Visual mapping of the Business/IT perception delta, with a configurable conflict threshold to flag projects needing mediation before arbitration."
+            "description": "Visual mapping of the Business/IT perception delta, with a conflict threshold configurable at the deployment level (currently 20 points) to flag projects needing mediation before arbitration."
           },
           {
             "icon": "🎯",
@@ -64,125 +64,90 @@
         "description": "Strategic framing and alignment through AI.",
         "tag": "Strategy & Generative AI",
         "challenge": "Executive committees face a growing volume of AI initiatives without structured tooling to prioritize, frame, and align them with company strategic objectives in a controlled timeframe.",
-        "solution": "An AI-powered strategic deliverable generator, structuring Comex discussions around proven management frameworks (OKR, McKinsey 7S, Porter) to accelerate decision-making.",
+        "solution": "An AI proposal generator powered by Claude: a structured framing questionnaire (19 questions), followed by an AI clarification exchange (up to 4 targeted questions), leading to two implementation proposals — a \"quick\" one (under 3 months, existing stack) and a \"balanced\" one (3-6 month MVP) — with budget, timeline and risks estimated by the AI.",
         "features": [
           {
-            "icon": "🗺️",
-            "title": "AI Roadmap Generation",
-            "description": "Automatic creation of 12-18 month AI roadmaps, prioritized by business value and effort level."
+            "icon": "📋",
+            "title": "Framing + AI Clarification",
+            "description": "19 structured questions, followed by an AI clarification exchange (up to 4 targeted questions) to refine the diagnosis."
           },
           {
             "icon": "🎯",
-            "title": "Automatic OKR Alignment",
-            "description": "Mapping of AI initiatives onto existing company OKRs with alignment scoring and conflict detection."
+            "title": "Two Costed Proposals",
+            "description": "A \"quick\" proposal (under 3 months, existing stack) and a \"balanced\" proposal (3-6 month MVP), with budget, timeline and risks estimated by the AI."
           },
           {
-            "icon": "📈",
-            "title": "Sector Benchmarks",
-            "description": "Instant positioning against industry AI practices via a database of analyzed case studies."
+            "icon": "🧩",
+            "title": "Tailored to Your Environment",
+            "description": "Proposals take the declared IT stack into account (cloud and AI provider already in place)."
           }
         ],
         "stack": [
-          "Claude Opus / GPT-4",
-          "Prompt Engineering",
-          "Chain-of-Thought",
-          "Next.js 16",
-          "Vercel AI SDK"
+          "Claude (Anthropic API)",
+          "Vite",
+          "React",
+          "TypeScript"
         ],
-        "metrics": [
-          {
-            "value": "-60%",
-            "label": "Framing time reduced"
-          },
-          {
-            "value": "8",
-            "label": "Strategic frameworks"
-          },
-          {
-            "value": "50+",
-            "label": "Deliverables generated"
-          }
-        ]
+        "metrics": []
       },
       "sirene": {
         "title": "Sirene",
         "description": "Natural language company search.",
         "tag": "API & NLP",
         "challenge": "Sales and operations teams waste valuable time identifying and qualifying companies through the standard INSEE Sirene interface. Rigid filter syntax and lack of semantic understanding hinder adoption.",
-        "solution": "An AI assistant that understands natural language queries and interrogates the INSEE Sirene API to return structured, filtered, and enriched results — with no technical knowledge required from the user.",
+        "solution": "An AI assistant that understands natural language queries and interrogates the INSEE Sirene API to return structured and filtered results — with no technical knowledge required from the user.",
         "features": [
           {
             "icon": "🔍",
             "title": "Natural Language Queries",
-            "description": "Automatic translation of NL queries into Sirene API parameters via a finely calibrated language model."
+            "description": "Translation of the query into Sirene API parameters by an LLM (Claude Haiku)."
           },
           {
             "icon": "🎯",
-            "title": "Semantic Filters",
-            "description": "Intelligent segmentation by NAF sector, region, company size and legal status from free-form expressions."
+            "title": "Sector and Region Filters",
+            "description": "NAF sector and region inferred from free-form expressions, with a filter on administrative status (active or discontinued companies)."
           },
           {
             "icon": "📊",
-            "title": "Enriched Export",
-            "description": "Dashboard generation and CSV/JSON exports with enriched and normalized SIRET data."
+            "title": "Results Export",
+            "description": "CSV and Excel export of results."
           }
         ],
         "stack": [
           "Sirene API (INSEE)",
-          "LLM (Claude / GPT)",
-          "RAG",
-          "Next.js 16",
-          "TypeScript"
+          "Claude Haiku",
+          "React",
+          "Vite",
+          "Supabase"
         ],
-        "metrics": [
-          {
-            "value": "94%",
-            "label": "Query accuracy"
-          },
-          {
-            "value": "-72%",
-            "label": "Search time reduced"
-          },
-          {
-            "value": "12M+",
-            "label": "Companies indexed"
-          }
-        ]
+        "metrics": []
       },
       "dvf": {
         "title": "DVF",
         "description": "Real estate transaction search and analysis.",
-        "tag": "Data & Mapping",
+        "tag": "Data & Open Data",
         "challenge": "Analyzing DVF (Property Value Requests) data published by the DGFiP is tedious: multi-GB raw CSV format, no native visualization, and difficulty cross-referencing with geographic data.",
-        "solution": "A real estate transaction search and analysis platform integrating interactive mapping, statistical zone analysis and AI insight generation from DGFiP open data.",
+        "solution": "A search platform for real estate and land transactions, with land price statistics by municipality from DGFiP open data.",
         "features": [
           {
-            "icon": "🗺️",
-            "title": "Transaction Mapping",
-            "description": "Interactive geographic visualization of all real estate transfers and land plots."
+            "icon": "📊",
+            "title": "Median Land Price by Municipality",
+            "description": "Median price per m² and land area, with year-by-year evolution, calculated for each municipality from DVF transaction data."
+          },
+          {
+            "icon": "📍",
+            "title": "Address-Based Transaction Search",
+            "description": "Geolocated search for real estate and land sale transactions around an address, with automatic fallback to a wider radius."
           }
         ],
         "stack": [
-          "DGFiP Open Data (DVF)",
-          "Python / Pandas",
-          "PostGIS",
-          "Leaflet.js",
-          "LLM Insights"
+          "Next.js",
+          "TypeScript",
+          "Vercel AI SDK",
+          "Claude (Anthropic API)",
+          "DVF data (DGFiP)"
         ],
-        "metrics": [
-          {
-            "value": "6M+",
-            "label": "Transactions analyzed"
-          },
-          {
-            "value": "100%",
-            "label": "National coverage"
-          },
-          {
-            "value": "98%",
-            "label": "Geocoding accuracy"
-          }
-        ]
+        "metrics": []
       },
       "assurconseil": {
         "title": "AssurConseil RAG",
@@ -209,7 +174,7 @@
           {
             "icon": "🔒",
             "title": "Custom Contract Upload",
-            "description": "Ephemeral upload of your own contract: isolated session, deleted at session end, to query the AI on its specific content — outside the demo corpus."
+            "description": "Ephemeral upload of your own contract: temporary index, kept in memory only and separate from the demo corpus, to query the AI on its specific content."
           }
         ],
         "stack": [
@@ -224,35 +189,31 @@
       },
       "fraud": {
         "title": "Fraud Agent",
-        "description": "Agentic fraud detection and recovery pipeline for property & casualty insurance.",
-        "tag": "Agentic AI & Azure",
+        "description": "Narrative demonstration of an agentic fraud detection and recovery pipeline for property & casualty insurance.",
+        "tag": "Agentic AI · Narrative Demo",
         "challenge": "Fraud teams at P&C insurers are overwhelmed by false positives from fixed rule-based alerts, while subrogation recovery claims against liable third parties are identified too late, or missed entirely, due to lack of time to cross-reference cases.",
-        "solution": "A 5-stage agentic pipeline that scores each incoming claim, detects fraud networks through graph analysis, reads police reports using generative AI, and automatically triggers relevant recovery cases — a demo built on a fictional dataset, illustrating a multi-service agentic architecture on Azure.",
+        "solution": "Using a fictional claims dataset, this demonstration stages the target journey of a fraud detection pipeline: scoring, network analysis, police report reading, recovery case preparation. In this version, all responses are produced by a single model (Claude); the computation steps (machine learning, graph analysis) are simulated on screen, not actually executed.",
         "features": [
           {
             "icon": "🎯",
-            "title": "Explainable Scoring",
-            "description": "0-100 fraud score per claim with Reason Codes, combining a Machine Learning model with business rules."
+            "title": "Explained Score",
+            "description": "A 0-100 score per claim, with reasons written in plain language, produced by the LLM rather than a trained machine learning model."
           },
           {
             "icon": "🕸️",
-            "title": "Network Detection",
-            "description": "Graph-based analysis of cross-case links (repair shops, IP addresses, grouped filings) invisible in single-case review."
+            "title": "Staged Agentic Pipeline",
+            "description": "The pipeline steps are displayed one after another; the network analysis is simulated, with no real graph computation."
           },
           {
             "icon": "📨",
-            "title": "Automated Recovery",
-            "description": "Police report reading via generative AI and automatic generation of the subrogation case file."
+            "title": "Recovery Prepared by Generative AI",
+            "description": "The LLM reads the police report and extracts a structured analysis: liable third party, estimated share of responsibility, confidence level, recovery viability, and a J+5/J+15/J+30 action plan."
           }
         ],
         "stack": [
-          "Copilot Studio",
-          "Azure Machine Learning",
-          "Azure Synapse Analytics",
-          "Azure OpenAI GPT-4o",
-          "Power Automate",
-          "Microsoft Dataverse",
-          "Power BI"
+          "Claude Opus (Anthropic API)",
+          "HTML/JavaScript",
+          "Vercel Functions"
         ],
         "metrics": []
       },
@@ -275,8 +236,8 @@
           },
           {
             "icon": "🔒",
-            "title": "Zero data retained",
-            "description": "Ephemeral processing, no document or result is stored."
+            "title": "No application-side storage",
+            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic) retains transmitted data for 30 days, under its default policy."
           }
         ],
         "stack": [
