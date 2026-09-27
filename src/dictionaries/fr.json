@@ -41,7 +41,7 @@
           {
             "icon": "🗺️",
             "title": "Conflict Map",
-            "description": "Cartographie visuelle du delta de perception Métier/DSI, avec seuil de conflit configurable pour repérer les projets nécessitant une médiation avant arbitrage."
+            "description": "Cartographie visuelle du delta de perception Métier/DSI, avec seuil de conflit paramétrable en configuration (actuellement 20 points) pour repérer les projets nécessitant une médiation avant arbitrage."
           },
           {
             "icon": "🎯",

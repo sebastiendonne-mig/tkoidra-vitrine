@@ -41,7 +41,7 @@
           {
             "icon": "🗺️",
             "title": "Conflict Map",
-            "description": "Visual mapping of the Business/IT perception delta, with a configurable conflict threshold to flag projects needing mediation before arbitration."
+            "description": "Visual mapping of the Business/IT perception delta, with a conflict threshold configurable at the deployment level (currently 20 points) to flag projects needing mediation before arbitration."
           },
           {
             "icon": "🎯",
