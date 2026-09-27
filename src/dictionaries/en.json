@@ -275,8 +275,8 @@
           },
           {
             "icon": "🔒",
-            "title": "Zero data retained",
-            "description": "Ephemeral processing, no document or result is stored."
+            "title": "No application-side storage",
+            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic) retains transmitted data for 30 days, under its default policy."
           }
         ],
         "stack": [

@@ -275,8 +275,8 @@
           },
           {
             "icon": "🔒",
-            "title": "Zéro donnée conservée",
-            "description": "Traitement éphémère, aucun document ni résultat stocké."
+            "title": "Aucun stockage côté application",
+            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic) conserve les données transmises 30 jours, selon sa politique par défaut."
           }
         ],
         "stack": [
