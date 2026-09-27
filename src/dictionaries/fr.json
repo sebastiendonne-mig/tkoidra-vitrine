@@ -64,30 +64,29 @@
         "description": "Cadrage et alignement stratégique par l'IA.",
         "tag": "Stratégie & IA Générative",
         "challenge": "Les comités de direction font face à un volume croissant d'initiatives IA sans outillage structuré pour les prioriser, les cadrer et les aligner sur les objectifs stratégiques de l'entreprise en un temps contraint.",
-        "solution": "Un générateur de livrables stratégiques propulsé par l'IA, structurant les discussions Comex autour de frameworks de management éprouvés (OKR, McKinsey 7S, Porter) pour accélérer la prise de décision.",
+        "solution": "Un générateur de propositions IA propulsé par Claude : un questionnaire de cadrage structuré (19 questions), suivi d'un échange de clarification avec l'IA (jusqu'à 4 questions ciblées), débouchant sur deux propositions de mise en œuvre — une « rapide » (moins de 3 mois, stack existante) et une « équilibrée » (MVP 3-6 mois) — avec budget, délai et risques estimés par l'IA.",
         "features": [
           {
-            "icon": "🗺️",
-            "title": "Génération de Roadmaps IA",
-            "description": "Création automatique de feuilles de route IA sur 12-18 mois, hiérarchisées par valeur métier et niveau d'effort."
+            "icon": "📋",
+            "title": "Cadrage + Clarification IA",
+            "description": "19 questions structurées, suivies d'un échange de clarification avec l'IA (jusqu'à 4 questions ciblées) pour affiner le diagnostic."
           },
           {
             "icon": "🎯",
-            "title": "Alignement OKR Automatique",
-            "description": "Mapping des initiatives IA sur les OKR existants de l'entreprise avec scoring d'alignement et détection des conflits."
+            "title": "Deux Propositions Chiffrées",
+            "description": "Une proposition « rapide » (moins de 3 mois, stack existante) et une proposition « équilibrée » (MVP 3-6 mois), avec budget, délai et risques estimés par l'IA."
           },
           {
-            "icon": "📈",
-            "title": "Benchmarks Sectoriels",
-            "description": "Positionnement instantané par rapport aux pratiques IA du secteur via une base de données de cas d'usages analysés."
+            "icon": "🧩",
+            "title": "Adaptée à votre environnement",
+            "description": "Les propositions tiennent compte de la stack IT déclarée (fournisseur cloud et IA déjà en place)."
           }
         ],
         "stack": [
-          "Claude Opus / GPT-4",
-          "Prompt Engineering",
-          "Chain-of-Thought",
-          "Next.js 16",
-          "Vercel AI SDK"
+          "Claude (API Anthropic)",
+          "Vite",
+          "React",
+          "TypeScript"
         ],
         "metrics": [
           {

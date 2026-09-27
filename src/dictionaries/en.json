@@ -64,30 +64,29 @@
         "description": "Strategic framing and alignment through AI.",
         "tag": "Strategy & Generative AI",
         "challenge": "Executive committees face a growing volume of AI initiatives without structured tooling to prioritize, frame, and align them with company strategic objectives in a controlled timeframe.",
-        "solution": "An AI-powered strategic deliverable generator, structuring Comex discussions around proven management frameworks (OKR, McKinsey 7S, Porter) to accelerate decision-making.",
+        "solution": "An AI proposal generator powered by Claude: a structured framing questionnaire (19 questions), followed by an AI clarification exchange (up to 4 targeted questions), leading to two implementation proposals — a \"quick\" one (under 3 months, existing stack) and a \"balanced\" one (3-6 month MVP) — with budget, timeline and risks estimated by the AI.",
         "features": [
           {
-            "icon": "🗺️",
-            "title": "AI Roadmap Generation",
-            "description": "Automatic creation of 12-18 month AI roadmaps, prioritized by business value and effort level."
+            "icon": "📋",
+            "title": "Framing + AI Clarification",
+            "description": "19 structured questions, followed by an AI clarification exchange (up to 4 targeted questions) to refine the diagnosis."
           },
           {
             "icon": "🎯",
-            "title": "Automatic OKR Alignment",
-            "description": "Mapping of AI initiatives onto existing company OKRs with alignment scoring and conflict detection."
+            "title": "Two Costed Proposals",
+            "description": "A \"quick\" proposal (under 3 months, existing stack) and a \"balanced\" proposal (3-6 month MVP), with budget, timeline and risks estimated by the AI."
           },
           {
-            "icon": "📈",
-            "title": "Sector Benchmarks",
-            "description": "Instant positioning against industry AI practices via a database of analyzed case studies."
+            "icon": "🧩",
+            "title": "Tailored to Your Environment",
+            "description": "Proposals take the declared IT stack into account (cloud and AI provider already in place)."
           }
         ],
         "stack": [
-          "Claude Opus / GPT-4",
-          "Prompt Engineering",
-          "Chain-of-Thought",
-          "Next.js 16",
-          "Vercel AI SDK"
+          "Claude (Anthropic API)",
+          "Vite",
+          "React",
+          "TypeScript"
         ],
         "metrics": [
           {
