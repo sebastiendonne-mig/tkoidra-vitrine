@@ -59,8 +59,14 @@ const content = {
     backLabel: "Retour",
     portfolio: {
       heading: "Portfolio en production",
-      subtitle: "Sept applications développées, déployées et maintenues en production, illustrant une capacité réelle à transformer un besoin métier en outil fonctionnel.",
+      subtitle: "Huit applications développées, déployées et maintenues en production, illustrant une capacité réelle à transformer un besoin métier en outil fonctionnel.",
       apps: [
+        {
+          name: "AssurConseil RAG",
+          url: "https://rag.tkoidra.com",
+          tag: "rag.tkoidra.com",
+          description: "Assistant RAG agentique pour l'interprétation de contrats d'assurance : routage adaptatif ReAct / Plan-and-Execute, citation obligatoire des articles sources, et comparaison Claude / Mistral Large 3 en mode document (inférence européenne, latence/tokens/coût affichés). Démonstration construite sur des contrats et une société fictifs (ARESIA Assurances).",
+        },
         {
           name: "AGAP",
           url: "https://agap.tkoidra.com/",
@@ -171,8 +177,14 @@ const content = {
     backLabel: "Back",
     portfolio: {
       heading: "Live Portfolio",
-      subtitle: "Seven applications developed, deployed and maintained in production, demonstrating a real ability to turn a business need into a working tool.",
+      subtitle: "Eight applications developed, deployed and maintained in production, demonstrating a real ability to turn a business need into a working tool.",
       apps: [
+        {
+          name: "AssurConseil RAG",
+          url: "https://rag.tkoidra.com",
+          tag: "rag.tkoidra.com",
+          description: "Agentic RAG assistant for insurance contract interpretation: adaptive ReAct / Plan-and-Execute routing, mandatory source citation, and a Claude / Mistral Large 3 comparison in document mode (European inference, latency/tokens/cost shown). A demo built on fictional contracts and a fictional company (ARESIA Assurances).",
+        },
         {
           name: "AGAP",
           url: "https://agap.tkoidra.com/",
