@@ -45,7 +45,7 @@ export function Footer({ lang, nav }: FooterProps) {
       <div className="mx-auto max-w-5xl px-6 py-10">
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
           {/* Copyright */}
-          <p className="text-xs text-slate-600 order-last sm:order-first">
+          <p className="text-xs text-slate-400 order-last sm:order-first">
             &copy; {new Date().getFullYear()} S&eacute;bastien Donn&eacute;
           </p>
 
@@ -58,33 +58,33 @@ export function Footer({ lang, nav }: FooterProps) {
           >
             <Link
               href={`/${lang}/use-cases`}
-              className="text-xs text-slate-500 transition-colors hover:text-slate-300"
+              className="text-xs text-slate-400 transition-colors hover:text-slate-300"
             >
               {nav.useCases}
             </Link>
             <Link
               href={`/${lang}/profil`}
-              className="text-xs text-slate-500 transition-colors hover:text-slate-300"
+              className="text-xs text-slate-400 transition-colors hover:text-slate-300"
             >
               {profilLabel}
             </Link>
             <Link
               href={`/${lang}/methodologie-diag`}
-              className="text-xs text-slate-500 transition-colors hover:text-slate-300"
+              className="text-xs text-slate-400 transition-colors hover:text-slate-300"
             >
               {methodeLabel}
             </Link>
             {lang !== "en" && (
               <Link
                 href={`/${lang}/blog`}
-                className="text-xs text-slate-500 transition-colors hover:text-slate-300"
+                className="text-xs text-slate-400 transition-colors hover:text-slate-300"
               >
                 {nav.blog}
               </Link>
             )}
             <Link
               href={`/${lang}/legal`}
-              className="text-xs text-slate-500 transition-colors hover:text-slate-300"
+              className="text-xs text-slate-400 transition-colors hover:text-slate-300"
             >
               {legalLabel}
             </Link>
