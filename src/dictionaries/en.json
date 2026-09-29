@@ -23,13 +23,27 @@
       "solution": "AI Solution",
       "features": "Key Features",
       "stack": "Tech Stack",
-      "metrics": "Results & Impact"
+      "metrics": "Results & Impact",
+      "demonstrates": "What It Demonstrates"
+    },
+    "themes": [
+      { "key": "documents-rag", "label": "Documents & RAG" },
+      { "key": "gouvernance-cadrage", "label": "Governance & Framing" },
+      { "key": "donnees-publiques", "label": "Public Data" },
+      { "key": "conformite-risques", "label": "Compliance & Risk" }
+    ],
+    "overview": {
+      "allLabel": "All",
+      "filterAriaLabel": "Filter case studies by theme"
     },
     "projects": {
       "assurconseil": {
         "title": "AssurConseil RAG",
         "description": "Agentic RAG assistant for insurance contract interpretation, with a Claude / Mistral comparison in document mode.",
+        "demonstrates": "Industrialising a RAG: evaluation before production, cost guardrails, proven European inference, progressive deployment.",
         "tag": "RAG & AI Agents",
+        "theme": "documents-rag",
+        "featured": true,
         "challenge": "Insurance advisors must navigate dozens of pages of general terms to answer client questions accurately, under regulatory duty-to-advise obligations — a misread clause or wrongly cited guarantee exposes the insurer to liability.",
         "solution": "An agentic RAG assistant that routes each question to the most suitable pattern (ReAct for direct lookups, Plan-and-Execute for multi-part questions), with mandatory source citation and explicit refusal to answer when no supporting document exists — a demo built on fictional contracts and a fictional company (ARESIA Assurances), illustrating an agentic architecture for regulated advisory use cases. In document mode, the same question is sent in parallel to Claude and Mistral Large 3 (Mistral inference run in the EU): answers side by side, with latency, tokens and cost.",
         "features": [
@@ -63,12 +77,52 @@
           "Streamlit",
           "Google Cloud Run"
         ],
+        "metrics": [],
+        "methodBridge": {
+          "label": "See how this project was run",
+          "path": "methodologie-diag"
+        }
+      },
+      "lexguard": {
+        "title": "LexGuard",
+        "description": "Detects red-flag signals in contracts before signature.",
+        "demonstrates": "Making a contract readable for a non-lawyer: red-flag signal detection and a plain-language verdict.",
+        "tag": "COMPLIANCE & GENERATIVE AI",
+        "theme": "documents-rag",
+        "featured": true,
+        "challenge": "The mayor of a rural town, with no legal department, signs a telecom equipment contract under sales pressure — one that conceals a second leasing agreement with a long commitment term and near-impossible termination. Some towns have been sued for tens of thousands of euros after the fact.",
+        "solution": "A demonstration that analyzes a contract submitted as a PDF and flags, before signature, the warning signs of a risky arrangement (concealed contract, abnormal duration, tacit renewal) — in plain language, without ever ruling on the contract's legality or a company's reliability.",
+        "features": [
+          {
+            "icon": "🚩",
+            "title": "Red-flag signal detection",
+            "description": "Identifies patterns of risky contractual arrangements."
+          },
+          {
+            "icon": "⚖️",
+            "title": "Plain-language verdict",
+            "description": "3-level assessment, no legal jargon."
+          },
+          {
+            "icon": "🔒",
+            "title": "No application-side storage",
+            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic) retains transmitted data for 30 days, under its default policy."
+          }
+        ],
+        "stack": [
+          "Claude Sonnet 5",
+          "Next.js",
+          "Vercel Functions"
+        ],
         "metrics": []
       },
       "agap": {
         "title": "AGAP",
         "description": "AI-arbitrated project portfolio prioritization, free of Business/IT bias.",
+        "demonstrates": "Tooling a portfolio decision: surfacing Business/IT gaps and arbitrating through scenarios, with tracked justifications.",
         "tag": "Portfolio Governance & AI",
+        "theme": "gouvernance-cadrage",
+        "featured": true,
         "challenge": "A Portfolio Director arbitrates dozens of projects every year based on structurally biased Business and IT declarations: Business overstates business impact, IT overstates effort and technical risk to protect itself. Without a mediation mechanism, final arbitration becomes a political power struggle rather than an objective decision.",
         "solution": "A governance application that has a Claude agent separately challenge each Business and IT declaration, computes a confidence index and an adjusted attractiveness score, then visualizes perception conflicts before final arbitration — a demo built on a fictional 6-project portfolio, illustrating neutral AI mediation between two parties with diverging interests.",
         "features": [
@@ -96,12 +150,19 @@
           "Recharts",
           "Resend"
         ],
-        "metrics": []
+        "metrics": [],
+        "methodBridge": {
+          "label": "See the diagnose phase it illustrates",
+          "path": "methodologie-diag",
+          "hash": "phase-1"
+        }
       },
       "comex": {
         "title": "Comex",
         "description": "Strategic framing and alignment through AI.",
+        "demonstrates": "Structuring AI framing: from questionnaire to two AI-costed implementation paths.",
         "tag": "Strategy & Generative AI",
+        "theme": "gouvernance-cadrage",
         "challenge": "Executive committees face a growing volume of AI initiatives without structured tooling to prioritize, frame, and align them with company strategic objectives in a controlled timeframe.",
         "solution": "An AI proposal generator powered by Claude: a structured framing questionnaire (19 questions), followed by an AI clarification exchange (up to 4 targeted questions), leading to two implementation proposals — a \"quick\" one (under 3 months, existing stack) and a \"balanced\" one (3-6 month MVP) — with budget, timeline and risks estimated by the AI.",
         "features": [
@@ -132,7 +193,9 @@
       "sirene": {
         "title": "Sirene",
         "description": "Natural language company search.",
+        "demonstrates": "Making a public API accessible in natural language, with a lightweight model (Claude Haiku).",
         "tag": "API & NLP",
+        "theme": "donnees-publiques",
         "challenge": "Sales and operations teams waste valuable time identifying and qualifying companies through the standard INSEE Sirene interface. Rigid filter syntax and lack of semantic understanding hinder adoption.",
         "solution": "An AI assistant that understands natural language queries and interrogates the INSEE Sirene API to return structured and filtered results — with no technical knowledge required from the user.",
         "features": [
@@ -164,7 +227,9 @@
       "dvf": {
         "title": "DVF",
         "description": "Real estate transaction search and analysis.",
+        "demonstrates": "Using open land-registry data: address search and municipality-level price statistics.",
         "tag": "Data & Open Data",
+        "theme": "donnees-publiques",
         "challenge": "Analyzing DVF (Property Value Requests) data published by the DGFiP is tedious: multi-GB raw CSV format, no native visualization, and difficulty cross-referencing with geographic data.",
         "solution": "A search platform for real estate and land transactions, with land price statistics by municipality from DGFiP open data.",
         "features": [
@@ -191,7 +256,9 @@
       "fraud": {
         "title": "Fraud Agent",
         "description": "Narrative demonstration of an agentic fraud detection and recovery pipeline for property & casualty insurance.",
+        "demonstrates": "Prototyping a target agentic workflow and presenting it honestly: what's executed, what's simulated.",
         "tag": "Agentic AI · Narrative Demo",
+        "theme": "conformite-risques",
         "challenge": "Fraud teams at P&C insurers are overwhelmed by false positives from fixed rule-based alerts, while subrogation recovery claims against liable third parties are identified too late, or missed entirely, due to lack of time to cross-reference cases.",
         "solution": "Using a fictional claims dataset, this demonstration stages the target journey of a fraud detection pipeline: scoring, network analysis, police report reading, recovery case preparation. In this version, all responses are produced by a single model (Claude); the computation steps (machine learning, graph analysis) are simulated on screen, not actually executed.",
         "features": [
@@ -218,40 +285,12 @@
         ],
         "metrics": []
       },
-      "lexguard": {
-        "title": "LexGuard",
-        "description": "Detects red-flag signals in contracts before signature.",
-        "tag": "COMPLIANCE & GENERATIVE AI",
-        "challenge": "The mayor of a rural town, with no legal department, signs a telecom equipment contract under sales pressure — one that conceals a second leasing agreement with a long commitment term and near-impossible termination. Some towns have been sued for tens of thousands of euros after the fact.",
-        "solution": "A demonstration that analyzes a contract submitted as a PDF and flags, before signature, the warning signs of a risky arrangement (concealed contract, abnormal duration, tacit renewal) — in plain language, without ever ruling on the contract's legality or a company's reliability.",
-        "features": [
-          {
-            "icon": "🚩",
-            "title": "Red-flag signal detection",
-            "description": "Identifies patterns of risky contractual arrangements."
-          },
-          {
-            "icon": "⚖️",
-            "title": "Plain-language verdict",
-            "description": "3-level assessment, no legal jargon."
-          },
-          {
-            "icon": "🔒",
-            "title": "No application-side storage",
-            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic) retains transmitted data for 30 days, under its default policy."
-          }
-        ],
-        "stack": [
-          "Claude Sonnet 5",
-          "Next.js",
-          "Vercel Functions"
-        ],
-        "metrics": []
-      },
       "verifid": {
         "title": "ID Document Verifier",
         "description": "AI-powered document quality control and MRZ consistency check.",
+        "demonstrates": "Combining AI vision and deterministic (MRZ) checking to make a verification reliable.",
         "tag": "COMPLIANCE & VISION AI",
+        "theme": "conformite-risques",
         "challenge": "A subscription file with an illegible or incomplete ID gets stuck until a handler notices it and contacts the client — a back-and-forth cycle that degrades completion rates and burdens the back office.",
         "solution": "A demonstration that checks the quality of an identity document at upload time (legibility, completeness, framing) and verifies the mathematical consistency of its MRZ zone against ICAO 9303 — without ever judging its authenticity.",
         "features": [
