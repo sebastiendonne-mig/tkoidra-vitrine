@@ -23,13 +23,27 @@
       "solution": "La Solution IA",
       "features": "Fonctionnalités Clés",
       "stack": "Stack Technique",
-      "metrics": "Résultats & Impact"
+      "metrics": "Résultats & Impact",
+      "demonstrates": "Ce que ça démontre"
+    },
+    "themes": [
+      { "key": "documents-rag", "label": "Documents & RAG" },
+      { "key": "gouvernance-cadrage", "label": "Gouvernance & cadrage" },
+      { "key": "donnees-publiques", "label": "Données publiques" },
+      { "key": "conformite-risques", "label": "Conformité & risques" }
+    ],
+    "overview": {
+      "allLabel": "Tous",
+      "filterAriaLabel": "Filtrer les cas d'usage par thème"
     },
     "projects": {
       "assurconseil": {
         "title": "AssurConseil RAG",
         "description": "Assistant RAG agentique pour l'interprétation de contrats d'assurance, avec comparaison Claude / Mistral en mode document.",
+        "demonstrates": "Industrialiser un RAG : évaluation avant mise en production, garde-fous de coût, inférence européenne prouvée, déploiement progressif.",
         "tag": "RAG & Agents IA",
+        "theme": "documents-rag",
+        "featured": true,
         "challenge": "Les conseillers assurance doivent naviguer des dizaines de pages de conditions générales pour répondre avec précision aux questions clients, sous la contrainte du devoir de conseil réglementaire — une erreur d'interprétation ou une garantie mal citée engage la responsabilité de l'assureur.",
         "solution": "Un agent RAG agentique qui route chaque question vers le pattern le plus adapté (ReAct pour les recherches simples, Plan-and-Execute pour les questions à sous-parties), avec citation obligatoire des articles sources et refus explicite de répondre en l'absence de preuve documentaire — démonstration construite sur des contrats et une société fictifs (ARESIA Assurances), illustrant une architecture agentique de conseil réglementé. En mode document, la même question est envoyée en parallèle à Claude et à Mistral Large 3 (inférence Mistral exécutée dans l'UE) : réponses côte à côte, avec latence, tokens et coût.",
         "features": [
@@ -63,12 +77,52 @@
           "Streamlit",
           "Google Cloud Run"
         ],
+        "metrics": [],
+        "methodBridge": {
+          "label": "Voir comment ce projet a été mené",
+          "path": "methodologie-diag"
+        }
+      },
+      "lexguard": {
+        "title": "LexGuard",
+        "description": "Détection des signaux de vigilance dans les contrats avant signature.",
+        "demonstrates": "Rendre un contrat lisible pour un non-juriste : détection de signaux de vigilance et verdict en langage clair.",
+        "tag": "CONFORMITÉ & IA GÉNÉRATIVE",
+        "theme": "documents-rag",
+        "featured": true,
+        "challenge": "Un maire de commune rurale, sans service juridique, signe sous pression commerciale un contrat de matériel télécom qui dissimule un second contrat de leasing — durée d'engagement longue, résiliation quasi impossible. Des communes ont été poursuivies pour des dizaines de milliers d'euros après coup.",
+        "solution": "Une démonstration qui analyse un contrat déposé en PDF et repère, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite) — en langage clair, sans jamais juger de la légalité du contrat ni de la fiabilité d'une entreprise.",
+        "features": [
+          {
+            "icon": "🚩",
+            "title": "Détection de signaux de vigilance",
+            "description": "Repère les patterns de montages contractuels à risque."
+          },
+          {
+            "icon": "⚖️",
+            "title": "Verdict en langage clair",
+            "description": "Restitution à 3 niveaux, sans jargon juridique."
+          },
+          {
+            "icon": "🔒",
+            "title": "Aucun stockage côté application",
+            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic) conserve les données transmises 30 jours, selon sa politique par défaut."
+          }
+        ],
+        "stack": [
+          "Claude Sonnet 5",
+          "Next.js",
+          "Vercel Functions"
+        ],
         "metrics": []
       },
       "agap": {
         "title": "AGAP",
         "description": "Priorisation de portefeuille projets arbitrée par l'IA, sans biais Métier/DSI.",
+        "demonstrates": "Outiller une décision de portefeuille : rendre visibles les écarts Métier/DSI et arbitrer par scénarios, avec des justifications tracées.",
         "tag": "Gouvernance de Portefeuille & IA",
+        "theme": "gouvernance-cadrage",
+        "featured": true,
         "challenge": "Un Directeur de Portefeuille arbitre chaque année des dizaines de projets sur la base de déclarations Métier et DSI structurellement biaisées : le Métier survalorise l'impact business, la DSI surestime l'effort et le risque technique pour se protéger. Sans mécanisme de médiation, l'arbitrage final devient un rapport de force politique plutôt qu'une décision objectivée.",
         "solution": "Une application de gouvernance qui fait challenger séparément chaque déclaration Métier et DSI par un agent Claude, calcule un indice de confiance et un score d'attractivité ajusté, puis visualise les conflits de perception avant l'arbitrage final — démonstration construite sur un portefeuille fictif de 6 projets, illustrant une médiation IA neutre entre deux acteurs aux intérêts divergents.",
         "features": [
@@ -96,12 +150,19 @@
           "Recharts",
           "Resend"
         ],
-        "metrics": []
+        "metrics": [],
+        "methodBridge": {
+          "label": "Voir la phase de diagnostic illustrée",
+          "path": "methodologie-diag",
+          "hash": "phase-1"
+        }
       },
       "comex": {
         "title": "Comex",
         "description": "Cadrage et alignement stratégique par l'IA.",
+        "demonstrates": "Structurer un cadrage IA : du questionnaire à deux trajectoires chiffrées par l'IA.",
         "tag": "Stratégie & IA Générative",
+        "theme": "gouvernance-cadrage",
         "challenge": "Les comités de direction font face à un volume croissant d'initiatives IA sans outillage structuré pour les prioriser, les cadrer et les aligner sur les objectifs stratégiques de l'entreprise en un temps contraint.",
         "solution": "Un générateur de propositions IA propulsé par Claude : un questionnaire de cadrage structuré (19 questions), suivi d'un échange de clarification avec l'IA (jusqu'à 4 questions ciblées), débouchant sur deux propositions de mise en œuvre — une « rapide » (moins de 3 mois, stack existante) et une « équilibrée » (MVP 3-6 mois) — avec budget, délai et risques estimés par l'IA.",
         "features": [
@@ -132,7 +193,9 @@
       "sirene": {
         "title": "Sirene",
         "description": "Requêtes d'entreprises en langage naturel.",
+        "demonstrates": "Rendre une API publique accessible en langage naturel, avec un modèle léger (Claude Haiku).",
         "tag": "API & NLP",
+        "theme": "donnees-publiques",
         "challenge": "Les équipes commerciales et opérationnelles perdent un temps précieux à identifier et qualifier des entreprises via l'interface Sirene standard de l'INSEE. La syntaxe rigide des filtres et l'absence de compréhension sémantique freinent l'adoption.",
         "solution": "Un assistant IA comprenant les requêtes en langage naturel et interrogeant l'API Sirene de l'INSEE pour retourner des résultats structurés et filtrés — sans aucune connaissance technique requise de l'utilisateur.",
         "features": [
@@ -164,7 +227,9 @@
       "dvf": {
         "title": "DVF",
         "description": "Recherche et analyse de transactions immobilières.",
+        "demonstrates": "Exploiter l'open data foncière : recherche par adresse et statistiques de prix par commune.",
         "tag": "Data & Open data",
+        "theme": "donnees-publiques",
         "challenge": "L'analyse des données DVF (Demandes de Valeurs Foncières) publiées par la DGFiP est fastidieuse : format CSV brut de plusieurs Go, absence de visualisation native, et difficulté de croisement avec les données géographiques.",
         "solution": "Une plateforme de recherche de transactions immobilières et de terrains, avec statistiques de prix des terrains par commune à partir des données ouvertes de la DGFiP.",
         "features": [
@@ -191,7 +256,9 @@
       "fraud": {
         "title": "Fraud Agent",
         "description": "Démonstration narrative d'un pipeline agentique de détection de fraude et de recours pour l'assurance IARD.",
+        "demonstrates": "Prototyper un parcours agentique cible et le présenter honnêtement : ce qui est exécuté, ce qui est simulé.",
         "tag": "IA agentique · démo narrative",
+        "theme": "conformite-risques",
         "challenge": "Les équipes fraude des assureurs IARD croulent sous les faux positifs générés par des règles fixes, tandis que les recours en subrogation contre les tiers responsables sont identifiés trop tard, voire jamais, faute de temps pour croiser les dossiers.",
         "solution": "Sur un jeu de sinistres fictifs, cette démonstration met en scène le parcours cible d'un pipeline de détection de fraude : scoring, analyse de réseau, lecture des rapports de police, préparation du dossier de recours. Dans cette version, les réponses sont produites par un seul modèle (Claude) ; les étapes de calcul (machine learning, analyse de graphe) sont simulées à l'écran, pas exécutées.",
         "features": [
@@ -218,40 +285,12 @@
         ],
         "metrics": []
       },
-      "lexguard": {
-        "title": "LexGuard",
-        "description": "Détection des signaux de vigilance dans les contrats avant signature.",
-        "tag": "CONFORMITÉ & IA GÉNÉRATIVE",
-        "challenge": "Un maire de commune rurale, sans service juridique, signe sous pression commerciale un contrat de matériel télécom qui dissimule un second contrat de leasing — durée d'engagement longue, résiliation quasi impossible. Des communes ont été poursuivies pour des dizaines de milliers d'euros après coup.",
-        "solution": "Une démonstration qui analyse un contrat déposé en PDF et repère, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite) — en langage clair, sans jamais juger de la légalité du contrat ni de la fiabilité d'une entreprise.",
-        "features": [
-          {
-            "icon": "🚩",
-            "title": "Détection de signaux de vigilance",
-            "description": "Repère les patterns de montages contractuels à risque."
-          },
-          {
-            "icon": "⚖️",
-            "title": "Verdict en langage clair",
-            "description": "Restitution à 3 niveaux, sans jargon juridique."
-          },
-          {
-            "icon": "🔒",
-            "title": "Aucun stockage côté application",
-            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic) conserve les données transmises 30 jours, selon sa politique par défaut."
-          }
-        ],
-        "stack": [
-          "Claude Sonnet 5",
-          "Next.js",
-          "Vercel Functions"
-        ],
-        "metrics": []
-      },
       "verifid": {
         "title": "Vérificateur de pièce d'identité",
         "description": "Contrôle qualité documentaire et cohérence MRZ par l'IA.",
+        "demonstrates": "Combiner vision par IA et contrôle déterministe (MRZ) pour fiabiliser une vérification.",
         "tag": "CONFORMITÉ & VISION IA",
+        "theme": "conformite-risques",
         "challenge": "Un dossier de souscription avec une pièce illisible ou incomplète reste bloqué jusqu'à ce qu'un gestionnaire le découvre, puis relance le client — un cycle de va-et-vient qui dégrade le taux de finalisation et alourdit le back-office.",
         "solution": "Une démonstration qui contrôle la qualité d'une pièce d'identité au moment du dépôt (lisibilité, complétude, cadrage) et vérifie la cohérence mathématique de sa zone MRZ selon la norme ICAO 9303 — sans jamais juger de son authenticité.",
         "features": [
