@@ -78,6 +78,12 @@
           "Google Cloud Run"
         ],
         "metrics": [],
+        "image": {
+          "src": "/use-cases/assurconseil.webp",
+          "width": 1658,
+          "height": 1352,
+          "alt": "Capture de la comparaison Claude / Mistral Large 3 sur AssurConseil RAG : réponse à une question sur les franchises d'un contrat de prévoyance, avec sources citées, latence, tokens et coût affichés pour chaque moteur."
+        },
         "methodBridge": {
           "label": "Voir comment ce projet a été mené",
           "path": "methodologie-diag"

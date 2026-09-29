@@ -78,6 +78,12 @@
           "Google Cloud Run"
         ],
         "metrics": [],
+        "image": {
+          "src": "/use-cases/assurconseil.webp",
+          "width": 1658,
+          "height": 1352,
+          "alt": "Screenshot of the Claude / Mistral Large 3 comparison on AssurConseil RAG: an answer to a question about a provident contract's deductibles, with cited sources, latency, tokens and cost shown for each engine."
+        },
         "methodBridge": {
           "label": "See how this project was run",
           "path": "methodologie-diag"
