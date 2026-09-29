@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { getDictionary } from "../../../get-dictionary";
 import { i18n } from "../../../../i18n-config";
 import { SITE_URL } from "../../../lib/site";
+import { OverviewGrid } from "./OverviewGrid";
 
 interface Feature {
   icon: string;
@@ -9,15 +12,38 @@ interface Feature {
   description: string;
 }
 
+interface MethodBridge {
+  label: string;
+  path: string;
+  hash?: string;
+}
+
+interface ProjectImage {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+}
+
 interface Project {
   title: string;
   description: string;
+  demonstrates: string;
   tag: string;
+  theme: string;
+  featured?: boolean;
   challenge: string;
   solution: string;
   features: Feature[];
   stack: string[];
   metrics?: unknown[];
+  methodBridge?: MethodBridge;
+  image?: ProjectImage;
+}
+
+interface Theme {
+  key: string;
+  label: string;
 }
 
 interface SectionLabels {
@@ -26,6 +52,7 @@ interface SectionLabels {
   features: string;
   stack: string;
   metrics?: string;
+  demonstrates: string;
 }
 
 const appUrls: Record<string, string> = {
@@ -67,8 +94,8 @@ export async function generateMetadata({
   const description =
     meta?.description ??
     (isFr
-      ? "Des solutions IA concrètes, mesurables et adoptées — du cadrage à la mise en production, illustrées par des cas réels en assurance, immobilier et conformité."
-      : "Concrete, measurable, and adopted AI solutions — from framing to production, illustrated by real-world cases in insurance, real estate, and compliance.");
+      ? "Des démonstrateurs IA fonctionnels, en ligne et testables — du cadrage à la mise en production, sur des cas d'usage en assurance, immobilier et conformité."
+      : "Functional AI demonstrators, live and testable — from framing to production, illustrated by use cases in insurance, real estate, and compliance.");
   const url = `${SITE_URL}/${lang}/use-cases`;
 
   return {
@@ -95,6 +122,249 @@ export async function generateMetadata({
   };
 }
 
+function Demonstrates({ label, text }: { label: string; text: string }) {
+  return (
+    <div className="flex items-start gap-3 rounded-xl border border-teal-500/25 bg-teal-500/5 px-5 py-4">
+      <svg
+        aria-hidden
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="mt-0.5 h-4 w-4 shrink-0 text-teal-400"
+      >
+        <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+      <p className="text-sm leading-6 text-slate-300">
+        <span className="mr-1.5 text-xs font-bold uppercase tracking-widest text-teal-400">
+          {label}
+        </span>
+        {text}
+      </p>
+    </div>
+  );
+}
+
+function FeatureGrid({ features }: { features: Feature[] }) {
+  return (
+    <div
+      className={
+        features.length === 1
+          ? "grid grid-cols-1 gap-5 sm:max-w-sm"
+          : features.length === 2
+            ? "grid grid-cols-1 gap-5 sm:grid-cols-2"
+            : features.length === 4
+              ? "grid grid-cols-2 gap-5 sm:grid-cols-4"
+              : "grid grid-cols-1 gap-5 sm:grid-cols-3"
+      }
+    >
+      {features.map((feature) => (
+        <div
+          key={feature.title}
+          className="rounded-2xl border border-slate-800 bg-slate-900/30 p-6 space-y-3 hover:border-teal-500/30 hover:bg-slate-900/60 transition-all"
+        >
+          <span className="text-2xl" role="img" aria-label={feature.title}>
+            {feature.icon}
+          </span>
+          <h4 className="text-sm font-bold text-slate-100">{feature.title}</h4>
+          <p className="text-xs leading-6 text-slate-400">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AppLink({ appUrl, label }: { appUrl?: string; label: string }) {
+  if (!appUrl) return null;
+  return (
+    <a
+      href={appUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-400 transition-all hover:border-teal-500/50 hover:text-teal-300"
+    >
+      {label}
+      <span aria-hidden className="text-teal-500">
+        &#8599;
+      </span>
+    </a>
+  );
+}
+
+function MethodBridgeLink({
+  lang,
+  bridge,
+}: {
+  lang: string;
+  bridge: MethodBridge;
+}) {
+  const href = `/${lang}/${bridge.path}${bridge.hash ? `#${bridge.hash}` : ""}`;
+  return (
+    <Link
+      href={href}
+      className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-400 hover:text-teal-300 transition-colors"
+    >
+      {bridge.label}
+      <span aria-hidden>&#8594;</span>
+    </Link>
+  );
+}
+
+function FeaturedCard({
+  lang,
+  slug,
+  project,
+  labels,
+  appLinkLabel,
+  index,
+  priorityImage,
+}: {
+  lang: string;
+  slug: string;
+  project: Project;
+  labels: SectionLabels;
+  appLinkLabel: string;
+  index: number;
+  priorityImage: boolean;
+}) {
+  const appUrl = appUrls[slug];
+  return (
+    <section
+      id={slug}
+      className={`scroll-mt-24 space-y-10${index > 0 ? " border-t border-slate-800 pt-16" : ""}`}
+    >
+      <header className="space-y-4">
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+            {project.tag}
+          </span>
+          <AppLink appUrl={appUrl} label={appLinkLabel} />
+        </div>
+        <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400">
+          {project.title}
+        </h2>
+        <p className="text-lg leading-8 text-slate-400 max-w-2xl">{project.description}</p>
+      </header>
+
+      <Demonstrates label={labels.demonstrates} text={project.demonstrates} />
+
+      {project.image && (
+        <div className="overflow-hidden rounded-2xl border border-slate-800">
+          <Image
+            src={project.image.src}
+            width={project.image.width}
+            height={project.image.height}
+            alt={project.image.alt}
+            priority={priorityImage}
+            loading={priorityImage ? undefined : "lazy"}
+            sizes="(min-width: 896px) 56rem, 100vw"
+            className="h-auto w-full"
+          />
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-7 space-y-3 backdrop-blur-sm">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-rose-400" aria-hidden />
+            <h3 className="text-xs font-bold uppercase tracking-widest text-rose-400">
+              {labels.challenge}
+            </h3>
+          </div>
+          <p className="text-sm leading-7 text-slate-300">{project.challenge}</p>
+        </div>
+        <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-7 space-y-3 backdrop-blur-sm">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-teal-400" aria-hidden />
+            <h3 className="text-xs font-bold uppercase tracking-widest text-teal-400">
+              {labels.solution}
+            </h3>
+          </div>
+          <p className="text-sm leading-7 text-slate-300">{project.solution}</p>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
+          {labels.features}
+        </h3>
+        <FeatureGrid features={project.features} />
+      </div>
+
+      <div className="space-y-5">
+        <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
+          {labels.stack}
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-mono font-medium text-slate-300"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {project.methodBridge && (
+        <MethodBridgeLink lang={lang} bridge={project.methodBridge} />
+      )}
+    </section>
+  );
+}
+
+function CompactCard({
+  slug,
+  project,
+  labels,
+  appLinkLabel,
+}: {
+  slug: string;
+  project: Project;
+  labels: SectionLabels;
+  appLinkLabel: string;
+}) {
+  const appUrl = appUrls[slug];
+  return (
+    <section
+      id={slug}
+      className="scroll-mt-24 space-y-6 rounded-2xl border border-slate-800 bg-slate-900/30 p-7 sm:p-8"
+    >
+      <header className="space-y-3">
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+            {project.tag}
+          </span>
+          <AppLink appUrl={appUrl} label={appLinkLabel} />
+        </div>
+        <h2 className="text-2xl font-extrabold tracking-tight text-slate-100 sm:text-3xl">
+          {project.title}
+        </h2>
+        <p className="text-sm leading-7 text-slate-400 max-w-2xl">{project.description}</p>
+      </header>
+
+      <Demonstrates label={labels.demonstrates} text={project.demonstrates} />
+
+      <FeatureGrid features={project.features} />
+
+      <div className="flex flex-wrap gap-2">
+        {project.stack.map((tech) => (
+          <span
+            key={tech}
+            className="rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-mono font-medium text-slate-300"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default async function UseCasesPage({
   params,
 }: {
@@ -107,6 +377,8 @@ export default async function UseCasesPage({
   const projects = useCases?.projects
     ? (Object.entries(useCases.projects) as [string, Project][])
     : [];
+  const themes: Theme[] = useCases?.themes ?? [];
+  const themeLabel = (key: string) => themes.find((t) => t.key === key)?.label ?? key;
 
   const labels: SectionLabels = useCases?.sectionLabels ?? {
     challenge: "Challenge",
@@ -114,134 +386,78 @@ export default async function UseCasesPage({
     features: "Key Features",
     stack: "Tech Stack",
     metrics: "Results",
+    demonstrates: "What It Demonstrates",
   };
 
   const appLinkLabel =
     appLinkLabels[lang as keyof typeof appLinkLabels] ?? appLinkLabels.fr;
 
+  const featuredSlugs = projects.filter(([, p]) => p.featured).map(([slug]) => slug);
+  let priorityAssigned = false;
+
   return (
     <main className="flex min-h-screen flex-col items-center bg-slate-950 text-white font-sans px-6 py-24">
       <div className="w-full max-w-4xl space-y-16">
-
         {/* Page header */}
         <header className="flex flex-col items-start gap-8">
           <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
             {useCases?.title ?? "Cas d'Usage"}
           </span>
-          <p className="text-lg leading-7 text-slate-400">
-            {useCases?.subtitle}
-          </p>
+          <p className="text-lg leading-7 text-slate-400">{useCases?.subtitle}</p>
         </header>
 
-        {/* Projects — stacked vertically */}
-        {projects.map(([slug, project], index) => {
-          const appUrl = appUrls[slug];
-          return (
-            <section
-              key={slug}
-              id={slug}
-              className={`space-y-12${index > 0 ? " border-t border-slate-800 pt-16" : ""}`}
-            >
-              {/* Project hero */}
-              <header className="space-y-4">
-                <div className="flex items-center justify-between gap-4 flex-wrap">
-                  <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
-                    {project.tag}
-                  </span>
-                  {appUrl && (
-                    <a
-                      href={appUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-400 transition-all hover:border-teal-500/50 hover:text-teal-300"
-                    >
-                      {appLinkLabel}
-                      <span aria-hidden className="text-teal-500">&#8599;</span>
-                    </a>
-                  )}
-                </div>
-                <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400">
-                  {project.title}
-                </h2>
-                <p className="text-lg leading-8 text-slate-400 max-w-2xl">
-                  {project.description}
-                </p>
-              </header>
+        {/* Overview — compact grid of all 8, optional theme filter */}
+        {useCases?.overview && (
+          <OverviewGrid
+            allLabel={useCases.overview.allLabel}
+            filterAriaLabel={useCases.overview.filterAriaLabel}
+            themes={themes}
+            items={projects.map(([slug, project]) => ({
+              slug,
+              title: project.title,
+              description: project.description,
+              themeKey: project.theme,
+              themeLabel: themeLabel(project.theme),
+            }))}
+          />
+        )}
 
-              {/* Challenge / Solution */}
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-7 space-y-3 backdrop-blur-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-rose-400" aria-hidden />
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-rose-400">
-                      {labels.challenge}
-                    </h3>
-                  </div>
-                  <p className="text-sm leading-7 text-slate-300">{project.challenge}</p>
-                </div>
-                <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-7 space-y-3 backdrop-blur-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-teal-400" aria-hidden />
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-teal-400">
-                      {labels.solution}
-                    </h3>
-                  </div>
-                  <p className="text-sm leading-7 text-slate-300">{project.solution}</p>
-                </div>
-              </div>
+        {/* Featured demos — full case study */}
+        <div className="space-y-16">
+          {projects
+            .filter(([slug]) => featuredSlugs.includes(slug))
+            .map(([slug, project], index) => {
+              const isPriority = !priorityAssigned && !!project.image;
+              if (isPriority) priorityAssigned = true;
+              return (
+                <FeaturedCard
+                  key={slug}
+                  lang={lang}
+                  slug={slug}
+                  project={project}
+                  labels={labels}
+                  appLinkLabel={appLinkLabel}
+                  index={index}
+                  priorityImage={isPriority}
+                />
+              );
+            })}
+        </div>
 
-              {/* Features */}
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-                  {labels.features}
-                </h3>
-                <div
-                  className={
-                    project.features.length === 1
-                      ? "grid grid-cols-1 gap-5 sm:max-w-sm"
-                      : project.features.length === 2
-                      ? "grid grid-cols-1 gap-5 sm:grid-cols-2"
-                      : project.features.length === 4
-                      ? "grid grid-cols-2 gap-5 sm:grid-cols-4"
-                      : "grid grid-cols-1 gap-5 sm:grid-cols-3"
-                  }
-                >
-                  {project.features.map((feature) => (
-                    <div
-                      key={feature.title}
-                      className="rounded-2xl border border-slate-800 bg-slate-900/30 p-6 space-y-3 hover:border-teal-500/30 hover:bg-slate-900/60 transition-all"
-                    >
-                      <span className="text-2xl" role="img" aria-label={feature.title}>
-                        {feature.icon}
-                      </span>
-                      <h4 className="text-sm font-bold text-slate-100">{feature.title}</h4>
-                      <p className="text-xs leading-6 text-slate-400">{feature.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Stack */}
-              <div className="space-y-5">
-                <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-                  {labels.stack}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-mono font-medium text-slate-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-            </section>
-          );
-        })}
-
+        {/* Compact demos */}
+        <div className="space-y-8 border-t border-slate-800 pt-16">
+          {projects
+            .filter(([slug]) => !featuredSlugs.includes(slug))
+            .map(([slug, project]) => (
+              <CompactCard
+                key={slug}
+                slug={slug}
+                project={project}
+                labels={labels}
+                appLinkLabel={appLinkLabel}
+              />
+            ))}
+        </div>
       </div>
     </main>
   );
