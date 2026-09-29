@@ -114,7 +114,13 @@
           "Next.js",
           "Vercel Functions"
         ],
-        "metrics": []
+        "metrics": [],
+        "image": {
+          "src": "/use-cases/lexguard.webp",
+          "width": 1440,
+          "height": 1055,
+          "alt": "Capture de la page d'accueil de LexGuard : dépôt de contrat, exemple de signal de vigilance détecté et garantie qu'aucun document déposé n'est conservé."
+        }
       },
       "agap": {
         "title": "AGAP",
@@ -151,6 +157,12 @@
           "Resend"
         ],
         "metrics": [],
+        "image": {
+          "src": "/use-cases/agap.webp",
+          "width": 1440,
+          "height": 900,
+          "alt": "Capture du tableau de bord démo d'AGAP : portefeuille de 6 projets fictifs avec leur statut d'arbitrage, en mode démonstration en lecture seule."
+        },
         "methodBridge": {
           "label": "Voir la phase de diagnostic illustrée",
           "path": "methodologie-diag",

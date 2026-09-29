@@ -114,7 +114,13 @@
           "Next.js",
           "Vercel Functions"
         ],
-        "metrics": []
+        "metrics": [],
+        "image": {
+          "src": "/use-cases/lexguard.webp",
+          "width": 1440,
+          "height": 1055,
+          "alt": "Screenshot of the LexGuard homepage: contract upload, an example of a detected warning signal, and the guarantee that no uploaded document is stored."
+        }
       },
       "agap": {
         "title": "AGAP",
@@ -151,6 +157,12 @@
           "Resend"
         ],
         "metrics": [],
+        "image": {
+          "src": "/use-cases/agap.webp",
+          "width": 1440,
+          "height": 900,
+          "alt": "Screenshot of the AGAP demo dashboard: a portfolio of 6 fictional projects with their arbitration status, in read-only demonstration mode."
+        },
         "methodBridge": {
           "label": "See the diagnose phase it illustrates",
           "path": "methodologie-diag",
