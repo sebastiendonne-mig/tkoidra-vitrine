@@ -44,7 +44,7 @@ export function PhaseStepper({ label, steps }: { label: string; steps: Step[] })
             className="absolute left-[16.667%] right-[16.667%] top-4 h-px bg-slate-800"
           >
             <div
-              className="h-full bg-teal-400 motion-safe:transition-[width] motion-safe:duration-500"
+              className="h-full bg-accent motion-safe:transition-[width] motion-safe:duration-500"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -57,16 +57,16 @@ export function PhaseStepper({ label, steps }: { label: string; steps: Step[] })
                   <a
                     href={`#${step.id}`}
                     aria-current={isActive ? "step" : undefined}
-                    className="group flex flex-col items-center gap-1.5 rounded-lg px-2 py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                    className="group flex flex-col items-center gap-1.5 rounded-lg px-2 py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   >
                     <span
                       className={[
                         "flex h-8 w-8 items-center justify-center rounded-full border text-xs font-bold motion-safe:transition-colors",
                         isActive
-                          ? "border-teal-400 bg-teal-400 text-slate-950"
+                          ? "border-accent bg-accent text-navy"
                           : isDone
-                            ? "border-teal-400/60 bg-slate-950 text-teal-300"
-                            : "border-slate-700 bg-slate-950 text-slate-400 group-hover:border-teal-500/60 group-hover:text-teal-300",
+                            ? "border-accent/60 bg-slate-950 text-accent-hover"
+                            : "border-slate-700 bg-slate-950 text-slate-400 group-hover:border-accent/60 group-hover:text-accent-hover",
                       ].join(" ")}
                     >
                       {step.number}
@@ -76,7 +76,7 @@ export function PhaseStepper({ label, steps }: { label: string; steps: Step[] })
                         "text-xs font-semibold sm:text-sm motion-safe:transition-colors",
                         isActive
                           ? "text-slate-100"
-                          : "text-slate-400 group-hover:text-teal-300",
+                          : "text-slate-400 group-hover:text-accent-hover",
                       ].join(" ")}
                     >
                       {step.name}

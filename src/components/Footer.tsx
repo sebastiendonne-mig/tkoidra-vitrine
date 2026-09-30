@@ -95,7 +95,7 @@ export function Footer({ lang, nav }: FooterProps) {
             href="https://www.linkedin.com/in/sebastiendonne/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-semibold text-slate-400 transition-colors hover:text-teal-400"
+            className="text-xs font-semibold text-slate-400 transition-colors hover:text-accent"
           >
             LinkedIn &#8599;
           </a>

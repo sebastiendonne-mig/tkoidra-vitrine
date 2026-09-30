@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+/* Accent de marque — défini une seule fois (source : tkoidra-brand-kit/tokens.css).
+   Utilisé via text-accent, bg-accent/10, border-accent/40, ring-accent, etc. */
+@theme {
+  --color-accent: #00B4D8; /* --tk-cyan */
+  --color-accent-hover: #38C4E0; /* --tk-cyan-light */
+  --color-navy: #0D1F40; /* --tk-navy : texte posé sur un fond accent */
+}

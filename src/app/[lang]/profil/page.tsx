@@ -298,7 +298,7 @@ export default async function ProfilPage({ params }: Props) {
         {/* Back link */}
         <Link
           href={`/${lang}/use-cases`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
         >
           <span aria-hidden>&#8592;</span>
           {t.backLabel}
@@ -306,13 +306,13 @@ export default async function ProfilPage({ params }: Props) {
 
         {/* Hero header */}
         <header className="flex flex-col items-start gap-5 border-b border-slate-800 pb-10">
-          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {t.badge}
           </span>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400">
             {t.name}
           </h1>
-          <p className="text-sm font-semibold text-teal-400 tracking-wide leading-6">
+          <p className="text-sm font-semibold text-accent tracking-wide leading-6">
             {t.tagline}
           </p>
           <div className="space-y-4">
@@ -335,13 +335,13 @@ export default async function ProfilPage({ params }: Props) {
                 href={app.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all hover:border-teal-500/40 hover:bg-slate-900/70"
+                className="group flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all hover:border-accent/40 hover:bg-slate-900/70"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-base font-bold text-slate-100 group-hover:text-teal-300 transition-colors">
+                  <h3 className="text-base font-bold text-slate-100 group-hover:text-accent-hover transition-colors">
                     {app.name}
                   </h3>
-                  <span className="shrink-0 text-xs text-slate-500 group-hover:text-teal-500 transition-colors">
+                  <span className="shrink-0 text-xs text-slate-500 group-hover:text-accent transition-colors">
                     {app.tag} &#8599;
                   </span>
                 </div>
@@ -360,7 +360,7 @@ export default async function ProfilPage({ params }: Props) {
           <div className="space-y-6">
             {t.stack.categories.map((cat) => (
               <div key={cat.label}>
-                <h3 className="text-xs font-bold uppercase tracking-widest text-teal-400 mb-2">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
                   {cat.label}
                 </h3>
                 <p className="text-sm leading-7 text-slate-400">{cat.skills}</p>

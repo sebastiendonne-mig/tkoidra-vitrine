@@ -18,6 +18,7 @@
     },
     "backLabel": "Back to home",
     "discoverLabel": "Explore project →",
+    "appLink": { "label": "Open the application", "newTab": "opens in a new tab" },
     "sectionLabels": {
       "challenge": "Business Challenge",
       "solution": "AI Solution",
@@ -366,7 +367,8 @@
       "deliverables": "Deliverables",
       "proof": "Evidence",
       "tools": "Tools that illustrate this phase",
-      "practices": "Enterprise best practices"
+      "practices": "Enterprise best practices",
+      "newTab": "opens in a new tab"
     },
     "phases": [
       {

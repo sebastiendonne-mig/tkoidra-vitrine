@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getDictionary } from "../../../get-dictionary";
 import { i18n } from "../../../../i18n-config";
 import { SITE_URL } from "../../../lib/site";
+import { OpenAppButton } from "../../../components/OpenAppButton";
 import { OverviewGrid } from "./OverviewGrid";
 
 interface Feature {
@@ -41,6 +42,11 @@ interface Project {
   image?: ProjectImage;
 }
 
+interface AppLinkLabels {
+  label: string;
+  newTab: string;
+}
+
 interface Theme {
   key: string;
   label: string;
@@ -65,11 +71,6 @@ const appUrls: Record<string, string> = {
   lexguard: "https://lexguard.tkoidra.com",
   verifid: "https://verif.tkoidra.com/",
 };
-
-const appLinkLabels = {
-  fr: "Ouvrir l'application complète",
-  en: "Open full application",
-} as const;
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
@@ -124,7 +125,7 @@ export async function generateMetadata({
 
 function Demonstrates({ label, text }: { label: string; text: string }) {
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-teal-500/25 bg-teal-500/5 px-5 py-4">
+    <div className="flex items-start gap-3 rounded-xl border border-accent/25 bg-accent/5 px-5 py-4">
       <svg
         aria-hidden
         viewBox="0 0 24 24"
@@ -133,13 +134,13 @@ function Demonstrates({ label, text }: { label: string; text: string }) {
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="mt-0.5 h-4 w-4 shrink-0 text-teal-400"
+        className="mt-0.5 h-4 w-4 shrink-0 text-accent"
       >
         <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" />
         <path d="M9 12l2 2 4-4" />
       </svg>
       <p className="text-sm leading-6 text-slate-300">
-        <span className="mr-1.5 text-xs font-bold uppercase tracking-widest text-teal-400">
+        <span className="mr-1.5 text-xs font-bold uppercase tracking-widest text-accent">
           {label}
         </span>
         {text}
@@ -164,7 +165,7 @@ function FeatureGrid({ features }: { features: Feature[] }) {
       {features.map((feature) => (
         <div
           key={feature.title}
-          className="rounded-2xl border border-slate-800 bg-slate-900/30 p-6 space-y-3 hover:border-teal-500/30 hover:bg-slate-900/60 transition-all"
+          className="rounded-2xl border border-slate-800 bg-slate-900/30 p-6 space-y-3 hover:border-accent/30 hover:bg-slate-900/60 transition-all"
         >
           <span className="text-2xl" role="img" aria-label={feature.title}>
             {feature.icon}
@@ -174,23 +175,6 @@ function FeatureGrid({ features }: { features: Feature[] }) {
         </div>
       ))}
     </div>
-  );
-}
-
-function AppLink({ appUrl, label }: { appUrl?: string; label: string }) {
-  if (!appUrl) return null;
-  return (
-    <a
-      href={appUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-400 transition-all hover:border-teal-500/50 hover:text-teal-300"
-    >
-      {label}
-      <span aria-hidden className="text-teal-500">
-        &#8599;
-      </span>
-    </a>
   );
 }
 
@@ -205,7 +189,7 @@ function MethodBridgeLink({
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-400 hover:text-teal-300 transition-colors"
+      className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-accent-hover transition-colors"
     >
       {bridge.label}
       <span aria-hidden>&#8594;</span>
@@ -218,7 +202,7 @@ function FeaturedCard({
   slug,
   project,
   labels,
-  appLinkLabel,
+  appLink,
   index,
   priorityImage,
 }: {
@@ -226,7 +210,7 @@ function FeaturedCard({
   slug: string;
   project: Project;
   labels: SectionLabels;
-  appLinkLabel: string;
+  appLink: AppLinkLabels;
   index: number;
   priorityImage: boolean;
 }) {
@@ -238,10 +222,17 @@ function FeaturedCard({
     >
       <header className="space-y-4">
         <div className="flex items-center justify-between gap-4 flex-wrap">
-          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {project.tag}
           </span>
-          <AppLink appUrl={appUrl} label={appLinkLabel} />
+          {appUrl && (
+            <OpenAppButton
+              href={appUrl}
+              label={appLink.label}
+              newTabLabel={appLink.newTab}
+              appName={project.title}
+            />
+          )}
         </div>
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400">
           {project.title}
@@ -278,8 +269,8 @@ function FeaturedCard({
         </div>
         <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-7 space-y-3 backdrop-blur-sm">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-teal-400" aria-hidden />
-            <h3 className="text-xs font-bold uppercase tracking-widest text-teal-400">
+            <span className="h-2 w-2 rounded-full bg-accent" aria-hidden />
+            <h3 className="text-xs font-bold uppercase tracking-widest text-accent">
               {labels.solution}
             </h3>
           </div>
@@ -321,12 +312,12 @@ function CompactCard({
   slug,
   project,
   labels,
-  appLinkLabel,
+  appLink,
 }: {
   slug: string;
   project: Project;
   labels: SectionLabels;
-  appLinkLabel: string;
+  appLink: AppLinkLabels;
 }) {
   const appUrl = appUrls[slug];
   return (
@@ -336,10 +327,17 @@ function CompactCard({
     >
       <header className="space-y-3">
         <div className="flex items-center justify-between gap-4 flex-wrap">
-          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {project.tag}
           </span>
-          <AppLink appUrl={appUrl} label={appLinkLabel} />
+          {appUrl && (
+            <OpenAppButton
+              href={appUrl}
+              label={appLink.label}
+              newTabLabel={appLink.newTab}
+              appName={project.title}
+            />
+          )}
         </div>
         <h2 className="text-2xl font-extrabold tracking-tight text-slate-100 sm:text-3xl">
           {project.title}
@@ -389,8 +387,10 @@ export default async function UseCasesPage({
     demonstrates: "What It Demonstrates",
   };
 
-  const appLinkLabel =
-    appLinkLabels[lang as keyof typeof appLinkLabels] ?? appLinkLabels.fr;
+  const appLink: AppLinkLabels = useCases?.appLink ?? {
+    label: "Open the application",
+    newTab: "opens in a new tab",
+  };
 
   const featuredSlugs = projects.filter(([, p]) => p.featured).map(([slug]) => slug);
   let priorityAssigned = false;
@@ -400,7 +400,7 @@ export default async function UseCasesPage({
       <div className="w-full max-w-4xl space-y-16">
         {/* Page header */}
         <header className="flex flex-col items-start gap-8">
-          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {useCases?.title ?? "Cas d'Usage"}
           </span>
           <p className="text-lg leading-7 text-slate-400">{useCases?.subtitle}</p>
@@ -436,7 +436,7 @@ export default async function UseCasesPage({
                   slug={slug}
                   project={project}
                   labels={labels}
-                  appLinkLabel={appLinkLabel}
+                  appLink={appLink}
                   index={index}
                   priorityImage={isPriority}
                 />
@@ -454,7 +454,7 @@ export default async function UseCasesPage({
                 slug={slug}
                 project={project}
                 labels={labels}
-                appLinkLabel={appLinkLabel}
+                appLink={appLink}
               />
             ))}
         </div>

@@ -55,7 +55,7 @@ const ui = {
 
 const mdxComponents = {
   h2: (props: ComponentPropsWithoutRef<'h2'>) => (
-    <h2 className="text-xl font-bold text-slate-100 border-l-2 border-teal-500 pl-4 mt-12 mb-4 first:mt-0" {...props} />
+    <h2 className="text-xl font-bold text-slate-100 border-l-2 border-accent pl-4 mt-12 mb-4 first:mt-0" {...props} />
   ),
   h3: (props: ComponentPropsWithoutRef<'h3'>) => (
     <h3 className="text-base font-bold text-slate-200 mt-8 mb-3" {...props} />
@@ -116,12 +116,12 @@ const mdxComponents = {
   ),
   code: (props: ComponentPropsWithoutRef<'code'>) => (
     <code
-      className="font-mono text-xs bg-slate-800 text-teal-300 px-1.5 py-0.5 rounded"
+      className="font-mono text-xs bg-slate-800 text-accent-hover px-1.5 py-0.5 rounded"
       {...props}
     />
   ),
   input: (props: ComponentPropsWithoutRef<'input'>) => (
-    <input className="mr-2 accent-teal-500 cursor-default" {...props} />
+    <input className="mr-2 accent-accent cursor-default" {...props} />
   ),
 };
 
@@ -146,7 +146,7 @@ export default async function BlogPostPage({ params }: Props) {
         {/* Back link */}
         <Link
           href={`/${lang}/blog`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
         >
           <span aria-hidden>←</span>
           {t.backLabel}
@@ -155,7 +155,7 @@ export default async function BlogPostPage({ params }: Props) {
         {/* Article header */}
         <header className="space-y-5 border-b border-slate-800 pb-10">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-md border border-teal-500/40 bg-teal-500/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+            <span className="rounded-md border border-accent/40 bg-accent/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-accent">
               {post.tag}
             </span>
             <span className="text-xs text-slate-500">
@@ -183,7 +183,7 @@ export default async function BlogPostPage({ params }: Props) {
           <article className="space-y-12">
             {post.sections.map((section) => (
               <section key={section.heading} className="space-y-4">
-                <h2 className="text-xl font-bold text-slate-100 border-l-2 border-teal-500 pl-4">
+                <h2 className="text-xl font-bold text-slate-100 border-l-2 border-accent pl-4">
                   {section.heading}
                 </h2>
                 <p className="text-base leading-8 text-slate-300 pl-4">
@@ -198,7 +198,7 @@ export default async function BlogPostPage({ params }: Props) {
         <footer className="border-t border-slate-800 pt-8 flex items-center justify-between">
           <Link
             href={`/${lang}/blog`}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
           >
             <span aria-hidden>←</span>
             {t.backLabel}
