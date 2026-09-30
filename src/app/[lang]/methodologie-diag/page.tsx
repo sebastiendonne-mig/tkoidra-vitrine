@@ -118,19 +118,23 @@ function Emphasis({ text }: { text: string }) {
   );
 }
 
+// newTabLabel (optionnel) : annonce l'ouverture dans un nouvel onglet dans le nom accessible.
 function ExternalLink({
   href,
   className,
   children,
+  newTabLabel,
 }: {
   href: string;
   className: string;
   children: React.ReactNode;
+  newTabLabel?: string;
 }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
       {children}
       <span aria-hidden> &#8599;</span>
+      {newTabLabel && <span className="sr-only"> — {newTabLabel}</span>}
     </a>
   );
 }
@@ -470,6 +474,7 @@ export default async function MethodologieDiagPage({ params }: Props) {
           </h2>
           <ExternalLink
             href={LINKEDIN_URL}
+            newTabLabel={t.labels.newTab}
             className="mt-8 inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-navy hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 motion-safe:transition-colors"
           >
             {t.cta.button}
