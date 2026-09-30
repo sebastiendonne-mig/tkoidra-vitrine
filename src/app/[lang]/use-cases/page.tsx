@@ -225,7 +225,7 @@ function FeaturedCard({
   return (
     <section
       id={slug}
-      className={`scroll-mt-24 space-y-10${index > 0 ? " border-t border-slate-800 pt-16" : ""}`}
+      className={`scroll-mt-28 sm:scroll-mt-24 space-y-10${index > 0 ? " border-t border-slate-800 pt-16" : ""}`}
     >
       <header className="space-y-4">
         <div className="flex items-center justify-between gap-4 flex-wrap">
@@ -330,7 +330,7 @@ function CompactCard({
   return (
     <section
       id={slug}
-      className="scroll-mt-24 space-y-6 rounded-2xl border border-slate-800 bg-slate-900/30 p-7 sm:p-8"
+      className="scroll-mt-28 sm:scroll-mt-24 space-y-6 rounded-2xl border border-slate-800 bg-slate-900/30 p-7 sm:p-8"
     >
       <header className="space-y-3">
         <div className="flex items-center justify-between gap-4 flex-wrap">
