@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
-import { SITE_URL } from "../../../lib/site";
+import { LINKEDIN_URL, SITE_URL } from "../../../lib/site";
 import Link from "next/link";
 
 type Props = {
@@ -15,13 +15,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const isFr = lang === "fr";
   const url = `${SITE_URL}/${lang}/profil`;
+  const title = isFr
+    ? "Sébastien Donné · Product Owner IA | TKoidra"
+    : "Sébastien Donné · AI Product Owner | TKoidra";
+  const description = isFr
+    ? "Product Owner IA et RTE SAFe : pilotage de projets d'IA générative de bout en bout, du cadrage à la conduite du changement. Quinze ans d'agilité à l'échelle."
+    : "AI Product Owner and SAFe RTE: end-to-end leadership of generative AI projects, from framing to change management. Fifteen years of scaled agile.";
   return {
-    title: isFr
-      ? "Profil | Sébastien Donné | TKoidra"
-      : "Profile | Sébastien Donné | TKoidra",
-    description: isFr
-      ? "RTE SAFe, Coach Agile senior et Product Owner IA. 15 ans de pilotage de programmes complexes, appliqué au pilotage de projets IA de bout en bout."
-      : "SAFe RTE, senior Agile Coach and AI Product Owner. 15 years leading complex programmes, now applied to end-to-end AI project leadership.",
+    title,
+    description,
     alternates: {
       canonical: url,
       languages: {
@@ -30,12 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: isFr
-        ? "Profil | Sébastien Donné | TKoidra"
-        : "Profile | Sébastien Donné | TKoidra",
-      description: isFr
-        ? "RTE SAFe, Coach Agile senior et Product Owner IA. 15 ans de pilotage de programmes complexes, appliqué au pilotage de projets IA de bout en bout."
-        : "SAFe RTE, senior Agile Coach and AI Product Owner. 15 years leading complex programmes, now applied to end-to-end AI project leadership.",
+      title,
+      description,
       url,
       siteName: "TKoidra",
       locale: isFr ? "fr_FR" : "en_US",
@@ -47,93 +45,96 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const content = {
+type Group = { label: string; items: string[] };
+
+type Content = {
+  badge: string;
+  name: string;
+  tagline: string;
+  intro: string[];
+  backLabel: string;
+  demos: { heading: string; text: string; linkLabel: string };
+  parcours: {
+    heading: string;
+    opening: string;
+    entries: { label: string; text: string }[];
+  };
+  skills: {
+    heading: string;
+    categories: { label: string; skills: string }[];
+  };
+  certifications: { heading: string; groups: Group[] };
+  training: { heading: string; groups: Group[] };
+  contact: { heading: string; text: string; button: string; newTab: string };
+};
+
+const content: Record<"fr" | "en", Content> = {
   fr: {
     badge: "Profil",
     name: "Sébastien Donné",
-    tagline: "RTE SAFe · Coach Agile · Scrum Master · Product Owner · Pilotage de projets IA",
+    tagline: "Product Owner IA · Pilotage de projets IA · RTE SAFe",
     intro: [
-      "Quinze ans à synchroniser des équipes, lever des blocages inter-squads et faire franchir un palier de maturité à des programmes complexes. J'applique aujourd'hui cette même rigueur au pilotage de projets IA de bout en bout : cadrage, choix d'architecture, prototypage, industrialisation et conduite du changement.",
-      "C'est ce que porte le nom TKoidra, homophone de ¿Te cuadra ? en espagnol — littéralement : « Est-ce que ça te convient ? ». Parce qu'une architecture IA brillante qui ne cadre pas avec vos contraintes opérationnelles reste une belle démonstration. Ce que j'apporte, c'est la rigueur d'un RTE et l'écoute d'un coach agile pour que la solution s'ajuste — techniquement, humainement, stratégiquement.",
+      "Product Owner IA, je pilote des projets d'IA générative de bout en bout : priorisation des cas d'usage, cadrage produit, choix d'architecture, évaluation avant mise en production, puis conduite du changement. Je m'appuie sur quinze ans d'agilité à l'échelle, de Product Ownership et d'accompagnement du changement.",
+      "C'est ce que porte le nom TKoidra, homophone de ¿Te cuadra ? en espagnol — littéralement : « Est-ce que ça te convient ? ». Parce qu'une architecture IA brillante qui ne cadre pas avec vos contraintes opérationnelles reste une belle démonstration. Ce que j'apporte, c'est la rigueur d'un RTE et l'écoute d'un coach agile pour que la solution s'ajuste — techniquement, humainement, stratégiquement.",
     ],
     backLabel: "Retour",
-    portfolio: {
-      heading: "Portfolio en production",
-      subtitle: "Huit applications développées, déployées et maintenues en production, illustrant une capacité réelle à transformer un besoin métier en outil fonctionnel.",
-      apps: [
+    demos: {
+      heading: "Démonstrateurs en ligne",
+      text: "Huit démonstrateurs IA conçus, déployés et maintenus en ligne, dont AssurConseil (RAG agentique, comparaison Claude / Mistral), LexGuard (analyse de contrats) et AGAP (gouvernance de portefeuille).",
+      linkLabel: "Voir les cas d'usage",
+    },
+    parcours: {
+      heading: "Parcours",
+      opening:
+        "Mon parcours s'est construit autour d'un fil conducteur : faire en sorte que les organisations s'approprient réellement les transformations qu'elles engagent, plutôt que de les subir.",
+      entries: [
         {
-          name: "AssurConseil RAG",
-          url: "https://rag.tkoidra.com",
-          tag: "rag.tkoidra.com",
-          description: "Assistant RAG agentique pour l'interprétation de contrats d'assurance : routage adaptatif ReAct / Plan-and-Execute, citation obligatoire des articles sources, et comparaison Claude / Mistral Large 3 en mode document (inférence européenne, latence/tokens/coût affichés). Démonstration construite sur des contrats et une société fictifs (ARESIA Assurances).",
+          label: "TKoidra",
+          text: "Conception et exploitation de démonstrateurs IA en ligne : cadrage, développement assisté par des agents de code IA sous protocole de validation, évaluation avant déploiement, maintenance récurrente.",
         },
         {
-          name: "AGAP",
-          url: "https://agap.tkoidra.com/",
-          tag: "agap.tkoidra.com",
-          description: "Outil de gouvernance de portefeuille pour Directeurs de Portefeuille : un agent Claude challenge séparément les déclarations Métier (valeur perçue) et DSI (effort estimé) de chaque projet, calcule un indice de confiance et détecte les conflits de perception sur une Conflict Map, avant un arbitrage assisté par scénarios de scoring (MVP / Complet) et ligne de coupure ajustable. Démonstration construite sur un portefeuille fictif de 6 projets.",
+          label: "Naval Group",
+          text: "Deux missions de coach puis consultant agile sur un projet R&D de maintenance prédictive des navires : préparation des sprints et animation des rituels, pilotage de la donnée, organisation des tests, coaching des équipes IT et métiers, structuration du knowledge management.",
         },
         {
-          name: "Comex",
-          url: "https://comex.tkoidra.com",
-          tag: "comex.tkoidra.com",
-          description: "Outil de cadrage stratégique IA pour comités de direction : génère en quelques minutes une proposition structurée (architecture technique, stack recommandée, budget, ROI estimé) à partir d'une description de besoin métier. Conçu pour accélérer la prise de décision sur des projets IA dès les premiers échanges avec un comité exécutif.",
+          label: "Alignerr",
+          text: "Évaluation et annotation de réponses de LLM pour améliorer leur fiabilité (repérage d'hallucinations), conception de prompts pour tester les limites des modèles.",
         },
         {
-          name: "Sirene",
-          url: "https://sirene.tkoidra.com",
-          tag: "sirene.tkoidra.com",
-          description: "Interface de requêtage en langage naturel sur la base SIRENE/INSEE, avec suggestion automatique de codes NAF et export des résultats. Permet d'interroger une base de données publique complexe sans connaissance technique préalable du schéma de données.",
+          label: "Groupe AGPM",
+          text: "Responsable de l'Innovation Lab, RTE et coach agile : direction d'un lab qui transforme les idées métiers en prototypes par le Design Thinking, ateliers de co-conception (AR24, souscription digitale), refonte de l'espace client, accompagnement des directions IT et métiers vers des pratiques collaboratives, pilotage de la roadmap produit.",
         },
         {
-          name: "DVF",
-          url: "https://dvf.tkoidra.com",
-          tag: "dvf.tkoidra.com",
-          description: "Outil d'analyse de données de marché immobilier (Demandes de Valeurs Foncières), pensé pour rendre exploitable une donnée publique dense et peu structurée.",
+          label: "Product Ownership",
+          text: "Ventura Travel : création du marché francophone et pilotage d'un CRM propriétaire en Scrum. Domraider : PMO et Product Owner sur des projets web et mobiles.",
         },
         {
-          name: "Fraud Agent",
-          url: "https://fraud.tkoidra.com",
-          tag: "fraud.tkoidra.com",
-          description: "Démonstration narrative d'un pipeline agentique de détection de fraude IARD : les réponses sont produites par Claude, les étapes de calcul sont simulées à l'écran.",
-        },
-        {
-          name: "Vérificateur de pièce d'identité",
-          url: "https://verif.tkoidra.com/",
-          tag: "verif.tkoidra.com",
-          description: "Contrôle qualité d'une pièce d'identité au dépôt (lisibilité, cadrage) et vérification de la cohérence mathématique de sa zone MRZ selon la norme ICAO 9303, sans juger de son authenticité.",
-        },
-        {
-          name: "LexGuard",
-          url: "https://lexguard.tkoidra.com",
-          tag: "lexguard.tkoidra.com",
-          description: "Analyse d'un contrat déposé en PDF pour repérer, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite), en langage clair.",
+          label: "Formation",
+          text: "Maîtrise en Information et Communication (Université de Nantes) · Diplôme supérieur en Administration des Affaires (Université Laval, Canada).",
         },
       ],
-      stackNote: "Chaque application est déployée en continu sur Vercel et s'appuie sur l'IA générative comme fil conducteur — la même rigueur d'industrialisation que j'applique aux projets que j'accompagne.",
     },
-    stack: {
-      heading: "Stack & compétences",
+    skills: {
+      heading: "Compétences",
       categories: [
         {
           label: "Agilité & leadership à l'échelle",
-          skills: "RTE SAFe, Coach Agile, Scrum Master, CSPO, animation de programmes multi-squads, levée de blocages inter-équipes, pilotage par OKR et KPIs (vélocité, burndown), méthode ADKAR pour la conduite du changement, facilitation d'ateliers, Jira, Confluence, Miro AI",
+          skills:
+            "RTE SAFe, CSPO, coaching agile, animation de programmes multi-équipes, OKR / KPI, conduite du changement (ADKAR), facilitation, Jira, Confluence, Miro AI",
         },
         {
-          label: "Cadrage & stratégie de projets IA",
-          skills: "Modélisation BPMN (As-Is / To-Be), priorisation de cas d'usage, calcul de ROI, gouvernance IA et conformité RGPD / AI Act, qualité des données",
+          label: "Cadrage & gouvernance IA",
+          skills:
+            "BPMN (As-Is / To-Be), priorisation des cas d'usage, ROI, gouvernance IA et conformité RGPD / AI Act, qualité de la donnée",
         },
         {
-          label: "IA & Agents",
-          skills: "API Claude / Anthropic, Gemini, prompt engineering avancé, NotebookLM pour la connaissance ancrée (grounded knowledge)",
+          label: "IA & build",
+          skills:
+            "Claude API, Claude Code, Mistral (API, endpoint UE), Gemini, NotebookLM, prompt engineering, architectures RAG (LangGraph, Chroma), évaluation de LLM",
         },
         {
-          label: "Plateformes",
-          skills: "Google Cloud, Microsoft 365 Copilot, Copilot Studio, écosystème Anthropic Claude",
-        },
-        {
-          label: "Développement assisté par IA (vibecoding)",
-          skills: "Claude Code pour l'exécution, Cursor pour l'édition, Vercel pour le déploiement, GitHub pour le versioning",
+          label: "Déploiement",
+          skills: "Vercel, Google Cloud Run, GitHub",
         },
       ],
     },
@@ -141,117 +142,106 @@ const content = {
       heading: "Certifications",
       groups: [
         {
-          label: "Anthropic",
-          items: ["AI Fluency Framework & Foundations", "Claude 101", "Claude Cowork", "Claude Code"],
-        },
-        {
           label: "Google Cloud",
           items: ["Generative AI Leader", "Cloud Digital Leader"],
         },
         {
-          label: "Agilité",
-          items: ["Certified Scrum Product Owner (CSPO)", "Release Train Engineer SAFe", "Master Coach"],
+          label: "Agilité & coaching",
+          items: [
+            "Certified Scrum Product Owner (CSPO)",
+            "SAFe Release Train Engineer (RTE)",
+            "Master Coach (Institut de Coaching International)",
+          ],
         },
       ],
     },
-    parcours: {
-      heading: "Parcours",
-      paragraphs: [
-        "Mon parcours s'est construit autour d'un fil conducteur : faire en sorte que les organisations s'approprient réellement les transformations qu'elles engagent, plutôt que de les subir. Pendant plusieurs années, j'ai dirigé le Lab Innovation du Groupe AGPM, où j'ai conçu et piloté un espace collaboratif dédié à transformer des idées métier en prototypes via le Design Thinking, tout en animant l'acculturation des directions IT et métiers aux nouvelles pratiques collaboratives — un terrain d'entraînement direct à l'animation de programmes complexes et à la conduite du changement à grande échelle.",
-        "Chez Naval Group, j'ai accompagné en tant que consultant et coach agile des équipes pluridisciplinaires sur un projet de R&D consacré à la maintenance prédictive des navires — préparation des sprints, structuration du Knowledge Management, coaching des équipes IT et métiers sur un environnement technique exigeant et hautement sécurisé.",
-        "C'est en parallèle, chez Alignerr, que j'ai mis les mains directement dans la mécanique des modèles de langage : entraînement de LLM, réduction des hallucinations, évaluation de modèles de PNL, conception de prompts complexes pour tester les limites des systèmes. Cette double compétence — animation de programmes agiles à l'échelle et compréhension fine du fonctionnement des modèles — est devenue le socle de mon positionnement actuel : un agiliste senior capable de mener un projet IA de bout en bout, du cadrage stratégique jusqu'à l'adoption par les équipes.",
-        "Mon parcours inclut aussi des expériences de Product Ownership et de pilotage de projets digitaux à fort enjeu : conception d'un CRM propriétaire chez Ventura Travel, migration complète d'un écosystème e-commerce et levée de fonds en crypto-actifs chez Domraider, refonte d'espace client et déploiement à grande échelle chez AGPM.",
-        "Cette diversité d'expériences — du management de programmes agiles à l'entraînement de modèles de langage, du Design Thinking à la gouvernance de projets data — nourrit aujourd'hui une approche de l'IA résolument ancrée dans la réalité opérationnelle des organisations.",
+    training: {
+      heading: "Formations",
+      groups: [
+        {
+          label: "Anthropic",
+          items: [
+            "AI Fluency: Framework & Foundations",
+            "Claude 101",
+            "Claude Cowork",
+            "Claude Code",
+          ],
+        },
       ],
-      formation: "Formation : Diplôme supérieur en Administration des Affaires (Université Laval, Canada), Maîtrise en Information et Communication (Université de Nantes).",
+    },
+    contact: {
+      heading: "Contact",
+      text: "Un projet IA à cadrer, un poste de Product Owner IA ?",
+      button: "Échangeons sur LinkedIn",
+      newTab: "nouvel onglet",
     },
   },
   en: {
     badge: "Profile",
     name: "Sébastien Donné",
-    tagline: "SAFe RTE · Agile Coach · Scrum Master · Product Owner · AI Project Lead",
+    tagline: "AI Product Owner · AI Project Management · SAFe RTE",
     intro: [
-      "Fifteen years synchronizing teams, removing cross-squad blockers, and helping complex programs reach the next level of maturity. I now apply that same rigor to end-to-end AI project leadership: scoping, architecture decisions, prototyping, industrialization, and change management.",
+      "As an AI Product Owner, I lead generative AI projects end to end: use-case prioritisation, product framing, architecture choices, pre-production evaluation and change management. I draw on fifteen years of scaled agile, Product Ownership and change management.",
       "This is what the name TKoidra embodies — a homophone of ¿Te cuadra? in Spanish, literally: 'Does it work for you?' Because a brilliant AI architecture that doesn't fit your operational constraints remains just an impressive demo. What I bring is the rigor of a Release Train Engineer and the listening skills of an agile coach, so the solution actually fits — technically, humanly, strategically.",
     ],
     backLabel: "Back",
-    portfolio: {
-      heading: "Live Portfolio",
-      subtitle: "Eight applications developed, deployed and maintained in production, demonstrating a real ability to turn a business need into a working tool.",
-      apps: [
+    demos: {
+      heading: "Live demonstrators",
+      text: "Eight AI demonstrators designed, deployed and maintained online, including AssurConseil (agentic RAG, Claude / Mistral comparison), LexGuard (contract analysis) and AGAP (portfolio governance).",
+      linkLabel: "See the use cases",
+    },
+    parcours: {
+      heading: "Career",
+      opening:
+        "My career has been built around a single thread: ensuring organisations genuinely own the transformations they undertake, rather than merely enduring them.",
+      entries: [
         {
-          name: "AssurConseil RAG",
-          url: "https://rag.tkoidra.com",
-          tag: "rag.tkoidra.com",
-          description: "Agentic RAG assistant for insurance contract interpretation: adaptive ReAct / Plan-and-Execute routing, mandatory source citation, and a Claude / Mistral Large 3 comparison in document mode (European inference, latency/tokens/cost shown). A demo built on fictional contracts and a fictional company (ARESIA Assurances).",
+          label: "TKoidra",
+          text: "Designing and running live AI demonstrators: framing, development assisted by AI coding agents under a validation protocol, pre-deployment evaluation, recurring maintenance.",
         },
         {
-          name: "AGAP",
-          url: "https://agap.tkoidra.com/",
-          tag: "agap.tkoidra.com",
-          description: "Portfolio governance tool for Portfolio Directors: a Claude agent separately challenges each project's Business (perceived value) and IT (estimated effort) declarations, computes a confidence index and flags perception conflicts on a Conflict Map, before supporting final arbitration through MVP / Full scoring scenarios and an adjustable cut-line. A demo built on a fictional 6-project portfolio.",
+          label: "Naval Group",
+          text: "Two assignments, first as agile coach then as agile consultant, on an R&D predictive maintenance project for naval vessels: sprint preparation and agile ceremonies, data management, test organisation, coaching IT and business teams, structuring knowledge management.",
         },
         {
-          name: "Comex",
-          url: "https://comex.tkoidra.com",
-          tag: "comex.tkoidra.com",
-          description: "AI strategic framing tool for executive committees: generates in minutes a structured proposal (technical architecture, recommended stack, budget, estimated ROI) from a business need description. Designed to accelerate decision-making on AI projects from the very first exchanges with an executive committee.",
+          label: "Alignerr",
+          text: "Evaluating and annotating LLM responses to improve their reliability (spotting hallucinations), designing prompts to test the models' limits.",
         },
         {
-          name: "Sirene",
-          url: "https://sirene.tkoidra.com",
-          tag: "sirene.tkoidra.com",
-          description: "Natural-language query interface for the SIRENE/INSEE database, with automatic NAF code suggestions and result export. Lets anyone interrogate a complex public dataset without prior technical knowledge of the data schema.",
+          label: "Groupe AGPM",
+          text: "Head of the Innovation Lab, RTE and agile coach: ran a lab turning business ideas into prototypes through Design Thinking, co-design workshops (AR24, digital subscription), customer portal redesign, supporting IT and business leadership towards collaborative practices, product roadmap management.",
         },
         {
-          name: "DVF",
-          url: "https://dvf.tkoidra.com",
-          tag: "dvf.tkoidra.com",
-          description: "Real estate market data analysis tool (Demandes de Valeurs Foncières — Property Value Requests), designed to make a dense, poorly structured public dataset exploitable.",
+          label: "Product Ownership",
+          text: "Ventura Travel: launched the French-speaking market and led the build of a proprietary CRM using Scrum. Domraider: PMO and Product Owner on web and mobile projects.",
         },
         {
-          name: "Fraud Agent",
-          url: "https://fraud.tkoidra.com",
-          tag: "fraud.tkoidra.com",
-          description: "Narrative demonstration of an agentic P&C fraud detection pipeline: responses are produced by Claude, computation steps are simulated on screen.",
-        },
-        {
-          name: "ID Document Verifier",
-          url: "https://verif.tkoidra.com/",
-          tag: "verif.tkoidra.com",
-          description: "Quality control of an ID document at submission (readability, framing) and verification of the mathematical consistency of its MRZ zone under the ICAO 9303 standard, without judging its authenticity.",
-        },
-        {
-          name: "LexGuard",
-          url: "https://lexguard.tkoidra.com",
-          tag: "lexguard.tkoidra.com",
-          description: "Analyzes a contract submitted as a PDF to flag, before signature, warning signs of a risky arrangement (hidden agreement, abnormal duration, silent renewal), in plain language.",
+          label: "Education",
+          text: "Maîtrise in Information and Communication (four-year degree, Université de Nantes) · Diplôme supérieur en administration des affaires (Business Administration, Université Laval, Canada).",
         },
       ],
-      stackNote: "Each application is continuously deployed on Vercel and built around generative AI as a common thread — the same industrialisation rigour I apply to the projects I support.",
     },
-    stack: {
-      heading: "Stack & Skills",
+    skills: {
+      heading: "Skills",
       categories: [
         {
-          label: "Agility & scaled leadership",
-          skills: "SAFe RTE, Agile Coach, Scrum Master, CSPO, multi-squad programme management, inter-team unblocking, OKR and KPI steering (velocity, burndown), ADKAR change management, workshop facilitation, Jira, Confluence, Miro AI",
+          label: "Scaled agile & leadership",
+          skills:
+            "SAFe RTE, CSPO, agile coaching, multi-team programme facilitation, OKRs / KPIs, change management (ADKAR), facilitation, Jira, Confluence, Miro AI",
         },
         {
-          label: "AI project scoping & strategy",
-          skills: "BPMN modelling (As-Is / To-Be), use case prioritisation, ROI calculation, AI governance and GDPR / AI Act compliance, data quality",
+          label: "AI framing & governance",
+          skills:
+            "BPMN (As-Is / To-Be), use-case prioritisation, ROI, AI governance and GDPR / AI Act compliance, data quality",
         },
         {
-          label: "AI & Agents",
-          skills: "Claude / Anthropic API, Gemini, advanced prompt engineering, NotebookLM for grounded knowledge",
+          label: "AI & build",
+          skills:
+            "Claude API, Claude Code, Mistral (API, EU endpoint), Gemini, NotebookLM, prompt engineering, RAG architectures (LangGraph, Chroma), LLM evaluation",
         },
         {
-          label: "Platforms",
-          skills: "Google Cloud, Microsoft 365 Copilot, Copilot Studio, Anthropic Claude ecosystem",
-        },
-        {
-          label: "AI-assisted development (vibecoding)",
-          skills: "Claude Code for execution, Cursor for editing, Vercel for deployment, GitHub for versioning",
+          label: "Deployment",
+          skills: "Vercel, Google Cloud Run, GitHub",
         },
       ],
     },
@@ -259,32 +249,58 @@ const content = {
       heading: "Certifications",
       groups: [
         {
-          label: "Anthropic",
-          items: ["AI Fluency Framework & Foundations", "Claude 101", "Claude Cowork", "Claude Code"],
-        },
-        {
           label: "Google Cloud",
           items: ["Generative AI Leader", "Cloud Digital Leader"],
         },
         {
-          label: "Agility",
-          items: ["Certified Scrum Product Owner (CSPO)", "SAFe Release Train Engineer", "Master Coach"],
+          label: "Agile & coaching",
+          items: [
+            "Certified Scrum Product Owner (CSPO)",
+            "SAFe Release Train Engineer (RTE)",
+            "Master Coach (Institut de Coaching International)",
+          ],
         },
       ],
     },
-    parcours: {
-      heading: "Background",
-      paragraphs: [
-        "My career has been built around a single thread: ensuring organisations genuinely own the transformations they undertake, rather than merely enduring them. For several years, I led the Innovation Lab at Groupe AGPM, where I designed and ran a collaborative space dedicated to turning business ideas into prototypes through Design Thinking, while driving the acculturation of IT and business leadership to new collaborative practices — direct training ground for managing complex programmes and leading large-scale change.",
-        "At Naval Group, I supported as a consultant and agile coach multidisciplinary teams on an R&D project focused on predictive maintenance for naval vessels — sprint preparation, Knowledge Management structuring, coaching IT and business teams in a demanding, highly secure technical environment.",
-        "In parallel, at Alignerr, I worked directly with the mechanics of language models: LLM training, hallucination reduction, NLP model evaluation, designing complex prompts to stress-test system boundaries. This dual competence — scaling agile programmes and deep understanding of how models actually work — became the foundation of my current positioning: a senior agilist capable of leading an AI project end-to-end, from strategic scoping to team adoption.",
-        "My career also includes Product Ownership and high-stakes digital project management: designing a proprietary CRM at Ventura Travel, full e-commerce ecosystem migration and crypto-asset fundraising at Domraider, customer portal redesign and large-scale deployment at AGPM.",
-        "This breadth of experience — from agile programme management to language model training, from Design Thinking to data project governance — now informs an approach to AI that is firmly grounded in the operational reality of organisations.",
+    training: {
+      heading: "Training",
+      groups: [
+        {
+          label: "Anthropic",
+          items: [
+            "AI Fluency: Framework & Foundations",
+            "Claude 101",
+            "Claude Cowork",
+            "Claude Code",
+          ],
+        },
       ],
-      formation: "Education: Graduate Diploma in Business Administration (Université Laval, Canada), Master's in Information and Communication (Université de Nantes).",
+    },
+    contact: {
+      heading: "Contact",
+      text: "An AI project to frame, or an AI Product Owner role to fill?",
+      button: "Let's talk on LinkedIn",
+      newTab: "new tab",
     },
   },
 };
+
+function GroupList({ groups }: { groups: Group[] }) {
+  return (
+    <div className="space-y-6">
+      {groups.map((group) => (
+        <div key={group.label}>
+          <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
+            {group.label}
+          </h3>
+          <p className="text-sm leading-7 text-slate-400">
+            {group.items.join(" · ")}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default async function ProfilPage({ params }: Props) {
   const { lang } = await params;
@@ -322,43 +338,44 @@ export default async function ProfilPage({ params }: Props) {
           </div>
         </header>
 
-        {/* Portfolio */}
-        <section className="space-y-8">
-          <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-            {t.portfolio.heading}
-          </h2>
-          <p className="text-sm leading-7 text-slate-400">{t.portfolio.subtitle}</p>
-          <div className="space-y-4">
-            {t.portfolio.apps.map((app) => (
-              <a
-                key={app.name}
-                href={app.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all hover:border-accent/40 hover:bg-slate-900/70"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-base font-bold text-slate-100 group-hover:text-accent-hover transition-colors">
-                    {app.name}
-                  </h3>
-                  <span className="shrink-0 text-xs text-slate-500 group-hover:text-accent transition-colors">
-                    {app.tag} &#8599;
-                  </span>
-                </div>
-                <p className="text-sm leading-6 text-slate-400">{app.description}</p>
-              </a>
-            ))}
-          </div>
-          <p className="text-sm leading-7 text-slate-400">{t.portfolio.stackNote}</p>
+        {/* Démonstrateurs en ligne : renvoi interne vers /use-cases */}
+        <section className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
+          <h2 className="text-lg font-bold text-slate-200">{t.demos.heading}</h2>
+          <p className="text-sm leading-7 text-slate-400">{t.demos.text}</p>
+          <Link
+            href={`/${lang}/use-cases`}
+            className="inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-semibold text-accent hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 motion-safe:transition-colors"
+          >
+            <span aria-hidden>&#8594;</span>
+            {t.demos.linkLabel}
+          </Link>
         </section>
 
-        {/* Stack & compétences */}
+        {/* Parcours */}
         <section className="space-y-8">
           <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-            {t.stack.heading}
+            {t.parcours.heading}
+          </h2>
+          <p className="text-sm leading-8 text-slate-400">{t.parcours.opening}</p>
+          <div className="space-y-6">
+            {t.parcours.entries.map((entry) => (
+              <div key={entry.label}>
+                <h3 className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
+                  {entry.label}
+                </h3>
+                <p className="text-sm leading-7 text-slate-400">{entry.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Compétences */}
+        <section className="space-y-8">
+          <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
+            {t.skills.heading}
           </h2>
           <div className="space-y-6">
-            {t.stack.categories.map((cat) => (
+            {t.skills.categories.map((cat) => (
               <div key={cat.label}>
                 <h3 className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
                   {cat.label}
@@ -374,39 +391,33 @@ export default async function ProfilPage({ params }: Props) {
           <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
             {t.certifications.heading}
           </h2>
-          <div className="space-y-6">
-            {t.certifications.groups.map((group) => (
-              <div key={group.label}>
-                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
-                  {group.label}
-                </h3>
-                <ul className="space-y-1">
-                  {group.items.map((item) => (
-                    <li key={item} className="text-sm leading-7 text-slate-400">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <GroupList groups={t.certifications.groups} />
         </section>
 
-        {/* Parcours */}
+        {/* Formations */}
         <section className="space-y-8">
           <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-            {t.parcours.heading}
+            {t.training.heading}
           </h2>
-          <div className="space-y-5">
-            {t.parcours.paragraphs.map((para, i) => (
-              <p key={i} className="text-sm leading-8 text-slate-400">
-                {para}
-              </p>
-            ))}
-          </div>
-          <p className="text-xs leading-6 text-slate-600 border-t border-slate-800 pt-6">
-            {t.parcours.formation}
-          </p>
+          <GroupList groups={t.training.groups} />
+        </section>
+
+        {/* Contact */}
+        <section className="space-y-6">
+          <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
+            {t.contact.heading}
+          </h2>
+          <p className="text-sm leading-7 text-slate-400">{t.contact.text}</p>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-navy hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 motion-safe:transition-colors"
+          >
+            {t.contact.button}
+            <span aria-hidden> &#8599;</span>
+            <span className="sr-only"> ({t.contact.newTab})</span>
+          </a>
         </section>
 
       </div>
