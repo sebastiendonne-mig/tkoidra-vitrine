@@ -51,89 +51,69 @@ const content = {
   fr: {
     badge: "Profil",
     name: "Sébastien Donné",
-    tagline: "RTE SAFe · Coach Agile · Scrum Master · Product Owner · Pilotage de projets IA",
+    tagline: "Product Owner IA · Pilotage de projets IA · RTE SAFe",
     intro: [
-      "Quinze ans à synchroniser des équipes, lever des blocages inter-squads et faire franchir un palier de maturité à des programmes complexes. J'applique aujourd'hui cette même rigueur au pilotage de projets IA de bout en bout : cadrage, choix d'architecture, prototypage, industrialisation et conduite du changement.",
-      "C'est ce que porte le nom TKoidra, homophone de ¿Te cuadra ? en espagnol — littéralement : « Est-ce que ça te convient ? ». Parce qu'une architecture IA brillante qui ne cadre pas avec vos contraintes opérationnelles reste une belle démonstration. Ce que j'apporte, c'est la rigueur d'un RTE et l'écoute d'un coach agile pour que la solution s'ajuste — techniquement, humainement, stratégiquement.",
+      "Product Owner IA, je pilote des projets d'IA générative de bout en bout : priorisation des cas d'usage, cadrage produit, choix d'architecture, évaluation avant mise en production, puis conduite du changement. Je m'appuie sur quinze ans d'agilité à l'échelle, de Product Ownership et d'accompagnement du changement.",
+      "C'est ce que porte le nom TKoidra, homophone de ¿Te cuadra ? en espagnol — littéralement : « Est-ce que ça te convient ? ». Parce qu'une architecture IA brillante qui ne cadre pas avec vos contraintes opérationnelles reste une belle démonstration. Ce que j'apporte, c'est la rigueur d'un RTE et l'écoute d'un coach agile pour que la solution s'ajuste — techniquement, humainement, stratégiquement.",
     ],
     backLabel: "Retour",
-    portfolio: {
-      heading: "Portfolio en production",
-      subtitle: "Huit applications développées, déployées et maintenues en production, illustrant une capacité réelle à transformer un besoin métier en outil fonctionnel.",
-      apps: [
+    demos: {
+      heading: "Démonstrateurs en ligne",
+      text: "Huit démonstrateurs IA conçus, déployés et maintenus en ligne, dont AssurConseil (RAG agentique, comparaison Claude / Mistral), LexGuard (analyse de contrats) et AGAP (gouvernance de portefeuille).",
+      linkLabel: "Voir les cas d'usage",
+    },
+    parcours: {
+      heading: "Parcours",
+      opening:
+        "Mon parcours s'est construit autour d'un fil conducteur : faire en sorte que les organisations s'approprient réellement les transformations qu'elles engagent, plutôt que de les subir.",
+      entries: [
         {
-          name: "AssurConseil RAG",
-          url: "https://rag.tkoidra.com",
-          tag: "rag.tkoidra.com",
-          description: "Assistant RAG agentique pour l'interprétation de contrats d'assurance : routage adaptatif ReAct / Plan-and-Execute, citation obligatoire des articles sources, et comparaison Claude / Mistral Large 3 en mode document (inférence européenne, latence/tokens/coût affichés). Démonstration construite sur des contrats et une société fictifs (ARESIA Assurances).",
+          label: "TKoidra",
+          text: "Conception et exploitation de démonstrateurs IA en ligne : cadrage, développement assisté par des agents de code IA sous protocole de validation, évaluation avant déploiement, maintenance récurrente.",
         },
         {
-          name: "AGAP",
-          url: "https://agap.tkoidra.com/",
-          tag: "agap.tkoidra.com",
-          description: "Outil de gouvernance de portefeuille pour Directeurs de Portefeuille : un agent Claude challenge séparément les déclarations Métier (valeur perçue) et DSI (effort estimé) de chaque projet, calcule un indice de confiance et détecte les conflits de perception sur une Conflict Map, avant un arbitrage assisté par scénarios de scoring (MVP / Complet) et ligne de coupure ajustable. Démonstration construite sur un portefeuille fictif de 6 projets.",
+          label: "Naval Group",
+          text: "Deux missions de coach puis consultant agile sur un projet R&D de maintenance prédictive des navires : préparation des sprints et animation des rituels, pilotage de la donnée, organisation des tests, coaching des équipes IT et métiers, structuration du knowledge management.",
         },
         {
-          name: "Comex",
-          url: "https://comex.tkoidra.com",
-          tag: "comex.tkoidra.com",
-          description: "Outil de cadrage stratégique IA pour comités de direction : génère en quelques minutes une proposition structurée (architecture technique, stack recommandée, budget, ROI estimé) à partir d'une description de besoin métier. Conçu pour accélérer la prise de décision sur des projets IA dès les premiers échanges avec un comité exécutif.",
+          label: "Alignerr",
+          text: "Évaluation et annotation de réponses de LLM pour améliorer leur fiabilité (repérage d'hallucinations), conception de prompts pour tester les limites des modèles.",
         },
         {
-          name: "Sirene",
-          url: "https://sirene.tkoidra.com",
-          tag: "sirene.tkoidra.com",
-          description: "Interface de requêtage en langage naturel sur la base SIRENE/INSEE, avec suggestion automatique de codes NAF et export des résultats. Permet d'interroger une base de données publique complexe sans connaissance technique préalable du schéma de données.",
+          label: "Groupe AGPM",
+          text: "Responsable de l'Innovation Lab, RTE et coach agile : direction d'un lab qui transforme les idées métiers en prototypes par le Design Thinking, ateliers de co-conception (AR24, souscription digitale), refonte de l'espace client, accompagnement des directions IT et métiers vers des pratiques collaboratives, pilotage de la roadmap produit.",
         },
         {
-          name: "DVF",
-          url: "https://dvf.tkoidra.com",
-          tag: "dvf.tkoidra.com",
-          description: "Outil d'analyse de données de marché immobilier (Demandes de Valeurs Foncières), pensé pour rendre exploitable une donnée publique dense et peu structurée.",
+          label: "Product Ownership",
+          text: "Ventura Travel : création du marché francophone et pilotage d'un CRM propriétaire en Scrum. Domraider : PMO et Product Owner sur des projets web et mobiles.",
         },
         {
-          name: "Fraud Agent",
-          url: "https://fraud.tkoidra.com",
-          tag: "fraud.tkoidra.com",
-          description: "Démonstration narrative d'un pipeline agentique de détection de fraude IARD : les réponses sont produites par Claude, les étapes de calcul sont simulées à l'écran.",
-        },
-        {
-          name: "Vérificateur de pièce d'identité",
-          url: "https://verif.tkoidra.com/",
-          tag: "verif.tkoidra.com",
-          description: "Contrôle qualité d'une pièce d'identité au dépôt (lisibilité, cadrage) et vérification de la cohérence mathématique de sa zone MRZ selon la norme ICAO 9303, sans juger de son authenticité.",
-        },
-        {
-          name: "LexGuard",
-          url: "https://lexguard.tkoidra.com",
-          tag: "lexguard.tkoidra.com",
-          description: "Analyse d'un contrat déposé en PDF pour repérer, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite), en langage clair.",
+          label: "Formation",
+          text: "Maîtrise en Information et Communication (Université de Nantes) · Diplôme supérieur en Administration des Affaires (Université Laval, Canada).",
         },
       ],
-      stackNote: "Chaque application est déployée en continu sur Vercel et s'appuie sur l'IA générative comme fil conducteur — la même rigueur d'industrialisation que j'applique aux projets que j'accompagne.",
     },
-    stack: {
-      heading: "Stack & compétences",
+    skills: {
+      heading: "Compétences",
       categories: [
         {
           label: "Agilité & leadership à l'échelle",
-          skills: "RTE SAFe, Coach Agile, Scrum Master, CSPO, animation de programmes multi-squads, levée de blocages inter-équipes, pilotage par OKR et KPIs (vélocité, burndown), méthode ADKAR pour la conduite du changement, facilitation d'ateliers, Jira, Confluence, Miro AI",
+          skills:
+            "RTE SAFe, CSPO, coaching agile, animation de programmes multi-équipes, OKR / KPI, conduite du changement (ADKAR), facilitation, Jira, Confluence, Miro AI",
         },
         {
-          label: "Cadrage & stratégie de projets IA",
-          skills: "Modélisation BPMN (As-Is / To-Be), priorisation de cas d'usage, calcul de ROI, gouvernance IA et conformité RGPD / AI Act, qualité des données",
+          label: "Cadrage & gouvernance IA",
+          skills:
+            "BPMN (As-Is / To-Be), priorisation des cas d'usage, ROI, gouvernance IA et conformité RGPD / AI Act, qualité de la donnée",
         },
         {
-          label: "IA & Agents",
-          skills: "API Claude / Anthropic, Gemini, prompt engineering avancé, NotebookLM pour la connaissance ancrée (grounded knowledge)",
+          label: "IA & build",
+          skills:
+            "Claude API, Claude Code, Mistral (API, endpoint UE), Gemini, NotebookLM, prompt engineering, architectures RAG (LangGraph, Chroma), évaluation de LLM",
         },
         {
-          label: "Plateformes",
-          skills: "Google Cloud, Microsoft 365 Copilot, Copilot Studio, écosystème Anthropic Claude",
-        },
-        {
-          label: "Développement assisté par IA (vibecoding)",
-          skills: "Claude Code pour l'exécution, Cursor pour l'édition, Vercel pour le déploiement, GitHub pour le versioning",
+          label: "Déploiement",
+          skills: "Vercel, Google Cloud Run, GitHub",
         },
       ],
     },
@@ -141,29 +121,38 @@ const content = {
       heading: "Certifications",
       groups: [
         {
-          label: "Anthropic",
-          items: ["AI Fluency Framework & Foundations", "Claude 101", "Claude Cowork", "Claude Code"],
-        },
-        {
           label: "Google Cloud",
           items: ["Generative AI Leader", "Cloud Digital Leader"],
         },
         {
-          label: "Agilité",
-          items: ["Certified Scrum Product Owner (CSPO)", "Release Train Engineer SAFe", "Master Coach"],
+          label: "Agilité & coaching",
+          items: [
+            "Certified Scrum Product Owner (CSPO)",
+            "SAFe Release Train Engineer (RTE)",
+            "Master Coach (Institut de Coaching International)",
+          ],
         },
       ],
     },
-    parcours: {
-      heading: "Parcours",
-      paragraphs: [
-        "Mon parcours s'est construit autour d'un fil conducteur : faire en sorte que les organisations s'approprient réellement les transformations qu'elles engagent, plutôt que de les subir. Pendant plusieurs années, j'ai dirigé le Lab Innovation du Groupe AGPM, où j'ai conçu et piloté un espace collaboratif dédié à transformer des idées métier en prototypes via le Design Thinking, tout en animant l'acculturation des directions IT et métiers aux nouvelles pratiques collaboratives — un terrain d'entraînement direct à l'animation de programmes complexes et à la conduite du changement à grande échelle.",
-        "Chez Naval Group, j'ai accompagné en tant que consultant et coach agile des équipes pluridisciplinaires sur un projet de R&D consacré à la maintenance prédictive des navires — préparation des sprints, structuration du Knowledge Management, coaching des équipes IT et métiers sur un environnement technique exigeant et hautement sécurisé.",
-        "C'est en parallèle, chez Alignerr, que j'ai mis les mains directement dans la mécanique des modèles de langage : entraînement de LLM, réduction des hallucinations, évaluation de modèles de PNL, conception de prompts complexes pour tester les limites des systèmes. Cette double compétence — animation de programmes agiles à l'échelle et compréhension fine du fonctionnement des modèles — est devenue le socle de mon positionnement actuel : un agiliste senior capable de mener un projet IA de bout en bout, du cadrage stratégique jusqu'à l'adoption par les équipes.",
-        "Mon parcours inclut aussi des expériences de Product Ownership et de pilotage de projets digitaux à fort enjeu : conception d'un CRM propriétaire chez Ventura Travel, migration complète d'un écosystème e-commerce et levée de fonds en crypto-actifs chez Domraider, refonte d'espace client et déploiement à grande échelle chez AGPM.",
-        "Cette diversité d'expériences — du management de programmes agiles à l'entraînement de modèles de langage, du Design Thinking à la gouvernance de projets data — nourrit aujourd'hui une approche de l'IA résolument ancrée dans la réalité opérationnelle des organisations.",
+    training: {
+      heading: "Formations",
+      groups: [
+        {
+          label: "Anthropic",
+          items: [
+            "AI Fluency: Framework & Foundations",
+            "Claude 101",
+            "Claude Cowork",
+            "Claude Code",
+          ],
+        },
       ],
-      formation: "Formation : Diplôme supérieur en Administration des Affaires (Université Laval, Canada), Maîtrise en Information et Communication (Université de Nantes).",
+    },
+    contact: {
+      heading: "Contact",
+      text: "Un projet IA à cadrer, un poste de Product Owner IA ?",
+      button: "Échangeons sur LinkedIn",
+      newTab: "nouvel onglet",
     },
   },
   en: {
