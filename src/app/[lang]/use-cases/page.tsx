@@ -149,7 +149,14 @@ function Demonstrates({ label, text }: { label: string; text: string }) {
   );
 }
 
-function FeatureGrid({ features }: { features: Feature[] }) {
+// titleTag : h4 sous un h3 (fiches en vedette), h3 directement sous le h2 (fiches compactes) — pas de saut de niveau.
+function FeatureGrid({
+  features,
+  titleTag: TitleTag = "h4",
+}: {
+  features: Feature[];
+  titleTag?: "h3" | "h4";
+}) {
   return (
     <div
       className={
@@ -170,7 +177,7 @@ function FeatureGrid({ features }: { features: Feature[] }) {
           <span className="text-2xl" role="img" aria-label={feature.title}>
             {feature.icon}
           </span>
-          <h4 className="text-sm font-bold text-slate-100">{feature.title}</h4>
+          <TitleTag className="text-sm font-bold text-slate-100">{feature.title}</TitleTag>
           <p className="text-xs leading-6 text-slate-400">{feature.description}</p>
         </div>
       ))}
@@ -347,7 +354,7 @@ function CompactCard({
 
       <Demonstrates label={labels.demonstrates} text={project.demonstrates} />
 
-      <FeatureGrid features={project.features} />
+      <FeatureGrid features={project.features} titleTag="h3" />
 
       <div className="flex flex-wrap gap-2">
         {project.stack.map((tech) => (
