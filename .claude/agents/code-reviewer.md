@@ -11,7 +11,7 @@ Quand on t'invoque :
 2. Vérifie chaque fichier modifié contre les règles de `CLAUDE.md` :
    - Pas de texte en dur (tout passe par les dictionnaires fr/en)
    - `fr.json` et `en.json` toujours parallèles
-   - Palette slate/teal respectée
+   - Palette slate + accent cyan (tokens @theme de globals.css) respectée
    - Rien qui casse le 100% SSG
 3. Repère les régressions TypeScript évidentes et les incohérences de nommage avec le reste du repo.
 4. Rends un rapport court et structuré :

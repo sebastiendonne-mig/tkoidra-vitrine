@@ -16,5 +16,5 @@ description: Utilise ce skill quand une nouvelle démo IA (type sirene/comex/dvf
 
 ## Ce qu'il ne faut pas faire
 - Ne pas inventer de métrique ou de stack pour une démo si l'info n'a pas été donnée — marquer `[À CONFIRMER]`.
-- Ne pas casser la palette slate/teal existante pour la nouvelle section.
+- Ne pas casser la palette slate + accent cyan existante (tokens `@theme` de globals.css) pour la nouvelle section.
 - Ne pas committer avant que `npm run build` soit passé.
