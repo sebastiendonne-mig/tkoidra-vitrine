@@ -43,7 +43,8 @@ function frOnly(
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    ...bilingual("/use-cases", "weekly", 1.0),
+    ...bilingual("", "weekly", 1.0),
+    ...bilingual("/use-cases", "weekly", 0.9),
     ...frOnly("/blog", "weekly", 0.8),
     ...blogSlugs.flatMap((slug) =>
       frOnly(`/blog/${slug}`, "yearly", 0.7)

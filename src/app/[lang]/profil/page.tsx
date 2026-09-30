@@ -52,7 +52,6 @@ type Content = {
   name: string;
   tagline: string;
   intro: string[];
-  backLabel: string;
   demos: { heading: string; text: string; linkLabel: string };
   parcours: {
     heading: string;
@@ -77,7 +76,6 @@ const content: Record<"fr" | "en", Content> = {
       "Product Owner IA, je pilote des projets d'IA générative de bout en bout : priorisation des cas d'usage, cadrage produit, choix d'architecture, évaluation avant mise en production, puis conduite du changement. Je m'appuie sur quinze ans d'agilité à l'échelle, de Product Ownership et d'accompagnement du changement.",
       "C'est ce que porte le nom TKoidra, homophone de ¿Te cuadra ? en espagnol — littéralement : « Est-ce que ça te convient ? ». Parce qu'une architecture IA brillante qui ne cadre pas avec vos contraintes opérationnelles reste une belle démonstration. Ce que j'apporte, c'est la rigueur d'un RTE et l'écoute d'un coach agile pour que la solution s'ajuste — techniquement, humainement, stratégiquement.",
     ],
-    backLabel: "Retour",
     demos: {
       heading: "Démonstrateurs en ligne",
       text: "Huit démonstrateurs IA conçus, déployés et maintenus en ligne, dont AssurConseil (RAG agentique, comparaison Claude / Mistral), LexGuard (analyse de contrats) et AGAP (gouvernance de portefeuille).",
@@ -184,7 +182,6 @@ const content: Record<"fr" | "en", Content> = {
       "As an AI Product Owner, I lead generative AI projects end to end: use-case prioritisation, product framing, architecture choices, pre-production evaluation and change management. I draw on fifteen years of scaled agile, Product Ownership and change management.",
       "This is what the name TKoidra embodies — a homophone of ¿Te cuadra? in Spanish, literally: 'Does it work for you?' Because a brilliant AI architecture that doesn't fit your operational constraints remains just an impressive demo. What I bring is the rigor of a Release Train Engineer and the listening skills of an agile coach, so the solution actually fits — technically, humanly, strategically.",
     ],
-    backLabel: "Back",
     demos: {
       heading: "Live demonstrators",
       text: "Eight AI demonstrators designed, deployed and maintained online, including AssurConseil (agentic RAG, Claude / Mistral comparison), LexGuard (contract analysis) and AGAP (portfolio governance).",
@@ -311,14 +308,6 @@ export default async function ProfilPage({ params }: Props) {
     <main className="flex min-h-screen flex-col items-center bg-slate-950 text-white font-sans px-6 py-24">
       <div className="w-full max-w-3xl space-y-16">
 
-        {/* Back link */}
-        <Link
-          href={`/${lang}/use-cases`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
-        >
-          <span aria-hidden>&#8592;</span>
-          {t.backLabel}
-        </Link>
 
         {/* Hero header */}
         <header className="flex flex-col items-start gap-5 border-b border-slate-800 pb-10">

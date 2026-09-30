@@ -203,12 +203,6 @@ export default async function BlogPostPage({ params }: Props) {
             <span aria-hidden>←</span>
             {t.backLabel}
           </Link>
-          <Link
-            href={`/${lang}/use-cases`}
-            className="text-sm text-slate-500 hover:text-slate-300 transition-colors"
-          >
-            {lang === 'fr' ? 'Accueil' : 'Home'}
-          </Link>
         </footer>
 
       </div>

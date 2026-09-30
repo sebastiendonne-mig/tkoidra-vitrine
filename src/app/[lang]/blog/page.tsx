@@ -36,7 +36,6 @@ const ui = {
     badge: "Deep Dives",
     subtitle:
       "Des articles approfondis sur l'architecture IA, le LLMOps et les pratiques de Product Owner dans des contextes d'IA réelle.",
-    backLabel: "Retour",
     readLabel: "Lire l'article →",
     readTimeSuffix: "de lecture",
   },
@@ -44,7 +43,6 @@ const ui = {
     badge: "Deep Dives",
     subtitle:
       "In-depth articles on AI architecture, LLMOps, and AI Product Owner practices in real-world contexts.",
-    backLabel: "Back",
     readLabel: "Read article →",
     readTimeSuffix: "read",
   },

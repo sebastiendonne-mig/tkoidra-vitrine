@@ -1,22 +1,50 @@
 {
   "navigation": {
-    "home": "Accueil",
-    "useCases": "Cas d'Usage",
-    "blog": "Deep Dives"
+    "homeAriaLabel": "TKoidra — accueil",
+    "useCases": "Cas d'usage",
+    "method": "Méthode",
+    "blog": "Deep Dives",
+    "profile": "Profil",
+    "contact": "Contact",
+    "legal": "Mentions légales"
   },
-  "hero": {
-    "title": "Product Owner IA",
-    "subtitle": "Rendre l'IA opérationnelle, mesurable et adoptée.",
-    "cta": "Voir les cas d'usage"
+  "home": {
+    "metadata": {
+      "title": "Des projets IA qui cadrent avec vos contraintes | TKoidra",
+      "description": "Sébastien Donné, Product Owner IA : cadrage, construction et adoption de solutions d'IA générative. Huit démonstrateurs en ligne, testables."
+    },
+    "badge": "TKoidra",
+    "title": "Des projets IA qui cadrent avec vos contraintes.",
+    "intro": "Je suis Sébastien Donné, Product Owner IA. Je cadre, construis et fais adopter des solutions d'IA générative, en m'appuyant sur quinze ans d'agilité à l'échelle et de conduite du changement. Huit démonstrateurs en ligne le montrent.",
+    "cta": "Voir les cas d'usage",
+    "methodLink": "Découvrir la méthode",
+    "demos": {
+      "heading": "Trois démonstrateurs phares",
+      "items": [
+        { "slug": "assurconseil", "name": "AssurConseil", "text": "RAG agentique sur des contrats d'assurance : citations obligatoires, comparaison Claude / Mistral (inférence dans l'UE)." },
+        { "slug": "lexguard", "name": "LexGuard", "text": "Repère les signaux de vigilance d'un contrat PDF avant signature." },
+        { "slug": "agap", "name": "AGAP", "text": "Arbitrage de portefeuille de projets : écart de perception Métier / DSI, scénarios, ligne de coupe budgétaire." }
+      ],
+      "allLink": "Voir les 8 cas d'usage"
+    },
+    "explore": {
+      "heading": "Explorer",
+      "blogLangNote": "",
+      "items": [
+        { "key": "useCases", "title": "Cas d'usage", "text": "Huit démonstrateurs IA testables en ligne, classés par thème." },
+        { "key": "method", "title": "Méthode", "text": "Diagnostiquer, construire, exploiter : ma façon de mener un projet IA." },
+        { "key": "blog", "title": "Deep Dives", "text": "Articles de fond sur les projets IA, le métier de Product Owner IA et la conformité." },
+        { "key": "profile", "title": "Profil", "text": "Parcours, compétences et certifications." }
+      ]
+    }
   },
   "useCases": {
-    "title": "Cas d'Usage",
+    "title": "Cas d'usage",
     "subtitle": "Des démonstrateurs IA fonctionnels, en ligne et testables — du cadrage à la mise en production.",
     "metadata": {
       "title": "Cas d'usage IA | Sébastien Donné | TKoidra",
       "description": "Des démonstrateurs IA fonctionnels, en ligne et testables — du cadrage à la mise en production, sur des cas d'usage en assurance, immobilier et conformité."
     },
-    "backLabel": "Retour à l'accueil",
     "discoverLabel": "Découvrir le projet →",
     "appLink": { "label": "Ouvrir l'application", "newTab": "s'ouvre dans un nouvel onglet" },
     "sectionLabels": {

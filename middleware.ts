@@ -46,12 +46,10 @@ export function middleware(request: NextRequest) {
 
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
-    return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname.startsWith('/') ? pathname : `/${pathname}`}`,
-        request.url
-      )
-    );
+    // "/" → "/fr" ou "/en" directement (sans slash final : évite un 308 supplémentaire).
+    // Redirection temporaire (307) : la langue dépend de l'en-tête Accept-Language.
+    const target = pathname === '/' ? `/${locale}` : `/${locale}${pathname}`;
+    return NextResponse.redirect(new URL(target, request.url));
   }
 }
 
