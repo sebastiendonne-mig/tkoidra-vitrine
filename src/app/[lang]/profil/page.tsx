@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
-import { SITE_URL } from "../../../lib/site";
+import { LINKEDIN_URL, SITE_URL } from "../../../lib/site";
 import Link from "next/link";
 
 type Props = {
@@ -15,13 +15,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
   const isFr = lang === "fr";
   const url = `${SITE_URL}/${lang}/profil`;
+  const title = isFr
+    ? "Sébastien Donné · Product Owner IA | TKoidra"
+    : "Sébastien Donné · AI Product Owner | TKoidra";
+  const description = isFr
+    ? "Product Owner IA et RTE SAFe : pilotage de projets d'IA générative de bout en bout, du cadrage à la conduite du changement. Quinze ans d'agilité à l'échelle."
+    : "AI Product Owner and SAFe RTE: end-to-end leadership of generative AI projects, from framing to change management. Fifteen years of scaled agile.";
   return {
-    title: isFr
-      ? "Profil | Sébastien Donné | TKoidra"
-      : "Profile | Sébastien Donné | TKoidra",
-    description: isFr
-      ? "RTE SAFe, Coach Agile senior et Product Owner IA. 15 ans de pilotage de programmes complexes, appliqué au pilotage de projets IA de bout en bout."
-      : "SAFe RTE, senior Agile Coach and AI Product Owner. 15 years leading complex programmes, now applied to end-to-end AI project leadership.",
+    title,
+    description,
     alternates: {
       canonical: url,
       languages: {
@@ -30,12 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: isFr
-        ? "Profil | Sébastien Donné | TKoidra"
-        : "Profile | Sébastien Donné | TKoidra",
-      description: isFr
-        ? "RTE SAFe, Coach Agile senior et Product Owner IA. 15 ans de pilotage de programmes complexes, appliqué au pilotage de projets IA de bout en bout."
-        : "SAFe RTE, senior Agile Coach and AI Product Owner. 15 years leading complex programmes, now applied to end-to-end AI project leadership.",
+      title,
+      description,
       url,
       siteName: "TKoidra",
       locale: isFr ? "fr_FR" : "en_US",
@@ -47,7 +45,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const content = {
+type Group = { label: string; items: string[] };
+
+type Content = {
+  badge: string;
+  name: string;
+  tagline: string;
+  intro: string[];
+  backLabel: string;
+  demos: { heading: string; text: string; linkLabel: string };
+  parcours: {
+    heading: string;
+    opening: string;
+    entries: { label: string; text: string }[];
+  };
+  skills: {
+    heading: string;
+    categories: { label: string; skills: string }[];
+  };
+  certifications: { heading: string; groups: Group[] };
+  training: { heading: string; groups: Group[] };
+  contact: { heading: string; text: string; button: string; newTab: string };
+};
+
+const content: Record<"fr" | "en", Content> = {
   fr: {
     badge: "Profil",
     name: "Sébastien Donné",
@@ -264,6 +285,23 @@ const content = {
   },
 };
 
+function GroupList({ groups }: { groups: Group[] }) {
+  return (
+    <div className="space-y-6">
+      {groups.map((group) => (
+        <div key={group.label}>
+          <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
+            {group.label}
+          </h3>
+          <p className="text-sm leading-7 text-slate-400">
+            {group.items.join(" · ")}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default async function ProfilPage({ params }: Props) {
   const { lang } = await params;
   const locale = (lang in content ? lang : "fr") as keyof typeof content;
@@ -300,43 +338,44 @@ export default async function ProfilPage({ params }: Props) {
           </div>
         </header>
 
-        {/* Portfolio */}
-        <section className="space-y-8">
-          <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-            {t.portfolio.heading}
-          </h2>
-          <p className="text-sm leading-7 text-slate-400">{t.portfolio.subtitle}</p>
-          <div className="space-y-4">
-            {t.portfolio.apps.map((app) => (
-              <a
-                key={app.name}
-                href={app.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-all hover:border-accent/40 hover:bg-slate-900/70"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-base font-bold text-slate-100 group-hover:text-accent-hover transition-colors">
-                    {app.name}
-                  </h3>
-                  <span className="shrink-0 text-xs text-slate-500 group-hover:text-accent transition-colors">
-                    {app.tag} &#8599;
-                  </span>
-                </div>
-                <p className="text-sm leading-6 text-slate-400">{app.description}</p>
-              </a>
-            ))}
-          </div>
-          <p className="text-sm leading-7 text-slate-400">{t.portfolio.stackNote}</p>
+        {/* Démonstrateurs en ligne : renvoi interne vers /use-cases */}
+        <section className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
+          <h2 className="text-lg font-bold text-slate-200">{t.demos.heading}</h2>
+          <p className="text-sm leading-7 text-slate-400">{t.demos.text}</p>
+          <Link
+            href={`/${lang}/use-cases`}
+            className="inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-semibold text-accent hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 motion-safe:transition-colors"
+          >
+            <span aria-hidden>&#8594;</span>
+            {t.demos.linkLabel}
+          </Link>
         </section>
 
-        {/* Stack & compétences */}
+        {/* Parcours */}
         <section className="space-y-8">
           <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-            {t.stack.heading}
+            {t.parcours.heading}
+          </h2>
+          <p className="text-sm leading-8 text-slate-400">{t.parcours.opening}</p>
+          <div className="space-y-6">
+            {t.parcours.entries.map((entry) => (
+              <div key={entry.label}>
+                <h3 className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
+                  {entry.label}
+                </h3>
+                <p className="text-sm leading-7 text-slate-400">{entry.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Compétences */}
+        <section className="space-y-8">
+          <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
+            {t.skills.heading}
           </h2>
           <div className="space-y-6">
-            {t.stack.categories.map((cat) => (
+            {t.skills.categories.map((cat) => (
               <div key={cat.label}>
                 <h3 className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
                   {cat.label}
@@ -352,39 +391,33 @@ export default async function ProfilPage({ params }: Props) {
           <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
             {t.certifications.heading}
           </h2>
-          <div className="space-y-6">
-            {t.certifications.groups.map((group) => (
-              <div key={group.label}>
-                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
-                  {group.label}
-                </h3>
-                <ul className="space-y-1">
-                  {group.items.map((item) => (
-                    <li key={item} className="text-sm leading-7 text-slate-400">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <GroupList groups={t.certifications.groups} />
         </section>
 
-        {/* Parcours */}
+        {/* Formations */}
         <section className="space-y-8">
           <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-            {t.parcours.heading}
+            {t.training.heading}
           </h2>
-          <div className="space-y-5">
-            {t.parcours.paragraphs.map((para, i) => (
-              <p key={i} className="text-sm leading-8 text-slate-400">
-                {para}
-              </p>
-            ))}
-          </div>
-          <p className="text-xs leading-6 text-slate-600 border-t border-slate-800 pt-6">
-            {t.parcours.formation}
-          </p>
+          <GroupList groups={t.training.groups} />
+        </section>
+
+        {/* Contact */}
+        <section className="space-y-6">
+          <h2 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
+            {t.contact.heading}
+          </h2>
+          <p className="text-sm leading-7 text-slate-400">{t.contact.text}</p>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-navy hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 motion-safe:transition-colors"
+          >
+            {t.contact.button}
+            <span aria-hidden> &#8599;</span>
+            <span className="sr-only"> ({t.contact.newTab})</span>
+          </a>
         </section>
 
       </div>
