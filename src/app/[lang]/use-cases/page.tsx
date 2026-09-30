@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getDictionary } from "../../../get-dictionary";
 import { i18n } from "../../../../i18n-config";
 import { SITE_URL } from "../../../lib/site";
+import { OpenAppButton } from "../../../components/OpenAppButton";
 import { OverviewGrid } from "./OverviewGrid";
 
 interface Feature {
@@ -41,6 +42,11 @@ interface Project {
   image?: ProjectImage;
 }
 
+interface AppLinkLabels {
+  label: string;
+  newTab: string;
+}
+
 interface Theme {
   key: string;
   label: string;
@@ -65,11 +71,6 @@ const appUrls: Record<string, string> = {
   lexguard: "https://lexguard.tkoidra.com",
   verifid: "https://verif.tkoidra.com/",
 };
-
-const appLinkLabels = {
-  fr: "Ouvrir l'application complète",
-  en: "Open full application",
-} as const;
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
@@ -177,23 +178,6 @@ function FeatureGrid({ features }: { features: Feature[] }) {
   );
 }
 
-function AppLink({ appUrl, label }: { appUrl?: string; label: string }) {
-  if (!appUrl) return null;
-  return (
-    <a
-      href={appUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-400 transition-all hover:border-accent/50 hover:text-accent-hover"
-    >
-      {label}
-      <span aria-hidden className="text-accent">
-        &#8599;
-      </span>
-    </a>
-  );
-}
-
 function MethodBridgeLink({
   lang,
   bridge,
@@ -218,7 +202,7 @@ function FeaturedCard({
   slug,
   project,
   labels,
-  appLinkLabel,
+  appLink,
   index,
   priorityImage,
 }: {
@@ -226,7 +210,7 @@ function FeaturedCard({
   slug: string;
   project: Project;
   labels: SectionLabels;
-  appLinkLabel: string;
+  appLink: AppLinkLabels;
   index: number;
   priorityImage: boolean;
 }) {
@@ -241,7 +225,14 @@ function FeaturedCard({
           <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {project.tag}
           </span>
-          <AppLink appUrl={appUrl} label={appLinkLabel} />
+          {appUrl && (
+            <OpenAppButton
+              href={appUrl}
+              label={appLink.label}
+              newTabLabel={appLink.newTab}
+              appName={project.title}
+            />
+          )}
         </div>
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400">
           {project.title}
@@ -321,12 +312,12 @@ function CompactCard({
   slug,
   project,
   labels,
-  appLinkLabel,
+  appLink,
 }: {
   slug: string;
   project: Project;
   labels: SectionLabels;
-  appLinkLabel: string;
+  appLink: AppLinkLabels;
 }) {
   const appUrl = appUrls[slug];
   return (
@@ -339,7 +330,14 @@ function CompactCard({
           <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {project.tag}
           </span>
-          <AppLink appUrl={appUrl} label={appLinkLabel} />
+          {appUrl && (
+            <OpenAppButton
+              href={appUrl}
+              label={appLink.label}
+              newTabLabel={appLink.newTab}
+              appName={project.title}
+            />
+          )}
         </div>
         <h2 className="text-2xl font-extrabold tracking-tight text-slate-100 sm:text-3xl">
           {project.title}
@@ -389,8 +387,10 @@ export default async function UseCasesPage({
     demonstrates: "What It Demonstrates",
   };
 
-  const appLinkLabel =
-    appLinkLabels[lang as keyof typeof appLinkLabels] ?? appLinkLabels.fr;
+  const appLink: AppLinkLabels = useCases?.appLink ?? {
+    label: "Open the application",
+    newTab: "opens in a new tab",
+  };
 
   const featuredSlugs = projects.filter(([, p]) => p.featured).map(([slug]) => slug);
   let priorityAssigned = false;
@@ -436,7 +436,7 @@ export default async function UseCasesPage({
                   slug={slug}
                   project={project}
                   labels={labels}
-                  appLinkLabel={appLinkLabel}
+                  appLink={appLink}
                   index={index}
                   priorityImage={isPriority}
                 />
@@ -454,7 +454,7 @@ export default async function UseCasesPage({
                 slug={slug}
                 project={project}
                 labels={labels}
-                appLinkLabel={appLinkLabel}
+                appLink={appLink}
               />
             ))}
         </div>

@@ -18,6 +18,7 @@
     },
     "backLabel": "Retour à l'accueil",
     "discoverLabel": "Découvrir le projet →",
+    "appLink": { "label": "Ouvrir l'application", "newTab": "s'ouvre dans un nouvel onglet" },
     "sectionLabels": {
       "challenge": "Le Défi Métier",
       "solution": "La Solution IA",
@@ -366,7 +367,8 @@
       "deliverables": "Livrables",
       "proof": "Preuve",
       "tools": "Outils qui illustrent cette phase",
-      "practices": "Bonnes pratiques en entreprise"
+      "practices": "Bonnes pratiques en entreprise",
+      "newTab": "s'ouvre dans un nouvel onglet"
     },
     "phases": [
       {

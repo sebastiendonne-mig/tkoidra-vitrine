@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
+import { OpenAppButton } from "../../../components/OpenAppButton";
 import { getDictionary } from "../../../get-dictionary";
 import { SITE_URL } from "../../../lib/site";
 import { PhaseStepper } from "./PhaseStepper";
@@ -50,6 +51,7 @@ interface MethodeDict {
     proof: string;
     tools: string;
     practices: string;
+    newTab: string;
   };
   phases: Phase[];
   threads: { title: string; items: (TitledText & { icon: string })[] };
@@ -137,12 +139,14 @@ function ProofCard({
   id,
   label,
   toolsLabel,
+  newTabLabel,
   proof,
   tools,
 }: {
   id: string;
   label: string;
   toolsLabel: string;
+  newTabLabel: string;
   proof: Proof;
   tools: Tool[];
 }) {
@@ -196,12 +200,13 @@ function ProofCard({
         </div>
       )}
 
-      <ExternalLink
+      <OpenAppButton
         href={APP_URLS.assurconseil}
-        className="mt-5 inline-flex items-center gap-1 rounded-lg border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent-hover hover:border-accent hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-safe:transition-colors"
-      >
-        {proof.cta}
-      </ExternalLink>
+        label={proof.cta}
+        newTabLabel={newTabLabel}
+        appName={proof.app}
+        className="mt-5"
+      />
     </div>
   );
 }
@@ -261,6 +266,7 @@ function PhaseSection({
             id={id}
             label={labels.proof}
             toolsLabel={labels.tools}
+            newTabLabel={labels.newTab}
             proof={phase.proof}
             tools={phase.tools}
           />
