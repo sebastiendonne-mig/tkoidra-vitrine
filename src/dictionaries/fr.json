@@ -1,8 +1,12 @@
 {
   "navigation": {
-    "home": "Accueil",
-    "useCases": "Cas d'Usage",
-    "blog": "Deep Dives"
+    "homeAriaLabel": "TKoidra — accueil",
+    "useCases": "Cas d'usage",
+    "method": "Méthode",
+    "blog": "Deep Dives",
+    "profile": "Profil",
+    "contact": "Contact",
+    "legal": "Mentions légales"
   },
   "hero": {
     "title": "Product Owner IA",
@@ -10,7 +14,7 @@
     "cta": "Voir les cas d'usage"
   },
   "useCases": {
-    "title": "Cas d'Usage",
+    "title": "Cas d'usage",
     "subtitle": "Des démonstrateurs IA fonctionnels, en ligne et testables — du cadrage à la mise en production.",
     "metadata": {
       "title": "Cas d'usage IA | Sébastien Donné | TKoidra",

@@ -5,6 +5,7 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { AnalyticsOptOut } from "../../components/AnalyticsOptOut";
 import { SITE_URL } from "../../lib/site";
+import type { NavLabels } from "../../lib/nav";
 import "../globals.css";
 
 type Props = {
@@ -40,10 +41,14 @@ export default async function RootLayout(props: Props) {
   const isFr = lang === "fr";
 
   const nav = (dict?.navigation ?? {
-    home: "Home",
-    useCases: "Case Studies",
+    homeAriaLabel: "TKoidra — home",
+    useCases: "Use cases",
+    method: "Method",
     blog: "Deep Dives",
-  }) as { home: string; useCases: string; blog: string };
+    profile: "Profile",
+    contact: "Contact",
+    legal: "Legal Notice",
+  }) as NavLabels;
 
   const personJsonLd = {
     "@context": "https://schema.org",

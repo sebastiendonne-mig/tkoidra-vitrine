@@ -1,45 +1,13 @@
 import Link from "next/link";
-
-interface NavProps {
-  home: string;
-  useCases: string;
-  blog: string;
-}
+import { LINKEDIN_URL } from "../lib/site";
+import type { NavLabels } from "../lib/nav";
 
 interface FooterProps {
   lang: string;
-  nav: NavProps;
+  nav: NavLabels;
 }
 
-const legalLabels = {
-  fr: "Mentions légales",
-  en: "Legal Notice",
-} as const;
-
-const profilLabels = {
-  fr: "Profil",
-  en: "Profile",
-} as const;
-
-const methodeLabels = {
-  fr: "Méthode",
-  en: "Method",
-} as const;
-
 export function Footer({ lang, nav }: FooterProps) {
-  const legalLabel =
-    lang in legalLabels
-      ? legalLabels[lang as keyof typeof legalLabels]
-      : legalLabels.fr;
-  const profilLabel =
-    lang in profilLabels
-      ? profilLabels[lang as keyof typeof profilLabels]
-      : profilLabels.fr;
-  const methodeLabel =
-    lang in methodeLabels
-      ? methodeLabels[lang as keyof typeof methodeLabels]
-      : methodeLabels.fr;
-
   return (
     <footer className="border-t border-slate-900 bg-slate-950">
       <div className="mx-auto max-w-5xl px-6 py-10">
@@ -63,16 +31,10 @@ export function Footer({ lang, nav }: FooterProps) {
               {nav.useCases}
             </Link>
             <Link
-              href={`/${lang}/profil`}
-              className="text-xs text-slate-400 transition-colors hover:text-slate-300"
-            >
-              {profilLabel}
-            </Link>
-            <Link
               href={`/${lang}/methodologie-diag`}
               className="text-xs text-slate-400 transition-colors hover:text-slate-300"
             >
-              {methodeLabel}
+              {nav.method}
             </Link>
             {lang !== "en" && (
               <Link
@@ -83,16 +45,22 @@ export function Footer({ lang, nav }: FooterProps) {
               </Link>
             )}
             <Link
+              href={`/${lang}/profil`}
+              className="text-xs text-slate-400 transition-colors hover:text-slate-300"
+            >
+              {nav.profile}
+            </Link>
+            <Link
               href={`/${lang}/legal`}
               className="text-xs text-slate-400 transition-colors hover:text-slate-300"
             >
-              {legalLabel}
+              {nav.legal}
             </Link>
           </nav>
 
           {/* LinkedIn */}
           <a
-            href="https://www.linkedin.com/in/sebastiendonne/"
+            href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs font-semibold text-slate-400 transition-colors hover:text-accent"

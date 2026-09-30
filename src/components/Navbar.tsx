@@ -2,16 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-
-interface NavProps {
-  home: string;
-  useCases: string;
-  blog: string;
-}
+import { LINKEDIN_URL } from "../lib/site";
+import type { NavLabels } from "../lib/nav";
 
 interface NavbarProps {
   lang: string;
-  nav: NavProps;
+  nav: NavLabels;
 }
 
 export function Navbar({ lang, nav }: NavbarProps) {
@@ -25,14 +21,14 @@ export function Navbar({ lang, nav }: NavbarProps) {
   // Le blog EN a été retiré (410) : ne jamais y renvoyer via le switcher de langue.
   const altPath =
     altLang === "en" && /^\/en\/blog(\/|$)/.test(rawAltPath)
-      ? "/en/use-cases"
+      ? "/en"
       : rawAltPath;
 
   const links = [
-    { href: `/${lang}/use-cases`, label: nav.home },
-    { href: `/${lang}/profil`, label: lang === "fr" ? "Profil" : "Profile" },
-    { href: `/${lang}/methodologie-diag`, label: lang === "fr" ? "Méthode" : "Method" },
+    { href: `/${lang}/use-cases`, label: nav.useCases },
+    { href: `/${lang}/methodologie-diag`, label: nav.method },
     ...(lang === "en" ? [] : [{ href: `/${lang}/blog`, label: nav.blog }]),
+    { href: `/${lang}/profil`, label: nav.profile },
   ];
 
   function isActive(href: string): boolean {
@@ -47,9 +43,9 @@ export function Navbar({ lang, nav }: NavbarProps) {
       >
         {/* Logo + wordmark — links to home */}
         <Link
-          href={`/${lang}/use-cases`}
+          href={`/${lang}`}
           className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
-          aria-label="TKoidra — accueil"
+          aria-label={nav.homeAriaLabel}
         >
           <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 flex-shrink-0">
             <rect x="10" y="10" width="100" height="100" rx="12" fill="white"/>
@@ -82,12 +78,12 @@ export function Navbar({ lang, nav }: NavbarProps) {
         {/* Contact + Language switcher */}
         <div className="flex items-center gap-3">
           <a
-            href="https://www.linkedin.com/in/sebastiendonne/"
+            href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden text-sm font-medium text-slate-400 transition-colors hover:text-slate-100 sm:block"
           >
-            Contact
+            {nav.contact}
           </a>
           <Link
             href={altPath}
@@ -114,6 +110,14 @@ export function Navbar({ lang, nav }: NavbarProps) {
             {label}
           </Link>
         ))}
+        <a
+          href={LINKEDIN_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whitespace-nowrap rounded-md px-3 py-1 text-xs font-medium text-slate-400 transition-colors hover:text-slate-100"
+        >
+          {nav.contact}
+        </a>
       </div>
     </header>
   );

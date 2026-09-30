@@ -1,8 +1,12 @@
 {
   "navigation": {
-    "home": "Home",
-    "useCases": "Case Studies",
-    "blog": "Deep Dives"
+    "homeAriaLabel": "TKoidra — home",
+    "useCases": "Use cases",
+    "method": "Method",
+    "blog": "Deep Dives",
+    "profile": "Profile",
+    "contact": "Contact",
+    "legal": "Legal Notice"
   },
   "hero": {
     "title": "AI Product Owner",
@@ -10,10 +14,10 @@
     "cta": "View case studies"
   },
   "useCases": {
-    "title": "Case Studies",
+    "title": "Use cases",
     "subtitle": "Functional AI demonstrators, live and testable — from framing to production.",
     "metadata": {
-      "title": "AI Case Studies | Sébastien Donné | TKoidra",
+      "title": "AI Use Cases | Sébastien Donné | TKoidra",
       "description": "Functional AI demonstrators, live and testable — from framing to production, illustrated by use cases in insurance, real estate, and compliance."
     },
     "backLabel": "Back to home",
@@ -35,7 +39,7 @@
     ],
     "overview": {
       "allLabel": "All",
-      "filterAriaLabel": "Filter case studies by theme"
+      "filterAriaLabel": "Filter use cases by theme"
     },
     "projects": {
       "assurconseil": {
