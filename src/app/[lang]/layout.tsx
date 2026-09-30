@@ -4,7 +4,7 @@ import { getDictionary } from "../../get-dictionary";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { AnalyticsOptOut } from "../../components/AnalyticsOptOut";
-import { SITE_URL } from "../../lib/site";
+import { LINKEDIN_URL, SITE_URL } from "../../lib/site";
 import type { NavLabels } from "../../lib/nav";
 import "../globals.css";
 
@@ -62,7 +62,7 @@ export default async function RootLayout(props: Props) {
       url: SITE_URL,
     },
     sameAs: [
-      "https://www.linkedin.com/in/sebastiendonne/",
+      LINKEDIN_URL,
       "https://www.collective.work/profile/sebastien-donne",
     ],
   };

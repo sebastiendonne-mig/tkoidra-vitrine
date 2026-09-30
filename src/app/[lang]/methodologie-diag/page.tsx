@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
 import { OpenAppButton } from "../../../components/OpenAppButton";
 import { getDictionary } from "../../../get-dictionary";
-import { SITE_URL } from "../../../lib/site";
+import { LINKEDIN_URL, SITE_URL } from "../../../lib/site";
 import { PhaseStepper } from "./PhaseStepper";
 
 type Props = {
@@ -66,8 +66,6 @@ const APP_URLS: Record<string, string> = {
   comex: "https://comex.tkoidra.com",
   agap: "https://agap.tkoidra.com",
 };
-
-const LINKEDIN_URL = "https://www.linkedin.com/in/sebastiendonne/";
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
