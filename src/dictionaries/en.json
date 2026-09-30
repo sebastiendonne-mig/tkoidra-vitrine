@@ -8,10 +8,31 @@
     "contact": "Contact",
     "legal": "Legal Notice"
   },
-  "hero": {
-    "title": "AI Product Owner",
-    "subtitle": "Making AI operational, measurable, and adopted.",
-    "cta": "View case studies"
+  "home": {
+    "badge": "TKoidra",
+    "title": "AI that fits your constraints.",
+    "intro": "I'm Sébastien Donné, an AI Product Owner. I frame, build and drive the adoption of generative AI solutions, drawing on fifteen years of scaled agile and change management. Eight live demonstrators show how.",
+    "cta": "See the use cases",
+    "methodLink": "Discover the method",
+    "demos": {
+      "heading": "Three flagship demonstrators",
+      "items": [
+        { "slug": "assurconseil", "name": "AssurConseil", "text": "Agentic RAG on insurance contracts: mandatory citations, Claude / Mistral comparison (inference in the EU)." },
+        { "slug": "lexguard", "name": "LexGuard", "text": "Flags warning signs in a PDF contract before signing." },
+        { "slug": "agap", "name": "AGAP", "text": "Project portfolio arbitration: business / IT perception gap, scenarios, budget cut-off line." }
+      ],
+      "allLink": "See all 8 use cases"
+    },
+    "explore": {
+      "heading": "Explore",
+      "blogLangNote": "(in French)",
+      "items": [
+        { "key": "useCases", "title": "Use cases", "text": "Eight AI demonstrators you can test online, grouped by theme." },
+        { "key": "method", "title": "Method", "text": "Diagnose, build, operate: how I lead an AI project." },
+        { "key": "blog", "title": "Deep Dives", "text": "In-depth articles on AI projects, the AI Product Owner role and compliance." },
+        { "key": "profile", "title": "Profile", "text": "Career, skills and certifications." }
+      ]
+    }
   },
   "useCases": {
     "title": "Use cases",
