@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getDictionary } from "../../get-dictionary";
 import { i18n } from "../../../i18n-config";
+import { SITE_URL } from "../../lib/site";
 
 interface DemoItem {
   slug: string;
@@ -15,6 +17,7 @@ interface ExploreItem {
 }
 
 interface HomeDict {
+  metadata: { title: string; description: string };
   badge: string;
   title: string;
   intro: string;
@@ -29,6 +32,41 @@ const focusRing =
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  const { title, description } = (dict.home as HomeDict).metadata;
+  const url = `${SITE_URL}/${lang}`;
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: {
+        fr: `${SITE_URL}/fr`,
+        en: `${SITE_URL}/en`,
+        // "/" négocie la langue (Accept-Language) : page de repli pour les autres langues
+        "x-default": SITE_URL,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "TKoidra",
+      locale: lang === "fr" ? "fr_FR" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
 }
 
 export default async function HomePage({

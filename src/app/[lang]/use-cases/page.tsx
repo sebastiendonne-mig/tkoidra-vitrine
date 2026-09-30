@@ -400,9 +400,9 @@ export default async function UseCasesPage({
       <div className="w-full max-w-4xl space-y-16">
         {/* Page header */}
         <header className="flex flex-col items-start gap-8">
-          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
+          <h1 className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {useCases?.title ?? "Cas d'usage"}
-          </span>
+          </h1>
           <p className="text-lg leading-7 text-slate-400">{useCases?.subtitle}</p>
         </header>
 

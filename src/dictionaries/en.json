@@ -9,6 +9,10 @@
     "legal": "Legal Notice"
   },
   "home": {
+    "metadata": {
+      "title": "AI that fits your constraints | TKoidra",
+      "description": "Sébastien Donné, AI Product Owner: framing, building and driving the adoption of generative AI solutions. Eight live demonstrators you can test."
+    },
     "badge": "TKoidra",
     "title": "AI that fits your constraints.",
     "intro": "I'm Sébastien Donné, an AI Product Owner. I frame, build and drive the adoption of generative AI solutions, drawing on fifteen years of scaled agile and change management. Eight live demonstrators show how.",

@@ -24,14 +24,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const isFr = lang === "fr";
+  const dict = await getDictionary(lang);
   return {
     metadataBase: new URL(SITE_URL),
     title: isFr
       ? "Sébastien Donné | Product Owner IA"
       : "Sébastien Donné | AI Product Owner",
-    description: isFr
-      ? "Cadrage Agile, ingénierie pragmatique et conduite du changement pour les solutions d'Intelligence Artificielle."
-      : "Agile framing, pragmatic engineering, and change management for Artificial Intelligence solutions.",
+    // Description par défaut (pages sans description propre) = celle de l'accueil.
+    description: dict.home.metadata.description,
   };
 }
 
