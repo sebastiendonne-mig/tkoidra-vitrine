@@ -14,7 +14,8 @@ export function Footer({ lang, nav }: FooterProps) {
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
           {/* Copyright */}
           <p className="text-xs text-slate-400 order-last sm:order-first">
-            &copy; {new Date().getFullYear()} S&eacute;bastien Donn&eacute;
+            &copy; {new Date().getFullYear()}{" "}
+            S&eacute;bastien Donn&eacute;
           </p>
 
           {/* Nav + Legal */}
