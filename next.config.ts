@@ -5,10 +5,12 @@ const isDev = process.env.NODE_ENV === "development";
 // Pas de nonce : le site est 100% SSG, un nonce imposerait le rendu dynamique.
 // Next injecte des <script> inline sans nonce pour livrer les données RSC,
 // d'où le 'unsafe-inline' sur script-src (limitation connue, pas un oubli).
+// Même raison pour style-src : des styles inline existent (ex. barre de progression
+// de la Méthode). Pas d'upgrade-insecure-requests : ignoré en report-only.
 const cspHeader = `
   default-src 'self';
   script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
-  style-src 'self';
+  style-src 'self' 'unsafe-inline';
   img-src 'self' data:;
   font-src 'self';
   connect-src 'self';
@@ -16,7 +18,6 @@ const cspHeader = `
   base-uri 'self';
   form-action 'self';
   frame-ancestors 'none';
-  upgrade-insecure-requests;
 `;
 
 const nextConfig: NextConfig = {
