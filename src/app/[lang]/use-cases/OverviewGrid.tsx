@@ -39,10 +39,10 @@ export function OverviewGrid({
           onClick={() => setActive(null)}
           aria-pressed={active === null}
           className={[
-            "rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-widest motion-safe:transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400",
+            "rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-widest motion-safe:transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
             active === null
-              ? "border-teal-400 bg-teal-500/15 text-teal-300"
-              : "border-slate-700 bg-slate-900/40 text-slate-400 hover:border-teal-500/40 hover:text-teal-300",
+              ? "border-accent bg-accent/15 text-accent-hover"
+              : "border-slate-700 bg-slate-900/40 text-slate-400 hover:border-accent/40 hover:text-accent-hover",
           ].join(" ")}
         >
           {allLabel}
@@ -54,10 +54,10 @@ export function OverviewGrid({
             onClick={() => setActive(theme.key)}
             aria-pressed={active === theme.key}
             className={[
-              "rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-widest motion-safe:transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400",
+              "rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-widest motion-safe:transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
               active === theme.key
-                ? "border-teal-400 bg-teal-500/15 text-teal-300"
-                : "border-slate-700 bg-slate-900/40 text-slate-400 hover:border-teal-500/40 hover:text-teal-300",
+                ? "border-accent bg-accent/15 text-accent-hover"
+                : "border-slate-700 bg-slate-900/40 text-slate-400 hover:border-accent/40 hover:text-accent-hover",
             ].join(" ")}
           >
             {theme.label}
@@ -70,12 +70,12 @@ export function OverviewGrid({
           <li key={item.slug}>
             <a
               href={`#${item.slug}`}
-              className="group flex h-full flex-col gap-2 rounded-2xl border border-slate-800 bg-slate-900/30 p-4 motion-safe:transition-all hover:border-teal-500/40 hover:bg-slate-900/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+              className="group flex h-full flex-col gap-2 rounded-2xl border border-slate-800 bg-slate-900/30 p-4 motion-safe:transition-all hover:border-accent/40 hover:bg-slate-900/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
-              <span className="text-[0.65rem] font-bold uppercase tracking-widest text-teal-400">
+              <span className="text-[0.65rem] font-bold uppercase tracking-widest text-accent">
                 {item.themeLabel}
               </span>
-              <span className="text-sm font-bold text-slate-100 group-hover:text-teal-200">
+              <span className="text-sm font-bold text-slate-100 group-hover:text-accent-hover">
                 {item.title}
               </span>
               <span className="line-clamp-2 text-xs leading-5 text-slate-400">

@@ -105,7 +105,7 @@ function Emphasis({ text }: { text: string }) {
     <>
       {text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
         i % 2 === 1 ? (
-          <strong key={i} className="whitespace-nowrap font-semibold text-teal-200">
+          <strong key={i} className="whitespace-nowrap font-semibold text-accent-hover">
             {part}
           </strong>
         ) : (
@@ -148,7 +148,7 @@ function ProofCard({
 }) {
   return (
     <div
-      className="rounded-2xl border border-teal-500/30 bg-gradient-to-br from-teal-500/10 via-slate-900/60 to-slate-900/30 p-6 shadow-[0_0_40px_-16px_rgba(45,212,191,0.45)]"
+      className="rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/10 via-slate-900/60 to-slate-900/30 p-6 shadow-[0_0_40px_-16px] shadow-accent/45"
     >
       <div className="flex items-center gap-2.5">
         <svg
@@ -159,14 +159,14 @@ function ProofCard({
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="h-5 w-5 shrink-0 text-teal-300"
+          className="h-5 w-5 shrink-0 text-accent-hover"
         >
           <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" />
           <path d="M9 12l2 2 4-4" />
         </svg>
         <h3
           id={`${id}-proof`}
-          className="text-xs font-bold uppercase tracking-widest text-teal-300"
+          className="text-xs font-bold uppercase tracking-widest text-accent-hover"
         >
           {label} — {proof.app}
         </h3>
@@ -176,14 +176,14 @@ function ProofCard({
       </p>
 
       {tools.length > 0 && (
-        <div className="mt-5 space-y-3 border-t border-teal-500/15 pt-4">
+        <div className="mt-5 space-y-3 border-t border-accent/15 pt-4">
           <p className="text-xs font-semibold text-slate-400">{toolsLabel}</p>
           <ul className="space-y-3">
             {tools.map((tool) => (
               <li key={tool.key} className="text-sm leading-6 text-slate-400">
                 <ExternalLink
                   href={APP_URLS[tool.key]}
-                  className="font-semibold text-teal-300 underline-offset-4 hover:text-teal-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded"
+                  className="font-semibold text-accent underline-offset-4 hover:text-accent-hover hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
                 >
                   {tool.name}
                 </ExternalLink>
@@ -198,7 +198,7 @@ function ProofCard({
 
       <ExternalLink
         href={APP_URLS.assurconseil}
-        className="mt-5 inline-flex items-center gap-1 rounded-lg border border-teal-500/40 bg-teal-500/10 px-3 py-1.5 text-xs font-semibold text-teal-200 hover:border-teal-400 hover:bg-teal-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 motion-safe:transition-colors"
+        className="mt-5 inline-flex items-center gap-1 rounded-lg border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent-hover hover:border-accent hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-safe:transition-colors"
       >
         {proof.cta}
       </ExternalLink>
@@ -225,7 +225,7 @@ function PhaseSection({
         id={`${id}-title`}
         className="flex items-baseline gap-4 text-2xl font-extrabold tracking-tight text-slate-100 sm:text-3xl"
       >
-        <span className="bg-gradient-to-b from-teal-300 to-teal-600 bg-clip-text text-4xl text-transparent sm:text-5xl">
+        <span className="bg-gradient-to-b from-accent-hover to-accent bg-clip-text text-4xl text-transparent sm:text-5xl">
           {phase.number}
         </span>
         <span>{phase.name}</span>
@@ -234,7 +234,7 @@ function PhaseSection({
       <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
         <div className="space-y-8 lg:col-span-3">
           <div className="space-y-2">
-            <p className="text-xs font-bold uppercase tracking-widest text-teal-400">
+            <p className="text-xs font-bold uppercase tracking-widest text-accent">
               {labels.goal}
             </p>
             <p className="text-lg leading-8 text-slate-200">{phase.goal}</p>
@@ -247,7 +247,7 @@ function PhaseSection({
                 <li key={action} className="flex gap-3 text-sm leading-7 text-slate-300">
                   <span
                     aria-hidden
-                    className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-teal-400"
+                    className="mt-[0.7rem] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                   />
                   <span>{action}</span>
                 </li>
@@ -283,13 +283,13 @@ function PhaseSection({
       </div>
 
       <details className="group rounded-2xl border border-slate-800 bg-slate-900/30 open:bg-slate-900/50">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-4 text-sm font-semibold text-slate-200 hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 motion-safe:transition-colors [&::-webkit-details-marker]:hidden">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-4 text-sm font-semibold text-slate-200 hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-safe:transition-colors [&::-webkit-details-marker]:hidden">
           <span>{labels.practices}</span>
           <svg
             aria-hidden
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="h-4 w-4 shrink-0 text-teal-400 group-open:rotate-180 motion-safe:transition-transform"
+            className="h-4 w-4 shrink-0 text-accent group-open:rotate-180 motion-safe:transition-transform"
           >
             <path
               fillRule="evenodd"
@@ -330,7 +330,7 @@ export default async function MethodologieDiagPage({ params }: Props) {
       <div className="w-full max-w-5xl space-y-24">
         {/* En-tête */}
         <header className="flex max-w-3xl flex-col items-start gap-6">
-          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {t.eyebrow}
           </span>
           <h1 className="bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl">
@@ -376,7 +376,7 @@ export default async function MethodologieDiagPage({ params }: Props) {
             {t.threads.items.map((item, i) => (
               <li
                 key={item.title}
-                className="space-y-3 rounded-2xl border border-slate-800 bg-slate-900/30 p-6 hover:border-teal-500/30 hover:bg-slate-900/60 motion-safe:transition-all"
+                className="space-y-3 rounded-2xl border border-slate-800 bg-slate-900/30 p-6 hover:border-accent/30 hover:bg-slate-900/60 motion-safe:transition-all"
               >
                 <div className="flex items-center justify-between">
                   <span aria-hidden className="text-2xl">
@@ -396,7 +396,7 @@ export default async function MethodologieDiagPage({ params }: Props) {
         {/* Mode opératoire */}
         <section
           aria-labelledby="mode-title"
-          className="relative overflow-hidden rounded-3xl border border-teal-500/20 bg-slate-900 p-8 sm:p-10"
+          className="relative overflow-hidden rounded-3xl border border-accent/20 bg-slate-900 p-8 sm:p-10"
         >
           <div
             aria-hidden
@@ -412,12 +412,12 @@ export default async function MethodologieDiagPage({ params }: Props) {
             <div className="relative">
               <div
                 aria-hidden
-                className="absolute left-5 right-5 top-5 hidden h-px bg-gradient-to-r from-teal-400/70 via-teal-400/30 to-teal-400/10 lg:block"
+                className="absolute left-5 right-5 top-5 hidden h-px bg-gradient-to-r from-accent/70 via-accent/30 to-accent/10 lg:block"
               />
               <ol className="relative grid gap-8 lg:grid-cols-4 lg:gap-6">
                 {t.operatingMode.steps.map((step, i) => (
                   <li key={step.title} className="flex gap-4 lg:flex-col lg:gap-4">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-teal-400/50 bg-slate-950 text-sm font-bold text-teal-300">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-accent/50 bg-slate-950 text-sm font-bold text-accent-hover">
                       {i + 1}
                     </span>
                     <div className="space-y-1.5">
@@ -428,7 +428,7 @@ export default async function MethodologieDiagPage({ params }: Props) {
                 ))}
               </ol>
             </div>
-            <blockquote className="border-l-2 border-teal-400 pl-5 text-base italic leading-8 text-slate-200">
+            <blockquote className="border-l-2 border-accent pl-5 text-base italic leading-8 text-slate-200">
               {t.operatingMode.quote}
             </blockquote>
           </div>
@@ -458,13 +458,13 @@ export default async function MethodologieDiagPage({ params }: Props) {
         </section>
 
         {/* Appel à l'action */}
-        <section className="rounded-3xl border border-teal-500/25 bg-gradient-to-br from-teal-500/15 via-slate-900 to-slate-900 p-8 text-center sm:p-12">
+        <section className="rounded-3xl border border-accent/25 bg-gradient-to-br from-accent/15 via-slate-900 to-slate-900 p-8 text-center sm:p-12">
           <h2 className="mx-auto max-w-2xl text-xl font-bold leading-snug text-slate-100 sm:text-2xl">
             {t.cta.text}
           </h2>
           <ExternalLink
             href={LINKEDIN_URL}
-            className="mt-8 inline-flex items-center gap-1.5 rounded-xl bg-teal-500 px-6 py-3 text-sm font-bold text-slate-950 hover:bg-teal-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 motion-safe:transition-colors"
+            className="mt-8 inline-flex items-center gap-1.5 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-navy hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 motion-safe:transition-colors"
           >
             {t.cta.button}
           </ExternalLink>

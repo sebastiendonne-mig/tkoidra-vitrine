@@ -124,7 +124,7 @@ export async function generateMetadata({
 
 function Demonstrates({ label, text }: { label: string; text: string }) {
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-teal-500/25 bg-teal-500/5 px-5 py-4">
+    <div className="flex items-start gap-3 rounded-xl border border-accent/25 bg-accent/5 px-5 py-4">
       <svg
         aria-hidden
         viewBox="0 0 24 24"
@@ -133,13 +133,13 @@ function Demonstrates({ label, text }: { label: string; text: string }) {
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="mt-0.5 h-4 w-4 shrink-0 text-teal-400"
+        className="mt-0.5 h-4 w-4 shrink-0 text-accent"
       >
         <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" />
         <path d="M9 12l2 2 4-4" />
       </svg>
       <p className="text-sm leading-6 text-slate-300">
-        <span className="mr-1.5 text-xs font-bold uppercase tracking-widest text-teal-400">
+        <span className="mr-1.5 text-xs font-bold uppercase tracking-widest text-accent">
           {label}
         </span>
         {text}
@@ -164,7 +164,7 @@ function FeatureGrid({ features }: { features: Feature[] }) {
       {features.map((feature) => (
         <div
           key={feature.title}
-          className="rounded-2xl border border-slate-800 bg-slate-900/30 p-6 space-y-3 hover:border-teal-500/30 hover:bg-slate-900/60 transition-all"
+          className="rounded-2xl border border-slate-800 bg-slate-900/30 p-6 space-y-3 hover:border-accent/30 hover:bg-slate-900/60 transition-all"
         >
           <span className="text-2xl" role="img" aria-label={feature.title}>
             {feature.icon}
@@ -184,10 +184,10 @@ function AppLink({ appUrl, label }: { appUrl?: string; label: string }) {
       href={appUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-400 transition-all hover:border-teal-500/50 hover:text-teal-300"
+      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-xs font-medium text-slate-400 transition-all hover:border-accent/50 hover:text-accent-hover"
     >
       {label}
-      <span aria-hidden className="text-teal-500">
+      <span aria-hidden className="text-accent">
         &#8599;
       </span>
     </a>
@@ -205,7 +205,7 @@ function MethodBridgeLink({
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-400 hover:text-teal-300 transition-colors"
+      className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-accent-hover transition-colors"
     >
       {bridge.label}
       <span aria-hidden>&#8594;</span>
@@ -238,7 +238,7 @@ function FeaturedCard({
     >
       <header className="space-y-4">
         <div className="flex items-center justify-between gap-4 flex-wrap">
-          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {project.tag}
           </span>
           <AppLink appUrl={appUrl} label={appLinkLabel} />
@@ -278,8 +278,8 @@ function FeaturedCard({
         </div>
         <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-7 space-y-3 backdrop-blur-sm">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-teal-400" aria-hidden />
-            <h3 className="text-xs font-bold uppercase tracking-widest text-teal-400">
+            <span className="h-2 w-2 rounded-full bg-accent" aria-hidden />
+            <h3 className="text-xs font-bold uppercase tracking-widest text-accent">
               {labels.solution}
             </h3>
           </div>
@@ -336,7 +336,7 @@ function CompactCard({
     >
       <header className="space-y-3">
         <div className="flex items-center justify-between gap-4 flex-wrap">
-          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {project.tag}
           </span>
           <AppLink appUrl={appUrl} label={appLinkLabel} />
@@ -400,7 +400,7 @@ export default async function UseCasesPage({
       <div className="w-full max-w-4xl space-y-16">
         {/* Page header */}
         <header className="flex flex-col items-start gap-8">
-          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {useCases?.title ?? "Cas d'Usage"}
           </span>
           <p className="text-lg leading-7 text-slate-400">{useCases?.subtitle}</p>

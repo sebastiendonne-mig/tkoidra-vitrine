@@ -159,7 +159,7 @@ export default async function LegalPage({ params }: Props) {
         {/* Back link */}
         <Link
           href={`/${lang}/use-cases`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
         >
           <span aria-hidden>&#8592;</span>
           {t.backLabel}
@@ -167,7 +167,7 @@ export default async function LegalPage({ params }: Props) {
 
         {/* Header */}
         <header className="flex flex-col items-start gap-4 border-b border-slate-800 pb-10">
-          <span className="rounded-full border border-teal-500/40 bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-teal-400">
+          <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-accent">
             {t.badge}
           </span>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400">
@@ -180,7 +180,7 @@ export default async function LegalPage({ params }: Props) {
         <div className="space-y-10">
           {t.sections.map((section) => (
             <section key={section.heading} className="space-y-4">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-teal-400 border-b border-slate-800 pb-3">
+              <h2 className="text-xs font-bold uppercase tracking-widest text-accent border-b border-slate-800 pb-3">
                 {section.heading}
               </h2>
               <ul className="space-y-3">

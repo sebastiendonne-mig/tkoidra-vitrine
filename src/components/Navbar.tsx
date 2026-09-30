@@ -70,7 +70,7 @@ export function Navbar({ lang, nav }: NavbarProps) {
               className={[
                 "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
                 isActive(href)
-                  ? "bg-teal-500/10 text-teal-300"
+                  ? "bg-accent/10 text-accent-hover"
                   : "text-slate-400 hover:text-slate-100",
               ].join(" ")}
             >
@@ -91,7 +91,7 @@ export function Navbar({ lang, nav }: NavbarProps) {
           </a>
           <Link
             href={altPath}
-            className="rounded-md border border-slate-700 bg-slate-800/60 px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-400 transition-all hover:border-teal-500/50 hover:text-teal-300"
+            className="rounded-md border border-slate-700 bg-slate-800/60 px-3 py-1 text-xs font-bold uppercase tracking-widest text-slate-400 transition-all hover:border-accent/50 hover:text-accent-hover"
           >
             {altLang}
           </Link>
@@ -107,7 +107,7 @@ export function Navbar({ lang, nav }: NavbarProps) {
             className={[
               "whitespace-nowrap rounded-md px-3 py-1 text-xs font-medium transition-colors",
               isActive(href)
-                ? "bg-teal-500/10 text-teal-300"
+                ? "bg-accent/10 text-accent-hover"
                 : "text-slate-400 hover:text-slate-100",
             ].join(" ")}
           >

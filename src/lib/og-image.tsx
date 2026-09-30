@@ -46,7 +46,7 @@ export async function renderOgImage(jobTitle: string) {
             fontWeight: 600,
             letterSpacing: 4,
             textTransform: "uppercase",
-            color: "#2dd4bf",
+            color: "#00B4D8", // miroir de --color-accent (globals.css) : Satori ne lit pas les variables CSS
             marginBottom: 40,
           }}
         >
