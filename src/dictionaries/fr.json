@@ -41,7 +41,6 @@
       "title": "Cas d'usage IA | Sébastien Donné | TKoidra",
       "description": "Des démonstrateurs IA fonctionnels, en ligne et testables — du cadrage à la mise en production, sur des cas d'usage en assurance, immobilier et conformité."
     },
-    "backLabel": "Retour à l'accueil",
     "discoverLabel": "Découvrir le projet →",
     "appLink": { "label": "Ouvrir l'application", "newTab": "s'ouvre dans un nouvel onglet" },
     "sectionLabels": {

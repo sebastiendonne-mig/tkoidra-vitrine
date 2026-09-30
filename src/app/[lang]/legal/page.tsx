@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
 import { SITE_URL } from "../../../lib/site";
-import Link from "next/link";
 
 type Props = {
   params: Promise<{ lang: string }>;
@@ -35,7 +34,6 @@ const content = {
     badge: "Légal",
     title: "Mentions légales",
     lastUpdated: "Dernière mise à jour : juin 2026",
-    backLabel: "Retour",
     sections: [
       {
         heading: "Éditeur du site",
@@ -92,7 +90,6 @@ const content = {
     badge: "Legal",
     title: "Legal Notice",
     lastUpdated: "Last updated: June 2026",
-    backLabel: "Back",
     sections: [
       {
         heading: "Site Publisher",
@@ -156,14 +153,6 @@ export default async function LegalPage({ params }: Props) {
     <main className="flex min-h-screen flex-col items-center bg-slate-950 text-white font-sans px-6 py-24">
       <div className="w-full max-w-2xl space-y-12">
 
-        {/* Back link */}
-        <Link
-          href={`/${lang}/use-cases`}
-          className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
-        >
-          <span aria-hidden>&#8592;</span>
-          {t.backLabel}
-        </Link>
 
         {/* Header */}
         <header className="flex flex-col items-start gap-4 border-b border-slate-800 pb-10">
