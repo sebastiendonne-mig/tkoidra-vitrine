@@ -58,6 +58,7 @@ interface SectionLabels {
   features: string;
   stack: string;
   metrics?: string;
+  measured?: string;
   demonstrates: string;
 }
 
@@ -295,7 +296,7 @@ function FeaturedCard({
       {project.metrics && project.metrics.length > 0 && (
         <div className="space-y-5">
           <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
-            {labels.metrics}
+            {labels.measured}
           </h3>
           <ul className="flex flex-wrap gap-2">
             {project.metrics.map((metric) => (
@@ -409,6 +410,7 @@ export default async function UseCasesPage({
     features: "Key Features",
     stack: "Tech Stack",
     metrics: "Results",
+    measured: "Measured figures",
     demonstrates: "What It Demonstrates",
   };
 
