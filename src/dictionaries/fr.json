@@ -302,35 +302,44 @@
       },
       "fraud": {
         "title": "Fraud Agent",
-        "description": "Démonstration narrative d'un pipeline agentique de détection de fraude et de recours pour l'assurance IARD.",
-        "demonstrates": "Prototyper un parcours agentique cible et le présenter honnêtement : ce qui est exécuté, ce qui est simulé.",
-        "tag": "IA agentique · démo narrative",
+        "description": "Agent de pré-instruction de sinistres IARD : des règles métier décident du routage, un agent Claude propose, un gestionnaire valide.",
+        "demonstrates": "Concevoir un agent borné pour un métier réglementé : ce que le code décide, ce que l'agent propose, ce que l'humain valide, avec un coût et une durée mesurés.",
+        "tag": "IA agentique · humain dans la boucle",
         "theme": "conformite-risques",
-        "challenge": "Les équipes fraude des assureurs IARD croulent sous les faux positifs générés par des règles fixes, tandis que les recours en subrogation contre les tiers responsables sont identifiés trop tard, voire jamais, faute de temps pour croiser les dossiers.",
-        "solution": "Sur un jeu de sinistres fictifs, cette démonstration met en scène le parcours cible d'un pipeline de détection de fraude : scoring, analyse de réseau, lecture des rapports de police, préparation du dossier de recours. Dans cette version, les réponses sont produites par un seul modèle (Claude) ; les étapes de calcul (machine learning, analyse de graphe) sont simulées à l'écran, pas exécutées.",
+        "challenge": "Dans un service sinistres, la plupart des dossiers sont simples, mais ceux qui appellent une enquête ou un recours contre un tiers responsable demandent de croiser plusieurs pièces. Confier ce travail à une IA soulève trois questions : qui décide du routage, que se passe-t-il quand le modèle se trompe, et combien cela coûte-t-il ?",
+        "solution": "Sur des sinistres fictifs, des règles métier calculent un score sur 50 et fixent le routage (traitement automatique, investigation, alerte SIU). L'agent ne peut pas le modifier. Un agent Claude n'est appelé que si c'est utile, quand le dossier est suspect ou qu'un rapport de police est fourni. Il choisit ses outils, rend une proposition structurée, puis s'arrête : un gestionnaire valide ou rejette, motif à l'appui, avant que l'agent ne rédige un brouillon sans aucun envoi réel. Les seuils sont des choix de démonstration, non calibrés sur des données réelles.",
         "features": [
           {
             "icon": "🎯",
-            "title": "Score expliqué",
-            "description": "Un score de 0 à 100 par sinistre, accompagné de motifs rédigés en français, produits par le LLM et non par un modèle de machine learning entraîné."
+            "title": "Règles d'abord, IA si utile",
+            "description": "Le score et le routage sont calculés par des règles déterministes. Un dossier sain, sans rapport de police, ne déclenche aucun appel à l'IA."
           },
           {
             "icon": "🕸️",
-            "title": "Parcours agentique mis en scène",
-            "description": "Les étapes du pipeline s'affichent l'une après l'autre ; l'analyse de réseau est simulée, sans calcul de graphe réel."
+            "title": "Un agent qui choisit ses outils",
+            "description": "Selon le dossier, l'agent consulte l'historique du réparateur ou calcule le montant du recours. Chaque étape est visible dans un journal (outil, entrée, sortie, durée), et les montants sont recalculés par le code."
           },
           {
             "icon": "📨",
-            "title": "Recours préparé par IA générative",
-            "description": "Lecture du rapport de police par le LLM, qui en extrait une analyse structurée : tiers responsable, part de responsabilité estimée, niveau de certitude, viabilité du recours et plan d'actions à J+5/J+15/J+30."
+            "title": "Validation humaine obligatoire",
+            "description": "Le gestionnaire valide, ou rejette avec un motif. Suivent un brouillon de courrier de recours et un plan J+5 / J+15 / J+30, marqués « aucun envoi réel »."
           }
         ],
         "stack": [
-          "Claude Opus (API Anthropic)",
+          "Claude Sonnet 5.5 (API Anthropic)",
           "HTML/JavaScript",
-          "Vercel Functions"
+          "Vercel Functions",
+          "Upstash Redis"
         ],
-        "metrics": []
+        "metrics": [
+          "0,02 à 0,03 $ par analyse",
+          "10 à 20 s",
+          "15 analyses réelles par jour, puis rejeu signalé (mesures du 01/10/2026)"
+        ],
+        "methodBridge": {
+          "label": "Même méthode qu'AssurConseil RAG : couper les risques avant d'ajouter des fonctionnalités, mesurer avant d'annoncer un chiffre, répéter en prévisualisation avant la mise en production.",
+          "path": "methodologie-diag"
+        }
       },
       "verifid": {
         "title": "Vérificateur de pièce d'identité",

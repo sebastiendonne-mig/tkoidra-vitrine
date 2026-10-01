@@ -302,35 +302,44 @@
       },
       "fraud": {
         "title": "Fraud Agent",
-        "description": "Narrative demonstration of an agentic fraud detection and recovery pipeline for property & casualty insurance.",
-        "demonstrates": "Prototyping a target agentic workflow and presenting it honestly: what's executed, what's simulated.",
-        "tag": "Agentic AI · Narrative Demo",
+        "description": "Pre-assessment agent for P&C insurance claims: business rules set the routing, a Claude agent proposes, a claims handler decides.",
+        "demonstrates": "Designing a bounded agent for a regulated business: what the code decides, what the agent proposes, what the human approves, with measured cost and latency.",
+        "tag": "Agentic AI · Human in the Loop",
         "theme": "conformite-risques",
-        "challenge": "Fraud teams at P&C insurers are overwhelmed by false positives from fixed rule-based alerts, while subrogation recovery claims against liable third parties are identified too late, or missed entirely, due to lack of time to cross-reference cases.",
-        "solution": "Using a fictional claims dataset, this demonstration stages the target journey of a fraud detection pipeline: scoring, network analysis, police report reading, recovery case preparation. In this version, all responses are produced by a single model (Claude); the computation steps (machine learning, graph analysis) are simulated on screen, not actually executed.",
+        "challenge": "In a claims department, most cases are simple, but those that call for an investigation or a recovery claim against a liable third party require cross-checking several documents. Handing this work to AI raises three questions: who decides the routing, what happens when the model gets it wrong, and what does it cost?",
+        "solution": "On fictional claims, business rules compute a score out of 50 and set the routing (straight-through processing, investigation, fraud-unit alert). The agent cannot change it. A Claude agent is called only when useful, when the case is suspicious or a police report is provided. It picks its tools, returns a structured proposal, then stops: a claims handler approves or rejects it with a reason, before the agent drafts a letter that is never actually sent. Thresholds are demonstration choices, not calibrated on real data.",
         "features": [
           {
             "icon": "🎯",
-            "title": "Explained Score",
-            "description": "A 0-100 score per claim, with reasons written in plain language, produced by the LLM rather than a trained machine learning model."
+            "title": "Rules first, AI when useful",
+            "description": "Score and routing come from deterministic rules. A clean case without a police report triggers no AI call."
           },
           {
             "icon": "🕸️",
-            "title": "Staged Agentic Pipeline",
-            "description": "The pipeline steps are displayed one after another; the network analysis is simulated, with no real graph computation."
+            "title": "An agent that picks its tools",
+            "description": "Depending on the case, the agent checks the repair shop's history or computes the recovery amount. Every step shows in a log (tool, input, output, duration), and amounts are recomputed by the code."
           },
           {
             "icon": "📨",
-            "title": "Recovery Prepared by Generative AI",
-            "description": "The LLM reads the police report and extracts a structured analysis: liable third party, estimated share of responsibility, confidence level, recovery viability, and a J+5/J+15/J+30 action plan."
+            "title": "Mandatory human approval",
+            "description": "The handler approves, or rejects with a reason. A recovery letter draft and a D+5 / D+15 / D+30 plan follow, marked \"never actually sent\"."
           }
         ],
         "stack": [
-          "Claude Opus (Anthropic API)",
+          "Claude Sonnet 5.5 (Anthropic API)",
           "HTML/JavaScript",
-          "Vercel Functions"
+          "Vercel Functions",
+          "Upstash Redis"
         ],
-        "metrics": []
+        "metrics": [
+          "$0.02-0.03 per analysis",
+          "10-20 s",
+          "15 live analyses per day, then a labelled replay (measured on 01/10/2026)"
+        ],
+        "methodBridge": {
+          "label": "Same method as AssurConseil RAG: cut the risks before adding features, measure before announcing a figure, rehearse in preview before going to production.",
+          "path": "methodologie-diag"
+        }
       },
       "verifid": {
         "title": "ID Document Verifier",
