@@ -336,6 +336,12 @@
           "10 à 20 s",
           "15 analyses réelles par jour, puis rejeu signalé (mesures du 01/10/2026)"
         ],
+        "image": {
+          "src": "/use-cases/fraud.webp",
+          "width": 1006,
+          "height": 768,
+          "alt": "Capture d'une analyse sur Fraud Agent : score des règles à 0 sur 50, routage en traitement automatique, déroulé des étapes de l'agent et début de sa proposition, sur un sinistre fictif."
+        },
         "methodBridge": {
           "label": "Même méthode qu'AssurConseil RAG : couper les risques avant d'ajouter des fonctionnalités, mesurer avant d'annoncer un chiffre, répéter en prévisualisation avant la mise en production.",
           "path": "methodologie-diag"
