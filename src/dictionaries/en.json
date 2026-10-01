@@ -22,7 +22,7 @@
       "heading": "Three flagship demonstrators",
       "items": [
         { "slug": "assurconseil", "name": "AssurConseil", "text": "Agentic RAG on insurance contracts: mandatory citations, Claude / Mistral comparison (inference in the EU)." },
-        { "slug": "lexguard", "name": "LexGuard", "text": "Flags warning signs in a PDF contract before signing." },
+        { "slug": "fraud", "name": "Fraud Agent", "text": "Claims pre-assessment agent: business rules set the routing, a Claude agent proposes, a handler decides." },
         { "slug": "agap", "name": "AGAP", "text": "Project portfolio arbitration: business / IT perception gap, scenarios, budget cut-off line." }
       ],
       "allLink": "See all 8 use cases"

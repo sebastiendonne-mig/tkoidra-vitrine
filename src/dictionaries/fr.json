@@ -22,7 +22,7 @@
       "heading": "Trois démonstrateurs phares",
       "items": [
         { "slug": "assurconseil", "name": "AssurConseil", "text": "RAG agentique sur des contrats d'assurance : citations obligatoires, comparaison Claude / Mistral (inférence dans l'UE)." },
-        { "slug": "lexguard", "name": "LexGuard", "text": "Repère les signaux de vigilance d'un contrat PDF avant signature." },
+        { "slug": "fraud", "name": "Fraud Agent", "text": "Agent de pré-instruction de sinistres : des règles décident du routage, un agent Claude propose, un gestionnaire valide." },
         { "slug": "agap", "name": "AGAP", "text": "Arbitrage de portefeuille de projets : écart de perception Métier / DSI, scénarios, ligne de coupe budgétaire." }
       ],
       "allLink": "Voir les 8 cas d'usage"
