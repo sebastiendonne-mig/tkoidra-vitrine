@@ -135,7 +135,7 @@
             "description": "Le score et le routage sont calculés par des règles déterministes. Un dossier sain, sans rapport de police, ne déclenche aucun appel à l'IA."
           },
           {
-            "icon": "🕸️",
+            "icon": "🧰",
             "title": "Un agent qui choisit ses outils",
             "description": "Selon le dossier, l'agent consulte l'historique du réparateur ou calcule le montant du recours. Chaque étape est visible dans un journal (outil, entrée, sortie, durée), et les montants sont recalculés par le code."
           },

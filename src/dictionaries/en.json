@@ -135,7 +135,7 @@
             "description": "Score and routing come from deterministic rules. A clean case without a police report triggers no AI call."
           },
           {
-            "icon": "🕸️",
+            "icon": "🧰",
             "title": "An agent that picks its tools",
             "description": "Depending on the case, the agent checks the repair shop's history or computes the recovery amount. Every step shows in a log (tool, input, output, duration), and amounts are recomputed by the code."
           },
