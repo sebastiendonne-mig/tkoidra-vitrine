@@ -118,43 +118,52 @@
           "path": "methodologie-diag"
         }
       },
-      "lexguard": {
-        "title": "LexGuard",
-        "description": "Détection des signaux de vigilance dans les contrats avant signature.",
-        "demonstrates": "Rendre un contrat lisible pour un non-juriste : détection de signaux de vigilance et verdict en langage clair.",
-        "tag": "CONFORMITÉ & IA GÉNÉRATIVE",
-        "theme": "documents-rag",
+      "fraud": {
+        "title": "Fraud Agent",
+        "description": "Agent de pré-instruction de sinistres IARD : des règles métier décident du routage, un agent Claude propose, un gestionnaire valide.",
+        "demonstrates": "Concevoir un agent borné pour un métier réglementé : ce que le code décide, ce que l'agent propose, ce que l'humain valide, avec un coût et une durée mesurés.",
+        "tag": "IA agentique · humain dans la boucle",
+        "theme": "conformite-risques",
         "featured": true,
-        "challenge": "Un maire de commune rurale, sans service juridique, signe sous pression commerciale un contrat de matériel télécom qui dissimule un second contrat de leasing — durée d'engagement longue, résiliation quasi impossible. Des communes ont été poursuivies pour des dizaines de milliers d'euros après coup.",
-        "solution": "Une démonstration qui analyse un contrat déposé en PDF et repère, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite) — en langage clair, sans jamais juger de la légalité du contrat ni de la fiabilité d'une entreprise.",
+        "challenge": "Dans un service sinistres, la plupart des dossiers sont simples, mais ceux qui appellent une enquête ou un recours contre un tiers responsable demandent de croiser plusieurs pièces. Confier ce travail à une IA soulève trois questions : qui décide du routage, que se passe-t-il quand le modèle se trompe, et combien cela coûte-t-il ?",
+        "solution": "Sur des sinistres fictifs, des règles métier calculent un score sur 50 et fixent le routage (traitement automatique, investigation, alerte SIU). L'agent ne peut pas le modifier. Un agent Claude n'est appelé que si c'est utile, quand le dossier est suspect ou qu'un rapport de police est fourni. Il choisit ses outils, rend une proposition structurée, puis s'arrête : un gestionnaire valide ou rejette, motif à l'appui, avant que l'agent ne rédige un brouillon sans aucun envoi réel. Les seuils sont des choix de démonstration, non calibrés sur des données réelles.",
         "features": [
           {
-            "icon": "🚩",
-            "title": "Détection de signaux de vigilance",
-            "description": "Repère les patterns de montages contractuels à risque."
+            "icon": "🎯",
+            "title": "Règles d'abord, IA si utile",
+            "description": "Le score et le routage sont calculés par des règles déterministes. Un dossier sain, sans rapport de police, ne déclenche aucun appel à l'IA."
           },
           {
-            "icon": "⚖️",
-            "title": "Verdict en langage clair",
-            "description": "Restitution à 3 niveaux, sans jargon juridique."
+            "icon": "🕸️",
+            "title": "Un agent qui choisit ses outils",
+            "description": "Selon le dossier, l'agent consulte l'historique du réparateur ou calcule le montant du recours. Chaque étape est visible dans un journal (outil, entrée, sortie, durée), et les montants sont recalculés par le code."
           },
           {
-            "icon": "🔒",
-            "title": "Aucun stockage côté application",
-            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic) conserve les données transmises 30 jours, selon sa politique par défaut."
+            "icon": "📨",
+            "title": "Validation humaine obligatoire",
+            "description": "Le gestionnaire valide, ou rejette avec un motif. Suivent un brouillon de courrier de recours et un plan J+5 / J+15 / J+30, marqués « aucun envoi réel »."
           }
         ],
         "stack": [
-          "Claude Sonnet 5",
-          "Next.js",
-          "Vercel Functions"
+          "Claude Sonnet 5.5 (API Anthropic)",
+          "HTML/JavaScript",
+          "Vercel Functions",
+          "Upstash Redis"
         ],
-        "metrics": [],
+        "metrics": [
+          "0,02 à 0,03 $ par analyse",
+          "10 à 20 s",
+          "15 analyses réelles par jour, puis rejeu signalé (mesures du 01/10/2026)"
+        ],
         "image": {
-          "src": "/use-cases/lexguard.webp",
-          "width": 1440,
-          "height": 1055,
-          "alt": "Capture de la page d'accueil de LexGuard : dépôt de contrat, exemple de signal de vigilance détecté et garantie qu'aucun document déposé n'est conservé."
+          "src": "/use-cases/fraud.webp",
+          "width": 1006,
+          "height": 768,
+          "alt": "Capture d'une analyse sur Fraud Agent : score des règles à 0 sur 50, routage en traitement automatique, déroulé des étapes de l'agent et début de sa proposition, sur un sinistre fictif."
+        },
+        "methodBridge": {
+          "label": "Même méthode qu'AssurConseil RAG : couper les risques avant d'ajouter des fonctionnalités, mesurer avant d'annoncer un chiffre, répéter en prévisualisation avant la mise en production.",
+          "path": "methodologie-diag"
         }
       },
       "agap": {
@@ -202,6 +211,44 @@
           "label": "Voir la phase de diagnostic illustrée",
           "path": "methodologie-diag",
           "hash": "phase-1"
+        }
+      },
+      "lexguard": {
+        "title": "LexGuard",
+        "description": "Détection des signaux de vigilance dans les contrats avant signature.",
+        "demonstrates": "Rendre un contrat lisible pour un non-juriste : détection de signaux de vigilance et verdict en langage clair.",
+        "tag": "CONFORMITÉ & IA GÉNÉRATIVE",
+        "theme": "documents-rag",
+        "challenge": "Un maire de commune rurale, sans service juridique, signe sous pression commerciale un contrat de matériel télécom qui dissimule un second contrat de leasing — durée d'engagement longue, résiliation quasi impossible. Des communes ont été poursuivies pour des dizaines de milliers d'euros après coup.",
+        "solution": "Une démonstration qui analyse un contrat déposé en PDF et repère, avant signature, les signaux de vigilance d'un montage à risque (contrat dissimulé, durée anormale, reconduction tacite) — en langage clair, sans jamais juger de la légalité du contrat ni de la fiabilité d'une entreprise.",
+        "features": [
+          {
+            "icon": "🚩",
+            "title": "Détection de signaux de vigilance",
+            "description": "Repère les patterns de montages contractuels à risque."
+          },
+          {
+            "icon": "⚖️",
+            "title": "Verdict en langage clair",
+            "description": "Restitution à 3 niveaux, sans jargon juridique."
+          },
+          {
+            "icon": "🔒",
+            "title": "Aucun stockage côté application",
+            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic) conserve les données transmises 30 jours, selon sa politique par défaut."
+          }
+        ],
+        "stack": [
+          "Claude Sonnet 5",
+          "Next.js",
+          "Vercel Functions"
+        ],
+        "metrics": [],
+        "image": {
+          "src": "/use-cases/lexguard.webp",
+          "width": 1440,
+          "height": 1055,
+          "alt": "Capture de la page d'accueil de LexGuard : dépôt de contrat, exemple de signal de vigilance détecté et garantie qu'aucun document déposé n'est conservé."
         }
       },
       "comex": {
@@ -299,53 +346,6 @@
           "données DVF (DGFiP)"
         ],
         "metrics": []
-      },
-      "fraud": {
-        "title": "Fraud Agent",
-        "description": "Agent de pré-instruction de sinistres IARD : des règles métier décident du routage, un agent Claude propose, un gestionnaire valide.",
-        "demonstrates": "Concevoir un agent borné pour un métier réglementé : ce que le code décide, ce que l'agent propose, ce que l'humain valide, avec un coût et une durée mesurés.",
-        "tag": "IA agentique · humain dans la boucle",
-        "theme": "conformite-risques",
-        "challenge": "Dans un service sinistres, la plupart des dossiers sont simples, mais ceux qui appellent une enquête ou un recours contre un tiers responsable demandent de croiser plusieurs pièces. Confier ce travail à une IA soulève trois questions : qui décide du routage, que se passe-t-il quand le modèle se trompe, et combien cela coûte-t-il ?",
-        "solution": "Sur des sinistres fictifs, des règles métier calculent un score sur 50 et fixent le routage (traitement automatique, investigation, alerte SIU). L'agent ne peut pas le modifier. Un agent Claude n'est appelé que si c'est utile, quand le dossier est suspect ou qu'un rapport de police est fourni. Il choisit ses outils, rend une proposition structurée, puis s'arrête : un gestionnaire valide ou rejette, motif à l'appui, avant que l'agent ne rédige un brouillon sans aucun envoi réel. Les seuils sont des choix de démonstration, non calibrés sur des données réelles.",
-        "features": [
-          {
-            "icon": "🎯",
-            "title": "Règles d'abord, IA si utile",
-            "description": "Le score et le routage sont calculés par des règles déterministes. Un dossier sain, sans rapport de police, ne déclenche aucun appel à l'IA."
-          },
-          {
-            "icon": "🕸️",
-            "title": "Un agent qui choisit ses outils",
-            "description": "Selon le dossier, l'agent consulte l'historique du réparateur ou calcule le montant du recours. Chaque étape est visible dans un journal (outil, entrée, sortie, durée), et les montants sont recalculés par le code."
-          },
-          {
-            "icon": "📨",
-            "title": "Validation humaine obligatoire",
-            "description": "Le gestionnaire valide, ou rejette avec un motif. Suivent un brouillon de courrier de recours et un plan J+5 / J+15 / J+30, marqués « aucun envoi réel »."
-          }
-        ],
-        "stack": [
-          "Claude Sonnet 5.5 (API Anthropic)",
-          "HTML/JavaScript",
-          "Vercel Functions",
-          "Upstash Redis"
-        ],
-        "metrics": [
-          "0,02 à 0,03 $ par analyse",
-          "10 à 20 s",
-          "15 analyses réelles par jour, puis rejeu signalé (mesures du 01/10/2026)"
-        ],
-        "image": {
-          "src": "/use-cases/fraud.webp",
-          "width": 1006,
-          "height": 768,
-          "alt": "Capture d'une analyse sur Fraud Agent : score des règles à 0 sur 50, routage en traitement automatique, déroulé des étapes de l'agent et début de sa proposition, sur un sinistre fictif."
-        },
-        "methodBridge": {
-          "label": "Même méthode qu'AssurConseil RAG : couper les risques avant d'ajouter des fonctionnalités, mesurer avant d'annoncer un chiffre, répéter en prévisualisation avant la mise en production.",
-          "path": "methodologie-diag"
-        }
       },
       "verifid": {
         "title": "Vérificateur de pièce d'identité",

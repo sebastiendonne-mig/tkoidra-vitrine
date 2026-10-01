@@ -118,43 +118,52 @@
           "path": "methodologie-diag"
         }
       },
-      "lexguard": {
-        "title": "LexGuard",
-        "description": "Detects red-flag signals in contracts before signature.",
-        "demonstrates": "Making a contract readable for a non-lawyer: red-flag signal detection and a plain-language verdict.",
-        "tag": "COMPLIANCE & GENERATIVE AI",
-        "theme": "documents-rag",
+      "fraud": {
+        "title": "Fraud Agent",
+        "description": "Pre-assessment agent for P&C insurance claims: business rules set the routing, a Claude agent proposes, a claims handler decides.",
+        "demonstrates": "Designing a bounded agent for a regulated business: what the code decides, what the agent proposes, what the human approves, with measured cost and latency.",
+        "tag": "Agentic AI · Human in the Loop",
+        "theme": "conformite-risques",
         "featured": true,
-        "challenge": "The mayor of a rural town, with no legal department, signs a telecom equipment contract under sales pressure — one that conceals a second leasing agreement with a long commitment term and near-impossible termination. Some towns have been sued for tens of thousands of euros after the fact.",
-        "solution": "A demonstration that analyzes a contract submitted as a PDF and flags, before signature, the warning signs of a risky arrangement (concealed contract, abnormal duration, tacit renewal) — in plain language, without ever ruling on the contract's legality or a company's reliability.",
+        "challenge": "In a claims department, most cases are simple, but those that call for an investigation or a recovery claim against a liable third party require cross-checking several documents. Handing this work to AI raises three questions: who decides the routing, what happens when the model gets it wrong, and what does it cost?",
+        "solution": "On fictional claims, business rules compute a score out of 50 and set the routing (straight-through processing, investigation, fraud-unit alert). The agent cannot change it. A Claude agent is called only when useful, when the case is suspicious or a police report is provided. It picks its tools, returns a structured proposal, then stops: a claims handler approves or rejects it with a reason, before the agent drafts a letter that is never actually sent. Thresholds are demonstration choices, not calibrated on real data.",
         "features": [
           {
-            "icon": "🚩",
-            "title": "Red-flag signal detection",
-            "description": "Identifies patterns of risky contractual arrangements."
+            "icon": "🎯",
+            "title": "Rules first, AI when useful",
+            "description": "Score and routing come from deterministic rules. A clean case without a police report triggers no AI call."
           },
           {
-            "icon": "⚖️",
-            "title": "Plain-language verdict",
-            "description": "3-level assessment, no legal jargon."
+            "icon": "🕸️",
+            "title": "An agent that picks its tools",
+            "description": "Depending on the case, the agent checks the repair shop's history or computes the recovery amount. Every step shows in a log (tool, input, output, duration), and amounts are recomputed by the code."
           },
           {
-            "icon": "🔒",
-            "title": "No application-side storage",
-            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic) retains transmitted data for 30 days, under its default policy."
+            "icon": "📨",
+            "title": "Mandatory human approval",
+            "description": "The handler approves, or rejects with a reason. A recovery letter draft and a D+5 / D+15 / D+30 plan follow, marked \"never actually sent\"."
           }
         ],
         "stack": [
-          "Claude Sonnet 5",
-          "Next.js",
-          "Vercel Functions"
+          "Claude Sonnet 5.5 (Anthropic API)",
+          "HTML/JavaScript",
+          "Vercel Functions",
+          "Upstash Redis"
         ],
-        "metrics": [],
+        "metrics": [
+          "$0.02-0.03 per analysis",
+          "10-20 s",
+          "15 live analyses per day, then a labelled replay (measured on 01/10/2026)"
+        ],
         "image": {
-          "src": "/use-cases/lexguard.webp",
-          "width": 1440,
-          "height": 1055,
-          "alt": "Screenshot of the LexGuard homepage: contract upload, an example of a detected warning signal, and the guarantee that no uploaded document is stored."
+          "src": "/use-cases/fraud.webp",
+          "width": 1006,
+          "height": 768,
+          "alt": "Screenshot of an analysis on Fraud Agent: rules score of 0 out of 50, straight-through routing, the agent's step-by-step run and the start of its proposal, on a fictional claim."
+        },
+        "methodBridge": {
+          "label": "Same method as AssurConseil RAG: cut the risks before adding features, measure before announcing a figure, rehearse in preview before going to production.",
+          "path": "methodologie-diag"
         }
       },
       "agap": {
@@ -202,6 +211,44 @@
           "label": "See the diagnose phase it illustrates",
           "path": "methodologie-diag",
           "hash": "phase-1"
+        }
+      },
+      "lexguard": {
+        "title": "LexGuard",
+        "description": "Detects red-flag signals in contracts before signature.",
+        "demonstrates": "Making a contract readable for a non-lawyer: red-flag signal detection and a plain-language verdict.",
+        "tag": "COMPLIANCE & GENERATIVE AI",
+        "theme": "documents-rag",
+        "challenge": "The mayor of a rural town, with no legal department, signs a telecom equipment contract under sales pressure — one that conceals a second leasing agreement with a long commitment term and near-impossible termination. Some towns have been sued for tens of thousands of euros after the fact.",
+        "solution": "A demonstration that analyzes a contract submitted as a PDF and flags, before signature, the warning signs of a risky arrangement (concealed contract, abnormal duration, tacit renewal) — in plain language, without ever ruling on the contract's legality or a company's reliability.",
+        "features": [
+          {
+            "icon": "🚩",
+            "title": "Red-flag signal detection",
+            "description": "Identifies patterns of risky contractual arrangements."
+          },
+          {
+            "icon": "⚖️",
+            "title": "Plain-language verdict",
+            "description": "3-level assessment, no legal jargon."
+          },
+          {
+            "icon": "🔒",
+            "title": "No application-side storage",
+            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic) retains transmitted data for 30 days, under its default policy."
+          }
+        ],
+        "stack": [
+          "Claude Sonnet 5",
+          "Next.js",
+          "Vercel Functions"
+        ],
+        "metrics": [],
+        "image": {
+          "src": "/use-cases/lexguard.webp",
+          "width": 1440,
+          "height": 1055,
+          "alt": "Screenshot of the LexGuard homepage: contract upload, an example of a detected warning signal, and the guarantee that no uploaded document is stored."
         }
       },
       "comex": {
@@ -299,53 +346,6 @@
           "DVF data (DGFiP)"
         ],
         "metrics": []
-      },
-      "fraud": {
-        "title": "Fraud Agent",
-        "description": "Pre-assessment agent for P&C insurance claims: business rules set the routing, a Claude agent proposes, a claims handler decides.",
-        "demonstrates": "Designing a bounded agent for a regulated business: what the code decides, what the agent proposes, what the human approves, with measured cost and latency.",
-        "tag": "Agentic AI · Human in the Loop",
-        "theme": "conformite-risques",
-        "challenge": "In a claims department, most cases are simple, but those that call for an investigation or a recovery claim against a liable third party require cross-checking several documents. Handing this work to AI raises three questions: who decides the routing, what happens when the model gets it wrong, and what does it cost?",
-        "solution": "On fictional claims, business rules compute a score out of 50 and set the routing (straight-through processing, investigation, fraud-unit alert). The agent cannot change it. A Claude agent is called only when useful, when the case is suspicious or a police report is provided. It picks its tools, returns a structured proposal, then stops: a claims handler approves or rejects it with a reason, before the agent drafts a letter that is never actually sent. Thresholds are demonstration choices, not calibrated on real data.",
-        "features": [
-          {
-            "icon": "🎯",
-            "title": "Rules first, AI when useful",
-            "description": "Score and routing come from deterministic rules. A clean case without a police report triggers no AI call."
-          },
-          {
-            "icon": "🕸️",
-            "title": "An agent that picks its tools",
-            "description": "Depending on the case, the agent checks the repair shop's history or computes the recovery amount. Every step shows in a log (tool, input, output, duration), and amounts are recomputed by the code."
-          },
-          {
-            "icon": "📨",
-            "title": "Mandatory human approval",
-            "description": "The handler approves, or rejects with a reason. A recovery letter draft and a D+5 / D+15 / D+30 plan follow, marked \"never actually sent\"."
-          }
-        ],
-        "stack": [
-          "Claude Sonnet 5.5 (Anthropic API)",
-          "HTML/JavaScript",
-          "Vercel Functions",
-          "Upstash Redis"
-        ],
-        "metrics": [
-          "$0.02-0.03 per analysis",
-          "10-20 s",
-          "15 live analyses per day, then a labelled replay (measured on 01/10/2026)"
-        ],
-        "image": {
-          "src": "/use-cases/fraud.webp",
-          "width": 1006,
-          "height": 768,
-          "alt": "Screenshot of an analysis on Fraud Agent: rules score of 0 out of 50, straight-through routing, the agent's step-by-step run and the start of its proposal, on a fictional claim."
-        },
-        "methodBridge": {
-          "label": "Same method as AssurConseil RAG: cut the risks before adding features, measure before announcing a figure, rehearse in preview before going to production.",
-          "path": "methodologie-diag"
-        }
       },
       "verifid": {
         "title": "ID Document Verifier",
