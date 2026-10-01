@@ -37,7 +37,7 @@ interface Project {
   solution: string;
   features: Feature[];
   stack: string[];
-  metrics?: unknown[];
+  metrics?: string[];
   methodBridge?: MethodBridge;
   image?: ProjectImage;
 }
@@ -291,6 +291,24 @@ function FeaturedCard({
         </h3>
         <FeatureGrid features={project.features} />
       </div>
+
+      {project.metrics && project.metrics.length > 0 && (
+        <div className="space-y-5">
+          <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
+            {labels.metrics}
+          </h3>
+          <ul className="flex flex-wrap gap-2">
+            {project.metrics.map((metric) => (
+              <li
+                key={metric}
+                className="rounded-lg border border-accent/25 bg-accent/5 px-3 py-1.5 text-sm text-slate-300"
+              >
+                {metric}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="space-y-5">
         <h3 className="text-lg font-bold text-slate-200 border-b border-slate-800 pb-3">
