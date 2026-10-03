@@ -46,7 +46,11 @@
       "description": "Des démonstrateurs IA fonctionnels, en ligne et testables — du cadrage à la mise en production, sur des cas d'usage en assurance, immobilier et conformité."
     },
     "discoverLabel": "Découvrir le projet →",
-    "appLink": { "label": "Ouvrir l'application", "newTab": "s'ouvre dans un nouvel onglet" },
+    "appLink": {
+      "label": "Ouvrir l'application",
+      "newTab": "s'ouvre dans un nouvel onglet",
+      "coldStartNote": "⏳ **Premier chargement : environ 1 minute.** Pour limiter les coûts, la démo est mise en veille quand personne ne l'utilise. Au premier accès, le serveur redémarre : la page peut rester blanche pendant ce temps, c'est normal. Ensuite, elle répond normalement."
+    },
     "sectionLabels": {
       "challenge": "Le Défi Métier",
       "solution": "La Solution IA",

@@ -46,7 +46,11 @@
       "description": "Functional AI demonstrators, live and testable — from framing to production, illustrated by use cases in insurance, real estate, and compliance."
     },
     "discoverLabel": "Explore project →",
-    "appLink": { "label": "Open the application", "newTab": "opens in a new tab" },
+    "appLink": {
+      "label": "Open the application",
+      "newTab": "opens in a new tab",
+      "coldStartNote": "⏳ **First load: about 1 minute.** To keep costs down, the demo goes to sleep when no one is using it. On first access, the server restarts: the page may stay blank in the meantime, which is normal. After that, it responds normally."
+    },
     "sectionLabels": {
       "challenge": "Business Challenge",
       "solution": "AI Solution",
