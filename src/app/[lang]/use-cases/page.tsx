@@ -45,6 +45,7 @@ interface Project {
 interface AppLinkLabels {
   label: string;
   newTab: string;
+  coldStartNote?: string;
 }
 
 interface Theme {
@@ -239,6 +240,7 @@ function FeaturedCard({
               label={appLink.label}
               newTabLabel={appLink.newTab}
               appName={project.title}
+              note={slug === "assurconseil" ? appLink.coldStartNote : undefined}
             />
           )}
         </div>
@@ -362,6 +364,7 @@ function CompactCard({
               label={appLink.label}
               newTabLabel={appLink.newTab}
               appName={project.title}
+              note={slug === "assurconseil" ? appLink.coldStartNote : undefined}
             />
           )}
         </div>

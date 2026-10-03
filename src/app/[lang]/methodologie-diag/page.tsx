@@ -142,6 +142,7 @@ function ProofCard({
   label,
   toolsLabel,
   newTabLabel,
+  coldStartNote,
   proof,
   tools,
 }: {
@@ -149,6 +150,7 @@ function ProofCard({
   label: string;
   toolsLabel: string;
   newTabLabel: string;
+  coldStartNote?: string;
   proof: Proof;
   tools: Tool[];
 }) {
@@ -208,6 +210,7 @@ function ProofCard({
         newTabLabel={newTabLabel}
         appName={proof.app}
         className="mt-5"
+        note={coldStartNote}
       />
     </div>
   );
@@ -217,10 +220,12 @@ function PhaseSection({
   id,
   phase,
   labels,
+  coldStartNote,
 }: {
   id: string;
   phase: Phase;
   labels: MethodeDict["labels"];
+  coldStartNote?: string;
 }) {
   return (
     <section
@@ -269,6 +274,7 @@ function PhaseSection({
             label={labels.proof}
             toolsLabel={labels.tools}
             newTabLabel={labels.newTab}
+            coldStartNote={coldStartNote}
             proof={phase.proof}
             tools={phase.tools}
           />
@@ -367,6 +373,7 @@ export default async function MethodologieDiagPage({ params }: Props) {
                 id={steps[i].id}
                 phase={phase}
                 labels={t.labels}
+                coldStartNote={dict.useCases?.appLink?.coldStartNote}
               />
             ))}
           </div>
