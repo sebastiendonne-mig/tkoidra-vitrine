@@ -355,11 +355,11 @@
       "verifid": {
         "title": "Vérificateur de pièce d'identité",
         "description": "Contrôle qualité documentaire et cohérence MRZ par l'IA.",
-        "demonstrates": "Combiner vision par IA et contrôle déterministe (MRZ) pour fiabiliser une vérification.",
+        "demonstrates": "Combiner une lecture par IA et un calcul déterministe (clés de contrôle MRZ) pour fiabiliser une vérification.",
         "tag": "CONFORMITÉ & VISION IA",
         "theme": "conformite-risques",
         "challenge": "Un dossier de souscription avec une pièce illisible ou incomplète reste bloqué jusqu'à ce qu'un gestionnaire le découvre, puis relance le client — un cycle de va-et-vient qui dégrade le taux de finalisation et alourdit le back-office.",
-        "solution": "Une démonstration qui contrôle la qualité d'une pièce d'identité au moment du dépôt (lisibilité, complétude, cadrage) et vérifie la cohérence mathématique de sa zone MRZ selon la norme ICAO 9303 — sans jamais juger de son authenticité.",
+        "solution": "Une démonstration qui contrôle la qualité d'une pièce d'identité au moment du dépôt (lisibilité, complétude, cadrage) et fait lire sa zone MRZ par l'IA, puis en vérifie la cohérence mathématique selon la norme ICAO 9303 — sans jamais juger de son authenticité.",
         "features": [
           {
             "icon": "🔍",
@@ -369,7 +369,7 @@
           {
             "icon": "🔐",
             "title": "Cohérence MRZ vérifiable",
-            "description": "Calcul déterministe des clés de contrôle ICAO 9303 pour carte d'identité et passeport, avec le détail du calcul affiché — pas une boîte noire."
+            "description": "Calcul déterministe des clés de contrôle ICAO 9303 (CNI et passeport), avec le détail affiché. Les caractères sont lus par l'IA : le calcul est transparent, la lecture peut se tromper."
           },
           {
             "icon": "🪪",

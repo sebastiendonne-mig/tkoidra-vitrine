@@ -355,11 +355,11 @@
       "verifid": {
         "title": "ID Document Verifier",
         "description": "AI-powered document quality control and MRZ consistency check.",
-        "demonstrates": "Combining AI vision and deterministic (MRZ) checking to make a verification reliable.",
+        "demonstrates": "Combining AI reading with a deterministic calculation (MRZ check digits) to make verification more reliable.",
         "tag": "COMPLIANCE & VISION AI",
         "theme": "conformite-risques",
         "challenge": "A subscription file with an illegible or incomplete ID gets stuck until a handler notices it and contacts the client — a back-and-forth cycle that degrades completion rates and burdens the back office.",
-        "solution": "A demonstration that checks the quality of an identity document at upload time (legibility, completeness, framing) and verifies the mathematical consistency of its MRZ zone against ICAO 9303 — without ever judging its authenticity.",
+        "solution": "A demonstration that checks the quality of an identity document at upload time (legibility, completeness, framing) and has the AI read its MRZ, then checks its mathematical consistency against ICAO 9303 — without ever judging its authenticity.",
         "features": [
           {
             "icon": "🔍",
@@ -369,7 +369,7 @@
           {
             "icon": "🔐",
             "title": "Verifiable MRZ consistency",
-            "description": "Deterministic calculation of ICAO 9303 check digits for ID cards and passports, with the calculation detail displayed — not a black box."
+            "description": "Deterministic ICAO 9303 check-digit calculation (ID card and passport), with the details shown. The characters are read by the AI: the calculation is transparent, the reading can be wrong."
           },
           {
             "icon": "🪪",
