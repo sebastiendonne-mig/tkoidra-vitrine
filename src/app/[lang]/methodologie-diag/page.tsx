@@ -1,26 +1,13 @@
 import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
-import { OpenAppButton } from "../../../components/OpenAppButton";
 import { getDictionary } from "../../../get-dictionary";
-import { appUrls } from "../../../lib/app-urls";
 import { LINKEDIN_URL, SITE_URL } from "../../../lib/site";
+import { GuideExplorer, type Guide, type GuidesSectionDict } from "./GuideExplorer";
 import { PhaseStepper } from "./PhaseStepper";
 
 type Props = {
   params: Promise<{ lang: string }>;
 };
-
-interface Proof {
-  app: string;
-  text: string;
-  cta: string;
-}
-
-interface Tool {
-  key: string;
-  name: string;
-  detail: string;
-}
 
 interface Phase {
   number: string;
@@ -28,9 +15,6 @@ interface Phase {
   goal: string;
   actions: string[];
   deliverables: string[];
-  proof: Proof;
-  tools: Tool[];
-  practices: string[];
 }
 
 interface TitledText {
@@ -49,13 +33,11 @@ interface MethodeDict {
     goal: string;
     actions: string;
     deliverables: string;
-    proof: string;
-    tools: string;
-    practices: string;
     newTab: string;
   };
   phases: Phase[];
-  threads: { title: string; items: (TitledText & { icon: string })[] };
+  guidesSection: GuidesSectionDict;
+  guides: Guide[];
   operatingMode: { title: string; steps: TitledText[]; quote: string };
   cta: { text: string; button: string };
 }
@@ -92,23 +74,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Rend les segments **…** du dictionnaire en chiffres clés mis en valeur.
-function Emphasis({ text }: { text: string }) {
-  return (
-    <>
-      {text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
-        i % 2 === 1 ? (
-          <strong key={i} className="whitespace-nowrap font-semibold text-accent-hover">
-            {part}
-          </strong>
-        ) : (
-          part
-        )
-      )}
-    </>
-  );
-}
-
 // newTabLabel (optionnel) : annonce l'ouverture dans un nouvel onglet dans le nom accessible.
 function ExternalLink({
   href,
@@ -130,95 +95,14 @@ function ExternalLink({
   );
 }
 
-function ProofCard({
-  id,
-  label,
-  toolsLabel,
-  newTabLabel,
-  coldStartNote,
-  proof,
-  tools,
-}: {
-  id: string;
-  label: string;
-  toolsLabel: string;
-  newTabLabel: string;
-  coldStartNote?: string;
-  proof: Proof;
-  tools: Tool[];
-}) {
-  return (
-    <div
-      className="rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/10 via-slate-900/60 to-slate-900/30 p-6 shadow-[0_0_40px_-16px] shadow-accent/45"
-    >
-      <div className="flex items-center gap-2.5">
-        <svg
-          aria-hidden
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-5 w-5 shrink-0 text-accent-hover"
-        >
-          <path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z" />
-          <path d="M9 12l2 2 4-4" />
-        </svg>
-        <h3
-          id={`${id}-proof`}
-          className="text-xs font-bold uppercase tracking-widest text-accent-hover"
-        >
-          {label} — {proof.app}
-        </h3>
-      </div>
-      <p className="mt-4 text-sm leading-7 text-slate-300">
-        <Emphasis text={proof.text} />
-      </p>
-
-      {tools.length > 0 && (
-        <div className="mt-5 space-y-3 border-t border-accent/15 pt-4">
-          <p className="text-xs font-semibold text-slate-400">{toolsLabel}</p>
-          <ul className="space-y-3">
-            {tools.map((tool) => (
-              <li key={tool.key} className="flex flex-col items-start gap-2 text-sm leading-6 text-slate-400">
-                <OpenAppButton
-                  href={appUrls[tool.key]}
-                  label={tool.name}
-                  newTabLabel={newTabLabel}
-                  appName={tool.name}
-                />
-                <span className="block">
-                  <Emphasis text={tool.detail} />
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <OpenAppButton
-        href={appUrls.assurconseil}
-        label={proof.cta}
-        newTabLabel={newTabLabel}
-        appName={proof.app}
-        className="mt-5"
-        note={coldStartNote}
-      />
-    </div>
-  );
-}
-
 function PhaseSection({
   id,
   phase,
   labels,
-  coldStartNote,
 }: {
   id: string;
   phase: Phase;
   labels: MethodeDict["labels"];
-  coldStartNote?: string;
 }) {
   return (
     <section
@@ -262,15 +146,6 @@ function PhaseSection({
         </div>
 
         <div className="space-y-6 lg:col-span-2">
-          <ProofCard
-            id={id}
-            label={labels.proof}
-            toolsLabel={labels.tools}
-            newTabLabel={labels.newTab}
-            coldStartNote={coldStartNote}
-            proof={phase.proof}
-            tools={phase.tools}
-          />
           <div className="space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">
               {labels.deliverables}
@@ -288,35 +163,6 @@ function PhaseSection({
           </div>
         </div>
       </div>
-
-      <details className="group rounded-2xl border border-slate-800 bg-slate-900/30 open:bg-slate-900/50">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-4 text-sm font-semibold text-slate-200 hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-safe:transition-colors [&::-webkit-details-marker]:hidden">
-          <span>{labels.practices}</span>
-          <svg
-            aria-hidden
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="h-4 w-4 shrink-0 text-accent group-open:rotate-180 motion-safe:transition-transform"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </summary>
-        <ul className="grid gap-x-8 gap-y-3 px-6 pb-6 md:grid-cols-2">
-          {phase.practices.map((practice) => (
-            <li key={practice} className="flex gap-3 text-sm leading-7 text-slate-400">
-              <span
-                aria-hidden
-                className="mt-[0.7rem] h-1 w-3 shrink-0 rounded-full bg-slate-600"
-              />
-              <span>{practice}</span>
-            </li>
-          ))}
-        </ul>
-      </details>
     </section>
   );
 }
@@ -325,6 +171,15 @@ export default async function MethodologieDiagPage({ params }: Props) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const t = dict.methode as MethodeDict;
+
+  // Note de démarrage à froid : une seule fois sur la page, sous le bouton du premier guide AssurConseil.
+  const coldStartGuide = t.guides
+    .map((g) => ({ id: g.id, index: g.illustrations.findIndex((ill) => ill.appKey === "assurconseil") }))
+    .find((g) => g.index >= 0);
+  const projects = dict.useCases.projects as Record<string, { title: string }>;
+  const appNames = Object.fromEntries(
+    Object.entries(projects).map(([slug, project]) => [slug, project.title])
+  );
 
   const steps = t.phases.map((phase, i) => ({
     id: `phase-${i + 1}`,
@@ -366,39 +221,28 @@ export default async function MethodologieDiagPage({ params }: Props) {
                 id={steps[i].id}
                 phase={phase}
                 labels={t.labels}
-                coldStartNote={i === 0 ? dict.useCases?.appLink?.coldStartNote : undefined}
               />
             ))}
           </div>
         </div>
 
-        {/* Six fils rouges */}
-        <section aria-labelledby="threads-title" className="space-y-8">
+        {/* Guides de bonnes pratiques */}
+        <section aria-labelledby="guides-title" className="space-y-8">
           <h2
-            id="threads-title"
+            id="guides-title"
             className="text-2xl font-extrabold tracking-tight text-slate-100 sm:text-3xl"
           >
-            {t.threads.title}
+            {t.guidesSection.title}
           </h2>
-          <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {t.threads.items.map((item, i) => (
-              <li
-                key={item.title}
-                className="space-y-3 rounded-2xl border border-slate-800 bg-slate-900/30 p-6 hover:border-accent/30 hover:bg-slate-900/60 motion-safe:transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <span aria-hidden className="text-2xl">
-                    {item.icon}
-                  </span>
-                  <span aria-hidden className="font-mono text-xs text-slate-400">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <h3 className="text-sm font-bold text-slate-100">{item.title}</h3>
-                <p className="text-sm leading-6 text-slate-400">{item.text}</p>
-              </li>
-            ))}
-          </ol>
+          <GuideExplorer
+            t={t.guidesSection}
+            guides={t.guides}
+            appNames={appNames}
+            openAppLabel={dict.useCases.appLink.label}
+            newTabLabel={t.labels.newTab}
+            coldStartNote={dict.useCases.appLink.coldStartNote}
+            coldStartGuide={coldStartGuide}
+          />
         </section>
 
         {/* Mode opératoire */}
