@@ -401,7 +401,7 @@
     },
     "eyebrow": "Method",
     "title": "From Diagnosis to Controlled Production",
-    "lead": "In my experience, a generative AI project stumbles less on the model than on the move from prototype to production: data, security, costs, compliance, adoption. My method addresses these issues from day one, in three stages. Each stage is illustrated by what I actually did on my online demonstrators, using fictional data.",
+    "lead": "In my experience, a generative AI project stumbles less on the model than on the move from prototype to production: data, security, costs, compliance, adoption. My method addresses these issues from day one, in three stages. The guides that follow draw on what I actually did on my online demonstrators, using fictional data.",
     "badges": [
       "SAFe RTE",
       "CSPO",
@@ -413,9 +413,6 @@
       "goal": "Goal",
       "actions": "What I do",
       "deliverables": "Deliverables",
-      "proof": "Evidence",
-      "tools": "Tools that illustrate this phase",
-      "practices": "Enterprise best practices",
       "newTab": "opens in a new tab"
     },
     "phases": [
@@ -437,31 +434,6 @@
           "go/no-go floor",
           "operating cost estimate",
           "breakdown into batches"
-        ],
-        "proof": {
-          "app": "AssurConseil RAG",
-          "text": "Before adding a single feature, I audited the demo in production. The live version did not match the documentation, no spending cap was confirmed, and a secondary instance remained public. These findings defined the first batch: guardrails before features.",
-          "cta": "Try AssurConseil RAG"
-        },
-        "tools": [
-          {
-            "key": "comex",
-            "name": "Comex",
-            "detail": "framing in **19 questions**, two implementation proposals"
-          },
-          {
-            "key": "agap",
-            "name": "AGAP",
-            "detail": "arbitration of a project portfolio: Business/IT perception gap, scenarios, cut-off line"
-          }
-        ],
-        "practices": [
-          "An identified executive sponsor, and baseline KPIs measured before the project, to compare before and after.",
-          "Precisely qualified needs: usage volume, error tolerance, acceptable latency, confidentiality, need for explainability.",
-          "Data quality assessed on its main dimensions: completeness, accuracy, timeliness, consistency.",
-          "The simplest solution first: an existing tool, then a well-designed prompt, then document grounding (RAG). Fine-tuning only if necessary.",
-          "Regulatory risk qualified early: as soon as a system influences a decision about a person (employment, credit, access to a right), legal advice before developing.",
-          "Start with a high-impact, feasible scope, then expand."
         ]
       },
       {
@@ -483,20 +455,6 @@
           "consent and notices",
           "\"choices and limits\" page",
           "automated tests"
-        ],
-        "proof": {
-          "app": "AssurConseil RAG",
-          "text": "I compared Claude and Mistral Large 3 on **20 questions** before building the interface: **40 out of 40 calls** without failure, floor met by both engines, for an actual cost of **$0.39**. On the Mistral side, Large 3 was preferred to the more expensive Medium 3.5, for its cost and a response format comparable to Claude's. Acknowledged limit: my automatic citation check turned out to be too permissive; I am redoing it with an LLM judge, currently being calibrated. Data retention was checked in both providers' policies, and Mistral inference goes through the European endpoint, as the application logs show.",
-          "cta": "Try AssurConseil RAG"
-        },
-        "tools": [],
-        "practices": [
-          "Shared responsibility clarified: whatever the provider, the company remains responsible for its data and its access.",
-          "Security across the whole lifecycle: least privilege, audited access, secrets in a vault, minimisation and anonymisation of personal data.",
-          "Human in the loop where errors are costly: review before release, final decision by a human.",
-          "Model limitations handled by design: hallucinations, bias, edge cases, outdated knowledge.",
-          "A continuous integration and deployment pipeline, with automated tests on every change.",
-          "Documented choices and limits, for users as well as auditors."
         ]
       },
       {
@@ -516,58 +474,462 @@
           "incident log",
           "quality, cost and usage indicators",
           "improvement backlog"
-        ],
-        "proof": {
-          "app": "AssurConseil RAG",
-          "text": "Upload sessions were cut off after 5 minutes. The logs showed connection closures at **301 seconds**, aligned with the service's maximum timeout. The fix was validated by an **11-minute** test session. Same rigour on performance: after diagnosis (computation precision, number of processors), indexing a document went **from 480 to 142 seconds**.",
-          "cta": "Try AssurConseil RAG"
-        },
-        "tools": [],
-        "practices": [
-          "Monitor latency, traffic, saturation and errors, and set service level objectives (SLOs) on those that matter to the user.",
-          "Budget alerts and quotas, so that a cost overrun is detected before the invoice.",
-          "Quality monitored over time: re-evaluation after every change of model, prompt or data.",
-          "Human review of answers after the fact, to feed continuous improvement.",
-          "Tested backups and a recovery plan, not just written ones.",
-          "Regulatory and security watch: patches, and changes to the GDPR as well as the AI Act."
         ]
       }
     ],
-    "threads": {
-      "title": "Six common threads, from the first day to the last",
-      "items": [
-        {
-          "icon": "🎯",
-          "title": "Proven value",
-          "text": "KPIs defined before, measured after. If the gain isn't there, we adjust or stop."
-        },
-        {
-          "icon": "📏",
-          "title": "Measured quality",
-          "text": "We decide on evaluation results, not on an impression."
-        },
-        {
-          "icon": "🛡️",
-          "title": "Responsible AI and compliance",
-          "text": "Transparency, confidentiality, fairness, GDPR, AI Act transparency obligations, and a clear answer to the question \"who is responsible?\"."
-        },
-        {
-          "icon": "💶",
-          "title": "Controlled costs",
-          "text": "Caps, quotas, visible cost per request, hidden costs anticipated."
-        },
-        {
-          "icon": "🌍",
-          "title": "Reversibility",
-          "text": "Providers compared on the same question set, inference through a European endpoint when relevant, no forced lock-in."
-        },
-        {
-          "icon": "🤝",
-          "title": "Adoption and skills",
-          "text": "A sponsor, the mission restated before the tool, trained teams. It has been my foundation for 15 years, in change management, agile facilitation and Product Ownership."
-        }
-      ]
+    "guidesSection": {
+      "title": "Best practice guides",
+      "filtersLabel": "Filter the guides",
+      "stepFilterLabel": "Stage",
+      "themeFilterLabel": "Theme",
+      "all": "All",
+      "count": "Guides shown: {count} of {total}",
+      "empty": "No guide matches these filters.",
+      "inProgress": "In progress",
+      "seenSometimes": "What you sometimes see",
+      "howTo": "How to do it right",
+      "checklist": "Checklist",
+      "illustration": "Implemented on",
+      "steps": {
+        "diagnostiquer": "Diagnose",
+        "construire": "Build",
+        "exploiter": "Operate",
+        "transverse": "Cross-cutting"
+      },
+      "themes": {
+        "strategie": "Strategy",
+        "priorisation": "Prioritization",
+        "risque": "Risk",
+        "pilotage": "Steering",
+        "go-no-go": "Go/no-go",
+        "mesure-de-la-valeur": "Value measurement",
+        "rag": "RAG",
+        "qualite": "Quality",
+        "donnees": "Data",
+        "agents": "Agents",
+        "garde-fous": "Guardrails",
+        "securite": "Security",
+        "evaluation": "Evaluation",
+        "llm-juge": "LLM judge",
+        "couts": "Costs",
+        "choix-de-modele": "Model choice",
+        "reversibilite": "Reversibility",
+        "donnees-personnelles": "Personal data",
+        "conformite": "Compliance",
+        "fournisseurs": "Providers",
+        "gouvernance": "Governance",
+        "livraison": "Delivery",
+        "qualite-logicielle": "Software quality",
+        "travail-avec-les-developpeurs": "Working with developers",
+        "run": "Operations",
+        "surveillance": "Monitoring",
+        "incidents": "Incidents",
+        "adoption": "Adoption",
+        "conduite-du-changement": "Change management"
+      }
     },
+    "guides": [
+      {
+        "id": "cas-usage",
+        "title": "Choosing the right use cases",
+        "step": "diagnostiquer",
+        "themes": [
+          "strategie",
+          "priorisation",
+          "risque"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Each department arrives with its own list of AI ideas, and the committee decides in favor of whichever is argued the loudest. People start from the tool (\"we need a chatbot\") rather than the problem, and find out too late that the data does not exist or that a simple rule would have been enough.",
+        "howTo": [
+          "**A single entry point, a common scoring grid** for every department: you compare projects, not speakers.",
+          "**Start from business pain points**, not solutions: how much time or money is lost today, and what does an error cost?",
+          "**Filter before assessing: is it really an AI problem?** A rule, better document filing or off-the-shelf software is often enough. This is the step that saves the most time. And if AI is justified, start with the simplest solution: an existing tool, then a prompt, then a RAG, with specific training (fine-tuning) as a last resort.",
+          "**Assess on four axes**, with each department: value (measurable); feasibility, starting with the data (does it exist, is it accessible, up to date, personal?) and the business requirements (volume, acceptable latency, explainability); risk (cost of a wrong answer, fairness of decisions, GDPR and AI Act constraints); total cost, running costs included.",
+          "**Prioritize**: a few quick wins and one or two structural bets, each with a business sponsor.",
+          "**Deliver a \"no\" without surprises**: the department took part in the scoring, and leaves with a clear condition for reopening the case."
+        ],
+        "checklist": [
+          "common grid for all departments",
+          "pain point quantified",
+          "\"is it AI?\" filter passed",
+          "data identified and accessible",
+          "cost of an error assessed",
+          "regulatory risk assessed",
+          "running cost estimated",
+          "sponsor named"
+        ],
+        "illustrations": [
+          {
+            "text": "Fraud Agent: the risk score is calculated by rules in code; AI only steps in for what the rules cannot read, such as the narrative of a report.",
+            "appKey": "fraud"
+          },
+          {
+            "text": "Comex: a 19-question scoping process that leads to two implementation proposals.",
+            "appKey": "comex"
+          },
+          {
+            "text": "AGAP: a portfolio arbitration that brings out the gap in perception between the business and IT, with scenarios and a cut-off line.",
+            "appKey": "agap"
+          }
+        ]
+      },
+      {
+        "id": "poc-production",
+        "title": "From POC to production",
+        "step": "diagnostiquer",
+        "themes": [
+          "pilotage",
+          "go-no-go",
+          "mesure-de-la-valeur"
+        ],
+        "inProgress": false,
+        "seenSometimes": "A POC that shines in the demo, then months spent \"moving it to production\" with no stopping criterion. Nobody measured the starting point: six months later, there is no way to tell whether the project delivered anything.",
+        "howTo": [
+          "**Tell a POC from an MVP.** A proof of concept (POC) proves it can be done, quickly and cheaply: it decides whether the project enters the portfolio. A minimum viable product (MVP) proves it gets used: it decides whether to scale up.",
+          "**Set the go/no-go before the test**: a floor (what absolutely has to work) and success criteria, written down before seeing the results.",
+          "**Measure the baseline before launch**, with a method (for example a sample of timed searches), and set a target with the business.",
+          "**Deliver in short, deployable increments**, guardrails before features.",
+          "**Track two control indicators** on top of value: adoption and answer quality.",
+          "**Allow yourself to stop**: a regular review where stopping is a real option."
+        ],
+        "checklist": [
+          "short, low-cost POC",
+          "go/no-go written before the test",
+          "baseline measured",
+          "target set with the business",
+          "short increments, guardrails first",
+          "adoption and quality tracked",
+          "review with the right to stop"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG: the audit of the demo already online first revealed a gap with the documentation, an unconfirmed spending cap and a public secondary instance, so the first increment focused on guardrails, before any feature. Then, two engines evaluated on 20 questions for $0.39, with a floor set before the test; the interface was only built after the green light.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "rag-fiable",
+        "title": "Building a reliable RAG",
+        "step": "construire",
+        "themes": [
+          "rag",
+          "qualite",
+          "donnees"
+        ],
+        "inProgress": false,
+        "seenSometimes": "An assistant plugged into a folder of documents, tested \"by eye\" on three questions, with a model picked for its reputation. It always answers, even when the information does not exist. Nobody can tell whether it got better or worse after an update.",
+        "howTo": [
+          "**Check that it is a RAG problem**: answering questions from a specific corpus, with a verifiable source. If a standard search is enough, there is no need for AI.",
+          "**Qualify the corpus first**: who maintains it, which version is authoritative, does it contain personal data, and what is its quality (completeness, accuracy, timeliness, consistency)? An outdated document or a reference to a non-existent article will produce an answer that is wrong, but well phrased.",
+          "**Split along the structure of the documents** (articles, sections) rather than into fixed-size chunks, keeping the references (document, version, article): that is what makes citing possible.",
+          "**Measure retrieval separately from the answer.** If the right passage is not retrieved, even the best model cannot answer correctly. Changing the embedding model means re-indexing the whole corpus.",
+          "**Constrain the answer**: only from the excerpts, with the source cited, and a **refusal** when the information is missing, tested with out-of-corpus questions.",
+          "**Evaluate before delivering** on a question set validated by the business, with thresholds set before the test (see \"Evaluating an LLM\").",
+          "**Secure and cap**: keys kept server-side, quotas and caps, users informed that their data is being sent.",
+          "**Re-evaluate after every change** of model, prompt or documents: a RAG can regress without anyone noticing."
+        ],
+        "checklist": [
+          "corpus qualified and versioned",
+          "structure-based chunking",
+          "retrieval measured on its own",
+          "mandatory citations",
+          "refusal tested out of corpus",
+          "thresholds set before the test",
+          "costs capped",
+          "re-evaluation after every change"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG: fictional corpus split by article, cited answers, refusal tested on an out-of-corpus question, two engines compared on the same question set. Known limitation: my automated citation check turned out to be too lenient; I am redoing it with an LLM judge, currently being calibrated.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "agent-ia",
+        "title": "Keeping an AI agent under control",
+        "step": "construire",
+        "themes": [
+          "agents",
+          "garde-fous",
+          "securite"
+        ],
+        "inProgress": false,
+        "seenSometimes": "An agent given powerful tools and instructions in its prompt: \"never approve a suspicious claim\". The day a document contains a hidden instruction, or the model gets it wrong, nothing stops it from acting.",
+        "howTo": [
+          "**The AI proposes, the code decides.** Decisions that commit the organization (status, amount, routing) are made or checked by deterministic code, not by the model.",
+          "**A prompt asks, a schema prevents.** What must not happen is not among the agent's tools: an action missing from its schema is impossible, whatever the prompt says.",
+          "**Treat all external content as data**, never as an instruction: a prompt injection comes in through the document, not through the user.",
+          "**Recalculate server-side** everything the agent produces that has consequences (amounts, thresholds, inconsistent statuses).",
+          "**A human approves** decisions that affect a person, with a mandatory reason for any rejection.",
+          "**Check the quota before any external call**: otherwise you pay, and send data, for a result that goes unused.",
+          "**Test attacks**, not just the happy path: injections, inconsistent documents, malformed inputs."
+        ],
+        "checklist": [
+          "binding decisions made in code",
+          "forbidden actions absent from the schema",
+          "external content treated as data",
+          "values recalculated server-side",
+          "human approval logged",
+          "quota checked before the call",
+          "injection test carried out"
+        ],
+        "illustrations": [
+          {
+            "text": "Fraud Agent: the agent proposes, a claims handler approves; it cannot change a claim's routing, since it has no field to do so; the triage component can only escalate an alert, never downgrade it; an injection test was carried out. Demonstrator on fictional claims.",
+            "appKey": "fraud"
+          }
+        ]
+      },
+      {
+        "id": "evaluer-llm",
+        "title": "Evaluating an LLM: reference set and LLM-as-a-judge",
+        "step": "construire",
+        "themes": [
+          "evaluation",
+          "qualite",
+          "llm-juge"
+        ],
+        "inProgress": true,
+        "seenSometimes": "\"We tested it, it works.\" A few questions picked by the team, a flattering average score, and a threshold decided after seeing the results. The day an answer invents a contract condition, nobody understands how it got through the tests.",
+        "howTo": [
+          "**A reference question set (golden set) validated by the business**, representative of real questions, trick and out-of-scope cases included.",
+          "**Thresholds set before the test**, never after.",
+          "**Blocking criteria, not just an average.** An answer that invents coverage and a clumsy answer weigh the same in an average score: a single failure on a blocking criterion (a claim missing from the sources, a wrong source, no refusal) must block the release.",
+          "**Check in code whatever can be checked** (expected citation, format): it is free and reproducible.",
+          "**Leave to the LLM judge only what code cannot check**, such as faithfulness to the sources. The judge is itself an LLM, with known biases (a preference for longer answers, or for answers from its own model).",
+          "**Calibrate the judge before relying on it**: compare it with blind human scoring, feed it deliberately wrong answers, and set before the test how many traps it must catch and how many disagreements are tolerated. Choose a judge from a different provider than the model being evaluated.",
+          "**Freeze the baseline before changing tools**: measure the old system before retiring it, so you can say \"it is better\", not just \"it works\".",
+          "**Re-evaluate after every change** of model, prompt or documents."
+        ],
+        "checklist": [
+          "golden set validated by the business",
+          "thresholds written down before the test",
+          "blocking criteria defined",
+          "failures read one by one",
+          "code checks first",
+          "judge calibrated against human scoring",
+          "judge from another provider",
+          "baseline frozen before any change"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG: floor set before the test, out-of-corpus question evaluated separately so that a good average cannot hide it, score of the old search engine frozen before it was retired. In progress: calibration of an LLM judge from another provider, with trap answers, blind human scoring and thresholds set before the test. Known limitation: the human reference is scored by a single person.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "modele-couts",
+        "title": "Choosing a model and keeping costs under control",
+        "step": "construire",
+        "themes": [
+          "couts",
+          "choix-de-modele",
+          "reversibilite"
+        ],
+        "inProgress": false,
+        "seenSometimes": "The \"most powerful model on the market\" by default, a bill discovered at the end of the month, and quotas set on average usage. Then one day the provider retires the model, and the application goes down.",
+        "howTo": [
+          "**Put a figure on it before choosing**: cost per question, expected volume, monthly order of magnitude, to be validated with the business.",
+          "**Define quality on your own questions**, not on a market leaderboard, then **pick the cheapest model that clears the threshold**. If a requirement (for example exact citation) is critical, it is part of the threshold, and you pay for it.",
+          "**Cap costs at three levels**: by design (only call the model when it is useful, cap answer length); through quotas calculated on the **worst case**, not the average; through a spending cap at the provider, dedicated to the project.",
+          "**Isolate each project** (dedicated workspace and key) to see its real cost and limit the damage of a compromised key.",
+          "**Track model lifecycles**: providers retire models on fixed dates. A migration is tested on the most demanding path, not just the happy path.",
+          "**Keep it reversible**: an architecture that lets you compare another provider on the same question set."
+        ],
+        "checklist": [
+          "cost estimated before choosing",
+          "quality threshold defined on your questions",
+          "cheapest model that clears the threshold",
+          "quotas based on the worst case",
+          "dedicated spending cap",
+          "cost tracked per project",
+          "retirement dates tracked",
+          "comparison with a second provider"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG: a model roughly nine times cheaper clears the same floor as Claude, which remains the main engine; Comex: quotas calculated on the worst-case cost of a generation, dedicated spending cap; a migration forced by a model's retirement broke a path my tests did not cover, hence the rule of testing the heaviest path before every migration.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "proteger-donnees",
+        "title": "Protecting data",
+        "step": "construire",
+        "themes": [
+          "donnees-personnelles",
+          "conformite",
+          "fournisseurs"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Customer data sent as is to a model provider, without knowing how long it keeps it or whether it uses it to train its models. The DPO finds out about the project a week before go-live.",
+        "howTo": [
+          "**Involve the DPO and the CISO from the scoping stage**, not at the end: data protection impact assessment (DPIA) and AI Act classification before the first increment.",
+          "**Send only what is necessary** (data minimization), pseudonymized where possible.",
+          "**Inform people** that AI is involved, and of what is sent, before sending it.",
+          "**Read the provider's terms**: retention period, use for training (to be refused), data processing agreement; negotiate zero retention when the stakes justify it.",
+          "**Know where inference runs**: a European endpoint is no guarantee that all data stays in Europe; you have to read what the provider commits to.",
+          "**Clarify the shared responsibility with the provider**: what it guarantees, and what remains your responsibility.",
+          "**Keys kept server-side, role-based access, logs without sensitive content**, and any decision affecting a person always signed off by a human."
+        ],
+        "checklist": [
+          "DPO and CISO involved from scoping",
+          "DPIA and AI Act classification",
+          "data minimization",
+          "information before sending",
+          "retention and training checked",
+          "data processing agreement",
+          "inference location checked",
+          "logs without sensitive content"
+        ],
+        "illustrations": [
+          {
+            "text": "my demonstrators: fictional data only (I refused to send real claims to Fraud Agent); information displayed before sending (AI used, retention by the provider); training refused; Mistral inference through the European endpoint.",
+            "appKey": "fraud"
+          }
+        ]
+      },
+      {
+        "id": "homologuer",
+        "title": "Getting a GenAI application signed off",
+        "step": "exploiter",
+        "themes": [
+          "gouvernance",
+          "risque",
+          "conformite"
+        ],
+        "inProgress": false,
+        "seenSometimes": "The project team presents its own results, the risk function can only read them, and sign-off rests on trust. The file says what works, rarely what does not.",
+        "howTo": [
+          "**Clarify who signs**, according to the organization's governance: usually the business owner, after input from the risk, compliance, security and DPO functions.",
+          "**Meet the risk function at the start**, to learn what a file must contain, rather than finding out at sign-off.",
+          "**A file built to be challenged**: intended and prohibited uses, data sent and to whom, evaluation protocol with thresholds set beforehand, **all** results, bad ones included, known limitations, guardrails, monitoring plan.",
+          "**Make everything replayable**: question set, scoring grid and scripts, so that the risk function can rerun the tests itself. A validation that can only read is not independent.",
+          "**One common framework for all applications**, tested on a pilot first, rather than a different file for each project."
+        ],
+        "checklist": [
+          "signatory clarified",
+          "risk function met at the start",
+          "prohibited uses written down",
+          "thresholds set beforehand",
+          "complete results, bad ones included",
+          "replayable tests",
+          "limitations and guardrails documented",
+          "monitoring plan"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG: a public \"Choix et limites\" (choices and limitations) page documents the model used, the data sent, the guardrails, and what the evaluation does and does not measure.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "livrer-sans-casser",
+        "title": "Shipping without breaking things",
+        "step": "exploiter",
+        "themes": [
+          "livraison",
+          "qualite-logicielle",
+          "travail-avec-les-developpeurs"
+        ],
+        "inProgress": false,
+        "seenSometimes": "A change pushed straight to production \"because it's small\", an \"all tests pass\" report accepted without checking, and blind faith in the rollback button.",
+        "howTo": [
+          "**Prove it on a copy of production**: every pull request creates a preview, tested by a person on the real user journey. Something missing (a file that should not be public) does not show up in a code review, only in testing.",
+          "**Make the differences between environments deliberate and listed** (quotas, keys, services): an unintended difference sends a never-tested feature to production.",
+          "**Take no report at face value**, whether it comes from a developer or a coding agent: demand the raw test output, step by step.",
+          "**Run tests automatically** (continuous integration) and make their status a merge blocker.",
+          "**Check in production after merging**: a successful deployment does not prove that the user journey works.",
+          "**Know what a rollback does not undo**: data already exposed, a secret already leaked, a database already migrated."
+        ],
+        "checklist": [
+          "a preview for each pull request",
+          "human test of the user journey",
+          "environment differences listed",
+          "raw test output required",
+          "blocking continuous integration",
+          "check in production",
+          "rollback limits known"
+        ],
+        "illustrations": [
+          {
+            "text": "my demonstrators: one branch and one pull request per increment, merged by me after testing in preview, then checked in production; it was the preview test, not the code review, that revealed a configuration flaw before production. Known limitation: my tests do not run in continuous integration yet."
+          }
+        ]
+      },
+      {
+        "id": "surveiller-incidents",
+        "title": "Monitoring and handling incidents",
+        "step": "exploiter",
+        "themes": [
+          "run",
+          "surveillance",
+          "incidents"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Outages are reported by users, answer quality is no longer measured once in production, and every incident ends with \"it's fixed\", with nothing to stop it from happening again.",
+        "howTo": [
+          "**Detect before the user does**: a probe that replays the main user journey at regular intervals, alerts on server errors and on spending; monitor latency, traffic, saturation and errors, and set service level objectives (SLOs) on the ones that matter to the user. Without this, an outage lasts until someone notices it.",
+          "**Beware of what breaks nothing**: a data exposure or an authorization flaw triggers no alert, and lasts as long as nobody looks for it.",
+          "**Contain**: measure the impact (who, which data), roll back to the previous version, inform the people affected and the sponsor (what we know, what we are doing, when we will next update).",
+          "**Fix once things are calm**: look for the root cause in the logs once production is stable.",
+          "**Learn without blame**: distinguish the immediate cause from the root cause, and produce a rule or a tool.",
+          "**Plan for recovery**: backups and a recovery plan that are tested, not just written down; regulatory and security watch.",
+          "**Monitor answer quality too**: a report button whose every confirmed case joins the test set, and a random sample of production answers scored with the same grid, because reports only catch the errors someone notices. Keeping real answers is a trade-off to settle with the DPO."
+        ],
+        "checklist": [
+          "probe on the main user journey",
+          "error and spending alerts",
+          "containment and communication procedure",
+          "blameless post-mortem",
+          "a rule from every incident",
+          "reports linked to the test set",
+          "production sample scored",
+          "retention settled with the DPO"
+        ],
+        "illustrations": [
+          {
+            "text": "my demonstrators, known limitation: they do not have automated monitoring yet. An outage after a key change was spotted through testing, not by an alert; it led to a rule (add the new key, redeploy, test in production, and only then revoke the old one). This guide describes what I would put in place on a real project."
+          }
+        ]
+      },
+      {
+        "id": "adoption",
+        "title": "Driving AI adoption",
+        "step": "transverse",
+        "themes": [
+          "adoption",
+          "conduite-du-changement",
+          "gouvernance"
+        ],
+        "inProgress": false,
+        "seenSometimes": "A tool delivered that works, a one-hour training session, a newsletter, and three months later hardly anyone uses it. Adoption was thought about after delivery.",
+        "howTo": [
+          "**Start from the mission, not the tool**: AI addresses a pain point the teams recognize.",
+          "**Involve future users from the scoping stage**, not just at acceptance testing.",
+          "**Measure usage and perceived quality**, alongside value: low adoption is a signal to understand, not to hide.",
+          "**Remove the concrete obstacles**: trust in the answers (visible sources), the tool's place in the workflow, clear rules on what can be put into it.",
+          "**A visible sponsor and champions within the teams.**"
+        ],
+        "checklist": [
+          "pain point recognized by the teams",
+          "users involved from scoping",
+          "usage measured",
+          "obstacles identified",
+          "sponsor and champions named"
+        ],
+        "illustrations": [
+          {
+            "text": "my fifteen-year background in change management, agile facilitation and Product Ownership. No illustration on my demonstrators yet, as they have no user population to bring on board."
+          }
+        ]
+      }
+    ],
     "operatingMode": {
       "title": "My operating mode: AI accelerates, humans decide",
       "steps": [

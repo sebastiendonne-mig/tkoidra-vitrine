@@ -401,7 +401,7 @@
     },
     "eyebrow": "Méthode",
     "title": "Du diagnostic à la production maîtrisée",
-    "lead": "D'expérience, un projet d'IA générative bute moins sur le modèle que sur le passage du prototype à la production : données, sécurité, coûts, conformité, adoption. Ma méthode traite ces sujets dès le premier jour, en trois temps. Chaque étape est illustrée par ce que j'ai réellement fait sur mes démonstrateurs en ligne, sur données fictives.",
+    "lead": "D'expérience, un projet d'IA générative bute moins sur le modèle que sur le passage du prototype à la production : données, sécurité, coûts, conformité, adoption. Ma méthode traite ces sujets dès le premier jour, en trois temps. Les guides qui suivent s'appuient sur ce que j'ai réellement fait sur mes démonstrateurs en ligne, sur données fictives.",
     "badges": [
       "SAFe RTE",
       "CSPO",
@@ -413,9 +413,6 @@
       "goal": "Objectif",
       "actions": "Ce que je fais",
       "deliverables": "Livrables",
-      "proof": "Preuve",
-      "tools": "Outils qui illustrent cette phase",
-      "practices": "Bonnes pratiques en entreprise",
       "newTab": "s'ouvre dans un nouvel onglet"
     },
     "phases": [
@@ -437,31 +434,6 @@
           "plancher go/no-go",
           "estimation du coût d'exploitation",
           "découpage en lots"
-        ],
-        "proof": {
-          "app": "AssurConseil RAG",
-          "text": "Avant d'ajouter la moindre fonctionnalité, j'ai audité la démo en production. La version en ligne ne correspondait pas à la documentation, aucun plafond de dépense n'était confirmé, et une instance secondaire restait publique. Ces constats ont défini le premier lot : les garde-fous avant les fonctionnalités.",
-          "cta": "Tester AssurConseil RAG"
-        },
-        "tools": [
-          {
-            "key": "comex",
-            "name": "Comex",
-            "detail": "cadrage en **19 questions**, deux propositions de mise en œuvre"
-          },
-          {
-            "key": "agap",
-            "name": "AGAP",
-            "detail": "arbitrage d'un portefeuille de projets : écart de perception Métier/DSI, scénarios, ligne de coupe"
-          }
-        ],
-        "practices": [
-          "Un sponsor identifié à la direction, et des KPI de référence mesurés avant le projet, pour pouvoir comparer avant et après.",
-          "Des besoins qualifiés précisément : volume d'usage, tolérance à l'erreur, latence acceptable, confidentialité, besoin d'explicabilité.",
-          "La qualité des données évaluée sur ses principales dimensions : complétude, exactitude, actualité, cohérence.",
-          "La solution la plus simple d'abord : un outil existant, puis un prompt bien conçu, puis un ancrage documentaire (RAG). Le fine-tuning seulement si c'est nécessaire.",
-          "Le risque réglementaire qualifié tôt : dès qu'un système influence une décision sur une personne (emploi, crédit, accès à un droit), avis juridique avant de développer.",
-          "Commencer par un périmètre à fort impact et faisable, puis étendre."
         ]
       },
       {
@@ -483,20 +455,6 @@
           "consentement et mentions",
           "page « choix et limites »",
           "tests automatisés"
-        ],
-        "proof": {
-          "app": "AssurConseil RAG",
-          "text": "J'ai comparé Claude et Mistral Large 3 sur **20 questions** avant de construire l'interface : **40 appels sur 40** sans panne, plancher respecté par les deux moteurs, pour un coût réel de **0,39 $**. Côté Mistral, Large 3 a été préféré à Medium 3.5, plus cher, pour son coût et un format de réponse comparable à celui de Claude. Limite assumée : mon contrôle automatique des citations s'est révélé trop permissif ; je le refais avec un LLM juge, en cours de calibration. La conservation des données a été vérifiée dans les politiques des deux fournisseurs, et l'inférence Mistral passe par l'endpoint européen, ce que montrent les journaux de l'application.",
-          "cta": "Tester AssurConseil RAG"
-        },
-        "tools": [],
-        "practices": [
-          "La responsabilité partagée clarifiée : quel que soit le fournisseur, l'entreprise reste responsable de ses données et de ses accès.",
-          "La sécurité sur tout le cycle : moindre privilège, accès audités, secrets en coffre, minimisation et anonymisation des données personnelles.",
-          "L'humain dans la boucle là où l'erreur coûte cher : revue avant diffusion, décision finale humaine.",
-          "Les limites des modèles traitées par conception : hallucinations, biais, cas limites, connaissances datées.",
-          "Une chaîne d'intégration et de déploiement continus, avec des tests automatisés à chaque modification.",
-          "Des choix et des limites documentés, pour les utilisateurs comme pour les auditeurs."
         ]
       },
       {
@@ -516,58 +474,462 @@
           "journal des incidents",
           "indicateurs de qualité, de coût et d'usage",
           "backlog d'amélioration"
-        ],
-        "proof": {
-          "app": "AssurConseil RAG",
-          "text": "Des sessions d'upload étaient coupées au bout de 5 minutes. Les journaux ont montré des fermetures de connexion à **301 secondes**, alignées sur le délai maximal du service. Le correctif a été validé par une session test de **11 minutes**. Même rigueur sur la performance : après diagnostic (précision de calcul, nombre de processeurs), l'indexation d'un document est passée **de 480 à 142 secondes**.",
-          "cta": "Tester AssurConseil RAG"
-        },
-        "tools": [],
-        "practices": [
-          "Surveiller latence, trafic, saturation et erreurs, et fixer des objectifs de service (SLO) sur ceux qui comptent pour l'utilisateur.",
-          "Des alertes budgétaires et des quotas, pour qu'un dérapage de coût soit détecté avant la facture.",
-          "Une qualité surveillée dans le temps : réévaluation après chaque changement de modèle, de prompt ou de données.",
-          "Une revue humaine a posteriori des réponses, pour alimenter l'amélioration continue.",
-          "Des sauvegardes testées et un plan de reprise, pas seulement écrits.",
-          "Une veille réglementaire et de sécurité : correctifs et évolutions du RGPD comme de l'AI Act."
         ]
       }
     ],
-    "threads": {
-      "title": "Six fils rouges, du premier au dernier jour",
-      "items": [
-        {
-          "icon": "🎯",
-          "title": "Valeur prouvée",
-          "text": "Des KPI définis avant, mesurés après. Si le gain n'est pas là, on ajuste ou on arrête."
-        },
-        {
-          "icon": "📏",
-          "title": "Qualité mesurée",
-          "text": "On décide sur des résultats d'évaluation, pas sur une impression."
-        },
-        {
-          "icon": "🛡️",
-          "title": "IA responsable et conformité",
-          "text": "Transparence, confidentialité, équité, RGPD, obligations de transparence de l'AI Act, et une réponse claire à la question « qui est responsable ? »."
-        },
-        {
-          "icon": "💶",
-          "title": "Coûts maîtrisés",
-          "text": "Plafonds, quotas, coût par requête visible, coûts cachés anticipés."
-        },
-        {
-          "icon": "🌍",
-          "title": "Réversibilité",
-          "text": "Des fournisseurs comparés sur le même jeu de questions, une inférence via un endpoint européen quand c'est pertinent, aucune dépendance subie."
-        },
-        {
-          "icon": "🤝",
-          "title": "Adoption et compétences",
-          "text": "Un sponsor, la mission rappelée avant l'outil, des équipes formées. C'est mon socle depuis 15 ans, en conduite du changement, en facilitation agile et en Product Ownership."
-        }
-      ]
+    "guidesSection": {
+      "title": "Guides de bonnes pratiques",
+      "filtersLabel": "Filtrer les guides",
+      "stepFilterLabel": "Étape",
+      "themeFilterLabel": "Thème",
+      "all": "Tous",
+      "count": "Guides affichés : {count} sur {total}",
+      "empty": "Aucun guide ne correspond à ces filtres.",
+      "inProgress": "En cours",
+      "seenSometimes": "Ce qu'on voit parfois",
+      "howTo": "Comment le faire correctement",
+      "checklist": "Checklist",
+      "illustration": "Mis en œuvre sur",
+      "steps": {
+        "diagnostiquer": "Diagnostiquer",
+        "construire": "Construire",
+        "exploiter": "Exploiter",
+        "transverse": "Transverse"
+      },
+      "themes": {
+        "strategie": "Stratégie",
+        "priorisation": "Priorisation",
+        "risque": "Risque",
+        "pilotage": "Pilotage",
+        "go-no-go": "Go/no-go",
+        "mesure-de-la-valeur": "Mesure de la valeur",
+        "rag": "RAG",
+        "qualite": "Qualité",
+        "donnees": "Données",
+        "agents": "Agents",
+        "garde-fous": "Garde-fous",
+        "securite": "Sécurité",
+        "evaluation": "Évaluation",
+        "llm-juge": "LLM juge",
+        "couts": "Coûts",
+        "choix-de-modele": "Choix de modèle",
+        "reversibilite": "Réversibilité",
+        "donnees-personnelles": "Données personnelles",
+        "conformite": "Conformité",
+        "fournisseurs": "Fournisseurs",
+        "gouvernance": "Gouvernance",
+        "livraison": "Livraison",
+        "qualite-logicielle": "Qualité logicielle",
+        "travail-avec-les-developpeurs": "Travail avec les développeurs",
+        "run": "Run",
+        "surveillance": "Surveillance",
+        "incidents": "Incidents",
+        "adoption": "Adoption",
+        "conduite-du-changement": "Conduite du changement"
+      }
     },
+    "guides": [
+      {
+        "id": "cas-usage",
+        "title": "Choisir les bons cas d'usage",
+        "step": "diagnostiquer",
+        "themes": [
+          "strategie",
+          "priorisation",
+          "risque"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Chaque direction arrive avec sa liste d'idées d'IA, et le comité arbitre sur celle qui est défendue le plus fort. On démarre par l'outil (« il nous faut un chatbot ») plutôt que par le problème, et l'on découvre trop tard que les données n'existent pas ou qu'une simple règle aurait suffi.",
+        "howTo": [
+          "**Un guichet unique, une grille commune** pour toutes les directions : on compare des projets, pas des orateurs.",
+          "**Partir des irritants métier**, pas des solutions : combien de temps ou d'argent perd-on aujourd'hui, et que coûte une erreur ?",
+          "**Filtrer avant d'évaluer : est-ce vraiment un problème d'IA ?** Une règle, un meilleur classement des documents ou un logiciel standard suffit souvent. C'est l'étape qui fait gagner le plus de temps. Et si l'IA est justifiée, commencer par la solution la plus simple : un outil existant, puis un prompt, puis un RAG, l'entraînement spécifique (fine-tuning) en dernier recours.",
+          "**Évaluer sur quatre axes**, avec chaque direction : la valeur (mesurable) ; la faisabilité, et d'abord les données (existent-elles, sont-elles accessibles, à jour, personnelles ?) et les exigences du métier (volume, latence acceptable, explicabilité) ; le risque (coût d'une mauvaise réponse, équité des décisions, contraintes RGPD et AI Act) ; le coût total, fonctionnement compris.",
+          "**Prioriser** : quelques gains rapides et un ou deux paris structurants, chacun avec un sponsor métier.",
+          "**Annoncer un « non » sans surprise** : la direction a participé à la notation, et repart avec une condition de réouverture claire."
+        ],
+        "checklist": [
+          "grille commune à toutes les directions",
+          "irritant chiffré",
+          "filtre « est-ce de l'IA ? » passé",
+          "données identifiées et accessibles",
+          "coût d'une erreur qualifié",
+          "risque réglementaire qualifié",
+          "coût de fonctionnement estimé",
+          "sponsor nommé"
+        ],
+        "illustrations": [
+          {
+            "text": "Fraud Agent : le score de risque est calculé par des règles en code ; l'IA n'intervient que sur ce que les règles ne savent pas lire, comme le récit d'un rapport.",
+            "appKey": "fraud"
+          },
+          {
+            "text": "Comex : un cadrage en 19 questions qui débouche sur deux propositions de mise en œuvre.",
+            "appKey": "comex"
+          },
+          {
+            "text": "AGAP : un arbitrage de portefeuille qui fait apparaître l'écart de perception entre métier et DSI, avec scénarios et ligne de coupe.",
+            "appKey": "agap"
+          }
+        ]
+      },
+      {
+        "id": "poc-production",
+        "title": "Du POC à la production",
+        "step": "diagnostiquer",
+        "themes": [
+          "pilotage",
+          "go-no-go",
+          "mesure-de-la-valeur"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Un POC réussi en démonstration, puis des mois pour le « passer en production » sans critère d'arrêt. Personne n'a mesuré la situation de départ : impossible de dire, six mois plus tard, si le projet a apporté quelque chose.",
+        "howTo": [
+          "**Distinguer POC et MVP.** La preuve de concept (POC) prouve que c'est faisable, vite et pour peu cher : elle décide de l'entrée dans le portefeuille. Le produit minimum viable (MVP) prouve que c'est utilisé : il décide du passage à l'échelle.",
+          "**Fixer le go/no-go avant le test** : un plancher (ce qui doit absolument marcher) et des critères de succès, écrits avant d'avoir vu les résultats.",
+          "**Mesurer l'indicateur de départ avant de lancer**, avec une méthode (par exemple un échantillon de recherches chronométrées), et fixer une cible avec le métier.",
+          "**Livrer par lots courts et déployables**, les garde-fous avant les fonctionnalités.",
+          "**Suivre deux indicateurs de contrôle** en plus de la valeur : l'adoption et la qualité des réponses.",
+          "**S'autoriser à arrêter** : une revue régulière où l'arrêt est une option réelle."
+        ],
+        "checklist": [
+          "POC court et peu coûteux",
+          "go/no-go écrit avant le test",
+          "indicateur de départ mesuré",
+          "cible fixée avec le métier",
+          "lots courts, garde-fous d'abord",
+          "adoption et qualité suivies",
+          "revue avec droit d'arrêt"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG : l'audit de la démo déjà en ligne a d'abord révélé un écart avec la documentation, un plafond de dépense non confirmé et une instance secondaire publique, donc le premier lot a porté sur les garde-fous, avant toute fonctionnalité. Ensuite, deux moteurs évalués sur 20 questions pour 0,39 $, avec un plancher fixé avant le test ; l'interface n'a été construite qu'après le feu vert.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "rag-fiable",
+        "title": "Implémenter un RAG fiable",
+        "step": "construire",
+        "themes": [
+          "rag",
+          "qualite",
+          "donnees"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Un assistant branché sur un dossier de documents, testé « à l'œil » sur trois questions, avec un modèle choisi d'après sa réputation. Il répond toujours, même quand l'information n'existe pas. Personne ne sait dire s'il s'est amélioré ou dégradé après une mise à jour.",
+        "howTo": [
+          "**Vérifier que c'est un problème de RAG** : répondre à des questions à partir d'un corpus précis, avec une source vérifiable. Si une recherche classique suffit, pas besoin d'IA.",
+          "**Qualifier le corpus avant tout** : qui le maintient, quelle version fait foi, contient-il des données personnelles, et quelle est sa qualité (complétude, exactitude, actualité, cohérence) ? Un document obsolète ou un renvoi vers un article inexistant produira une réponse fausse, mais bien formulée.",
+          "**Découper selon la structure des documents** (articles, sections) plutôt qu'en blocs de taille fixe, en gardant les références (document, version, article) : c'est ce qui permet de citer.",
+          "**Mesurer la recherche séparément de la réponse.** Si le bon passage n'est pas retrouvé, le meilleur modèle ne peut pas répondre juste. Changer de modèle d'embeddings impose de réindexer tout le corpus.",
+          "**Contraindre la réponse** : uniquement à partir des extraits, avec la source citée, et un **refus** quand l'information manque, testé avec des questions hors corpus.",
+          "**Évaluer avant de livrer** sur un jeu de questions validé par le métier, avec des seuils fixés avant le test (voir « Évaluer un LLM »).",
+          "**Sécuriser et borner** : clés côté serveur, quotas et plafonds, information des utilisateurs sur l'envoi de leurs données.",
+          "**Réévaluer à chaque changement** de modèle, de prompt ou de documents : un RAG peut régresser sans que personne ne le voie."
+        ],
+        "checklist": [
+          "corpus qualifié et versionné",
+          "découpage par structure",
+          "recherche mesurée seule",
+          "citations obligatoires",
+          "refus testé hors corpus",
+          "seuils fixés avant le test",
+          "coûts bornés",
+          "réévaluation à chaque changement"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG : corpus fictif découpé par articles, réponses citées, refus testé sur une question hors corpus, deux moteurs comparés sur le même jeu de questions. Limite assumée : mon contrôle automatique des citations s'est révélé trop permissif ; je le refais avec un LLM juge, en cours de calibration.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "agent-ia",
+        "title": "Encadrer un agent IA",
+        "step": "construire",
+        "themes": [
+          "agents",
+          "garde-fous",
+          "securite"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Un agent à qui l'on donne des outils puissants et des consignes dans le prompt : « ne valide jamais un dossier suspect ». Le jour où un document contient une instruction cachée, ou où le modèle se trompe, rien ne l'empêche d'agir.",
+        "howTo": [
+          "**L'IA propose, le code tranche.** Les décisions qui engagent (statut, montant, routage) sont prises ou vérifiées par du code déterministe, pas par le modèle.",
+          "**Un prompt demande, un schéma empêche.** Ce qui ne doit pas arriver ne figure pas dans les outils de l'agent : une action absente de son schéma est impossible, quel que soit le prompt.",
+          "**Traiter tout contenu externe comme une donnée**, jamais comme une instruction : une injection de consignes (prompt injection) arrive par le document, pas par l'utilisateur.",
+          "**Recalculer côté serveur** tout ce que l'agent produit et qui a une conséquence (montants, seuils, statuts incohérents).",
+          "**Un humain valide** les décisions qui touchent une personne, avec un motif obligatoire en cas de rejet.",
+          "**Contrôler le quota avant tout appel externe** : sinon on paie et on transmet des données pour un résultat inutilisé.",
+          "**Tester les attaques**, pas seulement le parcours nominal : injections, documents incohérents, entrées hors format."
+        ],
+        "checklist": [
+          "décisions engageantes dans le code",
+          "actions interdites absentes du schéma",
+          "contenus externes traités comme données",
+          "valeurs recalculées côté serveur",
+          "validation humaine tracée",
+          "quota vérifié avant l'appel",
+          "test d'injection réalisé"
+        ],
+        "illustrations": [
+          {
+            "text": "Fraud Agent : l'agent propose, un gestionnaire valide ; il ne peut pas modifier le routage d'un dossier, faute de champ pour le faire ; le composant de tri ne peut qu'aggraver une alerte, jamais l'atténuer ; un test d'injection a été réalisé. Démonstrateur sur dossiers fictifs.",
+            "appKey": "fraud"
+          }
+        ]
+      },
+      {
+        "id": "evaluer-llm",
+        "title": "Évaluer un LLM : jeu de référence et LLM juge",
+        "step": "construire",
+        "themes": [
+          "evaluation",
+          "qualite",
+          "llm-juge"
+        ],
+        "inProgress": true,
+        "seenSometimes": "« On a testé, ça marche. » Quelques questions choisies par l'équipe, un score moyen flatteur, et un seuil décidé après avoir vu les résultats. Le jour où une réponse invente une condition contractuelle, personne ne comprend comment les tests ont pu passer.",
+        "howTo": [
+          "**Un jeu de questions de référence (golden set) validé par le métier**, représentatif des vraies questions, cas pièges et hors périmètre compris.",
+          "**Des seuils fixés avant le test**, jamais après.",
+          "**Des critères bloquants, pas seulement une moyenne.** Une réponse qui invente une garantie et une réponse maladroite pèsent pareil dans un score moyen : un seul échec sur un critère bloquant (affirmation absente des sources, source fausse, absence de refus) doit bloquer la version.",
+          "**Vérifier par le code ce qui peut l'être** (citation attendue, format) : c'est gratuit et reproductible.",
+          "**Confier au LLM juge seulement ce que le code ne sait pas vérifier**, comme la fidélité aux sources. Le juge est lui-même un LLM, avec des biais connus (préférence pour les réponses longues, ou pour celles de son propre modèle).",
+          "**Calibrer le juge avant de s'y fier** : le comparer à une notation humaine à l'aveugle, lui soumettre des réponses volontairement fausses, fixer avant le test le nombre de pièges à détecter et de désaccords tolérés. Choisir un juge d'un autre fournisseur que le modèle évalué.",
+          "**Figer la référence avant de changer d'outil** : mesurer l'ancien système avant de le retirer, pour pouvoir dire « c'est mieux », pas seulement « ça marche ».",
+          "**Réévaluer à chaque changement** de modèle, de prompt ou de documents."
+        ],
+        "checklist": [
+          "golden set validé par le métier",
+          "seuils écrits avant le test",
+          "critères bloquants définis",
+          "échecs lus un par un",
+          "contrôles par le code d'abord",
+          "juge calibré contre une notation humaine",
+          "juge d'un autre fournisseur",
+          "référence figée avant tout changement"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG : plancher fixé avant le test, question hors corpus évaluée à part pour qu'une bonne moyenne ne la masque pas, score de l'ancien moteur de recherche figé avant son retrait. En cours : calibration d'un LLM juge d'un autre fournisseur, avec réponses piégées, notation humaine à l'aveugle et seuils fixés avant le test. Limite assumée : la référence humaine est notée par une seule personne.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "modele-couts",
+        "title": "Choisir un modèle et maîtriser les coûts",
+        "step": "construire",
+        "themes": [
+          "couts",
+          "choix-de-modele",
+          "reversibilite"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Le modèle « le plus puissant du marché » par défaut, une facture découverte en fin de mois, et des quotas réglés sur la consommation moyenne. Puis un jour, le fournisseur retire le modèle, et l'application tombe.",
+        "howTo": [
+          "**Chiffrer avant de choisir** : coût par question, volume attendu, ordre de grandeur mensuel, à valider avec le métier.",
+          "**Définir la qualité sur vos questions**, pas sur un classement du marché, puis **retenir le modèle le moins cher qui passe le seuil**. Si une exigence (par exemple la citation exacte) est critique, elle fait partie du seuil, et on la paie.",
+          "**Borner les coûts sur trois étages** : par conception (n'appeler le modèle que si c'est utile, plafonner la longueur des réponses) ; par des quotas calculés sur le **pire cas**, pas sur la moyenne ; par un plafond de dépense chez le fournisseur, dédié au projet.",
+          "**Isoler chaque projet** (espace de travail et clé dédiés) pour lire son coût réel et limiter les dégâts d'une clé compromise.",
+          "**Suivre le cycle de vie des modèles** : les fournisseurs les retirent à date fixe. Une migration se teste sur le parcours le plus exigeant, pas seulement sur le nominal.",
+          "**Garder la réversibilité** : une architecture qui permet de comparer un autre fournisseur sur le même jeu de questions."
+        ],
+        "checklist": [
+          "coût chiffré avant le choix",
+          "seuil de qualité défini sur vos questions",
+          "moins cher qui passe le seuil",
+          "quotas sur le pire cas",
+          "plafond de dépense dédié",
+          "coût lu par projet",
+          "dates de retrait suivies",
+          "comparaison avec un second fournisseur"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG : un modèle environ neuf fois moins cher passe le même plancher que Claude, qui reste le moteur principal ; Comex : quotas calculés sur le coût d'une génération au pire cas, plafond de dépense dédié ; une migration imposée par le retrait du modèle a cassé un parcours que mes tests ne couvraient pas, d'où la règle de tester le parcours le plus lourd avant chaque migration.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "proteger-donnees",
+        "title": "Protéger les données",
+        "step": "construire",
+        "themes": [
+          "donnees-personnelles",
+          "conformite",
+          "fournisseurs"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Des données clients envoyées telles quelles à un fournisseur de modèle, sans savoir combien de temps il les conserve ni s'il s'en sert pour entraîner ses modèles. Le DPO découvre le projet une semaine avant la mise en production.",
+        "howTo": [
+          "**Impliquer le DPO et le RSSI dès le cadrage**, pas à la fin : analyse d'impact (AIPD) et classement au regard de l'AI Act avant le premier lot.",
+          "**N'envoyer que le nécessaire** (minimisation), pseudonymisé quand c'est possible.",
+          "**Informer les personnes** qu'une IA intervient, et de ce qui est envoyé, avant l'envoi.",
+          "**Lire les conditions du fournisseur** : durée de conservation, usage pour l'entraînement (à refuser), accord de traitement des données ; négocier une conservation nulle quand l'enjeu le justifie.",
+          "**Savoir où l'inférence est exécutée** : un endpoint européen n'est pas une garantie que toutes les données restent en Europe ; il faut lire ce que le fournisseur s'engage à faire.",
+          "**Clarifier la responsabilité partagée avec le fournisseur** : ce qu'il garantit, et ce qui reste à votre charge.",
+          "**Clés côté serveur, accès par rôle, journaux sans contenu sensible**, et une décision qui touche une personne toujours signée par un humain."
+        ],
+        "checklist": [
+          "DPO et RSSI dès le cadrage",
+          "AIPD et classement AI Act",
+          "minimisation",
+          "information avant envoi",
+          "conservation et entraînement vérifiés",
+          "accord de traitement",
+          "lieu d'inférence vérifié",
+          "journaux sans contenu sensible"
+        ],
+        "illustrations": [
+          {
+            "text": "mes démonstrateurs : données fictives uniquement (j'ai refusé l'envoi de vrais dossiers sur Fraud Agent) ; information affichée avant l'envoi (IA utilisées, conservation chez le fournisseur) ; entraînement refusé ; inférence Mistral via l'endpoint européen.",
+            "appKey": "fraud"
+          }
+        ]
+      },
+      {
+        "id": "homologuer",
+        "title": "Homologuer une application GenAI",
+        "step": "exploiter",
+        "themes": [
+          "gouvernance",
+          "risque",
+          "conformite"
+        ],
+        "inProgress": false,
+        "seenSometimes": "L'équipe projet présente ses propres résultats, la ligne risque ne peut que les lire, et la signature se fait sur la confiance. Le dossier dit ce qui marche, rarement ce qui ne marche pas.",
+        "howTo": [
+          "**Clarifier qui signe** selon la gouvernance de l'organisation : en général le propriétaire métier, après l'avis des fonctions risque, conformité, sécurité et DPO.",
+          "**Rencontrer la ligne risque au début**, pour savoir ce qu'un dossier doit contenir, plutôt que de le découvrir au moment de signer.",
+          "**Un dossier fait pour être challengé** : usage prévu et interdit, données envoyées et à qui, protocole d'évaluation avec seuils fixés avant, **tous** les résultats, y compris les mauvais, limites connues, garde-fous, plan de surveillance.",
+          "**Tout rendre rejouable** : jeu de questions, grille de notation et scripts, pour que la ligne risque refasse les tests elle-même. Une validation qui ne peut que lire n'est pas indépendante.",
+          "**Un cadre commun pour toutes les applications**, testé d'abord sur un pilote, plutôt qu'un dossier différent par projet."
+        ],
+        "checklist": [
+          "signataire clarifié",
+          "ligne risque rencontrée au début",
+          "usage interdit écrit",
+          "seuils fixés avant",
+          "résultats complets, mauvais compris",
+          "tests rejouables",
+          "limites et garde-fous documentés",
+          "plan de surveillance"
+        ],
+        "illustrations": [
+          {
+            "text": "AssurConseil RAG : une page « Choix et limites » publique documente le modèle utilisé, les données envoyées, les garde-fous, et ce que l'évaluation mesure et ne mesure pas.",
+            "appKey": "assurconseil"
+          }
+        ]
+      },
+      {
+        "id": "livrer-sans-casser",
+        "title": "Livrer sans casser",
+        "step": "exploiter",
+        "themes": [
+          "livraison",
+          "qualite-logicielle",
+          "travail-avec-les-developpeurs"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Un changement poussé directement en production « parce que c'est petit », un bilan « tous les tests passent » accepté sans vérification, et une confiance aveugle dans le bouton « retour arrière ».",
+        "howTo": [
+          "**Prouver sur une copie de la production** : chaque demande de fusion crée une préversion, testée par une personne sur le vrai parcours. Une absence (un fichier qui ne devrait pas être public) ne se voit pas en relisant le code, seulement en testant.",
+          "**Rendre voulues et listées les différences entre environnements** (quotas, clés, services) : une différence non voulue fait partir en production une fonction jamais testée.",
+          "**Ne croire aucun bilan sur parole**, qu'il vienne d'un développeur ou d'un agent de code : exiger la sortie brute des tests, étape par étape.",
+          "**Faire tourner les tests automatiquement** (intégration continue) et rendre leur statut bloquant pour la fusion.",
+          "**Vérifier en production après la fusion** : un déploiement réussi ne prouve pas que le parcours fonctionne.",
+          "**Savoir ce qu'un retour arrière ne défait pas** : une donnée déjà exposée, un secret déjà fuité, une base déjà migrée."
+        ],
+        "checklist": [
+          "préversion par demande de fusion",
+          "test humain du parcours",
+          "différences d'environnement listées",
+          "sortie brute des tests exigée",
+          "intégration continue bloquante",
+          "vérification en production",
+          "limites du retour arrière connues"
+        ],
+        "illustrations": [
+          {
+            "text": "mes démonstrateurs : une branche et une demande de fusion par lot, fusion par moi après test en préversion, vérification en production ensuite ; c'est le test en préversion, pas la relecture du code, qui a révélé un défaut de configuration avant la production. Limite assumée : mes tests ne tournent pas encore en intégration continue."
+          }
+        ]
+      },
+      {
+        "id": "surveiller-incidents",
+        "title": "Surveiller et gérer les incidents",
+        "step": "exploiter",
+        "themes": [
+          "run",
+          "surveillance",
+          "incidents"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Les pannes sont signalées par les utilisateurs, la qualité des réponses n'est plus mesurée une fois en production, et chaque incident se termine par « c'est réparé » sans que rien n'empêche qu'il revienne.",
+        "howTo": [
+          "**Détecter avant l'utilisateur** : une sonde qui rejoue le parcours principal à intervalle régulier, des alertes sur les erreurs serveur et sur la dépense ; surveiller latence, trafic, saturation et erreurs, et fixer des objectifs de service (SLO) sur ceux qui comptent pour l'utilisateur. Sans cela, la durée d'une panne est le temps jusqu'à ce que quelqu'un la remarque.",
+          "**Se méfier de ce qui ne casse rien** : une exposition de données ou une faille d'autorisation ne déclenche aucune alerte, et dure aussi longtemps que personne ne la cherche.",
+          "**Contenir** : mesurer l'impact (qui, quelles données), revenir à la version précédente, informer les personnes touchées et le sponsor (ce qu'on sait, ce qu'on fait, quand on refait le point).",
+          "**Corriger à froid** : la cause racine se cherche dans les journaux une fois la production stabilisée.",
+          "**Apprendre sans chercher de coupable** : distinguer la cause immédiate de la cause racine, et produire une règle ou un outil.",
+          "**Prévoir la reprise** : sauvegardes testées et plan de reprise, pas seulement écrits ; veille réglementaire et de sécurité.",
+          "**Surveiller aussi la qualité des réponses** : un bouton de signalement dont chaque cas confirmé rejoint le jeu de test, et un échantillon de réponses de production tiré au hasard et noté avec la même grille, car les signalements n'attrapent que les erreurs que quelqu'un remarque. Conserver des réponses réelles est un arbitrage à faire avec le DPO."
+        ],
+        "checklist": [
+          "sonde sur le parcours principal",
+          "alertes erreurs et dépense",
+          "procédure de contention et de communication",
+          "post-mortem sans coupable",
+          "règle issue de chaque incident",
+          "signalement relié au jeu de test",
+          "échantillon de production noté",
+          "conservation arbitrée avec le DPO"
+        ],
+        "illustrations": [
+          {
+            "text": "mes démonstrateurs, limite assumée : ils n'ont pas encore de surveillance automatique. Une panne survenue après un changement de clé a été repérée en testant, pas par une alerte ; elle a produit une règle (ajouter la nouvelle clé, redéployer, tester en production, puis seulement révoquer l'ancienne). Ce guide décrit ce que je mettrais en place sur un projet réel."
+          }
+        ]
+      },
+      {
+        "id": "adoption",
+        "title": "Faire adopter l'IA",
+        "step": "transverse",
+        "themes": [
+          "adoption",
+          "conduite-du-changement",
+          "gouvernance"
+        ],
+        "inProgress": false,
+        "seenSometimes": "Un outil livré qui fonctionne, une formation d'une heure, une newsletter, et trois mois plus tard presque personne ne l'utilise. L'adoption a été pensée après la livraison.",
+        "howTo": [
+          "**Partir de la mission, pas de l'outil** : l'IA répond à un irritant que les équipes reconnaissent.",
+          "**Associer les futurs utilisateurs dès le cadrage**, et pas seulement à la recette.",
+          "**Mesurer l'usage et la qualité perçue**, à côté de la valeur : une adoption faible est un signal à comprendre, pas à cacher.",
+          "**Lever les freins concrets** : confiance dans les réponses (sources visibles), place de l'outil dans le parcours de travail, règles claires sur ce qu'on peut y mettre.",
+          "**Un sponsor visible et des relais dans les équipes.**"
+        ],
+        "checklist": [
+          "irritant reconnu par les équipes",
+          "utilisateurs associés dès le cadrage",
+          "usage mesuré",
+          "freins identifiés",
+          "sponsor et relais nommés"
+        ],
+        "illustrations": [
+          {
+            "text": "mon socle de quinze ans en conduite du changement, facilitation agile et Product Ownership. Pas encore d'illustration sur mes démonstrateurs, qui n'ont pas de population d'utilisateurs à faire adopter."
+          }
+        ]
+      }
+    ],
     "operatingMode": {
       "title": "Mon mode opératoire : l'IA accélère, l'humain décide",
       "steps": [
