@@ -15,7 +15,7 @@
 ## Conventions
 - Toute chaîne visible côté utilisateur passe par les dictionnaires `fr.json` / `en.json` — jamais de texte en dur dans un composant.
 - `fr.json` et `en.json` doivent rester strictement parallèles (mêmes clés, même structure). Toute clé ajoutée dans l'un doit être ajoutée dans l'autre dans le même tour.
-- Les démos IA (sirene, comex, dvf, fraud, assurconseil) sont des applications externes : leur URL vit dans `appUrls` (`src/app/[lang]/use-cases/page.tsx`), leur contenu dans `useCases.projects.<slug>` des dictionnaires. Ce ne sont pas des routes internes du repo.
+- Les démos IA (sirene, comex, dvf, fraud, assurconseil) sont des applications externes : leur URL vit dans `appUrls` (`src/lib/app-urls.ts`, source unique), leur contenu dans `useCases.projects.<slug>` des dictionnaires. Ce ne sont pas des routes internes du repo.
 - Garde la palette existante (slate + accent cyan du kit de marque, défini dans le bloc `@theme` de `src/app/globals.css`) pour toute nouvelle section ; pas de nouvelle palette sans validation explicite.
 
 ## Ce qu'il ne faut PAS faire
