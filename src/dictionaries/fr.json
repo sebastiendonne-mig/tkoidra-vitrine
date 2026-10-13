@@ -49,7 +49,7 @@
     "appLink": {
       "label": "Ouvrir l'application",
       "newTab": "s'ouvre dans un nouvel onglet",
-      "coldStartNote": "⏳ **Premier chargement : environ 1 minute.** Pour limiter les coûts, la démo est mise en veille quand personne ne l'utilise. Au premier accès, le serveur redémarre : la page peut rester blanche pendant ce temps, c'est normal. Ensuite, elle répond normalement."
+      "coldStartNote": "⏳ Premier chargement plus lent : pour limiter les coûts, la démo est mise en veille quand personne ne l'utilise. Au premier accès, le serveur redémarre ; ensuite, elle répond normalement."
     },
     "sectionLabels": {
       "challenge": "Le Défi Métier",
@@ -401,7 +401,7 @@
     },
     "eyebrow": "Méthode",
     "title": "Du diagnostic à la production maîtrisée",
-    "lead": "La plupart des projets d'IA générative n'échouent pas faute de modèle. Ils échouent entre le prototype et la production : données, sécurité, coûts, conformité, adoption. Ma méthode traite ces sujets dès le premier jour, en trois temps. Chaque étape est illustrée par ce que j'ai réellement fait sur mes démonstrateurs en ligne, sur données fictives.",
+    "lead": "D'expérience, un projet d'IA générative bute moins sur le modèle que sur le passage du prototype à la production : données, sécurité, coûts, conformité, adoption. Ma méthode traite ces sujets dès le premier jour, en trois temps. Chaque étape est illustrée par ce que j'ai réellement fait sur mes démonstrateurs en ligne, sur données fictives.",
     "badges": [
       "SAFe RTE",
       "CSPO",
@@ -458,7 +458,7 @@
         "practices": [
           "Un sponsor identifié à la direction, et des KPI de référence mesurés avant le projet, pour pouvoir comparer avant et après.",
           "Des besoins qualifiés précisément : volume d'usage, tolérance à l'erreur, latence acceptable, confidentialité, besoin d'explicabilité.",
-          "La qualité des données évaluée sur ses six dimensions : complétude, unicité, actualité, validité, exactitude, cohérence.",
+          "La qualité des données évaluée sur ses principales dimensions : complétude, exactitude, actualité, cohérence.",
           "La solution la plus simple d'abord : un outil existant, puis un prompt bien conçu, puis un ancrage documentaire (RAG). Le fine-tuning seulement si c'est nécessaire.",
           "Le risque réglementaire qualifié tôt : dès qu'un système influence une décision sur une personne (emploi, crédit, accès à un droit), avis juridique avant de développer.",
           "Commencer par un périmètre à fort impact et faisable, puis étendre."
@@ -486,7 +486,7 @@
         ],
         "proof": {
           "app": "AssurConseil RAG",
-          "text": "J'ai ajouté la comparaison Claude / Mistral Large 3 en plusieurs sous-lots. Mistral Large 3 a été préféré à un modèle plus cher, pour son coût et un format de réponse comparable. Avant le déploiement, la comparaison a été évaluée sur **20 questions** : **40 appels sur 40** réussis, plancher respecté par les deux moteurs, coût réel de **0,39 $**. La conservation des données a été vérifiée dans les politiques des deux fournisseurs, et l'inférence Mistral passe par l'endpoint européen, preuve à l'appui dans le journal d'audit.",
+          "text": "J'ai comparé Claude et Mistral Large 3 sur **20 questions** avant de construire l'interface : **40 appels sur 40** sans panne, plancher respecté par les deux moteurs, pour un coût réel de **0,39 $**. Côté Mistral, Large 3 a été préféré à Medium 3.5, plus cher, pour son coût et un format de réponse comparable à celui de Claude. Limite assumée : mon contrôle automatique des citations s'est révélé trop permissif ; je le refais avec un LLM juge, en cours de calibration. La conservation des données a été vérifiée dans les politiques des deux fournisseurs, et l'inférence Mistral passe par l'endpoint européen, ce que montrent les journaux de l'application.",
           "cta": "Tester AssurConseil RAG"
         },
         "tools": [],
@@ -524,7 +524,7 @@
         },
         "tools": [],
         "practices": [
-          "Des objectifs de service (SLO) sur les signaux qui comptent : latence, trafic, saturation, erreurs.",
+          "Surveiller latence, trafic, saturation et erreurs, et fixer des objectifs de service (SLO) sur ceux qui comptent pour l'utilisateur.",
           "Des alertes budgétaires et des quotas, pour qu'un dérapage de coût soit détecté avant la facture.",
           "Une qualité surveillée dans le temps : réévaluation après chaque changement de modèle, de prompt ou de données.",
           "Une revue humaine a posteriori des réponses, pour alimenter l'amélioration continue.",
@@ -558,8 +558,8 @@
         },
         {
           "icon": "🌍",
-          "title": "Souveraineté et réversibilité",
-          "text": "Des fournisseurs interchangeables, un endpoint européen quand c'est pertinent, aucune dépendance subie."
+          "title": "Réversibilité",
+          "text": "Des fournisseurs comparés sur le même jeu de questions, une inférence via un endpoint européen quand c'est pertinent, aucune dépendance subie."
         },
         {
           "icon": "🤝",
@@ -589,19 +589,6 @@
         }
       ],
       "quote": "Je développe avec des agents de code IA sous ce protocole. C'est ce qui permet d'aller vite sans perdre la maîtrise, et c'est la même discipline que j'apporte à vos équipes."
-    },
-    "notThis": {
-      "title": "Ce que cette méthode n'est pas",
-      "items": [
-        {
-          "title": "Une promesse de ROI avant mesure.",
-          "text": "Les gains se constatent en exploitation."
-        },
-        {
-          "title": "Un déploiement client déguisé.",
-          "text": "Mes démonstrateurs utilisent des données fictives : ils prouvent la méthode, pas un résultat chez un client."
-        }
-      ]
     },
     "cta": {
       "text": "Vous cadrez un projet IA, ou vous cherchez quelqu'un pour le mener jusqu'à la production ? Échangeons.",

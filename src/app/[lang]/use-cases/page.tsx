@@ -5,6 +5,7 @@ import { getDictionary } from "../../../get-dictionary";
 import { i18n } from "../../../../i18n-config";
 import { SITE_URL } from "../../../lib/site";
 import { OpenAppButton } from "../../../components/OpenAppButton";
+import { appUrls } from "../../../lib/app-urls";
 import { OverviewGrid } from "./OverviewGrid";
 
 interface Feature {
@@ -62,17 +63,6 @@ interface SectionLabels {
   measured?: string;
   demonstrates: string;
 }
-
-const appUrls: Record<string, string> = {
-  agap: "https://agap.tkoidra.com",
-  comex: "https://comex.tkoidra.com",
-  sirene: "https://sirene.tkoidra.com",
-  dvf: "https://dvf.tkoidra.com",
-  assurconseil: "https://rag.tkoidra.com",
-  fraud: "https://fraud.tkoidra.com",
-  lexguard: "https://lexguard.tkoidra.com",
-  verifid: "https://verif.tkoidra.com/",
-};
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));

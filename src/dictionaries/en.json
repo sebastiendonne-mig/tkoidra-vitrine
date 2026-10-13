@@ -49,7 +49,7 @@
     "appLink": {
       "label": "Open the application",
       "newTab": "opens in a new tab",
-      "coldStartNote": "⏳ **First load: about 1 minute.** To keep costs down, the demo goes to sleep when no one is using it. On first access, the server restarts: the page may stay blank in the meantime, which is normal. After that, it responds normally."
+      "coldStartNote": "⏳ Slower first load: to keep costs down, the demo goes to sleep when no one is using it. On first access, the server restarts; after that, it responds normally."
     },
     "sectionLabels": {
       "challenge": "Business Challenge",
@@ -401,7 +401,7 @@
     },
     "eyebrow": "Method",
     "title": "From Diagnosis to Controlled Production",
-    "lead": "Most generative AI projects don't fail for lack of a model. They fail between prototype and production: data, security, costs, compliance, adoption. My method addresses these issues from day one, in three stages. Each stage is illustrated by what I actually did on my online demonstrators, using fictional data.",
+    "lead": "In my experience, a generative AI project stumbles less on the model than on the move from prototype to production: data, security, costs, compliance, adoption. My method addresses these issues from day one, in three stages. Each stage is illustrated by what I actually did on my online demonstrators, using fictional data.",
     "badges": [
       "SAFe RTE",
       "CSPO",
@@ -458,7 +458,7 @@
         "practices": [
           "An identified executive sponsor, and baseline KPIs measured before the project, to compare before and after.",
           "Precisely qualified needs: usage volume, error tolerance, acceptable latency, confidentiality, need for explainability.",
-          "Data quality assessed on its six dimensions: completeness, uniqueness, timeliness, validity, accuracy, consistency.",
+          "Data quality assessed on its main dimensions: completeness, accuracy, timeliness, consistency.",
           "The simplest solution first: an existing tool, then a well-designed prompt, then document grounding (RAG). Fine-tuning only if necessary.",
           "Regulatory risk qualified early: as soon as a system influences a decision about a person (employment, credit, access to a right), legal advice before developing.",
           "Start with a high-impact, feasible scope, then expand."
@@ -486,7 +486,7 @@
         ],
         "proof": {
           "app": "AssurConseil RAG",
-          "text": "I added the Claude / Mistral Large 3 comparison in several sub-batches. Mistral Large 3 was preferred to a more expensive model, for its cost and a comparable response format. Before deployment, the comparison was evaluated on **20 questions**: **40 out of 40 calls** succeeded, the floor was met by both engines, actual cost **$0.39**. Data retention was checked in both providers' policies, and Mistral inference goes through the European endpoint, with evidence in the audit log.",
+          "text": "I compared Claude and Mistral Large 3 on **20 questions** before building the interface: **40 out of 40 calls** without failure, floor met by both engines, for an actual cost of **$0.39**. On the Mistral side, Large 3 was preferred to the more expensive Medium 3.5, for its cost and a response format comparable to Claude's. Acknowledged limit: my automatic citation check turned out to be too permissive; I am redoing it with an LLM judge, currently being calibrated. Data retention was checked in both providers' policies, and Mistral inference goes through the European endpoint, as the application logs show.",
           "cta": "Try AssurConseil RAG"
         },
         "tools": [],
@@ -524,7 +524,7 @@
         },
         "tools": [],
         "practices": [
-          "Service level objectives (SLOs) on the signals that matter: latency, traffic, saturation, errors.",
+          "Monitor latency, traffic, saturation and errors, and set service level objectives (SLOs) on those that matter to the user.",
           "Budget alerts and quotas, so that a cost overrun is detected before the invoice.",
           "Quality monitored over time: re-evaluation after every change of model, prompt or data.",
           "Human review of answers after the fact, to feed continuous improvement.",
@@ -558,8 +558,8 @@
         },
         {
           "icon": "🌍",
-          "title": "Sovereignty and reversibility",
-          "text": "Interchangeable providers, a European endpoint when relevant, no forced lock-in."
+          "title": "Reversibility",
+          "text": "Providers compared on the same question set, inference through a European endpoint when relevant, no forced lock-in."
         },
         {
           "icon": "🤝",
@@ -589,19 +589,6 @@
         }
       ],
       "quote": "I develop with AI coding agents under this protocol. It is what makes it possible to move fast without losing control, and it is the same discipline I bring to your teams."
-    },
-    "notThis": {
-      "title": "What this method is not",
-      "items": [
-        {
-          "title": "A promise of ROI before measurement.",
-          "text": "Gains are observed in operation."
-        },
-        {
-          "title": "A disguised client deployment.",
-          "text": "My demonstrators use fictional data: they prove the method, not a result at a client."
-        }
-      ]
     },
     "cta": {
       "text": "Framing an AI project, or looking for someone to take it all the way to production? Let's talk.",

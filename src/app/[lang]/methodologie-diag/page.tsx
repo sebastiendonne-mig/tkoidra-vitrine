@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { i18n } from "../../../../i18n-config";
 import { OpenAppButton } from "../../../components/OpenAppButton";
 import { getDictionary } from "../../../get-dictionary";
+import { appUrls } from "../../../lib/app-urls";
 import { LINKEDIN_URL, SITE_URL } from "../../../lib/site";
 import { PhaseStepper } from "./PhaseStepper";
 
@@ -56,16 +57,8 @@ interface MethodeDict {
   phases: Phase[];
   threads: { title: string; items: (TitledText & { icon: string })[] };
   operatingMode: { title: string; steps: TitledText[]; quote: string };
-  notThis: { title: string; items: TitledText[] };
   cta: { text: string; button: string };
 }
-
-// Même source que appUrls de use-cases/page.tsx (un fichier de page ne peut pas l'exporter).
-const APP_URLS: Record<string, string> = {
-  assurconseil: "https://rag.tkoidra.com",
-  comex: "https://comex.tkoidra.com",
-  agap: "https://agap.tkoidra.com",
-};
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
@@ -188,13 +181,13 @@ function ProofCard({
           <p className="text-xs font-semibold text-slate-400">{toolsLabel}</p>
           <ul className="space-y-3">
             {tools.map((tool) => (
-              <li key={tool.key} className="text-sm leading-6 text-slate-400">
-                <ExternalLink
-                  href={APP_URLS[tool.key]}
-                  className="font-semibold text-accent underline-offset-4 hover:text-accent-hover hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
-                >
-                  {tool.name}
-                </ExternalLink>
+              <li key={tool.key} className="flex flex-col items-start gap-2 text-sm leading-6 text-slate-400">
+                <OpenAppButton
+                  href={appUrls[tool.key]}
+                  label={tool.name}
+                  newTabLabel={newTabLabel}
+                  appName={tool.name}
+                />
                 <span className="block">
                   <Emphasis text={tool.detail} />
                 </span>
@@ -205,7 +198,7 @@ function ProofCard({
       )}
 
       <OpenAppButton
-        href={APP_URLS.assurconseil}
+        href={appUrls.assurconseil}
         label={proof.cta}
         newTabLabel={newTabLabel}
         appName={proof.app}
@@ -373,7 +366,7 @@ export default async function MethodologieDiagPage({ params }: Props) {
                 id={steps[i].id}
                 phase={phase}
                 labels={t.labels}
-                coldStartNote={dict.useCases?.appLink?.coldStartNote}
+                coldStartNote={i === 0 ? dict.useCases?.appLink?.coldStartNote : undefined}
               />
             ))}
           </div>
@@ -447,29 +440,6 @@ export default async function MethodologieDiagPage({ params }: Props) {
               {t.operatingMode.quote}
             </blockquote>
           </div>
-        </section>
-
-        {/* Ce que cette méthode n'est pas */}
-        <section
-          aria-labelledby="not-title"
-          className="space-y-5 rounded-2xl border border-slate-800 p-6 sm:p-8"
-        >
-          <h2 id="not-title" className="text-lg font-bold text-slate-200">
-            {t.notThis.title}
-          </h2>
-          <ul className="space-y-4">
-            {t.notThis.items.map((item) => (
-              <li key={item.title} className="flex gap-3 text-sm leading-7 text-slate-400">
-                <span aria-hidden className="text-slate-500">
-                  &#10005;
-                </span>
-                <p>
-                  <strong className="font-semibold text-slate-200">{item.title}</strong>{" "}
-                  {item.text}
-                </p>
-              </li>
-            ))}
-          </ul>
         </section>
 
         {/* Appel à l'action */}
