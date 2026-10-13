@@ -9,7 +9,7 @@ export interface Guide {
   id: string;
   title: string;
   step: string;
-  themes: string[];
+  themes: string[]; // inutilisé pour l'instant (filtre par thème retiré), gardé pour une réactivation
   inProgress: boolean;
   seenSometimes: string;
   howTo: string[];
@@ -21,17 +21,15 @@ export interface GuidesSectionDict {
   title: string;
   filtersLabel: string;
   stepFilterLabel: string;
-  themeFilterLabel: string;
   all: string;
   count: string;
-  empty: string;
   inProgress: string;
   seenSometimes: string;
   howTo: string;
   checklist: string;
   illustration: string;
   steps: Record<string, string>;
-  themes: Record<string, string>;
+  themes: Record<string, string>; // inutilisé pour l'instant, gardé pour une réactivation
 }
 
 const PILL =
@@ -86,7 +84,7 @@ function FilterGroup({
   );
 }
 
-// Rendu SSG = les 11 guides présents dans le HTML (filtres à « tous » au premier rendu).
+// Rendu SSG = les 11 guides présents dans le HTML (filtre par étape à « tous » au premier rendu).
 // Le JS n'ajoute que le masquage côté client (attribut hidden) : sans JS, tout reste visible.
 export function GuideExplorer({
   t,
@@ -106,9 +104,7 @@ export function GuideExplorer({
   coldStartGuide?: { id: string; index: number };
 }) {
   const [step, setStep] = useState<string | null>(null);
-  const [theme, setTheme] = useState<string | null>(null);
-  const matches = (g: Guide) =>
-    (step === null || g.step === step) && (theme === null || g.themes.includes(theme));
+  const matches = (g: Guide) => step === null || g.step === step;
   const visibleCount = guides.filter(matches).length;
 
   return (
@@ -122,20 +118,10 @@ export function GuideExplorer({
           active={step}
           onChange={setStep}
         />
-        <FilterGroup
-          id="guides-filter-theme"
-          label={t.themeFilterLabel}
-          allLabel={t.all}
-          options={Object.entries(t.themes)}
-          active={theme}
-          onChange={setTheme}
-        />
         <p aria-live="polite" className="text-xs text-slate-400">
           {t.count.replace("{count}", String(visibleCount)).replace("{total}", String(guides.length))}
         </p>
       </div>
-
-      {visibleCount === 0 && <p className="text-sm text-slate-400">{t.empty}</p>}
 
       <ol className="space-y-4">
         {guides.map((guide, i) => (
