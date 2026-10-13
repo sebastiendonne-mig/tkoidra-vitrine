@@ -7,7 +7,7 @@ description: Utilise ce skill quand une nouvelle démo IA (type sirene/comex/dvf
 
 ## Étapes
 
-1. **URL** — Ajoute le slug et l'URL externe dans `appUrls` (`src/app/[lang]/use-cases/page.tsx`).
+1. **URL** — Ajoute le slug et l'URL externe dans `appUrls` (`src/lib/app-urls.ts`, source unique).
 2. **Contenu** — Ajoute l'entrée `useCases.projects.<slug>` dans `src/dictionaries/fr.json` ET `en.json` : title, description, tag, challenge, solution, features (3 max, icon/title/description), stack (technos réelles utilisées, pas de termes génériques).
    - Délègue la rédaction à l'agent `use-case-entry` pour matcher le ton des entrées existantes.
 3. **Parité i18n** — Lance l'agent `i18n-parity` pour confirmer que `fr.json` et `en.json` sont alignés.
