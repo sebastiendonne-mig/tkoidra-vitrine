@@ -15,6 +15,16 @@ export interface BlogPost {
 
 const postsFr: BlogPost[] = [
   {
+    slug: "juge-llm-rag-assurance",
+    title: "J'ai fait relire mon RAG par un autre LLM : ce qu'il a trouvé, et où il s'est trompé",
+    summary:
+      "Un juge LLM (Gemini) a relu 40 réponses de mon RAG assurance : 9 pièges sur 10 détectés, 7 erreurs réelles confirmées, 1 fausse accusation. Méthode et limites.",
+    tag: "RAG & Retrieval",
+    readTime: "5 min",
+    sections: [],
+    mdFile: "content/blog/juge-llm-rag-assurance.md",
+  },
+  {
     slug: "questionnaires-assurance-cyber",
     title: "Ce que dix questionnaires d'assurance cyber révèlent des attentes réelles des assureurs",
     summary:
