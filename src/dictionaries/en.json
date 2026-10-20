@@ -74,7 +74,7 @@
       "assurconseil": {
         "title": "AssurConseil RAG",
         "description": "Agentic RAG assistant for insurance contract interpretation, with a Claude / Mistral comparison in document mode.",
-        "demonstrates": "Industrialising a RAG: evaluation before production, cost guardrails, proven European inference, progressive deployment. Answers evaluated by an LLM judge from another provider: 9 of 10 planted errors caught, 7 real errors confirmed out of 40 (method and limits on the blog, in French).",
+        "demonstrates": "Industrialising a RAG: evaluation before production, cost guardrails, Mistral inference in the EU, traced by audit log, progressive deployment. Answers evaluated by an LLM judge from another provider: 9 of 10 planted errors caught, 7 real errors confirmed out of 40 (method and limits on the blog, in French).",
         "tag": "RAG & AI Agents",
         "theme": "documents-rag",
         "featured": true,
@@ -131,12 +131,12 @@
         "theme": "conformite-risques",
         "featured": true,
         "challenge": "In a claims department, most cases are simple, but those that call for an investigation or a recovery claim against a liable third party require cross-checking several documents. Handing this work to AI raises three questions: who decides the routing, what happens when the model gets it wrong, and what does it cost?",
-        "solution": "On fictional claims, business rules compute a score out of 50 and set the routing (straight-through processing, investigation, fraud-unit alert). The agent cannot change it. A Claude agent is called only when useful, when the case is suspicious or a police report is provided. It picks its tools, returns a structured proposal, then stops: a claims handler approves or rejects it with a reason, before the agent drafts a letter that is never actually sent. Thresholds are demonstration choices, not calibrated on real data.",
+        "solution": "On fictional claims, business rules compute a score out of 50 and set a routing floor (straight-through processing, investigation, SIU alert). Jev (TypeSafe AI) reads the policyholder's statement and the police report: it can raise the routing by one level, never lower it. A Claude agent is called only when useful, when the case is suspicious or a police report is provided. It picks its tools, returns a structured proposal, then stops: a claims handler approves or rejects it with a reason, before the agent drafts a letter that is never actually sent. Thresholds are demonstration choices, not calibrated on real data.",
         "features": [
           {
             "icon": "🎯",
             "title": "Rules first, AI when useful",
-            "description": "Score and routing come from deterministic rules. A clean case without a police report triggers no AI call."
+            "description": "Score and routing floor come from deterministic rules. A clean case without a police report does not trigger the Claude agent."
           },
           {
             "icon": "🧰",
@@ -151,6 +151,7 @@
         ],
         "stack": [
           "Claude Sonnet 5.5 (Anthropic API)",
+          "Jev (TypeSafe AI, via Vercel AI Gateway)",
           "HTML/JavaScript",
           "Vercel Functions",
           "Upstash Redis"
@@ -173,7 +174,7 @@
       },
       "agap": {
         "title": "AGAP",
-        "description": "AI-arbitrated project portfolio prioritization, free of Business/IT bias.",
+        "description": "AI-arbitrated project portfolio prioritization, making Business/IT biases visible.",
         "demonstrates": "Tooling a portfolio decision: surfacing Business/IT gaps and arbitrating through scenarios, with tracked justifications.",
         "tag": "Portfolio Governance & AI",
         "theme": "gouvernance-cadrage",
@@ -240,7 +241,7 @@
           {
             "icon": "🔒",
             "title": "No application-side storage",
-            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic) retains transmitted data for 30 days, under its default policy."
+            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic, a US company) deletes transmitted data within 30 days, subject to exceptions."
           }
         ],
         "stack": [
@@ -311,7 +312,7 @@
           {
             "icon": "📊",
             "title": "Results Export",
-            "description": "CSV and Excel export of results."
+            "description": "CSV, Excel and JSON export of results."
           }
         ],
         "stack": [
@@ -326,7 +327,7 @@
       "dvf": {
         "title": "DVF",
         "description": "Real estate transaction search and analysis.",
-        "demonstrates": "Using open land-registry data: address search and municipality-level price statistics.",
+        "demonstrates": "An agent that orchestrates tools: Claude understands the question, the code computes the figures.",
         "tag": "Data & Open Data",
         "theme": "donnees-publiques",
         "challenge": "Analyzing DVF (Property Value Requests) data published by the DGFiP is tedious: multi-GB raw CSV format, no native visualization, and difficulty cross-referencing with geographic data.",
@@ -334,8 +335,8 @@
         "features": [
           {
             "icon": "📊",
-            "title": "Median Land Price by Municipality",
-            "description": "Median price per m² and land area, with year-by-year evolution, calculated for each municipality from DVF transaction data."
+            "title": "Median Prices for a Municipality, on Demand",
+            "description": "Medians computed by the code from DVF transactions, by property category and by year (2021-2025 by default), in €/m² or in €/ha for agricultural and natural land."
           },
           {
             "icon": "📍",

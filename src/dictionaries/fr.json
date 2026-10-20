@@ -74,7 +74,7 @@
       "assurconseil": {
         "title": "AssurConseil RAG",
         "description": "Assistant RAG agentique pour l'interprétation de contrats d'assurance, avec comparaison Claude / Mistral en mode document.",
-        "demonstrates": "Industrialiser un RAG : évaluation avant mise en production, garde-fous de coût, inférence européenne prouvée, déploiement progressif. Réponses évaluées par un juge LLM d'un autre fournisseur : 9 pièges sur 10 détectés, 7 erreurs réelles confirmées sur 40 (méthode et limites sur le blog).",
+        "demonstrates": "Industrialiser un RAG : évaluation avant mise en production, garde-fous de coût, inférence Mistral dans l'UE, tracée par journal d'audit, déploiement progressif. Réponses évaluées par un juge LLM d'un autre fournisseur : 9 pièges sur 10 détectés, 7 erreurs réelles confirmées sur 40 (méthode et limites sur le blog).",
         "tag": "RAG & Agents IA",
         "theme": "documents-rag",
         "featured": true,
@@ -131,12 +131,12 @@
         "theme": "conformite-risques",
         "featured": true,
         "challenge": "Dans un service sinistres, la plupart des dossiers sont simples, mais ceux qui appellent une enquête ou un recours contre un tiers responsable demandent de croiser plusieurs pièces. Confier ce travail à une IA soulève trois questions : qui décide du routage, que se passe-t-il quand le modèle se trompe, et combien cela coûte-t-il ?",
-        "solution": "Sur des sinistres fictifs, des règles métier calculent un score sur 50 et fixent le routage (traitement automatique, investigation, alerte SIU). L'agent ne peut pas le modifier. Un agent Claude n'est appelé que si c'est utile, quand le dossier est suspect ou qu'un rapport de police est fourni. Il choisit ses outils, rend une proposition structurée, puis s'arrête : un gestionnaire valide ou rejette, motif à l'appui, avant que l'agent ne rédige un brouillon sans aucun envoi réel. Les seuils sont des choix de démonstration, non calibrés sur des données réelles.",
+        "solution": "Sur des sinistres fictifs, des règles métier calculent un score sur 50 et fixent un routage plancher (traitement automatique, investigation, alerte SIU). Jev (TypeSafe AI) lit le récit de l'assuré et le rapport de police : il peut relever le routage d'un niveau, jamais l'abaisser. Un agent Claude n'est appelé que si c'est utile, quand le dossier est suspect ou qu'un rapport de police est fourni. Il choisit ses outils, rend une proposition structurée, puis s'arrête : un gestionnaire valide ou rejette, motif à l'appui, avant que l'agent ne rédige un brouillon sans aucun envoi réel. Les seuils sont des choix de démonstration, non calibrés sur des données réelles.",
         "features": [
           {
             "icon": "🎯",
             "title": "Règles d'abord, IA si utile",
-            "description": "Le score et le routage sont calculés par des règles déterministes. Un dossier sain, sans rapport de police, ne déclenche aucun appel à l'IA."
+            "description": "Le score et le routage plancher sont calculés par des règles déterministes. Un dossier sain sans rapport de police ne déclenche pas l'agent Claude."
           },
           {
             "icon": "🧰",
@@ -151,6 +151,7 @@
         ],
         "stack": [
           "Claude Sonnet 5.5 (API Anthropic)",
+          "Jev (TypeSafe AI, via Vercel AI Gateway)",
           "HTML/JavaScript",
           "Vercel Functions",
           "Upstash Redis"
@@ -173,7 +174,7 @@
       },
       "agap": {
         "title": "AGAP",
-        "description": "Priorisation de portefeuille projets arbitrée par l'IA, sans biais Métier/DSI.",
+        "description": "Priorisation de portefeuille projets arbitrée par l'IA, en rendant visibles les biais Métier/DSI.",
         "demonstrates": "Outiller une décision de portefeuille : rendre visibles les écarts Métier/DSI et arbitrer par scénarios, avec des justifications tracées.",
         "tag": "Gouvernance de Portefeuille & IA",
         "theme": "gouvernance-cadrage",
@@ -240,7 +241,7 @@
           {
             "icon": "🔒",
             "title": "Aucun stockage côté application",
-            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic) conserve les données transmises 30 jours, selon sa politique par défaut."
+            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic, société américaine) supprime les données transmises dans un délai de 30 jours, sauf exceptions."
           }
         ],
         "stack": [
@@ -311,7 +312,7 @@
           {
             "icon": "📊",
             "title": "Export des résultats",
-            "description": "Export CSV et Excel des résultats."
+            "description": "Export CSV, Excel et JSON des résultats."
           }
         ],
         "stack": [
@@ -326,7 +327,7 @@
       "dvf": {
         "title": "DVF",
         "description": "Recherche et analyse de transactions immobilières.",
-        "demonstrates": "Exploiter l'open data foncière : recherche par adresse et statistiques de prix par commune.",
+        "demonstrates": "Un agent qui orchestre des outils : Claude comprend la question, le code calcule les chiffres.",
         "tag": "Data & Open data",
         "theme": "donnees-publiques",
         "challenge": "L'analyse des données DVF (Demandes de Valeurs Foncières) publiées par la DGFiP est fastidieuse : format CSV brut de plusieurs Go, absence de visualisation native, et difficulté de croisement avec les données géographiques.",
@@ -334,8 +335,8 @@
         "features": [
           {
             "icon": "📊",
-            "title": "Prix médian du foncier par commune",
-            "description": "Médiane du prix au m² et de la surface des terrains, avec évolution par année, calculée pour chaque commune à partir des transactions DVF."
+            "title": "Prix médians d'une commune, à la demande",
+            "description": "Médianes calculées par le code à partir des transactions DVF, par catégorie de bien et par année (2021-2025 par défaut), en €/m² ou en €/ha pour les terrains agricoles et naturels."
           },
           {
             "icon": "📍",
