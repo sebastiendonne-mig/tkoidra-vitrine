@@ -241,7 +241,7 @@
           {
             "icon": "🔒",
             "title": "No application-side storage",
-            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic) retains transmitted data for 30 days, under its default policy."
+            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic, a US company) deletes transmitted data within 30 days, with exceptions."
           }
         ],
         "stack": [

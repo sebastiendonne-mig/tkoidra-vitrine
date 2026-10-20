@@ -241,7 +241,7 @@
           {
             "icon": "🔒",
             "title": "Aucun stockage côté application",
-            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic) conserve les données transmises 30 jours, selon sa politique par défaut."
+            "description": "Le document est traité en mémoire et n'est pas conservé par l'application. Le fournisseur d'IA (Anthropic, société américaine) supprime les données transmises dans un délai de 30 jours, sauf exceptions."
           }
         ],
         "stack": [
