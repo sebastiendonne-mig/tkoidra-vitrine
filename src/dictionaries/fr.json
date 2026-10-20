@@ -74,7 +74,7 @@
       "assurconseil": {
         "title": "AssurConseil RAG",
         "description": "Assistant RAG agentique pour l'interprétation de contrats d'assurance, avec comparaison Claude / Mistral en mode document.",
-        "demonstrates": "Industrialiser un RAG : évaluation avant mise en production, garde-fous de coût, inférence européenne prouvée, déploiement progressif. Réponses évaluées par un juge LLM d'un autre fournisseur : 9 pièges sur 10 détectés, 7 erreurs réelles confirmées sur 40 (méthode et limites sur le blog).",
+        "demonstrates": "Industrialiser un RAG : évaluation avant mise en production, garde-fous de coût, inférence Mistral dans l'UE, tracée par journal d'audit, déploiement progressif. Réponses évaluées par un juge LLM d'un autre fournisseur : 9 pièges sur 10 détectés, 7 erreurs réelles confirmées sur 40 (méthode et limites sur le blog).",
         "tag": "RAG & Agents IA",
         "theme": "documents-rag",
         "featured": true,

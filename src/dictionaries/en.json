@@ -74,7 +74,7 @@
       "assurconseil": {
         "title": "AssurConseil RAG",
         "description": "Agentic RAG assistant for insurance contract interpretation, with a Claude / Mistral comparison in document mode.",
-        "demonstrates": "Industrialising a RAG: evaluation before production, cost guardrails, proven European inference, progressive deployment. Answers evaluated by an LLM judge from another provider: 9 of 10 planted errors caught, 7 real errors confirmed out of 40 (method and limits on the blog, in French).",
+        "demonstrates": "Industrialising a RAG: evaluation before production, cost guardrails, Mistral inference in the EU, traced by audit log, progressive deployment. Answers evaluated by an LLM judge from another provider: 9 of 10 planted errors caught, 7 real errors confirmed out of 40 (method and limits on the blog, in French).",
         "tag": "RAG & AI Agents",
         "theme": "documents-rag",
         "featured": true,
