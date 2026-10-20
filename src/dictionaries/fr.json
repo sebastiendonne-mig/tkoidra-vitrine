@@ -136,7 +136,7 @@
           {
             "icon": "🎯",
             "title": "Règles d'abord, IA si utile",
-            "description": "Le score et le routage sont calculés par des règles déterministes. Un dossier sain sans rapport de police ne déclenche pas l'agent Claude."
+            "description": "Le score et le routage plancher sont calculés par des règles déterministes. Un dossier sain sans rapport de police ne déclenche pas l'agent Claude."
           },
           {
             "icon": "🧰",

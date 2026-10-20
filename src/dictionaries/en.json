@@ -131,12 +131,12 @@
         "theme": "conformite-risques",
         "featured": true,
         "challenge": "In a claims department, most cases are simple, but those that call for an investigation or a recovery claim against a liable third party require cross-checking several documents. Handing this work to AI raises three questions: who decides the routing, what happens when the model gets it wrong, and what does it cost?",
-        "solution": "On fictional claims, business rules compute a score out of 50 and set a minimum routing (straight-through processing, investigation, fraud-unit alert). Jev (TypeSafe AI) reads the policyholder's account and the police report: it can raise the routing by one level, never lower it. A Claude agent is called only when useful, when the case is suspicious or a police report is provided. It picks its tools, returns a structured proposal, then stops: a claims handler approves or rejects it with a reason, before the agent drafts a letter that is never actually sent. Thresholds are demonstration choices, not calibrated on real data.",
+        "solution": "On fictional claims, business rules compute a score out of 50 and set a routing floor (straight-through processing, investigation, SIU alert). Jev (TypeSafe AI) reads the policyholder's statement and the police report: it can raise the routing by one level, never lower it. A Claude agent is called only when useful, when the case is suspicious or a police report is provided. It picks its tools, returns a structured proposal, then stops: a claims handler approves or rejects it with a reason, before the agent drafts a letter that is never actually sent. Thresholds are demonstration choices, not calibrated on real data.",
         "features": [
           {
             "icon": "🎯",
             "title": "Rules first, AI when useful",
-            "description": "Score and routing come from deterministic rules. A clean case without a police report does not trigger the Claude agent."
+            "description": "Score and routing floor come from deterministic rules. A clean case without a police report does not trigger the Claude agent."
           },
           {
             "icon": "🧰",
@@ -241,7 +241,7 @@
           {
             "icon": "🔒",
             "title": "No application-side storage",
-            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic, a US company) deletes transmitted data within 30 days, with exceptions."
+            "description": "The document is processed in memory and is not stored by the application. The AI provider (Anthropic, a US company) deletes transmitted data within 30 days, subject to exceptions."
           }
         ],
         "stack": [
