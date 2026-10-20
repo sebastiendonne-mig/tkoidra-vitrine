@@ -312,7 +312,7 @@
           {
             "icon": "📊",
             "title": "Export des résultats",
-            "description": "Export CSV et Excel des résultats."
+            "description": "Export CSV, Excel et JSON des résultats."
           }
         ],
         "stack": [
