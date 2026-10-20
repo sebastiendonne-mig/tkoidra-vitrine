@@ -327,7 +327,7 @@
       "dvf": {
         "title": "DVF",
         "description": "Real estate transaction search and analysis.",
-        "demonstrates": "Using open land-registry data: address search and municipality-level price statistics.",
+        "demonstrates": "An agent that orchestrates tools: Claude understands the question, the code computes the figures.",
         "tag": "Data & Open Data",
         "theme": "donnees-publiques",
         "challenge": "Analyzing DVF (Property Value Requests) data published by the DGFiP is tedious: multi-GB raw CSV format, no native visualization, and difficulty cross-referencing with geographic data.",
@@ -335,8 +335,8 @@
         "features": [
           {
             "icon": "📊",
-            "title": "Median Land Price by Municipality",
-            "description": "Median price per m² and land area, with year-by-year evolution, calculated for each municipality from DVF transaction data."
+            "title": "Median Prices for a Municipality, on Demand",
+            "description": "Medians computed by the code from DVF transactions, by property category and by year (2021-2025 by default), in €/m² or in €/ha for agricultural and natural land."
           },
           {
             "icon": "📍",

@@ -327,7 +327,7 @@
       "dvf": {
         "title": "DVF",
         "description": "Recherche et analyse de transactions immobilières.",
-        "demonstrates": "Exploiter l'open data foncière : recherche par adresse et statistiques de prix par commune.",
+        "demonstrates": "Un agent qui orchestre des outils : Claude comprend la question, le code calcule les chiffres.",
         "tag": "Data & Open data",
         "theme": "donnees-publiques",
         "challenge": "L'analyse des données DVF (Demandes de Valeurs Foncières) publiées par la DGFiP est fastidieuse : format CSV brut de plusieurs Go, absence de visualisation native, et difficulté de croisement avec les données géographiques.",
@@ -335,8 +335,8 @@
         "features": [
           {
             "icon": "📊",
-            "title": "Prix médian du foncier par commune",
-            "description": "Médiane du prix au m² et de la surface des terrains, avec évolution par année, calculée pour chaque commune à partir des transactions DVF."
+            "title": "Prix médians d'une commune, à la demande",
+            "description": "Médianes calculées par le code à partir des transactions DVF, par catégorie de bien et par année (2021-2025 par défaut), en €/m² ou en €/ha pour les terrains agricoles et naturels."
           },
           {
             "icon": "📍",
