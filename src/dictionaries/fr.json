@@ -131,12 +131,12 @@
         "theme": "conformite-risques",
         "featured": true,
         "challenge": "Dans un service sinistres, la plupart des dossiers sont simples, mais ceux qui appellent une enquête ou un recours contre un tiers responsable demandent de croiser plusieurs pièces. Confier ce travail à une IA soulève trois questions : qui décide du routage, que se passe-t-il quand le modèle se trompe, et combien cela coûte-t-il ?",
-        "solution": "Sur des sinistres fictifs, des règles métier calculent un score sur 50 et fixent le routage (traitement automatique, investigation, alerte SIU). L'agent ne peut pas le modifier. Un agent Claude n'est appelé que si c'est utile, quand le dossier est suspect ou qu'un rapport de police est fourni. Il choisit ses outils, rend une proposition structurée, puis s'arrête : un gestionnaire valide ou rejette, motif à l'appui, avant que l'agent ne rédige un brouillon sans aucun envoi réel. Les seuils sont des choix de démonstration, non calibrés sur des données réelles.",
+        "solution": "Sur des sinistres fictifs, des règles métier calculent un score sur 50 et fixent un routage plancher (traitement automatique, investigation, alerte SIU). Jev (TypeSafe AI) lit le récit de l'assuré et le rapport de police : il peut relever le routage d'un niveau, jamais l'abaisser. Un agent Claude n'est appelé que si c'est utile, quand le dossier est suspect ou qu'un rapport de police est fourni. Il choisit ses outils, rend une proposition structurée, puis s'arrête : un gestionnaire valide ou rejette, motif à l'appui, avant que l'agent ne rédige un brouillon sans aucun envoi réel. Les seuils sont des choix de démonstration, non calibrés sur des données réelles.",
         "features": [
           {
             "icon": "🎯",
             "title": "Règles d'abord, IA si utile",
-            "description": "Le score et le routage sont calculés par des règles déterministes. Un dossier sain, sans rapport de police, ne déclenche aucun appel à l'IA."
+            "description": "Le score et le routage sont calculés par des règles déterministes. Un dossier sain sans rapport de police ne déclenche pas l'agent Claude."
           },
           {
             "icon": "🧰",
@@ -151,6 +151,7 @@
         ],
         "stack": [
           "Claude Sonnet 5.5 (API Anthropic)",
+          "Jev (TypeSafe AI, via Vercel AI Gateway)",
           "HTML/JavaScript",
           "Vercel Functions",
           "Upstash Redis"
