@@ -174,7 +174,7 @@
       },
       "agap": {
         "title": "AGAP",
-        "description": "AI-arbitrated project portfolio prioritization, free of Business/IT bias.",
+        "description": "AI-arbitrated project portfolio prioritization, making Business/IT biases visible.",
         "demonstrates": "Tooling a portfolio decision: surfacing Business/IT gaps and arbitrating through scenarios, with tracked justifications.",
         "tag": "Portfolio Governance & AI",
         "theme": "gouvernance-cadrage",

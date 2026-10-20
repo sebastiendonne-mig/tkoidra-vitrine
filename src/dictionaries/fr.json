@@ -174,7 +174,7 @@
       },
       "agap": {
         "title": "AGAP",
-        "description": "Priorisation de portefeuille projets arbitrée par l'IA, sans biais Métier/DSI.",
+        "description": "Priorisation de portefeuille projets arbitrée par l'IA, en rendant visibles les biais Métier/DSI.",
         "demonstrates": "Outiller une décision de portefeuille : rendre visibles les écarts Métier/DSI et arbitrer par scénarios, avec des justifications tracées.",
         "tag": "Gouvernance de Portefeuille & IA",
         "theme": "gouvernance-cadrage",
