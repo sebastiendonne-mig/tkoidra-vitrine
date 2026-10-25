@@ -11,11 +11,11 @@
   "home": {
     "metadata": {
       "title": "Des projets IA qui cadrent avec vos contraintes | TKoidra",
-      "description": "Sébastien Donné, Product Owner IA : cadrage, construction et adoption de solutions d'IA générative. Huit démonstrateurs en ligne, testables."
+      "description": "Sébastien Donné, Product Owner IA : cadrage, construction et adoption de solutions d'IA générative. Neuf démonstrateurs en ligne, testables."
     },
     "badge": "TKoidra",
     "title": "Des projets IA qui cadrent avec vos contraintes.",
-    "intro": "Je suis Sébastien Donné, Product Owner IA. Je cadre, construis et fais adopter des solutions d'IA générative, en m'appuyant sur quinze ans d'agilité à l'échelle et de conduite du changement. Huit démonstrateurs en ligne le montrent.",
+    "intro": "Je suis Sébastien Donné, Product Owner IA. Je cadre, construis et fais adopter des solutions d'IA générative, en m'appuyant sur quinze ans d'agilité à l'échelle et de conduite du changement. Neuf démonstrateurs en ligne le montrent.",
     "cta": "Voir les cas d'usage",
     "methodLink": "Découvrir la méthode",
     "demos": {
@@ -25,13 +25,13 @@
         { "slug": "fraud", "name": "Fraud Agent", "text": "Agent de pré-instruction de sinistres : des règles décident du routage, un agent Claude propose, un gestionnaire valide." },
         { "slug": "agap", "name": "AGAP", "text": "Arbitrage de portefeuille de projets : écart de perception Métier / DSI, scénarios, ligne de coupe budgétaire." }
       ],
-      "allLink": "Voir les 8 cas d'usage"
+      "allLink": "Voir les 9 cas d'usage"
     },
     "explore": {
       "heading": "Explorer",
       "blogLangNote": "",
       "items": [
-        { "key": "useCases", "title": "Cas d'usage", "text": "Huit démonstrateurs IA testables en ligne, classés par thème." },
+        { "key": "useCases", "title": "Cas d'usage", "text": "Neuf démonstrateurs IA testables en ligne, classés par thème." },
         { "key": "method", "title": "Méthode", "text": "Diagnostiquer, construire, exploiter : ma façon de mener un projet IA." },
         { "key": "blog", "title": "Deep Dives", "text": "Articles de fond sur les projets IA, le métier de Product Owner IA et la conformité." },
         { "key": "profile", "title": "Profil", "text": "Parcours, compétences et certifications." }
@@ -385,6 +385,58 @@
           "Vercel Functions"
         ],
         "metrics": []
+      },
+      "mask": {
+        "title": "mask",
+        "description": "Pseudonymiser un texte dans le navigateur avec un modèle open weight. Préversion en ligne, résultats mesurés affichés.",
+        "demonstrates": "Évaluer un modèle open weight sur des seuils publiés avant de mesurer, puis le mettre en ligne avec ses résultats, échecs compris.",
+        "tag": "IA OPEN WEIGHT & DONNÉES PERSONNELLES",
+        "theme": "conformite-risques",
+        "featured": true,
+        "challenge": "Avant de confier un document à une IA générative, avocats, experts-comptables et services RH ont intérêt à en retirer les données identifiantes : noms, adresses, IBAN, numéros de sécurité sociale. Si le traitement se fait dans le navigateur, le document ne quitte jamais l'ordinateur.",
+        "solution": "Un pseudonymiseur qui tourne entièrement dans le navigateur : des règles pour les formats fixes, plus le modèle open weight camembert-ner (licence MIT), converti par nos soins et exécuté en WebAssembly. Le texte collé ne quitte pas l'ordinateur, ce qui a été vérifié sur la version en ligne ; seul le modèle est téléchargé, et chaque fichier est vérifié par empreinte avant usage. Les seuils de réussite ont été publiés avant tout essai, et chaque changement de cap passe par un amendement daté. En préversion, chaque remplacement doit être relu, et les limites mesurées sont affichées dans l'application. Seuils, amendements et résultats sont publics : github.com/sebastiendonne-mig/mask",
+        "features": [
+          {
+            "icon": "🔒",
+            "title": "Rien ne quitte le navigateur",
+            "description": "Le texte reste sur l'ordinateur du visiteur ; seul le modèle est téléchargé, et chaque fichier est vérifié par empreinte. Contrôlé sur la version en ligne."
+          },
+          {
+            "icon": "📏",
+            "title": "Seuils publiés avant de mesurer",
+            "description": "Objectifs de détection et de chargement fixés à l'avance ; tout changement passe par un amendement daté et justifié."
+          },
+          {
+            "icon": "🧪",
+            "title": "Évaluation sur données fictives",
+            "description": "Jeu de développement, jeu de robustesse écrit à part, et jeu de test scellé, réservé à la mesure finale."
+          },
+          {
+            "icon": "⚠️",
+            "title": "Limites affichées",
+            "description": "Pseudonymiser n'est pas anonymiser : chaque remplacement est relu avant usage. Les échecs sont publiés comme les succès."
+          }
+        ],
+        "stack": [
+          "camembert-ner (MIT)",
+          "Transformers.js",
+          "onnxruntime-web (WebAssembly)",
+          "Règles : expressions régulières et clés de contrôle",
+          "Hugging Face",
+          "Vercel"
+        ],
+        "metrics": [
+          "Sur 15 documents fictifs écrits pour être difficiles : 92,8 % des éléments à pseudonymiser repérés, 181 sur 195 (mesures du 24/10/2026)",
+          "Dans le détail : noms 96,7 %, numéros à format fixe 95,2 %, adresses 63,2 % (mesures du 24/10/2026)",
+          "Modèle converti : aucun écart de masquage avec le modèle d'origine sur le jeu de développement (mesures du 24/10/2026)",
+          "Première visite : 21,6 s en médiane (24,3 s au plus) sur Chrome à 100 Mb/s simulés, 220 Mo téléchargés une seule fois ; moins de 1 s ensuite (mesures du 24/10/2026)"
+        ],
+        "image": {
+          "src": "/use-cases/mask.webp",
+          "width": 1440,
+          "height": 900,
+          "alt": "Capture de mask : un courrier d'avocat fictif, avec les éléments repérés surlignés et le bandeau de préversion."
+        }
       }
     }
   },

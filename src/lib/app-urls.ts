@@ -9,4 +9,5 @@ export const appUrls: Record<string, string> = {
   fraud: "https://fraud.tkoidra.com",
   lexguard: "https://lexguard.tkoidra.com",
   verifid: "https://verif.tkoidra.com/",
+  mask: "https://mask.tkoidra.com",
 };

@@ -11,11 +11,11 @@
   "home": {
     "metadata": {
       "title": "AI projects that fit your constraints | TKoidra",
-      "description": "Sébastien Donné, AI Product Owner: framing, building and driving the adoption of generative AI solutions. Eight live demonstrators you can test."
+      "description": "Sébastien Donné, AI Product Owner: framing, building and driving the adoption of generative AI solutions. Nine live demonstrators you can test."
     },
     "badge": "TKoidra",
     "title": "AI projects that fit your constraints.",
-    "intro": "I'm Sébastien Donné, an AI Product Owner. I frame, build and drive the adoption of generative AI solutions, drawing on fifteen years of scaled agile and change management. Eight live demonstrators show how.",
+    "intro": "I'm Sébastien Donné, an AI Product Owner. I frame, build and drive the adoption of generative AI solutions, drawing on fifteen years of scaled agile and change management. Nine live demonstrators show how.",
     "cta": "See the use cases",
     "methodLink": "Discover the method",
     "demos": {
@@ -25,13 +25,13 @@
         { "slug": "fraud", "name": "Fraud Agent", "text": "Claims pre-assessment agent: business rules set the routing, a Claude agent proposes, a handler decides." },
         { "slug": "agap", "name": "AGAP", "text": "Project portfolio arbitration: business / IT perception gap, scenarios, budget cut-off line." }
       ],
-      "allLink": "See all 8 use cases"
+      "allLink": "See all 9 use cases"
     },
     "explore": {
       "heading": "Explore",
       "blogLangNote": "(in French)",
       "items": [
-        { "key": "useCases", "title": "Use cases", "text": "Eight AI demonstrators you can test online, grouped by theme." },
+        { "key": "useCases", "title": "Use cases", "text": "Nine AI demonstrators you can test online, grouped by theme." },
         { "key": "method", "title": "Method", "text": "Diagnose, build, operate: how I lead an AI project." },
         { "key": "blog", "title": "Deep Dives", "text": "In-depth articles on AI projects, the AI Product Owner role and compliance." },
         { "key": "profile", "title": "Profile", "text": "Career, skills and certifications." }
@@ -385,6 +385,58 @@
           "Vercel Functions"
         ],
         "metrics": []
+      },
+      "mask": {
+        "title": "mask",
+        "description": "Pseudonymising text in the browser with an open-weight model. Live preview, measured results on display.",
+        "demonstrates": "Evaluating an open-weight model against thresholds published before measuring, then putting it online with its results, failures included.",
+        "tag": "OPEN-WEIGHT AI & PERSONAL DATA",
+        "theme": "conformite-risques",
+        "featured": true,
+        "challenge": "Before handing a document to a generative AI, lawyers, accountants and HR teams should strip identifying data from it: names, addresses, IBANs, social security numbers. If processing happens in the browser, the document never leaves the computer.",
+        "solution": "A pseudonymiser that runs entirely in the browser: rules for fixed formats, plus the open-weight camembert-ner model (MIT licence), converted by us and running in WebAssembly. Pasted text does not leave the computer, which was checked on the live version; only the model is downloaded, and each file is verified by checksum before use. Success thresholds were published before any test, and every change of course requires a dated amendment. As a preview, every replacement must be reviewed, and the measured limits are shown in the application. Thresholds, amendments and results are public: github.com/sebastiendonne-mig/mask",
+        "features": [
+          {
+            "icon": "🔒",
+            "title": "Nothing leaves the browser",
+            "description": "Text stays on the visitor's computer; only the model is downloaded, and each file is verified by checksum. Checked on the live version."
+          },
+          {
+            "icon": "📏",
+            "title": "Thresholds published before measuring",
+            "description": "Detection and loading targets set in advance; any change requires a dated, justified amendment."
+          },
+          {
+            "icon": "🧪",
+            "title": "Evaluated on fictitious data",
+            "description": "Development set, separately written robustness set, and a sealed test set reserved for the final measurement."
+          },
+          {
+            "icon": "⚠️",
+            "title": "Limits on display",
+            "description": "Pseudonymisation is not anonymisation: every replacement is reviewed before use. Failures are published alongside successes."
+          }
+        ],
+        "stack": [
+          "camembert-ner (MIT)",
+          "Transformers.js",
+          "onnxruntime-web (WebAssembly)",
+          "Rules: regular expressions and checksums",
+          "Hugging Face",
+          "Vercel"
+        ],
+        "metrics": [
+          "On 15 fictitious documents written to be hard: 92.8% of items to pseudonymise detected, 181 of 195 (measured 24/10/2026)",
+          "In detail: names 96.7%, fixed-format numbers 95.2%, addresses 63.2% (measured 24/10/2026)",
+          "Converted model: zero masking differences from the original model on the development set (measured 24/10/2026)",
+          "First visit: 21.6 s median (24.3 s at most) on Chrome at a simulated 100 Mb/s, 220 MB downloaded once; under 1 s afterwards (measured 24/10/2026)"
+        ],
+        "image": {
+          "src": "/use-cases/mask.webp",
+          "width": 1440,
+          "height": 900,
+          "alt": "Screenshot of mask: a fictitious lawyer's letter, with the detected items highlighted and the preview banner."
+        }
       }
     }
   },
