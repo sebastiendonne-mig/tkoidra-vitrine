@@ -426,7 +426,7 @@ export default async function UseCasesPage({
           <p className="text-lg leading-7 text-slate-400">{useCases?.subtitle}</p>
         </header>
 
-        {/* Overview — compact grid of all 8, optional theme filter */}
+        {/* Overview — compact grid of all 9, optional theme filter */}
         {useCases?.overview && (
           <OverviewGrid
             allLabel={useCases.overview.allLabel}

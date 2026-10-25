@@ -78,7 +78,7 @@ const content: Record<"fr" | "en", Content> = {
     ],
     demos: {
       heading: "Démonstrateurs en ligne",
-      text: "Huit démonstrateurs IA conçus, déployés et maintenus en ligne, dont AssurConseil (RAG agentique, comparaison Claude / Mistral), LexGuard (analyse de contrats) et AGAP (gouvernance de portefeuille).",
+      text: "Neuf démonstrateurs IA conçus, déployés et maintenus en ligne, dont AssurConseil (RAG agentique, comparaison Claude / Mistral), LexGuard (analyse de contrats) et AGAP (gouvernance de portefeuille).",
       linkLabel: "Voir les cas d'usage",
     },
     parcours: {
@@ -184,7 +184,7 @@ const content: Record<"fr" | "en", Content> = {
     ],
     demos: {
       heading: "Live demonstrators",
-      text: "Eight AI demonstrators designed, deployed and maintained online, including AssurConseil (agentic RAG, Claude / Mistral comparison), LexGuard (contract analysis) and AGAP (portfolio governance).",
+      text: "Nine AI demonstrators designed, deployed and maintained online, including AssurConseil (agentic RAG, Claude / Mistral comparison), LexGuard (contract analysis) and AGAP (portfolio governance).",
       linkLabel: "See the use cases",
     },
     parcours: {

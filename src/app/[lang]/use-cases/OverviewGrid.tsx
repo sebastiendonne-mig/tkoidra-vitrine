@@ -15,7 +15,7 @@ interface Item {
   themeLabel: string;
 }
 
-// Rendu SSG = les 8 cartes visibles sans JS (activeTheme démarre à null → aucun filtre).
+// Rendu SSG = les 9 cartes visibles sans JS (activeTheme démarre à null → aucun filtre).
 // Le JS n'ajoute que le filtrage côté client, sans jamais masquer de contenu au premier rendu serveur.
 export function OverviewGrid({
   allLabel,
