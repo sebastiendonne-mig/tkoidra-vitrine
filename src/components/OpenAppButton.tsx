@@ -26,7 +26,7 @@ export function OpenAppButton({
       <a
         href={href}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener"
         className={`inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-navy hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-hover focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 motion-safe:transition-colors ${className}`.trim()}
       >
         {label}
